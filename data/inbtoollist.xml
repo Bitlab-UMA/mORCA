@@ -1,0 +1,410 @@
+<node label="Service" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Service"> 
+<node label="Comparative Genomics" description="Category for comparative genomics services" id="urn:lsid:biomoby.org:servicetype:test"> 
+<node label="mapFragsNew" description="map program" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,mapFragsNew" /> 
+<node label="getProgressAzure" description="get the current progress of the specified job ID" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,getProgressAzure" /> 
+<node label="formatBlastpl" description="Format a blast file" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,formatBlastpl" /> 
+<node label="wordsNEW" description="create words" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,wordsNEW" /> 
+<node label="procBinaryArrayv2" description="descripcion" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,procBinaryArrayv2" /> 
+<node label="Oscar1" description="descripcion corta" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,Oscar1" /> 
+<node label="reduceFragsNew" description="reduce program in azure" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,reduceFragsNew" /> 
+<node label="UnServicioMio2" description="Descripcion de UnServicioMio" id="urn:lsid:biomoby.org:serviceinstance:org.api.bitlab,UnServicioMio2" /> 
+<node label="blastall" description="map reduce paradigm at azure using blastallexe as main app" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,blastall" /> 
+<node label="grepAllergiesv3" description="Get info about allergies episodes" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,grepAllergiesv3" /> 
+<node label="fragsAzure" description="map reduce paradigm at azure using AllFragsvexe as main app" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,fragsAzure" /> 
+<node label="procBinaryArray" description="Procesado de BinaryArray" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,procBinaryArray" /> 
+<node label="getCuisForEvent" description="getCuisForEvent operation from IMIM Barcelona" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,getCuisForEvent" /> 
+<node label="ConvertSNPData" description="Convert a SNP data file" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,ConvertSNPData" /> 
+<node label="mainAppScriptAzure" description="main app script" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,mainAppScriptAzure" /> 
+<node label="testTunaModel" description="Performs accuracy test on all genotyped SNPs" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,testTunaModel" /> 
+<node label="Fredo1" description="descripcion corta" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,Fredo1" /> 
+<node label="createTunaDB" description="Construct multilocus Linkage Disequilibrium LD databases for TUNA" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,createTunaDB" /> 
+<node label="getBioData" description="Get a previous saved data in the given formatoptional from a BioData id Return content of the data" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,getBioData" /> 
+<node label="TestRMax" description="ff" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,TestRMax" /> 
+<node label="getDiseaseAssociatedProteins" description="getDiseaseAssociatedProteins operation from IMIM Barcelona" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,getDiseaseAssociatedProteins" /> 
+<node label="getPathways" description="getPathways operation from IMIM Barcelona" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,getPathways" /> 
+<node label="putBioData" description="Save a new data in the dataFileSystem with the given information Return id of the data to get it back" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,putBioData" /> 
+<node label="UnServicioMio" description="Descripcion de UnServicioMio" id="urn:lsid:biomoby.org:serviceinstance:org.api.bitlab,UnServicioMio" /> 
+<node label="TestMax" description="nothing" id="urn:lsid:biomoby.org:serviceinstance:bitlab,TestMax" /> 
+<node label="scriptFrags" description="main app script" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,scriptFrags" /> 
+<node label="mapFrags" description="map program" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,mapFrags" /> 
+<node label="tmpStep1" description="step  of new dotplot in the cloud" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,tmpStep1" /> 
+<node label="tmpStep2" description="step  of new dotplot in the cloud" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,tmpStep2" /> 
+<node label="scriptFragsNew" description="main app script" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,scriptFragsNew" /> 
+<node label="cat" description="descripcion corta" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,cat" /> 
+<node label="getBioDataList" description="Get the list of the data saved in the system showing its metainfo If you wish to get a filter list with only the dataType Selected use the dataType secondary parameterTo get one specific id info use the parameter bioDataId to get that id info" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,getBioDataList" /> 
+<node label="boost" description="genegene interaction analysis" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,boost" /> 
+<node label="reduceFrags" description="reduce program in azure" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,reduceFrags" /> 
+<node label="pruebaCollection" description="prueba de colecciones" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,pruebaCollection" /> 
+<node label="reduceAzure" description="reduce program in azure" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,reduceAzure" /> 
+<node label="pruebasecondary" description="Get info about allergies episodes" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,pruebasecondary" /> 
+<node label="maskSeq" description="Mask low complexity regions" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,maskSeq" /> 
+<node label="holaWS" description="return a welcome message with the input stream" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,holaWS" /> 
+<node label="mapAzurev2" description="map program in azure" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,mapAzurev2" /> 
+<node label="scanTunaModel" description="Performs statistical testings for untyped SNPs" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,scanTunaModel" /> 
+<node label="testRegJohan" description="test" id="urn:lsid:biomoby.org:serviceinstance:bitlab,testRegJohan" /> 
+<node label="BlastParser" description="BlastParser" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,BlastParser" /> 
+<node label="HelloWorld" description="HelloWorld" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,HelloWorld" /> 
+</node> 
+<node label="Search" description="Search services" id="urn:lsid:biomoby.org:servicetype:Search"> 
+<node label="genWorkflow" description="Magallanes workflows generator" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,genWorkflow" /> 
+<node label="feedback" description="" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,feedback" /> 
+<node label="search" description="Magallanes search" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,search" /> 
+</node> 
+<node label="Workflows" description="Workflows" id="urn:lsid:biomoby.org:servicetype:Workflows" /> 
+<node label="Bioinformatics" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Bioinformatics"> 
+<node label="Distances" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Distances"> 
+<node label="Arraying" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Arraying" /> 
+<node label="Phylogenetics" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Phylogenetics"> 
+<node label="Distance_Matrix_Computing" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Distance_Matrix_Computing"> 
+<node label="runNCut" description="Clustering application that groups the homolog sequences subfamilies and weights its closeness to the query sequence" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runNCut" /> 
+</node> 
+<node label="Phylogenetics_Tree_Computing" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Phylogenetics_Tree_Computing"> 
+<node label="runCreateTreeFromClustalw" description="Produces a phylogenetic tree with dnd format from a ClustalW multiple alignment" id="urn:lsid:biomoby.org:serviceinstance:www.bioinfo.uma.es,runCreateTreeFromClustalw" /> 
+</node> 
+</node> 
+</node> 
+<node label="Identification" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Identification" /> 
+<node label="Proteomics" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Proteomics" /> 
+<node label="StructuralStudies" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:StructuralStudies"> 
+<node label="PhysicoChemical_Properties" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:PhysicoChemical_Properties"> 
+<node label="runEmbossOctanolFromSequence" description="Displays protein hydropathy" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossOctanolFromSequence" /> 
+<node label="runEmbossChargeFromSequence" description="Reads a protein sequence and calculates the charges of the amino acids within a window of specified length" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossChargeFromSequence" /> 
+<node label="runEmbossPepinfoFromSequence" description="Pepinfo detects and displays various useful metrics about a protein sequence" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossPepinfoFromSequence" /> 
+<node label="runEmbossPepwindowFromSequence" description="Pepwindow produces a graph of the classic Kyte and Doolittle hydropathy plot of a protein" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossPepwindowFromSequence" /> 
+<node label="runEmbossAntigenicFromSequence" description="Antigenic predicts potentially antigenic regions of a protein sequence using the method of Kolaskar and Tongaonkar" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossAntigenicFromSequence" /> 
+<node label="runPHDFromAminoAcidSequence" description="Performs secondary structure and accessibility predictions using PHD" id="urn:lsid:biomoby.org:serviceinstance:mmb.pcb.ub.es,runPHDFromAminoAcidSequence" /> 
+<node label="runEmbossPepwindowallFromSequences" description="Pepwindowall produces a set of superimposed Kyte and Doolittle hydropathy plots from an aligned set of protein sequences" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossPepwindowallFromSequences" /> 
+<node label="runFSOLVFromPDBText" description="Evaluates fractional solvation based on LRT method" id="urn:lsid:biomoby.org:serviceinstance:mmb.pcb.ub.es,runFSOLVFromPDBText" /> 
+</node> 
+<node label="Interactions" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Interactions" /> 
+<node label="Aligning_Structures" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Aligning_Structures"> 
+<node label="runDaliLite" description="Makes a pairwise structure comparison between two PDB chains" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runDaliLite" /> 
+</node> 
+<node label="Nucleotics_2D_Structures" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Nucleotics_2D_Structures" /> 
+<node label="Protein_Secondary_Structures" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Protein_Secondary_Structures"> 
+<node label="runEmbossPepcoilFromSequence" description="Coiled coil region prediction" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossPepcoilFromSequence" /> 
+<node label="browseCATHClassification" description="Browse cath hierarchical classification Given a node number this service returns all its children" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,browseCATHClassification" /> 
+</node> 
+<node label="Protein_3D_Structures" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Protein_3D_Structures"> 
+<node label="Threadind_Methods" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Threadind_Methods" /> 
+<node label="AbInitio_Methods" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:AbInitio_Methods" /> 
+<node label="Homology_Methods" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Homology_Methods" /> 
+</node> 
+</node> 
+<node label="Alignment" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Alignment"> 
+<node label="DotPlotting" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:DotPlotting" /> 
+<node label="Pairwise_Sequence_Comparison" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Pairwise_Sequence_Comparison"> 
+<node label="Pairwise_Local_Aligning" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Pairwise_Local_Aligning"> 
+<node label="runNCBITBlastx" description="Compares the sixframe translations of a nucleotide query sequence against the sixframe translations of a nucleotide sequence database and calculates the statistical significance of matches using the Basic Local Alignment Search Tool BLAST" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runNCBITBlastx" /> 
+<node label="runNCBIBlastp1" description="Run NCBIBlast with default parameters from a fasta file" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,runNCBIBlastp1" /> 
+<node label="runWUTBlastn" description="It compares an amino acid query sequence against the sixframe translations of a nucleotide sequence database using the Washington University BLAST algorithm" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runWUTBlastn" /> 
+<node label="runWUBlastn" description="It compares a nucleotide query sequence against a nucleotide sequence database using the Washington University BLAST algorithm" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runWUBlastn" /> 
+<node label="runNCBITBlastn" description="Compares an amino acid sequence against the sixframe translations of a nucleotide sequence  database and calculates the statistical significance of matches using the Basic Local Alignment Search Tool BLAST" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runNCBITBlastn" /> 
+<node label="runWUTBlastx" description="It compares the sixframe translations of a nucleotide query sequence against the sixframe translations of a nucleotide sequence database using the Washington University BLAST algorithm" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runWUTBlastx" /> 
+<node label="runNCBIBlastp" description="Compares a protein sequence against a protein database and calculates the statistical significance of matches using the Basic Local Alignment Tool BLAST" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runNCBIBlastp" /> 
+<node label="runNCBIBlastn" description="Compares a nucleotide sequence to a sequence database and calculates the statistical significance of matches using the Basic Local Alignment Tool BLAST" id="urn:lsid:biomoby.org:serviceinstance:www.cnb.uam.es,runNCBIBlastn" /> 
+<node label="runRPSBlast" description="RPSBLAST Reverse PSIBLAST searches a query sequence against a database of profiles " id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runRPSBlast" /> 
+<node label="runNCBITBlastn_2Seqs" description="Compares a protein sequence against a nucleotide sequence used as a database dynamically translated in all six reading frames both strands using the Basic Local Alignment Tool BLAST" id="urn:lsid:biomoby.org:serviceinstance:org.inab.upc,runNCBITBlastn_2Seqs" /> 
+<node label="runPSIBlastpFromAminoAcidSequence" description="Perform  iterations of protein PSI Blast against nonredundant database with standard settings" id="urn:lsid:biomoby.org:serviceinstance:mmb.pcb.ub.es,runPSIBlastpFromAminoAcidSequence" /> 
+<node label="runPSIBlast" description="Compares a protein sequence to a sequence database and calculates the statistical significance of matches using the Position Specific Iterative BLAST PSIBLAST" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runPSIBlast" /> 
+</node> 
+<node label="Pairwise_Global_Aligning" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Pairwise_Global_Aligning" /> 
+</node> 
+<node label="Aligning_Structures" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Aligning_Structures"> 
+<node label="runDaliLite" description="Makes a pairwise structure comparison between two PDB chains" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runDaliLite" /> 
+</node> 
+<node label="Profiling" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Profiling"> 
+<node label="runHMMSearchAgainstSeqs" description="Searches a set of sequences with a HMM profile" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runHMMSearchAgainstSeqs" /> 
+</node> 
+<node label="Aligning_Differences" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Aligning_Differences" /> 
+<node label="Single_Sequence_Comparison" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Single_Sequence_Comparison"> 
+<node label="Pairwise_2Local_Aligning" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Pairwise_2Local_Aligning"> 
+<node label="runEmbossWaterFromSequences" description="Makes a pairwise global alingment using the NeedlemanWunsch global alignment algorithm" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossWaterFromSequences" /> 
+</node> 
+<node label="Pairwise_2Global_Aligning" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Pairwise_2Global_Aligning" /> 
+</node> 
+<node label="Multiple_Sequence_Comparison" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Multiple_Sequence_Comparison"> 
+<node label="runMBxmlFromMSF" description="Automatic method for predicting functionally important residues Mutational Behaviour in protein sequence alignments longer than  residues and at least  sequences in the MSF text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runMBxmlFromMSF" /> 
+<node label="runFASShtmlFromMSF" description="Automatic method for predicting functionally important residues in protein sequence alignments longer than  residues and at least  sequences in the MSF text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runFASShtmlFromMSF" /> 
+<node label="runTcoffeeFromSequences" description="Multiple sequence alignment usinf Tcoffee" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runTcoffeeFromSequences" /> 
+<node label="runSMxmlFromFASTA" description="Automatic method for predicting functionally important residues using the concept of Relative Entropy in protein sequence alignments longer than  residues and at least  sequences in the FASTA text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runSMxmlFromFASTA" /> 
+<node label="runMBhtmlFromPIR" description="Automatic method for predicting functionally important residues mutational behavior in protein sequence alignments longer than  residues and at least  sequences in the PIR text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runMBhtmlFromPIR" /> 
+<node label="runFASSxmlFromMSF" description="Automatic method for predicting functionally important residues in protein sequence alignments longer than  residues and at least  sequences in the MSF text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runFASSxmlFromMSF" /> 
+<node label="runFASShtmlFromFASTA" description="Automatic method for predicting functionally important residues in protein sequence alignments longer than  residues and at least  sequences in the FASTA text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runFASShtmlFromFASTA" /> 
+<node label="runSMhtmlFromPIR" description="Automatic method for predicting functionally important residues using the concept of Relative Entropy in protein sequence alignments longer than  residues and at least  sequences in the PIR text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runSMhtmlFromPIR" /> 
+<node label="runFASShtmlFromPIR" description="Automatic method for predicting functionally important residues in protein sequence alignments longer than  residues and at least  sequences in the PIR text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runFASShtmlFromPIR" /> 
+<node label="runMBxmlFromPIR" description="Automatic method for predicting functionally important residues Mutational Behavior in protein sequence alignments longer than  residues and at least  sequences in the PIR text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runMBxmlFromPIR" /> 
+<node label="runSquareFromFASTA" description="Produces a measure of per residue reliability for alignments between query sequences and sequences of known structure ie those from the PDB in the FASTA text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runSquareFromFASTA" /> 
+<node label="runSMxmlFromMSF" description="Automatic method for predicting functionally important residues using the concept of Relative Entropy in protein sequence alignments longer than  residues and at least  sequences in the MSF text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runSMxmlFromMSF" /> 
+<node label="runClustalwFastUMA" description="Run a clustal from a collection of generic sequences" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,runClustalwFastUMA" /> 
+<node label="runClustalwFast" description="ClustalW multiple sequence alignments fast method" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runClustalwFast" /> 
+<node label="runSquareFromPIR" description="Produces a measure of per residue reliability for alignments between query sequences and sequences of known structure ie those from the PDB in the PIR text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runSquareFromPIR" /> 
+<node label="runSMxmlFromPIR" description="Automatic method for predicting functionally important residues using the concept of Relative Entropy in protein sequence alignments longer than  residues and at least  sequences in the PIR text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runSMxmlFromPIR" /> 
+<node label="runSquareFromMSF" description="Produces a measure of per residue reliability for alignments between query sequences and sequences of known structure ie those from the PDB in the MSF text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runSquareFromMSF" /> 
+<node label="runSMhtmlFromFASTA" description="Automatic method for predicting functionally important residues using the concept of Relative Entropy in protein sequence alignments longer than  residues and at least  sequences in the FASTA text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runSMhtmlFromFASTA" /> 
+<node label="runMBxmlFromFASTA" description="Automatic method for predicting functionally important residues Mutational Behavior in protein sequence alignments longer than  residues and at least  sequences in the FASTA text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runMBxmlFromFASTA" /> 
+<node label="runMBhtmlFromFASTA" description="Automatic method for predicting functionally important residues Mutational Behavior in protein sequence alignments longer than  residues and at least  sequences in the FASTA text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runMBhtmlFromFASTA" /> 
+<node label="runMBhtmlFromMSF" description="Automatic method for predicting functionally important residues Mutational Behaviour in protein sequence alignments longer than  residues and at least  sequences in the MSF text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runMBhtmlFromMSF" /> 
+<node label="runFASSxmlFromPIR" description="Automatic method for predicting functionally important residues in protein sequence alignments longer than  residues and at least  sequences in the PIR text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runFASSxmlFromPIR" /> 
+<node label="runFASSFromMSF" description="Automatic method for predicting functionally important residues in protein sequence alignments longer than  residues and at least  sequences in the MSF text format as input" id="urn:lsid:biomoby.org:serviceinstance:cnio.es,runFASSFromMSF" /> 
+<node label="runSMhtmlFromMSF" description="Automatic method for predicting functionally important residues using the concept of Relative Entropy in protein sequence alignments longer than  residues and at least  sequences in the MSF text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runSMhtmlFromMSF" /> 
+<node label="runClustalwFull" description="ClustalW multiple sequence alignments full method" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runClustalwFull" /> 
+<node label="runFASSxmlFromFASTA" description="Automatic method for predicting functionally important residues in protein sequence alignments longer than  residues and at least  sequences in the FASTA text format as input" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runFASSxmlFromFASTA" /> 
+</node> 
+<node label="runMultiPairwiseMetaAlignmentGFF" description="Runs Metaalignment software on a multiple running mode receiving a collection of maps making pairs of them and foreach pair producing in GFF format alignments of sequences of TF binding sites" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,runMultiPairwiseMetaAlignmentGFF" /> 
+<node label="Mat2png" description="This program produces the DOTPLOT image using the matrix information obtained from two sequences " id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,Mat2png" /> 
+<node label="DPclasic" description="This program produces the matrix information obtained from two sequences DNA or aminoacids comparison to create DOTPLOT " id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,DPclasic" /> 
+<node label="runUMAtest" description="This is a test" id="urn:lsid:biomoby.org:serviceinstance:www.bioinfo.uma.es,runUMAtest" /> 
+<node label="runMultiPairwiseMetaAlignment" description="Runs Metaalignment software on a multiple running mode receiving a collection of maps making pairs of them and foreach pair producing in Metaalignment format alignments of sequences of TF binding sites" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,runMultiPairwiseMetaAlignment" /> 
+<node label="ServicioDeMentira" description="Servicio para hacer pruebas" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,ServicioDeMentira" /> 
+<node label="say_hello2" description="Servicio de prueba para oswaldo" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,say_hello2" /> 
+<node label="say_hello" description="Servicio de prueba para oswaldo" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,say_hello" /> 
+<node label="runMetaAlignment" description="Produces alignments of sequences of TF binding sites and returns the predictions in Metaalignment format You can use runMatScanGFF to produce the input GFF files specifying the loglikelihood matrix mode" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,runMetaAlignment" /> 
+<node label="fragP2png" description="This program produces the DOTPLOT image using the local alignments information and the palindromes of the first sequence  " id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,fragP2png" /> 
+<node label="DPfrag" description="This program produces the fragments information obtained from two sequences DNA or aminoacids comparison to create DOTPLOT" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,DPfrag" /> 
+<node label="runEmbossConsFromAlignment" description="Creates a consensus from multiple alignments" id="urn:lsid:biomoby.org:serviceinstance:www.cnb.uam.es,runEmbossConsFromAlignment" /> 
+<node label="runBoolean_test" description="This is a test" id="urn:lsid:biomoby.org:serviceinstance:www.bioinfo.uma.es,runBoolean_test" /> 
+<node label="showfrags" description="showfrags performs a sequence comparison algorithm as a result a text file with the fragments information is returned The information display the two part of sequences and the symbols that match and dontExtended information and examples can be found at httpwwwbitlabescombitlabws" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,showfrags" /> 
+<node label="runMetaAlignmentGFF" description="Produces alignments of sequences of TF binding sites and returns the predictions in GFF format You can use runMatScanGFF to produce the input GFF files specifying the loglikelihood matrix mode" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,runMetaAlignmentGFF" /> 
+<node label="Frag2png" description="This program produces the DOTPLOT image using the local alignments information  " id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,Frag2png" /> 
+<node label="DPpal" description="This program produces the fragments information obtained from  sequences looking for the first sequence palindromes It compares the first sequence inverted with the second one" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,DPpal" /> 
+<node label="runEmbossConsFromAlignment" description="Creates a consensus from multiple alignments" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossConsFromAlignment" /> 
+</node> 
+<node label="Database" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Database"> 
+<node label="Retrieving" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Retrieving"> 
+<node label="GettingStructures" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:GettingStructures"> 
+<node label="getStructureFromPDB" description="Retrieves structure from PDB PDB format from a PDB Id Allows to specify a single chain using the format XXXXX" id="urn:lsid:biomoby.org:serviceinstance:mmb.pcb.ub.es,getStructureFromPDB" /> 
+<node label="getHeaderFromPDB" description="Retrieves headers from a PDB entry in PDB format" id="urn:lsid:biomoby.org:serviceinstance:mmb.pcb.ub.es,getHeaderFromPDB" /> 
+<node label="getEntryFromPDB" description="Retrieves structures whole PDB entries or single chains from PDB database in PDB format" id="urn:lsid:biomoby.org:serviceinstance:www.cnb.uam.es,getEntryFromPDB" /> 
+</node> 
+<node label="GettingSequences" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:GettingSequences"> 
+<node label="GettingAminoacids" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:GettingAminoacids"> 
+<node label="getAminoAcidSequence" description="Retrieves an aminoacid sequence from an aminoacid database" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,getAminoAcidSequence" /> 
+<node label="getAminoAcidSequenceFromPDB" description="Produces full amino acid sequence that corresponds to a PDB entry" id="urn:lsid:biomoby.org:serviceinstance:mmb.pcb.ub.es,getAminoAcidSequenceFromPDB" /> 
+<node label="getAminoAcidSequenceCollection" description="Retrieves an AminoAcidSequence collection from an Object idID or AC  namespacedatabase collection" id="urn:lsid:biomoby.org:serviceinstance:www.bioinfo.uma.es,getAminoAcidSequenceCollection" /> 
+<node label="getAminoAcidSequenceUMA" description="Get a GenBank aminoacid sequence from an ID from any database even PDB" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,getAminoAcidSequenceUMA" /> 
+<node label="getSequenceUMA" description="Get a GenBank nucleotideaminoacid sequence from an ID from any database even PDB" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,getSequenceUMA" /> 
+</node> 
+<node label="GettingNucleotides" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:GettingNucleotides"> 
+<node label="getNucleotideSequenceUMA" description="Get a GenBank nucleotide sequence from an ID" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,getNucleotideSequenceUMA" /> 
+<node label="getNucleotideSequence" description="Retrieves a nucleotide sequence from a nucleotide database" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,getNucleotideSequence" /> 
+<node label="getSequenceByRegionFromENSEMBL" description="Retrieves an ENSEMBL sequence by its region" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,getSequenceByRegionFromENSEMBL" /> 
+<node label="getCDSSequence" description="Extract CDS sequences" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,getCDSSequence" /> 
+</node> 
+<node label="getFastaSequence" description="Retrieves a sequence in Fasta format from a database" id="urn:lsid:biomoby.org:serviceinstance:www.cnb.uam.es,getFastaSequence" /> 
+</node> 
+<node label="GettingInteractions" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:GettingInteractions" /> 
+<node label="GettingAlignments" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:GettingAlignments" /> 
+<node label="GettingText" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:GettingText"> 
+<node label="getEntryFromFSSP" description="Retrieves an entry from a FSSP database" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,getEntryFromFSSP" /> 
+<node label="getEntryFromHSSP" description="Retrieves an entry from HSSP database" id="urn:lsid:biomoby.org:serviceinstance:www.cnb.uam.es,getEntryFromHSSP" /> 
+<node label="getCodonTableFromEmboss" description="This is a utility to indicate which directories can hold EMBOSS data files and what the names of these files are" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,getCodonTableFromEmboss" /> 
+<node label="getEntryFromOMIM" description="Retrieves an entry from OMIM Online Mendelian Inheritance in Man database" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,getEntryFromOMIM" /> 
+<node label="getEntryFromDSSP" description="Retrieves an entry from DSSP database" id="urn:lsid:biomoby.org:serviceinstance:www.cnb.uam.es,getEntryFromDSSP" /> 
+<node label="getEntryFromFSSP" description="Retrieves an entry from FSSP database" id="urn:lsid:biomoby.org:serviceinstance:www.cnb.uam.es,getEntryFromFSSP" /> 
+</node> 
+<node label="getStatisticalLog" description="Retrives the list of INB Log Report coming from all services of given authURI" id="urn:lsid:biomoby.org:serviceinstance:bitlab.es,getStatisticalLog" /> 
+<node label="getCATHHierarchyCodesFromPDBID" description="Retrieves all domain hierarchy codes from a pdb id" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,getCATHHierarchyCodesFromPDBID" /> 
+<node label="getInteractions" description="It returns a list with the different interactions where a protein ID is interacting" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,getInteractions" /> 
+<node label="getInteractionMethodDesc" description="It returns the interaction methods description" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,getInteractionMethodDesc" /> 
+<node label="getInteractionsXML" description="It returns a list with the different IntActXML interactions where a protein IDs is interacting" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,getInteractionsXML" /> 
+<node label="getInteractingMethods" description="It returns a list with the different methods where a protein ID is interacting" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,getInteractingMethods" /> 
+</node> 
+<node label="Searching" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Searching"> 
+<node label="textQueryUniprot" description="Searches uniprot entries for a text The text is searched in comments and keywords" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,textQueryUniprot" /> 
+<node label="getDomainArchitectureFromPfam" description="Gets the domain architecture of the proteins in Uniprot" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,getDomainArchitectureFromPfam" /> 
+<node label="getCATHDomainsFromPDBID" description="Returns the domains and fragments of a pdb id" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,getCATHDomainsFromPDBID" /> 
+</node> 
+</node> 
+<node label="Translating" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Translating"> 
+<node label="runEmbossGetorfFromSequence" description="This program finds and outputs the sequences of open reading frames ORFs" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossGetorfFromSequence" /> 
+<node label="runNucleotideSequenceTo6ORFs" description="Translate a nucleotide sequence into the six possible ORFs" id="urn:lsid:biomoby.org:serviceinstance:www.bioinfo.uma.es,runNucleotideSequenceTo6ORFs" /> 
+<node label="runEmbossTranseqFromSequence" description="Transeq translates nucleic acid sequences to the corresponding peptide sequences" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossTranseqFromSequence" /> 
+<node label="translationOfThe6ORFs" description="Translate a nucleotide sequence in all  possible reading frames" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,translationOfThe6ORFs" /> 
+<node label="translateGeneIDGFFPredictions" description="Translates the GeneID gene predictions given in GFF format into a set of aminoacid sequences" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,translateGeneIDGFFPredictions" /> 
+</node> 
+<node label="Searching" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Searching"> 
+<node label="textQueryUniprot" description="Searches uniprot entries for a text The text is searched in comments and keywords" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,textQueryUniprot" /> 
+<node label="getDomainArchitectureFromPfam" description="Gets the domain architecture of the proteins in Uniprot" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,getDomainArchitectureFromPfam" /> 
+<node label="getCATHDomainsFromPDBID" description="Returns the domains and fragments of a pdb id" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,getCATHDomainsFromPDBID" /> 
+</node> 
+<node label="Biochemistry" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Biochemistry"> 
+<node label="EnzymeKinetics" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:EnzymeKinetics"> 
+<node label="runEmbossFindkm" description="Finds the Michaelis Menten constant Km and the maximum velocity Vmax for an enzyme reaction by a Michaelis Menten and HanesWoolf plot" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossFindkm" /> 
+<node label="runEmbossFindkm" description="Finds the  Michaelis Menten constant Km and the maximum velocity Vmax for an enzyme reaction by a Michaelis Menten and HanesWoolf plot" id="urn:lsid:biomoby.org:serviceinstance:www.cnb.uam.es,runEmbossFindkm" /> 
+</node> 
+</node> 
+<node label="analysis" description="Services for analysis related to codons such as calculation of index using a codon Usage per Aminoacid table" id="urn:lsid:biomoby.org:servicetype:analysis"> 
+<node label="runSOTAClustering" description="Runs SOTA algorithm to partition the gene space into subclusters The input is a gene score matrix represented as a MicroArrayDataText object" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,runSOTAClustering" /> 
+</node> 
+<node label="SequenceAnalysis" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:SequenceAnalysis"> 
+<node label="Primers" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Primers" /> 
+<node label="Restrictions" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Restrictions"> 
+<node label="runEmbossRestrictFromSequence" description="Scans a nucleotide sequence for regions with higher than expected frequencies of the dinucleotide CG" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossRestrictFromSequence" /> 
+</node> 
+<node label="GeneFinding" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:GeneFinding"> 
+<node label="runGeneIDGFF3" description="Ab initio gene prediction tool that returns the gene predictions in GFF format GFF version  It also returns a set of translated aminoacid sequences" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,runGeneIDGFF3" /> 
+<node label="runSGP2GFF" description="Ab initio gene prediction service that runs geneid with synteny evidences and returns the output predictions in GFF format To generate the synteny evidences use a tblastx service" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,runSGP2GFF" /> 
+<node label="runGeneIDGFF" description="Ab initio gene prediction tool that returns the gene predictions in GFF format" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,runGeneIDGFF" /> 
+</node> 
+<node label="Composition" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Composition"> 
+<node label="runEmbossCuspFromID" description="Reads a CDS sequence and calculates a codon frequency table" id="urn:lsid:biomoby.org:serviceinstance:www.cnb.uam.es,runEmbossCuspFromID" /> 
+<node label="runEmbossPepstatsFromSequence" description="Outputs a report of simple protein sequence information" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossPepstatsFromSequence" /> 
+<node label="runEmbossCuspFromSequence" description="Reads a CDS sequence and calculates a codon frequency table" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossCuspFromSequence" /> 
+<node label="runEmbossCodcmpFromTables" description="This program compares two codon usage tables" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossCodcmpFromTables" /> 
+<node label="runEmbossCodcmpFromTables" description="Compares two codon usage tables" id="urn:lsid:biomoby.org:serviceinstance:www.cnb.uam.es,runEmbossCodcmpFromTables" /> 
+</node> 
+<node label="Editing" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Editing"> 
+<node label="viaWEB" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:viaWEB" /> 
+<node label="viaBioinformaticsApplication" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:viaBioinformaticsApplication" /> 
+</node> 
+<node label="Nucleotic_Motifs" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Nucleotic_Motifs"> 
+<node label="runEmbossTFscanFromSequence" description="Scans DNA sequences for transcription factors" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossTFscanFromSequence" /> 
+<node label="runMatScanGFFCollectionVsInputMatrices" description="Analyzes a collection of DNA sequences for putative motifs transcription or splicing factor binding sites and reports them in GFF format The collection of motifs is given by the user as a set of Position Weight Matrices PWMs" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,runMatScanGFFCollectionVsInputMatrices" /> 
+<node label="runEmbossCpGreportFromSequence" description="Scans a nucleotide sequence for regions with higher than expected frequencies of the dinucleotide CG" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossCpGreportFromSequence" /> 
+<node label="runMatScanGFF" description="Analyzes a DNA sequence for putative transcription factor binding sites from Transfac or Jaspar and reports them in GFF format" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,runMatScanGFF" /> 
+<node label="runEmbossCpGplotFromSequence" description="Plots CpG rich areas" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossCpGplotFromSequence" /> 
+<node label="getCpGislands" description="Reports potential CpG islands regions" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,getCpGislands" /> 
+</node> 
+<node label="Mutation" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Mutation"> 
+<node label="runPMUTHotSpotFromAminoAcidSequence" description="Predicts sequence positions Hot Spots that would produce pathological behaviour when mutated Trained with human pathological mutations" id="urn:lsid:biomoby.org:serviceinstance:mmb.pcb.ub.es,runPMUTHotSpotFromAminoAcidSequence" /> 
+</node> 
+<node label="Repetitions" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Repetitions"> 
+<node label="runEmbossEquicktandemFromSequence" description="Equicktandem scans a sequence for potential tandem repeats up to a specified size The results can be used to run etandem on the" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossEquicktandemFromSequence" /> 
+</node> 
+<node label="Protein_Motifs" description="Protein motifs" id="urn:lsid:biomoby.org:servicetype:Protein_Motifs"> 
+<node label="getPrositeAnnStructure" description="Annotates the prosite motifs of a structure" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,getPrositeAnnStructure" /> 
+<node label="runPPSearchAgainstProsite" description="Search your query sequence for protein motifs rapidly compare your query protein sequence against all patterns stored in the PROSITE pattern database" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runPPSearchAgainstProsite" /> 
+<node label="runEmbossPatmatmotifsFromSequence" description="Patmatmotifs takes a protein sequence and compares it to the PROSITE database of motifs" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossPatmatmotifsFromSequence" /> 
+<node label="runEmbossPatmatdb" description="Takes a protein motif and compares it to a protein sequences" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossPatmatdb" /> 
+<node label="runEmbossPatmatdbFromSequence" description="Takes a protein motif and compares it to a protein sequences" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossPatmatdbFromSequence" /> 
+<node label="getPrositeAnnStructureFromPDBID" description="Annotates the prosite motifs of a pdb entry" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,getPrositeAnnStructureFromPDBID" /> 
+</node> 
+<node label="kmersFrequency" description="DNA words of length k" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,kmersFrequency" /> 
+<node label="runEmbossTmapFromSequence" description="Displays membrane spanning regions" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossTmapFromSequence" /> 
+<node label="getReverseComplement" description="Get the reverse complementary strand of a nucleotide sequence" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,getReverseComplement" /> 
+<node label="runMemeHTML" description="Analyzes a set of protein or DNA sequences for similarities among them and produces a description motif for each pattern it discovers The results are returned in HTML format" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,runMemeHTML" /> 
+<node label="getDomainArchitectureByHMMPfam" description="Looks for known domains in a query sequence by searching the sequence against a HMM library Pfam library" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,getDomainArchitectureByHMMPfam" /> 
+<node label="runEmbossSigcleaveFromSequence" description="Predicts the site of cleavage between a singal sequence and the mature exported protein" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,runEmbossSigcleaveFromSequence" /> 
+<node label="runMemeText" description="Analyzes a set of protein or DNA sequences for similarities among them and produces a description motif for each pattern it discovers The results are returned in MEME text format" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,runMemeText" /> 
+</node> 
+<node label="Annotations" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Annotations"> 
+<node label="getGraphFromTerm" description="Retrieves the Gene Ontology graph from a term" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,getGraphFromTerm" /> 
+<node label="runFatiGOplusSearch" description="runFatiGOplusSearch allows you to annotate a single list of genes with Gene Ontology terms cellular component biological process and molecular function InterPro motifs KEGG pathways SwissProt keywords Transcriptor factors and cisregulatory elements cisRED" id="urn:lsid:biomoby.org:serviceinstance:bioinfo.cipf.es,runFatiGOplusSearch" /> 
+<node label="sma3sv2" description="Smas allows the user discovering important information about an interestin sequence when other traditional methods fail Smas retrieve annotations from keywords pathways go terms interactions and orthologous in other species if any" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,sma3sv2" /> 
+<node label="runFunCUT" description="Annotates homologous sequences and includes new features related to the specific identification of protein subfamilies orthologous groups" id="urn:lsid:biomoby.org:serviceinstance:cnio.es,runFunCUT" /> 
+<node label="runISSComplete" description="A sequence similitary search NCBI Blast is carried out to find proteins related to the query sequence Returns the matrix of distances the first Blast report and annotations of the proteins" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runISSComplete" /> 
+<node label="RTestService" description="Service for test R services" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,RTestService" /> 
+<node label="runOFunCUT" description="Analyzes the key functional annotations of the neighbor sequences related to the query sequence and makes the transference of the annotations from clustering result NCut and sequence similitary search ISSComplete NCBI Blast" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runOFunCUT" /> 
+<node label="runISS" description="A sequence similitary search NCBI Blast is carried out to find proteins related to the query sequence" id="urn:lsid:biomoby.org:serviceinstance:cnio.es,runISS" /> 
+<node label="getAnnotationsFromUniProt" description="Get annotations from a UniProt entry" id="urn:lsid:biomoby.org:serviceinstance:www.bioinfo.uma.es,getAnnotationsFromUniProt" /> 
+<node label="RServer" description="" id=" urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,RServer" /> 
+<node label="RService" description="" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,RService" /> 
+<node label="runFatiGOplusCompare" description="runFatiGOplusSearch allows you to compare two lists of genes in terms of PubMed bioentities chimical and diseases Gene Ontology terms cellular component biological process and molecular function InterPro motifs KEGG pathways SwissProt keywords Transcriptor factors cisregulatory elements cisRED and tissues" id="urn:lsid:biomoby.org:serviceinstance:bioinfo.cipf.es,runFatiGOplusCompare" /> 
+<node label="runFunCUT" description="Annotates homologous sequences and includes new features related to the specific identification of protein subfamilies orthologous groups" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,runFunCUT" /> 
+<node label="runFatiGOplusGenomics" description="runFatiGOplusGenomics allows you to compare genes of a given chromosome region with the rest of the genome in terms of PubMed bioentities chimical and diseases Gene Ontology terms cellular component biological process and molecular function InterPro motifs KEGG pathways SwissProt keywords Transcriptor factors cisregulatory elements cisRED and tissues" id="urn:lsid:biomoby.org:serviceinstance:bioinfo.cipf.es,runFatiGOplusGenomics" /> 
+<node label="getLevelFrequencyFromHierarchy" description="Calculate the frequency of the different levels in a hierarchy" id="urn:lsid:biomoby.org:serviceinstance:www.bioinfo.uma.es,getLevelFrequencyFromHierarchy" /> 
+<node label="sayHelloChri" description="MOBY services that check the Async MBOY libraries" id="urn:lsid:biomoby.org:serviceinstance:cnio.es,sayHello" /> 
+<node label="getUMAtest" description="Calculate the frequency of the different levels in a hierarchy" id="urn:lsid:biomoby.org:serviceinstance:www.bioinfo.uma.es,getUMAtest" /> 
+<node label="runFunCUTSync" description="Annotates homologous sequences and includes new features related to the specific identification of protein subfamilies orthologous groups" id="urn:lsid:biomoby.org:serviceinstance:cnio.es,runFunCUTSync" /> 
+</node> 
+<node label="Clustering" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Clustering"> 
+<node label="runHierarchicalClustering" description="Hierarchical clustering application for gene expression patterns using different conditions methods and distances" id="urn:lsid:biomoby.org:serviceinstance:bioinfo.cipf.es,runHierarchicalClustering" /> 
+</node> 
+<node label="GeneExpresion" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:GeneExpresion"> 
+<node label="Microarray PostProcessing" description="This is a service type for postprocessing gene expression Matrix data" id="urn:lsid:biomoby.org:servicetype:Microarray PostProcessing"> 
+<node label="Statistical Analisys" description="This category covers statistical analisys procedures " id="urn:lsid:biomoby.org:servicetype:Statistical Analisys" /> 
+<node label="Projection Methods" description="This category covers linear and nonlinear projection methods " id="urn:lsid:biomoby.org:servicetype:Projection Methods" /> 
+<node label="GE Matrix Preprocessing" description="This category covers operations that modified GE Matrix" id="urn:lsid:biomoby.org:servicetype:GE Matrix Preprocessing" /> 
+<node label="GE Matrix Clustering" description="This category covers procedures of data clustering " id="urn:lsid:biomoby.org:servicetype:GE Matrix Clustering" /> 
+</node> 
+<node label="GE Data Management" description="This category covers gene expression data management " id="urn:lsid:biomoby.org:servicetype:GE Data Management" /> 
+<node label="Microarray PreProcessing" description="This is a service type for preprocessing gene expression data" id="urn:lsid:biomoby.org:servicetype:Microarray PreProcessing"> 
+<node label="GE Plots" description="This is a service type for plots" id="urn:lsid:biomoby.org:servicetype:GE Plots"> 
+<node label="createQQPlot" description="There are several ways to asses the normality hypothesis in a data set visual inspection through plots is an useful method  These are graphical techniques for assessing whether or not a data set is approximately normally distributed The data are plotted against a theoretical normal distribution in such a way that the points should form an approximate straight line QQ quantilequantile zscores vs Expected zscores" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,createQQPlot" /> 
+<node label="createAMPlot" description="Displays the points in logintensity A axis x and logratio M axis y coordinates This graph allows to establish the dependency of the colour with respect the intensity which is in fact one of the most typical problems solved by normalization" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,createAMPlot" /> 
+<node label="createRGPlot" description="Displays the points from the red channel R axis x and the green channel G axis y The election for the channels is always red for the target and green for control This graph is a rotated version of the AM graph highlighting the composition of each spot in both channels" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,createRGPlot" /> 
+<node label="createPPPlot" description="There are several ways to asses the normality hypothesis in a data set visual inspection through plots is an useful method  These are graphical techniques for assessing whether or not a data set is approximately normally distributed The data are plotted against a theoretical normal distribution in such a way that the points should form an approximate straight line PP probability probability plot displays pvalues vs expected pvalues" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,createPPPlot" /> 
+<node label="createPNPlot" description="There are several ways to asses the normality hypothesis in a data set visual inspection through plots is an useful method  These are graphical techniques for assessing whether or not a data set is approximately normally distributed The data are plotted against a theoretical normal distribution in such a way that the points should form an approximate straight line PN plot probability normal displays logratios vs expected pvalues" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,createPNPlot" /> 
+<node label="createDensityPlot" description="Displays the probability density curve of the colour value distribution Ideally this values should be centred around cero in the normal form Density is a relative measure in such a way that the maximum value is always " id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,createDensityPlot" /> 
+<node label="createSlidePlot" description="This slide a synthetic reconstruction of the slide image from the available data If data are not available for a given spot a grey mark is set The block structure of the slide is also displayed Blue lines are used to divide the slide in blocks initially they correspond to the grid specified during the load step" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,createSlidePlot" /> 
+</node> 
+<node label="GE Data Normalization" description="This is a service type for normalize gene expression data" id="urn:lsid:biomoby.org:servicetype:GE Data Normalization"> 
+<node label="MicroarrayDataDoubleScanMoby" description="The devices used for measuring intensities are neither perfect nor unlimited Saturation and quantization appear when scanning and can barely be removed This service implements a proprietary technique for improving the quality of scanned data Garcia de la Nava et al " id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,MicroarrayDataDoubleScanMoby" /> 
+<node label="MicroArrayDataLowess" description="This procedure adjust the data to a lowess curve Since data are a cloud of points the adjust will never be perfect Lowess performs a robust adjust closer points are considered and outliers are discarded This is quite adequate for those experiment data in which only a small number of data shows different values which is the case of most gene expression data in which we expect only a minor number of genes are expected to have differential expression In this way the curve adjust to zero those genes with similar expression values Lowess procedure needs three parameters F Parameter Is the fraction of relevant points As was previously mentioned lowess adjust assign a greater weight to close points as a function of the pairwise distance This parameter set the number of points to be considered as close For high values of F the curve is smoother Usually this value is set in the range    NSteps parameter Number of algorithm iterations In each step the curve is better adjusted and smoother As the algorithm proceed it will trend towards the closer points Usually this value is set in the range    Delta parameter When the number of steps is high ie greater than  this parameter speedup calculations Otherwise it should be zero" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,MicroArrayDataLowess" /> 
+</node> 
+<node label="Read GE Data" description="This is a service type for read gene expression data" id="urn:lsid:biomoby.org:servicetype:Read GE Data"> 
+<node label="ReadOneChannelMicroarrayData" description="This Web Service takes a raw gene expression microarray data file One channel microarray experiment as input a format file and using other parameter creates a MicroarrayDerivedData file which can be used in several web services and processed as a twocolour microarray data A synthetic channel must be created to obtain the pair controltarget this can be done using all the input files and applying averagemedian methods or using one or a set of Microarrays files to calculate it" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,ReadOneChannelMicroarrayData" /> 
+</node> 
+</node> 
+<node label="runDifferentialexpr" description="Run a differential expression process including LMFit and eBayes method from a MAList object better if normalized" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,runDifferentialexpr" /> 
+<node label="runLoadFilter" description="Load and filter micro array data" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,runLoadFilter" /> 
+<node label="runNormalization" description="Run a normalization from a RGList object" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,runNormalization" /> 
+</node> 
+<node label="codons" description="Services for analysis related to codons" id="urn:lsid:biomoby.org:servicetype:codons"> 
+<node label="Data subset" description="Services with an input of a set of data and inputs of subset of the data" id="urn:lsid:biomoby.org:servicetype:Data subset" /> 
+<node label="BioData" description="Services for analysis related to codons using inputs as biodata ids previously saved with putBioData service" id="urn:lsid:biomoby.org:servicetype:BioData"> 
+<node label="extractGenes_b" description="Extract DNA sequences from a genbank filegbk and the genome file in FASTA format any sequence   The program uses id of the previously saved data via de BioData WS Extract Genes Identified it using default genetic code Return id of the saved data Use getBioData services to get the data You can optionally save results as private data Extrae las secuencias de ADN Las identifica inviertecomplementa compara su traduccion   con la proteina correspondiente Obtenga el resultado con el servicio getBioData mas el id obtenido como respuesta Opcionalmente se pueden hacer los resultados privados" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,extractGenes_b" /> 
+<node label="CodonUsagexAA_b" description="From a CodonFreq file with the formatstarting with  tab seqname  values of codons first AAAthen AACAAGAATlast TTT with the number of codons found   Calculate the codonUsagexAA using the given genetic Code" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,CodonUsagexAA_b" /> 
+<node label="CodonFreq_b" description="Calculates the codonfrequencies of each secuence Return a bioData id with the  format that works as followsone line per gene starting with  tab seqname  values of codons first AAAthen AACAAGAATlast TTT with the number of codons found" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,CodonFreq_b" /> 
+</node> 
+<node label="CodonUsagexAA" description="From a CodonFreq file with the formatstarting with  tab seqname  values of codons first AAAthen AACAAGAATlast TTT with the number of codons found   Calculate the codonUsagexAA using the given genetic Code" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,CodonUsagexAA" /> 
+<node label="GenBank2FastaGenes" description="Convert a Genbank file into a Fasta file" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,GenBank2FastaGenes" /> 
+<node label="OTPrueba" description="Prueba de creacion de servicio" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,OTPrueba" /> 
+<node label="SayHelloOscar" description="Prueba de creacion de servicio" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,SayHelloOscar" /> 
+<node label="extractGenes" description="Extract DNA sequences from a genbank file and the genome file in FASTA format any sequence Extract Genes Identified it using default genetic code Return id of the saved data Extrae las secuencias de ADN Las identifica inviertecomplementa compara su traduccion   con la proteina correspondiente" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,extractGenes" /> 
+<node label="CodonFreq" description="Calculates the codonfrequencies of each secuence Exit format is work as followsone line per gene starting with  tab seqname  values of codons first AAAthen AACAAGAATlast TTT with the number of codons found" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,CodonFreq" /> 
+</node> 
+</node> 
+<node label="ObjectHandling" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:ObjectHandling"> 
+<node label="Converting" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Converting"> 
+<node label="fromGenericSequenceCollectionToFASTA" description="Converts a collection of generic sequences into FASTA sequences" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,fromGenericSequenceCollectionToFASTA" /> 
+<node label="parseFromIntAct" description="Translates from IntAct XML format to BioMoby Interaction format" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,parseFromIntAct" /> 
+<node label="fromNCutTextToNCutMatrix" description="Transforms the distance matrix of NCut from text format to xml format" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,fromNCutTextToNCutMatrix" /> 
+<node label="fromFASTAToDNASequenceCollection" description="Converts DNA FASTA sequences into a collection of DNA sequences" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,fromFASTAToDNASequenceCollection" /> 
+<node label="fromXYDataTextToArrayFloat" description="Get a molecular weight array from plain text one weight per line" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,fromXYDataTextToArrayFloat" /> 
+<node label="fromFASTAToDNASequence" description="Converts a DNA FASTA sequence into a DNA sequence" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,fromFASTAToDNASequence" /> 
+<node label="fromFASTAToAminoAcidSequence" description="Converts aminoacid FASTA sequence into an aminoacid sequence" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,fromFASTAToAminoAcidSequence" /> 
+<node label="frommmCifToPDBText" description="Translates files in mmCIF format into files in PDB format" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,frommmCifToPDBText" /> 
+<node label="fromClustalwToPhylip" description="It converts a Clustalw data type into a Phylip Interleaved data type" id="urn:lsid:biomoby.org:serviceinstance:org.inab.upc,fromClustalwToPhylip" /> 
+<node label="fromFunCUTtoDASGFF" description="Transforms the output from the annotation service FunCUT into a file in xml format of distributed annotation system DAS" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,fromFunCUTtoDASGFF" /> 
+<node label="fromFASTAToAminoAcidSequenceCollection" description="Converts aminoacid FASTA sequences into a collection of aminoacid sequences" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,fromFASTAToAminoAcidSequenceCollection" /> 
+</node> 
+<node label="Editing" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Editing"> 
+<node label="viaWEB" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:viaWEB" /> 
+<node label="viaBioinformaticsApplication" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:viaBioinformaticsApplication" /> 
+</node> 
+<node label="Displaying" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Displaying"> 
+<node label="runSleepSeconds" description="Demo service for sleep several minutes" id="urn:lsid:biomoby.org:serviceinstance:www.bioinfo.uma.es,runSleepSeconds" /> 
+<node label="displayDomainsFromAnnStructure" description="Displays all domains of an annotated structural entry in different colors using jmol script" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,displayDomainsFromAnnStructure" /> 
+<node label="multiplotArrayXYData" description="Plots a collection of ArrayXYData" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,multiplotArrayXYData" /> 
+</node> 
+<node label="Splitting" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Splitting" /> 
+<node label="Joining" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Joining" /> 
+<node label="Parsing" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Parsing"> 
+<node label="parserISSReportIntoNCutMatrix" description="Parsers the complex report ISSReport into the NCutMatrix datatype" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,parserISSReportIntoNCutMatrix" /> 
+<node label="fromMetaAlignmentsToTextScoreMatrix" description="Parses a collection of metaalignment outputs to produce a textformatted sequence similarity score matrix" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,fromMetaAlignmentsToTextScoreMatrix" /> 
+<node label="R_ConverTable" description="Format tabulated table into an R table format" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,R_ConverTable" /> 
+<node label="parseRulesFromMotif" description="Parse rules from a motif" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,parseRulesFromMotif" /> 
+<node label="getBestHitsFromBlast" description="Get the best hits from a Blast report" id="urn:lsid:biomoby.org:serviceinstance:www.bioinfo.uma.es,getBestHitsFromBlast" /> 
+<node label="fromMetaAlignmentsToScoreMatrix" description="Parses a collection of metaalignment outputs to produce a sequence similarity score matrix" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,fromMetaAlignmentsToScoreMatrix" /> 
+<node label="mirroredService3" description="Description of mirrored service" id="urn:lsid:biomoby.org:serviceinstance:cnio.es,mirroredService3" /> 
+<node label="parserISSReportIntoISSAnnotation" description="Parsers the complex report ISSReport into the ISSAnnotationXML datatype" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,parserISSReportIntoISSAnnotation" /> 
+<node label="RCorrelationPlot" description="Correlation between two data sets" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,RCorrelationPlot" /> 
+<node label="parseENSEMBLSliceInformation" description="Parses slice information of an ENSEMBL homolog" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,parseENSEMBLSliceInformation" /> 
+<node label="R_LogRatiofromgpr" description="Get logratio from a microarray data file" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,R_LogRatiofromgpr" /> 
+<node label="parseMultipleAlignFromBLASTText" description="Produces a multiple alignment in FASTA format from Blast Hits" id="urn:lsid:biomoby.org:serviceinstance:mmb.pcb.ub.es,parseMultipleAlignFromBLASTText" /> 
+<node label="mirroredService" description="Description of mirrored service" id="urn:lsid:biomoby.org:serviceinstance:cnio.es,mirroredService" /> 
+<node label="RHistogramPlot" description="Draw an histogram" id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,RHistogramPlot" /> 
+<node label="parseMotifMatricesFromMEME" description="Parses the score or probability motif matrices from MEME output" id="urn:lsid:biomoby.org:serviceinstance:genome.imim.es,parseMotifMatricesFromMEME" /> 
+<node label="mirroredService4" description="Description of mirrored service" id="urn:lsid:biomoby.org:serviceinstance:cnio.es,mirroredService4" /> 
+<node label="parseAminoAcidSequenceFromPDBText" description="Extracts amino acid sequence that corresponds to structure in PDB" id="urn:lsid:biomoby.org:serviceinstance:mmb.pcb.ub.es,parseAminoAcidSequenceFromPDBText" /> 
+<node label="parserISSReportIntoNCBIBlastText" description="Parsers the complex report ISSReport into the NCBIBLASTText datatype" id="urn:lsid:biomoby.org:serviceinstance:pdg.cnb.uam.es,parserISSReportIntoNCBIBlastText" /> 
+<node label="mirroredService2" description="Description of mirrored service" id="urn:lsid:biomoby.org:serviceinstance:ubio.cnio.es,mirroredService2" /> 
+<node label="RBoxPlot" description="  " id="urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es,RBoxPlot" /> 
+</node> 
+<node label="Creating" description="This is a service type" id="urn:lsid:biomoby.org:servicetype:Creating" /> 
+<node label="Echo_Test" description="Compares a protein sequence against a protein database and calculates the statistical significance of matches using the Basic Local Alignment Tool BLAST" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,Echo_Test" /> 
+<node label="removeDuplicatedObjects" description="description" id="urn:lsid:biomoby.org:serviceinstance:inb.bsc.es,removeDuplicatedObjects" /> 
+</node> 
+</node>

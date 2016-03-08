@@ -1,0 +1,43 @@
+.ui-grid-a a{
+    float: left;
+}
+
+.ui-grid-a{
+    padding-left: 5px;
+}
+
+.ui-block-b{
+    margin: 12px 0px;
+}
+
+.ui-grid-a>.ui-block-a{
+    width: 100%;
+}
+
+.ui-grid-a>.ui-block-b{
+    width: 50%;
+}
+
+.ui-grid-a>.ui-block-c{
+    width: 50%;
+}
+
+div#parameterbox {
+    padding-left: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+div#results {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ui-grid-a>.ui-block-stringa{
+    width: 75%;
+}
+
+.ui-grid-a>.ui-block-stringb{
+    width: 20%;
+}

@@ -1,0 +1,207 @@
+<ul data-role="listview" id="tree" data-inset="true">
+    <li>
+        <img src="img/tree_folder.png" alt="Service">
+        <h2>Service</h2>
+        <p>List of services availables</p>
+        <ul data-child-pages="true">
+            <li>
+                <img src="img/tree_folder.png" alt="SimliarityAndHomology">
+                    <h2>Simliarity and Homology</h2>
+                    <p>Services related to the comparison of sequences</p>
+                <ul>
+                    <li>
+                    <a href="#" onclick="loadService('textBoxBlastp')">
+                        <img src="img/serviceicon.png" alt="textBoxBlastp">
+                        <h2>textBox - Blastp</h2>
+                        <p>Run Blast from a raw handwritten sequence</p>
+                    </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('runHSP')">
+                            <img src="img/serviceicon.png" alt="runHSP">
+                            <h2>run HSP</h2>
+                            <p>This is a description about the service runHSP This is a description about the service runHSP</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('runPSIBlast')">
+                            <img src="img/serviceicon.png" alt="runPSIBlast">
+                            <h2>run PSI Blast</h2>
+                            <p>Compares a protein sequence to a sequence database and calculates the statistical significance of matches using the Position Specific Iterative BLAST PSIBLAST</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('getAminoAcidSequenceUMA')">
+                            <img src="img/serviceicon.png" alt="getAminoAcidSequence">
+                            <h2>get Amino Acid Sequence</h2>
+                            <p>Retrieve an aminoacid sequence from a given databases</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('HomologySearchAndPhylogeneticStudy')">
+                            <img src="img/serviceicon.png" alt="HomologySearchAndPhylogeneticStudy">
+                            <h2>Homology Search and Phylogenetic Study</h2>
+                            <p>When a researcher has one amino acid query sequence it is interesting to search for similar sequences with a common evolutive history Later we can follow the study comparing the query sequence with others and searching for these evolutive relations This workflow run a homology search and performs a phylogenetic study To do that it run several services all of them located at INB registry  getAminoAcidSequence It takes the ID ID or ACC of a amino acid sequence and namespace protein database SwissProt or UniProt inputs and returns a aminoacid sequence The service output is showed as workflow output and also links with the next service  runNCBIBlastp It runs a BlastP homology search using a protein database with the previous sequence and reports the output and links with the next service
+                                getBestHitsFromBlast It takes the best hits from the Blast report using a secondary parameter as a Evalue threshold This value is fixed to  The output is a collection of Object each with an IDACC and namespace database name  getAminoAcidSequenceCollection This service takes a Object collection with IdNamespace pairs and retrieves its corresponding amino acid sequences The output showed for the workflow is the list of retrieved sequences  runClustalwFast It runs the Clustalw algorithm with the retrieved sequences to build a multiple alignments This alignment contains the sequence similarity among the analysis sequences  runCreateTreeFromClustalw Finally the relations obtained with the multiple alignment are used to build a phylogenetic tree with Newick format This tree will be useful
+                                to study the evolutionary relationships of all retrieved sequences</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('runNCBIBlastp1')">
+                            <img src="img/serviceicon.png" alt="runNCBIBlastp1">
+                            <h2>run NCBI Blast p1</h2>
+                            <p>Run NCBIBlast with default parameters from a fasta file</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('runNCBIBlastp2')">
+                            <img src="img/serviceicon.png" alt="runNCBIBlastp2">
+                            <h2>run NCBI Blast p2</h2>
+                            <p>Run Blast from a previously generated file </p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('getBestHitsFromBlast')">
+                            <img src="img/serviceicon.png" alt="runNCBIBlastp2">
+                            <h2>get Best Hits From Blast</h2>
+                            <p>Get the best hits from a Blast report</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('runWUTBlastx')">
+                            <img src="img/serviceicon.png" alt="runWUTBlastx">
+                            <h2>run WUT Blast x</h2>
+                            <p>It compares the sixframe translations of a nucleotide query sequence against the sixframe translations of a nucleotide sequence database using the Washington University BLAST algorithm</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('runClustalwFast')">
+                            <img src="img/serviceicon.png" alt="runClustalwFast">
+                            <h2>run Clustal wFast</h2>
+                            <p>ClustalW multiple sequence alignments fast method</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('runNCBITBlastx')">
+                            <img src="img/serviceicon.png" alt="runNCBITBlastx">
+                            <h2>run NCBIT Blast x</h2>
+                            <p>Compares the sixframe translations of a nucleotide query sequence against the sixframe translations of a nucleotide sequence database and calculates the statistical significance of matches using the Basic Local Alignment Search Tool BLAST</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('runWUTBlastn')">
+                            <img src="img/serviceicon.png" alt="runWUTBlastn">
+                            <h2>run WUT Blast n</h2>
+                            <p>It compares an amino acid query sequence against the sixframe translations of a nucleotide sequence database using the Washington University BLAST algorithm</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('runNCBITBlastn_2Seqs')">
+                            <img src="img/serviceicon.png" alt="runNCBITBlastn_2Seqs">
+                            <h2>run NCBIT Blast n for 2 Seqs</h2>
+                            <p>Compares a protein sequence against a nucleotide sequence used as a database dynamically translated in all six reading frames both strands using the Basic Local Alignment Tool BLAST</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('runClustalwFull')">
+                            <img src="img/serviceicon.png" alt="runClustalwFull">
+                            <h2>runClustalwFull</h2>
+                            <p>ClustalW multiple sequence alignments full method</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('runPSIBlastpFromAminoAcidSequence')">
+                            <img src="img/serviceicon.png" alt="runPSIBlastpFromAminoAcidSequence">
+                            <h2>run PSI Blast p from AminoAcidSequence</h2>
+                            <p>Perform iterations of protein PSI Blast against nonredundant database with standard settings"</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('runNCBITBlastn')">
+                            <img src="img/serviceicon.png" alt="runNCBITBlastn">
+                            <h2>run NCBIT Blast n</h2>
+                            <p>Compares an amino acid sequence against the sixframe translations of a nucleotide sequence database and calculates the statistical significance of matches using the Basic Local Alignment Search Tool BLAST</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('getAminoAcidSequenceCollection')">
+                            <img src="img/serviceicon.png" alt="getAminoAcidSequenceCollection">
+                            <h2>get AminoAcidSequence Collection</h2>
+                            <p>Retrieves an AminoAcidSequence collection from an Object idID or AC namespacedatabase collection</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('runClustalwFastUMA')">
+                            <img src="img/serviceicon.png" alt="runClustalwFastUMA">
+                            <h2>run Clustal wFast UMA</h2>
+                            <p>Run a clustal from a collection of generic sequences</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="loadService('runWUBlastn')">
+                            <img src="img/serviceicon.png" alt="runWUBlastn">
+                            <h2>runWUBlastn</h2>
+                            <p>It compares a nucleotide query sequence against a nucleotide sequence database using the Washington University BLAST algorithm</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li><img src="img/tree_folder.png" alt="PhenotypeGenotype">
+                <h2>PhenotypeGenotype</h2>
+                <p>Look for relationship between data coming from phenotype and particular genes or expression</p>
+                <ul>
+                    <li>
+                        <a href="#" onclick="loadService('genCloud')">
+                            <img src="img/serviceicon.png" alt="genCloud">
+                            <h2>genCloud</h2>
+                            <p></p></a></li>
+                </ul>
+            </li>
+
+            <li><img src="img/tree_folder.png" alt="Annotation">Annotation
+                <ul>
+                    <li>
+                        <a href="#" onclick="loadService('sma3sv2')">
+                            <img src="img/serviceicon.png" alt="sma3sv2">
+                            <h2>sma3sv2</h2>
+                            <p>Smas allows the user discovering important information about an interestin sequence when other traditional methods fail Smas retrieve annotations from keywords pathways go terms interactions and orthologous in other species if any</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<script>
+    $(function () {
+        /*$("ul").listview({
+            childPages: true,
+            inset: true
+        })*/
+
+        $("ul").listview({
+            childPages: true,
+            inset: true
+        })
+    });
+</script>
