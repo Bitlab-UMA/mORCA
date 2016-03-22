@@ -277,7 +277,7 @@ function mainLogin(user, pass){
         loginWS(user,pass)
 
         $("#usernamediv").html("");
-        $("#usernamediv").append("</br>"+"Welcome, logged is as: "+user+"</br>")
+        $("#usernamediv").append("</br>"+"Welcome, logged in as: "+user+"</br>")
 
         $('#loginButton').html('Logout');
         $('#loginButton').removeAttr('href');
@@ -360,7 +360,7 @@ $(document).ready(function (){
     if(logged()) {
         var user = getCookie('username');
         $("#usernamediv").html("");
-        $("#usernamediv").append("</br>"+"Welcome "+user+"!"+"</br>")
+        $("#usernamediv").append("</br>"+"Welcome, logged in as: "+user+"</br>")
         $('#loginButton').html('Logout');
         $('#loginButton').removeAttr('href');
         $('#loginButton').attr('onclick','mainLogout()');
