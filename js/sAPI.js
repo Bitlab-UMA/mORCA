@@ -277,7 +277,7 @@ function mainLogin(user, pass){
         loginWS(user,pass)
 
         $("#usernamediv").html("");
-        $("#usernamediv").append("</br>"+"Welcome "+user+"!"+"</br>")
+        $("#usernamediv").append("</br>"+"Logged as: "+user++"</br>")
 
         $('#loginButton').html('Logout');
         $('#loginButton').removeAttr('href');
