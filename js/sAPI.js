@@ -220,11 +220,11 @@ function generateInterface(parameters) {
 
     }
 
-    var d = new Date(); d.setTime(d.getTime());
+    var d = new Date();
 
     document.write('<div data-role="fieldcontain" id="parameterbox">' +
         '<label for="nameFile">Change name:</label>' +
-        '<input type="text" name="text-basic" id="nameFile" data-inline="true" value="'+name+' - '+d.toGMTString()+'">'+
+        '<input type="text" name="text-basic" id="nameFile" data-inline="true" value="'+name+' - '+d.toISOString()+'">'+
         '</div>');
     document.write("<button type='submit' class='show-page-loading-msg' data-textonly='false' data-textvisible='true'>Execute Service</button>");
     document.write("</form></div>");
