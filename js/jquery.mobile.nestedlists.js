@@ -3,7 +3,7 @@
         options: {
             childPages: true,
             page: "<div data-role='page'></div>",
-            header: "<div data-role='header'><a href='#' data-rel='back'>Back</a><h1></h1></div>",
+            header: "<div data-role='header'><a href='#' data-icon='arrow-l' data-rel='back'>Back</a><h1></h1></div>",
             content: "<div class='ui-content'></div>"
         },
         _create: function(){

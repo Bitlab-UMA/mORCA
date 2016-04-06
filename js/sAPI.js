@@ -78,7 +78,7 @@ function generateInterface(parameters) {
                         }
                         document.write('</select>')
                     } else {
-                        document.write('<input type="number" name="text-basic" id="parameter'+x+'" value="" data-inline="true" step="any" min=”0″>')
+                        document.write('<input type="number" name="text-basic" id="parameter'+x+'" value="" data-inline="true" step="any" min="0">')
                     }
 
                     document.write('<div style="float: right">'+
@@ -99,7 +99,7 @@ function generateInterface(parameters) {
                         }
                         document.write('</select>')
                     } else {
-                        document.write('<input type="number" name="text-basic" id="parameter'+x+'" value="" data-inline="true" step="any" min=”0″>')
+                        document.write('<input type="number" name="text-basic" id="parameter'+x+'" value="" data-inline="true" step="any" min="0">')
                     }
 
                     document.write('<div style="float: right">'+
@@ -180,13 +180,15 @@ function generateInterface(parameters) {
                                    '<label for="parameter'+x+'">'+capitalise(parameters[x].name)+'</label>' +
                                    '<div class="ui-block-a">' +
                                    '<div data-role="fieldcontain">' +
-                                   '<input type="text" name="text-basic" id="parameter'+x+'" value="" data-inline="true" placeholder="Select a file from the cloud">' +
+                                   '<input type="text" name="text-basic" id="parameter'+x+'" value="" data-inline="true" placeholder="Fetch a file from the cloud">' +
                                    //'<textarea name="text-basic" id="parameter'+x+'" value="" data-inline="true"> </textarea>' +
                                    '</div></div>' +
                                    '<div class="ui-block-b" style="padding-top:5px">' +
                                    '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
                                    '<a href="#popupMenu'+x+'" data-rel="popup" data-transition="slideup" id="'+x+'"class="ui-btn ui-icon-cloud ui-btn-icon-notext ui-corner-all" data-inline="true" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+
                                    '<a href="#popupDescription'+x+'" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-inline="true" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+
                                    '</div><div class="ui-block-c" style="padding-top:7px">' +
                                    '<fieldset data-role="controlgroup">' +
                                    '<label for="checkbox'+x+'" data-inline="true">File</label>' +
