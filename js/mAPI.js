@@ -47,7 +47,7 @@ function soap(){
         },
 
         HTTPHeaders: {},
-        
+
         error: function (soapResponse) {
             // NEED TO IMPLEMENT
             console.log(SOAPResponse.toString());
@@ -91,7 +91,7 @@ function loginWS(user, pass){
                 namespaceQualifier:'q0',
                 async: false,
 
-                data: { 
+                data: {
                     "auth0" : [
                         {
                           "key": "login",
@@ -153,7 +153,7 @@ function getOperations(toolID, repoID) {
                 namespaceQualifier:'q0',
 
                 //Need to be fixed in the API.
-                data: { 
+                data: {
                     toolid: toolID.toString(),
                     repoid: repoID.toString()
                 },
@@ -183,7 +183,7 @@ function getParameters(operationID, repoID, returnFunction) {
                 namespaceQualifier:'q0',
                 async: false,
 
-                data: { 
+                data: {
                     operationid: operationID.toString(),
                     repoid: repoID.toString()
                 },
@@ -381,7 +381,7 @@ function getFile(idfile, session, repoid) {
             }
 
             var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
-            alert("DATA: "+data);
+            alert("Output: "+data);
         },
         error: function (SOAPResponse) {
             // NEED TO IMPLEMENT

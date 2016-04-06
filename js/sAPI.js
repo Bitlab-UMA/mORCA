@@ -225,7 +225,7 @@ function generateInterface(parameters) {
     var fileName = name + "_" + new Date().toISOString().slice(0, 16) + '.txt';
 
     document.write('<div data-role="fieldcontain" id="parameterbox">' +
-        '<label for="nameFile"><b>File name:</b>  <font color = "gray">(you can change it)</font></label>' +
+        '<label for="nameFile"><b>File name:</b>  <font color = "gray">change it</font></label>' +
         '<input type="text" name="text-basic" id="nameFile" data-inline="true" value="'+fileName+'">'+
         '</div>');
     document.write("<button type='submit' class='show-page-loading-msg' data-textonly='false' data-textvisible='true'>Run it</button>");
