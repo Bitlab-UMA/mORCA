@@ -373,6 +373,7 @@ function getFile(idfile, session, repoid) {
 
       var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
       resultadosFinales = data;
+      $("#mainresults").text("resultadosFinales: " + resultadosFinales);
       // $("#mainresults").text(data);
       // alert("Output: " + data);
     },
@@ -381,7 +382,7 @@ function getFile(idfile, session, repoid) {
       console.log(SOAPResponse.toString());
     }
   });
-  $("#mainresults").text(resultadosFinales);
+  $("#mainresults").text("resultadosFinales: " + resultadosFinales);
   // window.location.reload();
 };
 
