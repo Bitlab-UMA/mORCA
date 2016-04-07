@@ -172,7 +172,8 @@ function generateInterface(parameters) {
       default:
 
         if (parameters[x].input == "false") {
-          break; }
+          break;
+        }
 
         document.write('<div data-role="fieldcontain" id="parameterbox">' +
           '<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #66AB8A; ">' +
@@ -398,7 +399,7 @@ function fileUploadHandler() {
     // FileReader are supported.
     var input = document.getElementById('fileToUpload');
     var reader = new FileReader();
-    alert("Hola caracola");
+
     reader.onload = function() {
       data = reader.result;
       name = input.files[0].name;
@@ -521,7 +522,8 @@ function importFile(fileName, type) {
         description = 'Test Description';
         repoid = repoid;
 
-        newFile(name, data, format, folderid, description, user, session, repoid);
+        newFile
+          (name, data, format, folderid, description, user, session, repoid);
       }
     }
   );

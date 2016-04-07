@@ -372,7 +372,8 @@ function getFile(idfile, session, repoid) {
       }
 
       var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
-      alert("Output: " + data);
+      $("#mainresults").text(data);
+      // alert("Output: " + data);
     },
     error: function(SOAPResponse) {
       // NEED TO IMPLEMENT
@@ -456,17 +457,17 @@ function getRoot(username, session, dtid, repoid) {
         var owner = null;
         var parentId = null;
         // alert("Dentro de getRoot: " + getRootReturns[x].getElementsByTagName("category")[0].childNodes[0])
-        try {category =     getRootReturns[x].getElementsByTagName("category")[0].childNodes[0].nodeValue; } catch(e)  {}
-        try {creationTime = getRootReturns[x].getElementsByTagName("creationTime")[0].childNodes[0].nodeValue; } catch(e)  {}
-        try {data =         getRootReturns[x].getElementsByTagName("data")[0].childNodes[0].nodeValue; } catch(e)  {}
-        try {dataTypeId =   getRootReturns[x].getElementsByTagName("dataTypeId")[0].childNodes[0].nodeValue; } catch(e)  {}
-        try {description =  getRootReturns[x].getElementsByTagName("description")[0].childNodes[0].nodeValue; } catch(e)  {}
-        try {f =            getRootReturns[x].getElementsByTagName("f")[0].childNodes[0].nodeValue; } catch(e)  {}
-        try {format =       getRootReturns[x].getElementsByTagName("format")[0].childNodes[0].nodeValue; } catch(e)  {}
-        try {id =           getRootReturns[x].getElementsByTagName("id")[0].childNodes[0].nodeValue; } catch(e)  {}
-        try {name =         getRootReturns[x].getElementsByTagName("name")[0].childNodes[0].nodeValue; } catch(e)  {}
-        try {owner =        getRootReturns[x].getElementsByTagName("owner")[0].childNodes[0].nodeValue; } catch(e)  {}
-        try {parentId =     getRootReturns[x].getElementsByTagName("parentId")[0].childNodes[0].nodeValue; } catch(e)  {}
+        try {category =     getRootReturns[x].getElementsByTagName("category"     )[0].childNodes[0].nodeValue; } catch(e){}
+        try {creationTime = getRootReturns[x].getElementsByTagName("creationTime" )[0].childNodes[0].nodeValue; } catch(e){}
+        try {data =         getRootReturns[x].getElementsByTagName("data"         )[0].childNodes[0].nodeValue; } catch(e){}
+        try {dataTypeId =   getRootReturns[x].getElementsByTagName("dataTypeId"   )[0].childNodes[0].nodeValue; } catch(e){}
+        try {description =  getRootReturns[x].getElementsByTagName("description"  )[0].childNodes[0].nodeValue; } catch(e){}
+        try {f =            getRootReturns[x].getElementsByTagName("f"            )[0].childNodes[0].nodeValue; } catch(e){}
+        try {format =       getRootReturns[x].getElementsByTagName("format"       )[0].childNodes[0].nodeValue; } catch(e){}
+        try {id =           getRootReturns[x].getElementsByTagName("id"           )[0].childNodes[0].nodeValue; } catch(e){}
+        try {name =         getRootReturns[x].getElementsByTagName("name"         )[0].childNodes[0].nodeValue; } catch(e){}
+        try {owner =        getRootReturns[x].getElementsByTagName("owner"        )[0].childNodes[0].nodeValue; } catch(e){}
+        try {parentId =     getRootReturns[x].getElementsByTagName("parentId"     )[0].childNodes[0].nodeValue; } catch(e){}
 
         filesList.push(new file(category, creationTime, data, dataTypeId, description, f, format, id, name, owner, parentId));
       }
