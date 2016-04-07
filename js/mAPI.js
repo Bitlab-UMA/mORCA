@@ -372,7 +372,9 @@ function getFile(idfile, session, repoid) {
       }
 
       var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
-      $("#mainresults").text(data);
+      resultadosFinales = data;
+      // $("#mainresults").text(resultadosFinales);
+      // $("#mainresults").text(data);
       // alert("Output: " + data);
     },
     error: function(SOAPResponse) {
@@ -380,6 +382,7 @@ function getFile(idfile, session, repoid) {
       console.log(SOAPResponse.toString());
     }
   });
+  window.location.reload();
 };
 
 function getFolder(id, username, session, dtid, repoid) {
