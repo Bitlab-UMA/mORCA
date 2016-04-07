@@ -456,17 +456,17 @@ function getRoot(username, session, dtid, repoid) {
         var owner = null;
         var parentId = null;
         // alert("Dentro de getRoot: " + getRootReturns[x].getElementsByTagName("category")[0].childNodes[0])
-        try {category =     getRootReturns[x].getElementsByTagName("category")[0].childNodes[0].nodeValue; }
-        try {creationTime = getRootReturns[x].getElementsByTagName("creationTime")[0].childNodes[0].nodeValue; }
-        try {data =         getRootReturns[x].getElementsByTagName("data")[0].childNodes[0].nodeValue; }
-        try {dataTypeId =   getRootReturns[x].getElementsByTagName("dataTypeId")[0].childNodes[0].nodeValue; }
-        try {description =  getRootReturns[x].getElementsByTagName("description")[0].childNodes[0].nodeValue; }
-        try {f =            getRootReturns[x].getElementsByTagName("f")[0].childNodes[0].nodeValue; }
-        try {format =       getRootReturns[x].getElementsByTagName("format")[0].childNodes[0].nodeValue; }
-        try {id =           getRootReturns[x].getElementsByTagName("id")[0].childNodes[0].nodeValue; }
-        try {name =         getRootReturns[x].getElementsByTagName("name")[0].childNodes[0].nodeValue; }
-        try {owner =        getRootReturns[x].getElementsByTagName("owner")[0].childNodes[0].nodeValue; }
-        try {parentId =     getRootReturns[x].getElementsByTagName("parentId")[0].childNodes[0].nodeValue; }
+        try {category =     getRootReturns[x].getElementsByTagName("category")[0].childNodes[0].nodeValue; } catch(e)  {}
+        try {creationTime = getRootReturns[x].getElementsByTagName("creationTime")[0].childNodes[0].nodeValue; } catch(e)  {}
+        try {data =         getRootReturns[x].getElementsByTagName("data")[0].childNodes[0].nodeValue; } catch(e)  {}
+        try {dataTypeId =   getRootReturns[x].getElementsByTagName("dataTypeId")[0].childNodes[0].nodeValue; } catch(e)  {}
+        try {description =  getRootReturns[x].getElementsByTagName("description")[0].childNodes[0].nodeValue; } catch(e)  {}
+        try {f =            getRootReturns[x].getElementsByTagName("f")[0].childNodes[0].nodeValue; } catch(e)  {}
+        try {format =       getRootReturns[x].getElementsByTagName("format")[0].childNodes[0].nodeValue; } catch(e)  {}
+        try {id =           getRootReturns[x].getElementsByTagName("id")[0].childNodes[0].nodeValue; } catch(e)  {}
+        try {name =         getRootReturns[x].getElementsByTagName("name")[0].childNodes[0].nodeValue; } catch(e)  {}
+        try {owner =        getRootReturns[x].getElementsByTagName("owner")[0].childNodes[0].nodeValue; } catch(e)  {}
+        try {parentId =     getRootReturns[x].getElementsByTagName("parentId")[0].childNodes[0].nodeValue; } catch(e)  {}
 
         filesList.push(new file(category, creationTime, data, dataTypeId, description, f, format, id, name, owner, parentId));
       }
