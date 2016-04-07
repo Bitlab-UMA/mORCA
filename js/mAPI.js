@@ -444,77 +444,54 @@ function getRoot(username, session, dtid, repoid) {
       getRootReturns = noderoot.getElementsByTagName("getRootReturn");
 
       for (x = 0; x < getRootReturns.length; x++) {
-
-        if (getRootReturns[x].getElementsByTagName("category")[0].childNodes[0]) {
-          var category = getRootReturns[x].getElementsByTagName("category")[0].childNodes[0].nodeValue;
-        } else {
-          var category = null;
+        var category = null;
+        var creationTime = null;
+        var data = null;
+        var dataTypeId = null;
+        var description = null;
+        var f = null;
+        var format = null;
+        var id = null;
+        var name = null;
+        var owner = null;
+        var parentId = null;
+        alert("Dentro de getRoot: " + getRootReturns[x].getElementsByTagName("category")[0].childNodes[0])
+        if (             getRootReturns[x].getElementsByTagName("category")[0].childNodes[0]) {
+          category =     getRootReturns[x].getElementsByTagName("category")[0].childNodes[0].nodeValue;
         }
-
-        if (getRootReturns[x].getElementsByTagName("creationTime")[0].childNodes[0]) {
-          var creationTime = getRootReturns[x].getElementsByTagName("creationTime")[0].childNodes[0].nodeValue;
-        } else {
-          var creationTime = null;
+        if (             getRootReturns[x].getElementsByTagName("creationTime")[0].childNodes[0]) {
+          creationTime = getRootReturns[x].getElementsByTagName("creationTime")[0].childNodes[0].nodeValue;
         }
-
-        if (getRootReturns[x].getElementsByTagName("data")[0].childNodes[0]) {
-          var data = getRootReturns[x].getElementsByTagName("data")[0].childNodes[0].nodeValue;
-        } else {
-          var data = null;
+        if (             getRootReturns[x].getElementsByTagName("data")[0].childNodes[0]) {
+          data =         getRootReturns[x].getElementsByTagName("data")[0].childNodes[0].nodeValue;
         }
-
-        if (getRootReturns[x].getElementsByTagName("dataTypeId")[0].childNodes[0]) {
-          var dataTypeId = getRootReturns[x].getElementsByTagName("dataTypeId")[0].childNodes[0].nodeValue;
-        } else {
-          var dataTypeId = null;
+        if (             getRootReturns[x].getElementsByTagName("dataTypeId")[0].childNodes[0]) {
+          dataTypeId =   getRootReturns[x].getElementsByTagName("dataTypeId")[0].childNodes[0].nodeValue;
         }
-
-        if (getRootReturns[x].getElementsByTagName("description")[0].childNodes[0]) {
-          var description = getRootReturns[x].getElementsByTagName("description")[0].childNodes[0].nodeValue;
-        } else {
-          var description = null;
+        if (             getRootReturns[x].getElementsByTagName("description")[0].childNodes[0]) {
+          description =  getRootReturns[x].getElementsByTagName("description")[0].childNodes[0].nodeValue;
         }
-
-        if (getRootReturns[x].getElementsByTagName("f")[0].childNodes[0]) {
-          var f = getRootReturns[x].getElementsByTagName("f")[0].childNodes[0].nodeValue;
-        } else {
-          var f = null;
+        if (             getRootReturns[x].getElementsByTagName("f")[0].childNodes[0]) {
+          f =            getRootReturns[x].getElementsByTagName("f")[0].childNodes[0].nodeValue;
         }
-
-        if (getRootReturns[x].getElementsByTagName("format")[0].childNodes[0]) {
-          var format = getRootReturns[x].getElementsByTagName("format")[0].childNodes[0].nodeValue;
-        } else {
-          var format = null;
+        if (             getRootReturns[x].getElementsByTagName("format")[0].childNodes[0]) {
+          format =       getRootReturns[x].getElementsByTagName("format")[0].childNodes[0].nodeValue;
         }
-
-        if (getRootReturns[x].getElementsByTagName("id")[0].childNodes[0]) {
-          var id = getRootReturns[x].getElementsByTagName("id")[0].childNodes[0].nodeValue;
-        } else {
-          var id = null;
+        if (             getRootReturns[x].getElementsByTagName("id")[0].childNodes[0]) {
+          id =           getRootReturns[x].getElementsByTagName("id")[0].childNodes[0].nodeValue;
         }
-
-        if (getRootReturns[x].getElementsByTagName("name")[0].childNodes[0]) {
-          var name = getRootReturns[x].getElementsByTagName("name")[0].childNodes[0].nodeValue;
-        } else {
-          var name = null;
+        if (             getRootReturns[x].getElementsByTagName("name")[0].childNodes[0]) {
+          name =         getRootReturns[x].getElementsByTagName("name")[0].childNodes[0].nodeValue;
         }
-
-        if (getRootReturns[x].getElementsByTagName("owner")[0].childNodes[0]) {
-          var owner = getRootReturns[x].getElementsByTagName("owner")[0].childNodes[0].nodeValue;
-        } else {
-          var owner = null;
+        if (             getRootReturns[x].getElementsByTagName("owner")[0].childNodes[0]) {
+          owner =        getRootReturns[x].getElementsByTagName("owner")[0].childNodes[0].nodeValue;
         }
-
-        if (getRootReturns[x].getElementsByTagName("parentId")[0].childNodes[0]) {
-          var parentId = getRootReturns[x].getElementsByTagName("parentId")[0].childNodes[0].nodeValue;
-        } else {
-          var parentId = null;
+        if (             getRootReturns[x].getElementsByTagName("parentId")[0].childNodes[0]) {
+          parentId =     getRootReturns[x].getElementsByTagName("parentId")[0].childNodes[0].nodeValue;
         }
 
         filesList.push(new file(category, creationTime, data, dataTypeId, description, f, format, id, name, owner, parentId));
-
       }
-
     },
 
     error: function(SOAPResponse) {
