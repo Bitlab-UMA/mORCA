@@ -108,7 +108,7 @@
   }
 
   window.fillText = function(id, text) {
-    $("#parameter" + id).val(text);
+    $("#parameter" + id).val(text.split("#"));
     $('#checkbox' + id).prop('checked', true).checkboxradio('refresh');
   }
   </script>
