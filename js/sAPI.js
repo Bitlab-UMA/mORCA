@@ -211,7 +211,16 @@ function generateInterface(parameters) {
           }
         }
 
+        repoid = String(window.location.href.split('?')[2])
+        repoid = decodeURI(repoid);
+
         document.write('</ul></div>');
+        // document.ready(function(){
+        //     $("#resultbutton").click(function(){
+        //         getFile(resultfile,getCookie("token"), repoid);
+        //         $("#mainresults").text();
+        //     });
+
 
         break;
     }

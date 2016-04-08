@@ -131,7 +131,7 @@
     console.log("-------");
     </script>
     <center><a data-role="button" id="resultbutton" class="ui-disabled"
-    onclick='getFile(resultfile,getCookie("token"), repoid); $("#mainresults").text("resultadosFinales: " + resultadosFinales);'>
+                onclick='var r=getFile(resultfile,getCookie("token"), repoid); $("#mainresults").append(r);'>
     See Results…</a> </center>
     <div id="resultado"> </div>
     <div data-role="footer" data-position="fixed">
