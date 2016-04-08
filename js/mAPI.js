@@ -376,6 +376,7 @@ function getFile(idfile, session, repoid) {
       // $("#mainresults").text("resultadosFinales: " + resultadosFinales);
       // $("#mainresults").text(data);
       alert("Output: " + data);
+      return data;
     },
     error: function(SOAPResponse) {
       // NEED TO IMPLEMENT
