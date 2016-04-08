@@ -16,7 +16,7 @@
   <script src="js/mAPI.js" type="text/javascript"></script>
   <script src="js/sAPI.js" type="text/javascript"></script>
   <script>
-  var name, urlOperation, idOperation, repoID, resultadosFinales;
+  var name, urlOperation, idOperation, repoID;
   var parameters = new Array();
   var resultfile = new String();
   filesList = new Array();
@@ -130,7 +130,9 @@
 
     console.log("-------");
     </script>
-    <center><a data-role="button" id="resultbutton" class="ui-disabled" onclick="getFile(resultfile,getCookie('token'), repoid)">See Results…</a> </center>
+    <center><a data-role="button" id="resultbutton" class="ui-disabled"
+    onclick='getFile(resultfile,getCookie("token"), repoid); $("#mainresults").text("resultadosFinales: " + resultadosFinales);'>
+    See Results…</a> </center>
     <div id="resultado"> </div>
     <div data-role="footer" data-position="fixed">
       <h4>&copy; 2016 Bioinformatics and Information Technology Laboratories</h4>
@@ -146,7 +148,6 @@
       <h4>&copy; 2016 Bioinformatics and Information Technology Laboratories</h4>
     </div>
   </div>
-  <script>$("#mainresults").text(resultadosFinales);</script>
 
 </body>
 
