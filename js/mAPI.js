@@ -374,7 +374,7 @@ function getFile(idfile, session, repoid) {
       var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
       // resultadosFinales = data;
       // $("#mainresults").text("resultadosFinales: " + resultadosFinales);
-      // $("#mainresults").text(data);
+      $("#resultbutton").text("desde geFile: " + data);
       alert("Output: " + data);
       return data;
     },
