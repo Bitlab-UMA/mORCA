@@ -206,9 +206,9 @@ function generateInterface(parameters) {
 
           for (var y in filesList) {
             document.write(
-              '<li><a onclick="fillText(' + x + ',\'' + filesList[y].id + '\');">' + filesList[y].name + '</a></li>'
+              '<li><a onclick="fillText(' + x + ',\'' + filesList[y].id + '\'); $("#popupMenu"+x+"-popup").popup('close');">' + filesList[y].name + '</a></li>'
             );
-            $("#popupMenu"+x+"-popup").popup('close');
+
           }
         }
 
