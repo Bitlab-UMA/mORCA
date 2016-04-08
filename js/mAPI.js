@@ -374,9 +374,11 @@ function getFile(idfile, session, repoid) {
       var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
       // resultadosFinales = data;
       // $("#mainresults").text("resultadosFinales: " + resultadosFinales);
-      $("#rmainresults").text("desde geFile: " + data);
+      // $("#rmainresults").text("desde geFile: " + data);
       alert("Output: " + data);
-      return data;
+      document.getElementById("resultado").innerHTML = "Output: " + data;
+
+      // return data;  NO SIRVE, no hay return
     },
     error: function(SOAPResponse) {
       // NEED TO IMPLEMENT
