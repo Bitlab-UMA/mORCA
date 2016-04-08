@@ -131,7 +131,7 @@
     console.log("-------");
     </script>
     <center><a data-role="button" id="resultbutton" class="ui-disabled"
-                onclick='var r=getFile(resultfile,getCookie("token"), repoid) || "nada" ; $("#resultbutton").append("RESULTADOS: " + r);'>
+                onclick='getFile(resultfile,getCookie("token"), repoid););'>
     See Results…</a> </center>
     <div id="resultado"> </div>
     <div data-role="footer" data-position="fixed">
@@ -142,9 +142,11 @@
     <div data-role="header" data-position="fixed" data-add-back-btn="true">
       <h1>Results</h1>
     </div>
-    <div data-role='content' id="mainresults">
+    <p id="mainresults">
+    </p>
+<!--     <div data-role='content' id="mainresults">
     </div>
-    <div data-role="footer" data-position="fixed">
+ -->    <div data-role="footer" data-position="fixed">
       <h4>&copy; 2016 Bioinformatics and Information Technology Laboratories</h4>
     </div>
   </div>
