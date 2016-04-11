@@ -131,8 +131,8 @@
     console.log("-------");
     </script>
     <center><a data-role="button" id="resultbutton" class="ui-disabled"
-                onclick='getFile(resultfile,getCookie("token"), repoid);'>
-    See Results…</a> </center>
+                onclick='getFile(resultfile,getCookie("token"), repoid); $("#resultbutton").text("Results:") '>Display results…</a>
+    </center>
     <p id="mainresults" contenteditable style="margin-left: 10px;">
         RESULTS:
     </p>
