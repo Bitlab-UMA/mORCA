@@ -333,8 +333,8 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
       $.mobile.loading('hide');
       $('#resultbutton').prop('disabled', "").removeClass('ui-disabled');
       // intento que se vean los resultados inmediatamente:
-      var data = noderoot.getElementsByTagName("data")[0].childNodes[0].nodeValue;
-      document.getElementById("mainresults").innerHTML = "<pre>" + data + "</pre>";
+      // var data = noderoot.getElementsByTagName("data")[0].childNodes[0].nodeValue;
+      // document.getElementById("mainresults").innerHTML = "<pre>" + data + "</pre>";
     },
 
     error: function(SOAPResponse) {
