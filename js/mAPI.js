@@ -378,7 +378,7 @@ function getFile(idfile, session, repoid) {
       // resultadosFinales = data;
       // $("#mainresults").text("resultadosFinales: " + resultadosFinales);
       // $("#rmainresults").text("desde geFile: " + data);
-      // alert("Output: " + data);
+      alert("Output: " + data);
       document.getElementById("mainresults").innerHTML = "<pre>" + data + "</pre>";
 
       // return data;  NO SIRVE, no hay return
