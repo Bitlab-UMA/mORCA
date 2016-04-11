@@ -332,6 +332,9 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
       resultfile = noderoot.getElementsByTagName("executeServiceReturn")[0].childNodes[0].nodeValue;
       $.mobile.loading('hide');
       $('#resultbutton').prop('disabled', "").removeClass('ui-disabled');
+      // intento que se vean los resultados inmediatamente:
+      var data = noderoot.getElementsByTagName("data")[0].childNodes[0].nodeValue;
+      document.getElementById("mainresults").innerHTML = "<pre>" + data + "</pre>";
     },
 
     error: function(SOAPResponse) {
@@ -375,7 +378,7 @@ function getFile(idfile, session, repoid) {
       // resultadosFinales = data;
       // $("#mainresults").text("resultadosFinales: " + resultadosFinales);
       // $("#rmainresults").text("desde geFile: " + data);
-      alert("Output: " + data);
+      // alert("Output: " + data);
       document.getElementById("mainresults").innerHTML = "<pre>" + data + "</pre>";
 
       // return data;  NO SIRVE, no hay return
