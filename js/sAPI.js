@@ -180,6 +180,7 @@ function generateInterface(parameters) {
           '<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>' +
           '<div class="ui-block-a">' +
           '<div data-role="fieldcontain">' +
+          '<p id="parameterhidden' + x + ' class="texthidden"></p>' +
           '<input type="text" name="text-basic" id="parameter' + x + '" value="" data-inline="true" placeholder="Fetch a file from the cloud">' +
           //'<textarea name="text-basic" id="parameter'+x+'" value="" data-inline="true"> </textarea>' +
           '</div></div>' +
