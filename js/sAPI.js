@@ -207,8 +207,8 @@ function generateInterface(parameters) {
 
           for (var y in filesList) {
             document.write(
-              // '<li><a onclick="fillText(' + x + ',\'' + filesList[y].id + '\'); window.location.href=\'#\';">' + filesList[y].name + '</a></li>'
-              '<li><a onclick="fillText(' + x + ',\'' + filesList[y].id + '\',\'' + filesList[y].name + '\'); window.location.href=\'#\'; ">' + filesList[y].name + '</a></li>'
+              // '<li><a onclick="nuevoParametro(' + x + ',\'' + filesList[y].id + '\'); window.location.href=\'#\';">' + filesList[y].name + '</a></li>'
+              '<li><a onclick="nuevoParametro(' + x + ',\'' + filesList[y].id + '\',\'' + filesList[y].name + '\'); window.location.href=\'#\'; ">' + filesList[y].name + '</a></li>'
 
             );
 
