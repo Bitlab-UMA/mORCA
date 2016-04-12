@@ -207,7 +207,7 @@ function generateInterface(parameters) {
           for (var y in filesList) {
             document.write(
               // '<li><a onclick="fillText(' + x + ',\'' + filesList[y].id + '\'); window.location.href=\'#\';">' + filesList[y].name + '</a></li>'
-              '<li><a onclick="fillText(' + x + ',\'' + filesList[y].id + '#' + filesList[y].name + '\'); window.location.href=\'#\';">' + filesList[y].name + '</a></li>'
+              '<li><a onclick="fillText(' + x + ',\'' + filesList[y].id + '#' + filesList[y].name + '\'); window.location.href=\'#\'; ">' + filesList[y].name + '</a></li>'
 
             );
 
@@ -240,7 +240,9 @@ function generateInterface(parameters) {
     '<label for="nameFile"><b>File name:</b>  <font color = "gray">change it</font></label>' +
     '<input type="text" name="text-basic" id="nameFile" data-inline="true" value="' + fileName + '">' +
     '</div>');
-  document.write("<button type='submit' class='show-page-loading-msg' data-textonly='false' data-textvisible='true'>Run</button>");
+
+  document.write(
+"<button type='submit' class='show-page-loading-msg' data-textonly='false' data-textvisible='true'>Run</button>");
   document.write("</form></div>");
 }
 
