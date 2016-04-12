@@ -59,7 +59,8 @@
           var parameter = new Array();
           var generatedID = 'parameter' + x + '';
           console.log("GeneratedID: " + generatedID);
-          parameter.push(document.getElementById(generatedID).value.split("#")[0]);
+          parameter.push(document.getElementById('parameterhidden' + x).value);
+          // parameter.push(document.getElementById(generatedID).value.split("#")[0]);
           parameter.push(parameters[x].dataTypeID);
           parameter.push("Moby");
           parameter.push(parameters[x].name);
@@ -108,7 +109,8 @@
   }
 
   window.fillText = function(id, text) {
-    $("#parameter" + id).val(text);
+    $("#parameter" + id).val(text.split("#")[1]);
+    $("#parameterhidden" + id).val(text.split("#")[0]);
     // $("#parameter" + id).val(text.split("#")[0]);
     $('#checkbox' + id).prop('checked', true).checkboxradio('refresh');
 
