@@ -243,7 +243,7 @@ function generateInterface(parameters) {
     '</div>');
 
   document.write(
-"<button type='submit' id='runrun' class='show-page-loading-msg' data-textonly='false' data-textvisible='true'>Run</button>");
+"<button type='submit' id='runrun' class='show-page-loading-msg' data-textonly='false' data-textvisible='true' disabled>Run</button>");
   document.write("</form></div>");
 }
 
