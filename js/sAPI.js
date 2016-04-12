@@ -377,8 +377,8 @@ $(document).ready(function() {
   if (logged()) {
     var user = getCookie('username');
     $("#usernamediv").html("");
-    $("#usernamediv").append("</br>" + "Welcome, logged in as: " + user + "</br>")
-    $('#loginButton').html('Logout');
+    $("#usernamediv").append("</br>" + "Welcome, logged in as: <b>" + user + "</b></br>")
+    $('#loginButton').html('logout');
     $('#loginButton').removeAttr('href');
     $('#loginButton').attr('onclick', 'mainLogout()');
     loadFileBrowser();
