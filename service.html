@@ -114,7 +114,7 @@
     // $("#parameter" + id).val(text.split("#")[0]);
     $('#checkbox' + id).prop('checked', true).checkboxradio('refresh');
     $("#mainresults").text("");
-    document.getElementById("runrun").visible=true;
+    $('#runrun').prop('disabled', "").removeClass('ui-disabled');
     document.getElementById("resultbutton").innerHTML= "View results";
 
   }
