@@ -25,8 +25,8 @@
   <link rel="apple-touch-icon" sizes="114x114" href="ios/Icon@2x.png" />
   <link rel="apple-touch-icon" sizes="144x144" href="ios/Icon-72@2x.png" />
   <script>
-  var toolid = new String("urn:symbiomath:tool:");
-  var repoid = new String("Bitlab [chirimoyo.ac.uma.es]");
+  var toolid = "urn:symbiomath:tool:";
+  var repoid = "Bitlab [chirimoyo.ac.uma.es]";
 
   function changeRepository() {
 
@@ -36,14 +36,14 @@
     switch (selectedValue) {
       case 'INB':
         $("#treeview").load("data/inb.html");
-        toolid = new String("urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es");
-        repoid = new String("INB  [chirimoyo.ac.uma.es]");
+        toolid = "urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es";
+        repoid = "INB  [chirimoyo.ac.uma.es]";
         break;
 
       case 'MrSymbiomath':
         $("#treeview").load("data/mrsymbiomath.html");
-        toolid = new String("urn:symbiomath:tool:");
-        repoid = new String("Bitlab [chirimoyo.ac.uma.es]");
+        toolid = "urn:symbiomath:tool:";
+        repoid = "Bitlab [chirimoyo.ac.uma.es]";
         break;
     }
   }
@@ -78,7 +78,7 @@
       </div>
       <script type="text/javascript">
       $("#treeview").load("data/mrsymbiomath.html");
-      // repoid = new String("undefined");
+      // repoid = "undefined";
       getRoot(getCookie('username'), getCookie('token'), '', repoid);
       </script>
       <div id="divSelectRepository" data-role="content" style="align-self: center">

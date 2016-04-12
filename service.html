@@ -18,7 +18,7 @@
   <script>
   var name, urlOperation, idOperation, repoID;
   var parameters = new Array();
-  var resultfile = new String();
+  var resultfile = "";
   filesList = new Array();
 
   function loadServiceInfo() {
@@ -32,8 +32,8 @@
 
     console.log(toolid);
 
-    urlOperation = new String(toolid + name);
-    idOperation = new String(toolid + name + ";" + name);
+    urlOperation = toolid + name;
+    idOperation = toolid + name + ";" + name;
 
     repoID = repoid;
   };
@@ -43,7 +43,7 @@
       var d = new Date();
       d.setTime(d.getTime());
       var nameFile = document.getElementById("nameFile").value
-      var idFolder = new String("");
+      var idFolder = "";
       var token = getCookie("token");
       var user = getCookie("username");
       var inputList = new Array();
@@ -57,7 +57,7 @@
 
         if (parameters[x].input == "true") {
           var parameter = new Array();
-          var generatedID = new String('parameter' + x + '');
+          var generatedID = 'parameter' + x + '';
           console.log("GeneratedID: " + generatedID);
           parameter.push(document.getElementById(generatedID).value.split("#")[0]);
           parameter.push(parameters[x].dataTypeID);

@@ -1,4 +1,4 @@
-var list = new String();
+var list = "";
 var filesList = new Array();
 
 function readXMLToolList(repofile) {
