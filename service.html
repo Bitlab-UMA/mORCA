@@ -113,10 +113,10 @@
     $("#parameterhidden" + id).val(hiddentext);
     // $("#parameter" + id).val(text.split("#")[0]);
     $('#checkbox' + id).prop('checked', true).checkboxradio('refresh');
-    $("#mainresults").text("");
     document.getElementById("runrun").disabled = false;
-    document.getElementById("resultbutton").innerHTML= "View results";
-    document.getElementById("resultbutton").hidden = true;
+    $("#mainresults").disabled=true;
+    // document.getElementById("resultbutton").innerHTML= "View results";
+    // document.getElementById("resultbutton").hidden = true;
 
   }
   </script>
@@ -138,11 +138,12 @@
 
     console.log("-------");
     </script>
-    <center><a data-role="button" id="resultbutton" class="ui-disabled"
+<!--     <center><a data-role="button" id="resultbutton" class="ui-disabled"
 onclick='getFile(resultfile,getCookie("token"), repoid); document.getElementById("resultbutton").innerHTML= "Results:" '>
                 Show results…</a>
     </center>
-    <p id="mainresults" contenteditable style="margin-left: 10px;">
+ -->
+     <p id="mainresults" contenteditable style="margin-left: 10px;" disabled>
         RESULTS:
     </p>
 

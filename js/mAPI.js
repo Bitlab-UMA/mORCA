@@ -331,11 +331,11 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
       var noderoot = response.documentElement;
       resultfile = noderoot.getElementsByTagName("executeServiceReturn")[0].childNodes[0].nodeValue;
       $.mobile.loading('hide');
-      $('#resultbutton').prop('disabled', "").removeClass('ui-disabled');
+      // $('#resultbutton').prop('disabled', "").removeClass('ui-disabled');
 
       // intento que se vean los resultados inmediatamente:
       getFile(resultfile,getCookie("token"), repoid);
-      document.getElementById("resultbutton").innerHTML= "Results:"
+      // document.getElementById("resultbutton").innerHTML= "Results:"
 
     },
 
@@ -381,6 +381,7 @@ function getFile(idfile, session, repoid) {
       // $("#mainresults").text("resultadosFinales: " + resultadosFinales);
       // $("#rmainresults").text("desde geFile: " + data);
       // alert("Output: " + data);
+      document.getElementById("mainresults").disabled = false;
       document.getElementById("mainresults").innerHTML = "<pre>" + data + "</pre>";
 
       // return data;  NO SIRVE, no hay return
