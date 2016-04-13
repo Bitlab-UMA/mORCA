@@ -335,7 +335,8 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
       // intento que se vean los resultados inmediatamente:
       // var data = noderoot.getElementsByTagName("data")[0].childNodes[0].nodeValue;
       // document.getElementById("mainresults").innerHTML = "<pre>" + data + "</pre>";
-      xmlDoc = parser.parseFromString(soapResponse.toString(), "text/xml");
+      // parser = new DOMParser();
+      xmlDoc = parser.parseFromString(response.toString(), "text/xml");
       var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
       document.getElementById("mainresults").innerHTML = "<pre>" + data + "</pre>";
     },
