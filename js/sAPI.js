@@ -164,7 +164,8 @@ function generateInterface(parameters) {
             '<div class="ui-block-stringb">' +
             //'<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all" data-inline="true">No text</a>' +
             //'<a href="#" class="ui-btn ui-icon-cloud ui-btn-icon-notext ui-corner-all" data-inline="true">No text</a>' +
-            '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+            infoTextHtml +
+            // '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
             '</div></div>');
         }
 
