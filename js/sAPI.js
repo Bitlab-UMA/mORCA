@@ -127,11 +127,11 @@ function generateInterface(parameters) {
         // poner esto sólo si lo hay!
         document.write('<div style="float: right">' + infoTextHtml + '</div>');
 
-          // document.write('<div style="float: right">' +
-          //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-          //   '</div>');
+        // document.write('<div style="float: right">' +
+        //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+        //   '</div>');
 
-          document.write('</div>');
+        document.write('</div>');
         break;
 
       case 'String':
@@ -147,11 +147,11 @@ function generateInterface(parameters) {
           document.write('</select>')
 
           // poner esto sólo si lo hay!
-        document.write('<div style="float: right">' + infoTextHtml + '</div>');
+          document.write('<div style="float: right">' + infoTextHtml + '</div>');
 
-            // document.write('<div style="float: right">' +
-            //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-            //   '</div>');
+          // document.write('<div style="float: right">' +
+          //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+          //   '</div>');
 
         } else {
           document.write('<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #66AB8A; ">' +
@@ -185,11 +185,11 @@ function generateInterface(parameters) {
         // poner esto sólo si lo hay!
         document.write('<div style="float: right">' + infoTextHtml + '</div>');
 
-          // document.write('<div style="float: right">' +
-          //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-          //   '</div>');
+        // document.write('<div style="float: right">' +
+        //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+        //   '</div>');
 
-          document.write('</div>');
+        document.write('</div>');
         break;
 
       default:
@@ -247,7 +247,7 @@ function generateInterface(parameters) {
         // document.ready(function(){
         //     $("#resultbutton").click(function(){
         //         getFile(resultfile,getCookie("token"), repoid);
-        //         $("#mainresults").text();
+        //         $("#mainresults").text("");
         //     });
 
 
