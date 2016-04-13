@@ -64,6 +64,12 @@ function generateInterface(parameters) {
 
   for (var x = 0; x < parameters.length; x++) {
 
+    var infoTextHtml = "";
+    console.log("parameters[" +x+ "].description: " + parameters[x].description);
+    if (parameters[x].description) {
+      infoTextHtml = '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-inline="true" data-jsb_prepared="2nis0xjxn9">No text</a>';
+    }
+
     switch (parameters[x].dataTypeName) {
       case 'Integer':
         document.write('<div data-role="fieldcontain" id="parameterbox">');
@@ -79,9 +85,12 @@ function generateInterface(parameters) {
           document.write('<input type="number" name="text-basic" id="parameter' + x + '" value="" data-inline="true" step="any" min="0">')
         }
 
-        document.write('<div style="float: right">' +
-          '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-          '</div>');
+          // poner esto sólo si lo hay!
+          infoTextHtml +
+
+        // document.write('<div style="float: right">' +
+        //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+        //   '</div>');
 
         document.write('</div>');
         break;
@@ -100,9 +109,11 @@ function generateInterface(parameters) {
           document.write('<input type="number" name="text-basic" id="parameter' + x + '" value="" data-inline="true" step="any" min="0">')
         }
 
-        document.write('<div style="float: right">' +
-          '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-          '</div>');
+          // poner esto sólo si lo hay!
+          infoTextHtml +
+        // document.write('<div style="float: right">' +
+        //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+        //   '</div>');
 
         document.write('</div>');
         break;
@@ -112,9 +123,11 @@ function generateInterface(parameters) {
         document.write('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
         document.write('<input type="text" name="text-basic" id="parameter' + x + '" value="">');
 
-        document.write('<div style="float: right">' +
-          '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-          '</div>');
+          // poner esto sólo si lo hay!
+          infoTextHtml +
+        // document.write('<div style="float: right">' +
+        //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+        //   '</div>');
 
         document.write('</div>');
         break;
@@ -131,9 +144,11 @@ function generateInterface(parameters) {
           }
           document.write('</select>')
 
-          document.write('<div style="float: right">' +
-            '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-            '</div>');
+          // poner esto sólo si lo hay!
+          infoTextHtml +
+          // document.write('<div style="float: right">' +
+          //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+          //   '</div>');
 
         } else {
           document.write('<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #66AB8A; ">' +
@@ -162,9 +177,12 @@ function generateInterface(parameters) {
         document.write('<option value="false">False</option>');
         document.write('</select>');*/
 
-        document.write('<div style="float: right">' +
-          '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-          '</div>');
+
+          // poner esto sólo si lo hay!
+          infoTextHtml +
+        // document.write('<div style="float: right">' +
+        //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+        //   '</div>');
 
         document.write('</div>');
         break;
@@ -175,11 +193,6 @@ function generateInterface(parameters) {
           break;
         }
 
-        var infoTextHtml = "";
-        console.log("parameters[" +x+ "].description: " + parameters[x].description);
-        if (parameters[x].description) {
-          infoTextHtml = '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-inline="true" data-jsb_prepared="2nis0xjxn9">No text</a>';
-        }
 
         document.write('<div data-role="fieldcontain" id="parameterbox">' +
           '<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #66AB8A; ">' +
