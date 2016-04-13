@@ -114,7 +114,8 @@
     // $("#parameter" + id).val(text.split("#")[0]);
     $('#checkbox' + id).prop('checked', true).checkboxradio('refresh');
     document.getElementById("runrun").disabled = false;
-    $("#mainresults").disabled=true;
+    document.getElementById("mainresults").style.display = 'none';
+    // $("#mainresults").disabled=true;
     // document.getElementById("resultbutton").innerHTML= "View results";
     // document.getElementById("resultbutton").hidden = true;
 
@@ -143,7 +144,7 @@ onclick='getFile(resultfile,getCookie("token"), repoid); document.getElementById
                 Show results…</a>
     </center>
  -->
-     <p id="mainresults" contenteditable style="margin-left: 10px;" disabled>
+     <p id="mainresults" contenteditable style="margin-left: 10px;" hidden>
         RESULTS:
     </p>
 
