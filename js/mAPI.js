@@ -332,14 +332,10 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
       resultfile = noderoot.getElementsByTagName("executeServiceReturn")[0].childNodes[0].nodeValue;
       $.mobile.loading('hide');
       $('#resultbutton').prop('disabled', "").removeClass('ui-disabled');
+      getFile(resultfile,getCookie("token"), repoid); document.getElementById("resultbutton").innerHTML= "Results:"
       // intento que se vean los resultados inmediatamente:
       // var data = noderoot.getElementsByTagName("data")[0].childNodes[0].nodeValue;
       // document.getElementById("mainresults").innerHTML = "<pre>" + data + "</pre>";
-      // parser = new DOMParser();
-      xmlDoc = parser.parseFromString(response.toString(), "text/xml");
-      var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
-      console.log("DATA results: " + data);
-      document.getElementById("mainresults").innerHTML = "<pre>" + data + "</pre>";
     },
 
     error: function(SOAPResponse) {
