@@ -175,6 +175,11 @@ function generateInterface(parameters) {
           break;
         }
 
+        var infoTextHtml = "";
+        if (parameters[x].description) {
+          infoTextHtml = '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-inline="true" data-jsb_prepared="2nis0xjxn9">No text</a>';
+        }
+
         document.write('<div data-role="fieldcontain" id="parameterbox">' +
           '<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #66AB8A; ">' +
           '<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>' +
@@ -188,7 +193,8 @@ function generateInterface(parameters) {
           '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
           '<a href="#popupMenu' + x + '" data-rel="popup" data-transition="slideup" id="' + x + '"class="ui-btn ui-icon-cloud ui-btn-icon-notext ui-corner-all" data-inline="true" data-jsb_prepared="2nis0xjxn9">No text</a>' +
 
-          // '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-inline="true" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+          // poner esto sólo si lo hay!
+          infoTextHtml +
 
           '</div><div class="ui-block-c" style="padding-top:7px">' +
           '<fieldset data-role="controlgroup">' +
