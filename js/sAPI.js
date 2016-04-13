@@ -176,6 +176,7 @@ function generateInterface(parameters) {
         }
 
         var infoTextHtml = "";
+        console.log("parameters[" +x+ "].description: " + parameters[x].description);
         if (parameters[x].description) {
           infoTextHtml = '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-inline="true" data-jsb_prepared="2nis0xjxn9">No text</a>';
         }
