@@ -79,9 +79,9 @@ function generateInterface(parameters) {
           document.write('<input type="number" name="text-basic" id="parameter' + x + '" value="" data-inline="true" step="any" min="0">')
         }
 
-        document.write('<div style="float: right">' +
-          '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-          '</div>');
+        // document.write('<div style="float: right">' +
+        //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+        //   '</div>');
 
         document.write('</div>');
         break;
