@@ -338,7 +338,7 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
       // parser = new DOMParser();
       xmlDoc = parser.parseFromString(response.toString(), "text/xml");
       var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
-      console.log(data);
+      console.log("DATA results: " + data);
       document.getElementById("mainresults").innerHTML = "<pre>" + data + "</pre>";
     },
 
