@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <title>Mr.Symbiomath</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
   <link rel="stylesheet" href="css/themes/Bitlab.css" />
@@ -117,7 +117,7 @@
     // document.getElementById("mainresults").style.display = 'none';
     // $("#mainresults").disabled=true;
     $("#mainresults").text("");
-    $("#nameFile").text(fechaHora());
+    document.getElementById("nameFile").innerHTML = fechaHora();
     // document.getElementById("resultbutton").innerHTML= "View results";
     // document.getElementById("resultbutton").hidden = true;
 

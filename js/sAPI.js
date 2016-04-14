@@ -265,8 +265,8 @@ function generateInterface(parameters) {
 
   }
 
-  var theDate = fechaHora();
-  var fileName = name + "_" + theDate + '.txt';
+  var laFechaHora = fechaHora();
+  var fileName = name + "_" + laFechaHora + '.txt';
 
   document.write('<div data-role="fieldcontain" id="parameterbox">' +
     '<label for="nameFile"><b>File name:</b>  <font color = "gray">change it</font></label>' +
