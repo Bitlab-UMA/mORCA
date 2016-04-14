@@ -57,8 +57,9 @@ function cargarXMLDoc(archivoXML) {
   return null;
 }
 
-function fechaHora() {
-  return new Date().toLocaleString().replace(' ', 'T');
+function fechaHoraExt() {
+  return new Date().toISOString() + '.txt';
+  // return new Date().toLocaleString().replace(' ', 'T');
 }
 
 function generateInterface(parameters) {
@@ -265,8 +266,8 @@ function generateInterface(parameters) {
 
   }
 
-  var laFechaHora = fechaHora();
-  var fileName = name + "_" + laFechaHora + '.txt';
+  var laFechaHoraExt = fechaHoraExt();
+  var fileName = name + "_" + laFechaHoraExt;
 
   document.write('<div data-role="fieldcontain" id="parameterbox">' +
     '<label for="nameFile"><b>File name:</b>  <font color = "gray">change it</font></label>' +

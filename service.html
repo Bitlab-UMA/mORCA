@@ -117,7 +117,9 @@
     // document.getElementById("mainresults").style.display = 'none';
     // $("#mainresults").disabled=true;
     $("#mainresults").text("");
-    document.getElementById("nameFile").innerHTML = fechaHora();
+    var currentNameFile = document.getElementById("nameFile").value;
+    currentNameFile = currentNameFile.substr(0,currentNameFile.lastIndexOf('_')) + fechaHoraExt();
+    document.getElementById("nameFile").value = currentNameFile;
     // document.getElementById("resultbutton").innerHTML= "View results";
     // document.getElementById("resultbutton").hidden = true;
 
