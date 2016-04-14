@@ -120,6 +120,9 @@
     var currentNameFile = document.getElementById("nameFile").value;
     if (currentNameFile.match(/\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d/)) {
       var posseparation = currentNameFile.lastIndexOf('-WITH-');
+      if (posseparation == -1) {
+        posseparation = currentNameFile.length();
+      }
       currentNameFile = currentNameFile.substr(0,posseparation) + '-WITH-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
       // currentNameFile = currentNameFile.substr(0,posseparation) + '-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
     }
