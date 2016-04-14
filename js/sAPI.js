@@ -223,7 +223,7 @@ function generateInterface(parameters) {
 
           '</div><div class="ui-block-c" style="padding-top:7px">' +
           '<fieldset data-role="controlgroup">' +
-          '<label for="checkbox' + x + '" data-inline="true">File</label>' +
+          '<label for="checkbox' + x + '" data-inline="true" hidden>File</label>' +
           '<input type="checkbox" id="checkbox' + x + '" data-inline="true">' +
           '</fieldset></div></div></div>');
 
