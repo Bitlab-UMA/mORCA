@@ -415,16 +415,13 @@ $(document).ready(function() {
   var user = "not logged in";
   if (logged()) {
     user = getCookie('username');
-  } else {
-    mainLogin("guest", "guest");
-    user = getCookie('username');
-  }
     $("#usernamediv").html("");
     $("#usernamediv").append("</br>" + "Welcome, logged in as: <b>" + user + "</b></br>")
     $('#loginButton').html('logout');
     $('#loginButton').removeAttr('href');
     $('#loginButton').attr('onclick', 'mainLogout()');
     loadFileBrowser();
+  }
 
   if (S3Logged()) {
     var S3User = getCookie('s3user');
