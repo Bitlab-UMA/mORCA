@@ -270,7 +270,7 @@ function generateInterface(parameters) {
   var fileName = name + "_" + laFechaHoraExt;
 
   document.write('<div data-role="fieldcontain" id="parameterbox">' +
-    '<label for="nameFile"><b>File name:</b>  <font color = "gray">change it</font></label>' +
+    '<label for="nameFile"><b>File name:</b>  <font color = "gray">do not repeat it</font></label>' +
     '<input type="text" name="text-basic" id="nameFile" data-inline="true" value="' + fileName + '">' +
     '</div>');
 
