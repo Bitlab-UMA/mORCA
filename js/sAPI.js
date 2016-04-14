@@ -412,6 +412,7 @@ $(document).on("click", ".show-page-loading-msg", function() {
 $(document).ready(function() {
   if (logged()) {
     var user = getCookie('username');
+    loginS3("guest", "guest");
     $("#usernamediv").html("");
     $("#usernamediv").append("</br>" + "Welcome, logged in as: <b>" + user + "</b></br>")
     $('#loginButton').html('logout');
