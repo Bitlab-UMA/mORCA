@@ -120,7 +120,7 @@
     var currentNameFile = document.getElementById("nameFile").value;
     if (currentNameFile.match(/\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d/)) {
       var posUnderscore = currentNameFile.lastIndexOf('_');
-      currentNameFile = currentNameFile.substr(0,posUnderscore) + '_' + fechaHoraExt();
+      currentNameFile = currentNameFile.substr(0,posUnderscore) + '-' + $("#parameter" + id).val(); + '_' +fechaHoraExt();
     }
     document.getElementById("nameFile").value = currentNameFile;
     // document.getElementById("resultbutton").innerHTML= "View results";
