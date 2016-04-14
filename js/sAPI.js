@@ -221,7 +221,7 @@ function generateInterface(parameters) {
           // poner esto sólo si lo hay!
           infoTextHtml +
 
-          '</div><div class="ui-block-c" style="padding-top:7px">' +
+          '</div><div class="ui-block-c ui-screen-hidden" style="padding-top:7px">' +
           '<fieldset data-role="controlgroup">' +
           '<label for="checkbox' + x + '" data-inline="true" >File</label>' +
           '<input type="checkbox" id="checkbox' + x + '" data-inline="true">' +
