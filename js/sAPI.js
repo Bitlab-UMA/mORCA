@@ -410,10 +410,12 @@ $(document).on("click", ".show-page-loading-msg", function() {
   });
 
 $(document).ready(function() {
+  var user = "not logged in";
   if (logged()) {
-    var user = getCookie('username');
+    user = getCookie('username');
   } else {
     mainLogin("guest", "guest");
+    user = getCookie('username');
   }
     $("#usernamediv").html("");
     $("#usernamediv").append("</br>" + "Welcome, logged in as: <b>" + user + "</b></br>")
