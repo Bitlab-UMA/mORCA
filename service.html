@@ -122,6 +122,9 @@
       var posseparation = currentNameFile.lastIndexOf(' fetch a file!');
       currentNameFile = currentNameFile.substr(0,posseparation) + '-WITH-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
       // currentNameFile = currentNameFile.substr(0,posseparation) + '-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
+    } else if (currentNameFile.match(/-WITH-/)) {
+      var posseparation = currentNameFile.lastIndexOf('-WITH-');
+      currentNameFile = currentNameFile.substr(0,posseparation) + '-WITH-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
     }
     // if (currentNameFile.match(/\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d/)) {
     //   var posseparation = currentNameFile.lastIndexOf('-WITH-');
