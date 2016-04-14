@@ -412,14 +412,15 @@ $(document).on("click", ".show-page-loading-msg", function() {
 $(document).ready(function() {
   if (logged()) {
     var user = getCookie('username');
-    loginS3("guest", "guest");
+  } else {
+    mainLogin("guest", "guest");
+  }
     $("#usernamediv").html("");
     $("#usernamediv").append("</br>" + "Welcome, logged in as: <b>" + user + "</b></br>")
     $('#loginButton').html('logout');
     $('#loginButton').removeAttr('href');
     $('#loginButton').attr('onclick', 'mainLogout()');
     loadFileBrowser();
-  }
 
   if (S3Logged()) {
     var S3User = getCookie('s3user');
