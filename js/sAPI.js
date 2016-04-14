@@ -216,17 +216,17 @@ function generateInterface(parameters) {
           '<div class="ui-block-b" style="padding-top:5px">' +
           // elminado lápiz
           // '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
-          '<a href="#popupMenu' + x + '" data-rel="popup" data-transition="slideup" id="' + x + '"class="ui-btn ui-icon-cloud ui-btn-icon-notext ui-corner-all" data-inline="true" data-jsb_prepared="2nis0xjxn9">Fetch a file</a>' +
+          '<a href="#popupMenu' + x + '" data-rel="popup" data-transition="slideup" id="' + x + '"class="ui-btn ui-icon-cloud ui-btn-icon-left ui-corner-all" data-inline="true" data-jsb_prepared="2nis0xjxn9">Cloud files</a>' +
 
+          // poner esto sólo si lo hay!
+          infoTextHtml +
 
           '</div><div class="ui-block-c" style="padding-top:7px">' +
           '<fieldset data-role="controlgroup">' +
           '<label for="checkbox' + x + '" data-inline="true" >File</label>' +
           '<input type="checkbox" id="checkbox' + x + '" data-inline="true">' +
-          '</fieldset>'
+          '</fieldset></div></div></div>'
 
-          // poner esto sólo si lo hay!
-          + infoTextHtml + '</div></div></div>'
           );
 
         document.write('<div data-role="popup" id="popupMenu' + x + '" data-theme="b">' +
