@@ -2,13 +2,13 @@
 function parameter(allowedValues, dataTypeID, dataTypeName, name, description, paramIndex, type, input) {
 
   this.allowedValues = new Array([]);
-  this.dataTypeID = dataTypeID;
-  this.dataTypeName = dataTypeName;
-  this.name = name;
-  this.description = description;
-  this.input = input;
-  this.paramIndex = paramIndex;
-  this.type = type;
+  this.dataTypeID    = dataTypeID;
+  this.dataTypeName  = dataTypeName;
+  this.name          = name;
+  this.description   = description;
+  this.input         = input;
+  this.paramIndex    = paramIndex;
+  this.type          = type;
   this.allowedValues = allowedValues;
 
   function addValues(value) {
@@ -17,17 +17,17 @@ function parameter(allowedValues, dataTypeID, dataTypeName, name, description, p
 }
 
 function file(category, creationTime, data, dataTypeId, description, f, format, id, name, owner, parentId) {
-  this.category = category;
+  this.category     = category;
   this.creationTime = creationTime;
-  this.data = data;
-  this.dataTypeId = dataTypeId;
-  this.description = description;
-  this.f = f;
-  this.format = format;
-  this.id = id;
-  this.name = name;
-  this.owner = owner;
-  this.parentId = parentId;
+  this.data         = data;
+  this.dataTypeId   = dataTypeId;
+  this.description  = description;
+  this.f            = f;
+  this.format       = format;
+  this.id           = id;
+  this.name         = name;
+  this.owner        = owner;
+  this.parentId     = parentId;
 }
 
 //SOAP Definition
@@ -38,10 +38,10 @@ function soap() {
     SOAPAction: '',
 
     envAttributes: { // additional attributes (like namespaces) for the Envelope:
-      'xmlns:q0': 'http://api.bitlab.org',
+      'xmlns:q0':      'http://api.bitlab.org',
       'xmlns:soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
-      'xmlns:xsd': 'http://www.w3.org/2001/XMLSchema',
-      'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+      'xmlns:xsd':     'http://www.w3.org/2001/XMLSchema',
+      'xmlns:xsi':     'http://www.w3.org/2001/XMLSchema-instance',
     },
 
     HTTPHeaders: {},
@@ -187,8 +187,8 @@ function getParameters(operationID, repoID, returnFunction)  {
 
     success: function(soapResponse) {
 
-      var response = soapResponse.toXML();
-      var noderoot = response.documentElement;
+      var response   = soapResponse.toXML();
+      var noderoot   = response.documentElement;
       var parameters = new Array();
 
       parametersReturns = noderoot.getElementsByTagName("getParametersReturn");
@@ -205,17 +205,18 @@ function getParameters(operationID, repoID, returnFunction)  {
         }
 
         //Getting the other values
-        var dataTypeID = parametersReturns[x].getElementsByTagName("dataTypeID")[0].childNodes[0].nodeValue;
+        var dataTypeID   = parametersReturns[x].getElementsByTagName("dataTypeID")[0].childNodes[0].nodeValue;
         var dataTypeName = parametersReturns[x].getElementsByTagName("dataTypeName")[0].childNodes[0].nodeValue;
-        var name = parametersReturns[x].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+        var name         = parametersReturns[x].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+
         if (parametersReturns[x].getElementsByTagName("description")[0].childNodes.length != 0) {
           var description = parametersReturns[x].getElementsByTagName("description")[0].childNodes[0].nodeValue;
         } else {
           var description = "";
         }
         var paramIndex = parametersReturns[x].getElementsByTagName("paramIndex")[0].childNodes[0].nodeValue;
-        var type = parametersReturns[x].getElementsByTagName("type")[0].childNodes[0].nodeValue;
-        var input = parametersReturns[x].getElementsByTagName("input")[0].childNodes[0].nodeValue;
+        var type       = parametersReturns[x].getElementsByTagName("type")[0].childNodes[0].nodeValue;
+        var input      = parametersReturns[x].getElementsByTagName("input")[0].childNodes[0].nodeValue;
 
         parameters.push(new parameter(allowedValues, dataTypeID, dataTypeName, name, description, paramIndex, type, input));
 
@@ -300,24 +301,24 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
       //Creating output parameters list
       for (var y in outputList) {
         var output = execute.newChild("q0:outputList")
-        output.addParameter("q0:data", outputList[y][0])
-        output.addParameter("q0:dataType", outputList[y][1])
-        output.addParameter("q0:format", outputList[y][2])
-        output.addParameter("q0:name", outputList[y][3])
+        output.addParameter("q0:data",      outputList[y][0])
+        output.addParameter("q0:dataType",  outputList[y][1])
+        output.addParameter("q0:format",    outputList[y][2])
+        output.addParameter("q0:name",      outputList[y][3])
         output.addParameter("q0:paramType", outputList[y][4])
-        output.addParameter("q0:store", outputList[y][5])
-        output.addParameter("q0:type", outputList[y][6])
-        output.addParameter("q0:file", outputList[y][7])
+        output.addParameter("q0:store",     outputList[y][5])
+        output.addParameter("q0:type",      outputList[y][6])
+        output.addParameter("q0:file",      outputList[y][7])
       }
 
       //Creating service parameters
       execute.addParameter("q0:urlOperation", urlOperation.toString())
-      execute.addParameter("q0:idOperation", idOperation.toString())
-      execute.addParameter("q0:nameFile", nameFile.toString())
-      execute.addParameter("q0:idFolder", idFolder.toString())
-      execute.addParameter("q0:token", token.toString())
-      execute.addParameter("q0:user", user.toString())
-      execute.addParameter("q0:repoid", repoID.toString())
+      execute.addParameter("q0:idOperation",  idOperation.toString())
+      execute.addParameter("q0:nameFile",     nameFile.toString())
+      execute.addParameter("q0:idFolder",     idFolder.toString())
+      execute.addParameter("q0:token",        token.toString())
+      execute.addParameter("q0:user",         user.toString())
+      execute.addParameter("q0:repoid",       repoID.toString())
 
       return SOAPObject;
     },
@@ -400,12 +401,11 @@ function getFolder(id, username, session, dtid, repoid) {
     namespaceQualifier: 'q0',
 
     data: {
-
-      id: id,
-      user: username,
-      session: session,
-      dtid: dtid,
-      repoid: repoid
+      id      : id,
+      user    : username,
+      session : session,
+      dtid    : dtid,
+      repoid  : repoid
     },
 
     beforeSend: function(SOAPEnvelope) {
@@ -456,29 +456,29 @@ function getRoot(username, session, dtid, repoid) {
       getRootReturns = noderoot.getElementsByTagName("getRootReturn");
 
       for (x = 0; x < getRootReturns.length; x++) {
-        var category = null;
-        var creationTime = null;
-        var data = null;
-        var dataTypeId = null;
-        var description = null;
-        var f = null;
-        var format = null;
-        var id = null;
-        var name = null;
-        var owner = null;
-        var parentId = null;
-        // alert("Dentro de getRoot: " + getRootReturns[x].getElementsByTagName("category")[0].childNodes[0])
-        try {category =     getRootReturns[x].getElementsByTagName("category"     )[0].childNodes[0].nodeValue; } catch(e){}
+        var  category     = null;
+        var  creationTime = null;
+        var  data         = null;
+        var  dataTypeId   = null;
+        var  description  = null;
+        var  f            = null;
+        var  format       = null;
+        var  id           = null;
+        var  name         = null;
+        var  owner        = null;
+        var  parentId     = null;
+
+        try {category     = getRootReturns[x].getElementsByTagName("category"     )[0].childNodes[0].nodeValue; } catch(e){}
         try {creationTime = getRootReturns[x].getElementsByTagName("creationTime" )[0].childNodes[0].nodeValue; } catch(e){}
-        try {data =         getRootReturns[x].getElementsByTagName("data"         )[0].childNodes[0].nodeValue; } catch(e){}
-        try {dataTypeId =   getRootReturns[x].getElementsByTagName("dataTypeId"   )[0].childNodes[0].nodeValue; } catch(e){}
-        try {description =  getRootReturns[x].getElementsByTagName("description"  )[0].childNodes[0].nodeValue; } catch(e){}
-        try {f =            getRootReturns[x].getElementsByTagName("f"            )[0].childNodes[0].nodeValue; } catch(e){}
-        try {format =       getRootReturns[x].getElementsByTagName("format"       )[0].childNodes[0].nodeValue; } catch(e){}
-        try {id =           getRootReturns[x].getElementsByTagName("id"           )[0].childNodes[0].nodeValue; } catch(e){}
-        try {name =         getRootReturns[x].getElementsByTagName("name"         )[0].childNodes[0].nodeValue; } catch(e){}
-        try {owner =        getRootReturns[x].getElementsByTagName("owner"        )[0].childNodes[0].nodeValue; } catch(e){}
-        try {parentId =     getRootReturns[x].getElementsByTagName("parentId"     )[0].childNodes[0].nodeValue; } catch(e){}
+        try {data         = getRootReturns[x].getElementsByTagName("data"         )[0].childNodes[0].nodeValue; } catch(e){}
+        try {dataTypeId   = getRootReturns[x].getElementsByTagName("dataTypeId"   )[0].childNodes[0].nodeValue; } catch(e){}
+        try {description  = getRootReturns[x].getElementsByTagName("description"  )[0].childNodes[0].nodeValue; } catch(e){}
+        try {f            = getRootReturns[x].getElementsByTagName("f"            )[0].childNodes[0].nodeValue; } catch(e){}
+        try {format       = getRootReturns[x].getElementsByTagName("format"       )[0].childNodes[0].nodeValue; } catch(e){}
+        try {id           = getRootReturns[x].getElementsByTagName("id"           )[0].childNodes[0].nodeValue; } catch(e){}
+        try {name         = getRootReturns[x].getElementsByTagName("name"         )[0].childNodes[0].nodeValue; } catch(e){}
+        try {owner        = getRootReturns[x].getElementsByTagName("owner"        )[0].childNodes[0].nodeValue; } catch(e){}
+        try {parentId     = getRootReturns[x].getElementsByTagName("parentId"     )[0].childNodes[0].nodeValue; } catch(e){}
 
         filesList.push(new file(category, creationTime, data, dataTypeId, description, f, format, id, name, owner, parentId));
       }

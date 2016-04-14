@@ -57,6 +57,10 @@ function cargarXMLDoc(archivoXML) {
   return null;
 }
 
+function fechaHora() {
+  return new Date().toLocaleString().replace(' ', 'T');
+}
+
 function generateInterface(parameters) {
 
   document.write("<div data-role='content'>" +
@@ -209,7 +213,8 @@ function generateInterface(parameters) {
           //'<textarea name="text-basic" id="parameter'+x+'" value="" data-inline="true"> </textarea>' +
           '</div></div>' +
           '<div class="ui-block-b" style="padding-top:5px">' +
-          '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
+          // elminado lápiz
+          // '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
           '<a href="#popupMenu' + x + '" data-rel="popup" data-transition="slideup" id="' + x + '"class="ui-btn ui-icon-cloud ui-btn-icon-notext ui-corner-all" data-inline="true" data-jsb_prepared="2nis0xjxn9">No text</a>' +
 
           // poner esto sólo si lo hay!
@@ -260,7 +265,8 @@ function generateInterface(parameters) {
 
   }
 
-  var fileName = name + "_" + new Date().toISOString().slice(0, 16) + '.txt';
+  var theDate = fechaHora();
+  var fileName = name + "_" + theDate + '.txt';
 
   document.write('<div data-role="fieldcontain" id="parameterbox">' +
     '<label for="nameFile"><b>File name:</b>  <font color = "gray">change it</font></label>' +
@@ -337,7 +343,6 @@ function mainLogout() {
     $('#loginButton').html('Sign in');
     $('#loginButton').removeAttr('onclick');
 
-
     $("#usernamediv").html("");
     $("#usernamediv").append("</br>" + "Bye bye!" + "</br>")
 
@@ -381,18 +386,20 @@ function capitalise(string) {
 
 
 $(document).on("click", ".show-page-loading-msg", function() {
-    var $this = $(this),
-      theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
-      msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
-      textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
-      textonly = !!$this.jqmData("textonly");
+    var $this       = $(this),
+        theme       = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
+        msgText     = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
+        textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
+        textonly    = !!$this.jqmData("textonly");
+
     html = $this.jqmData("html") || "";
+
     $.mobile.loading("show", {
-      text: msgText,
-      textVisible: textVisible,
-      theme: theme,
-      textonly: textonly,
-      html: html
+      text        : msgText,
+      textVisible : textVisible,
+      theme       : theme,
+      textonly    : textonly,
+      html        : html
     });
   })
   .on("click", ".hide-page-loading-msg", function() {
@@ -502,7 +509,8 @@ function loadFileBrowser() {
       '<div class="ui-bar ui-grid-a">' +
       '<div class="ui-block-a"><span class="fileText">' + filesList[x].name.substr(0, 25) + '</span></div>' +
       '<div class="ui-block-b">' +
-      '<a href="#fileInfo' + x + '"data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all">No text</a>' +
+      // eliminado lápiz
+      // '<a href="#fileInfo' + x + '"data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all">No text</a>' +
       '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
       '<a onclick="deleteElement(filesList[' + x + '].id,' + token + ', repoid.toString());" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all">No text</a>' +
       '</div> </div> </div> </li>');
@@ -553,20 +561,19 @@ function importFile(fileName, type) {
             break;
         }
 
-        user = getCookie('username');
-        session = getCookie('token');
-        repoid = 'Bitlab [chirimoyo.ac.uma.es]';
-        data = dataAux;
-        name = fileName;
-        format = 'Moby';
-        folderid = '';
-        user = user;
-        session = session;
+        user        = getCookie('username');
+        session     = getCookie('token');
+        repoid      = 'Bitlab [chirimoyo.ac.uma.es]';
+        data        = dataAux;
+        name        = fileName;
+        format      = 'Moby';
+        folderid    = '';
+        user        = user;
+        session     = session;
         description = 'Test Description';
-        repoid = repoid;
+        repoid      = repoid;
 
-        newFile
-          (name, data, format, folderid, description, user, session, repoid);
+        newFile(name, data, format, folderid, description, user, session, repoid);
       }
     }
   );
