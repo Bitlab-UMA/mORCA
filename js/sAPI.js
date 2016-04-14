@@ -223,10 +223,10 @@ function generateInterface(parameters) {
           '<fieldset data-role="controlgroup">' +
           '<label for="checkbox' + x + '" data-inline="true" >File</label>' +
           '<input type="checkbox" id="checkbox' + x + '" data-inline="true">' +
-          '</fieldset></div></div></div>'
+          '</fieldset></div></div>'
 
           // poner esto sólo si lo hay!
-          + infoTextHtml
+          + infoTextHtml + '</div>'
           );
 
         document.write('<div data-role="popup" id="popupMenu' + x + '" data-theme="b">' +
