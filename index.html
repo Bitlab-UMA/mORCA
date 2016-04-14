@@ -13,7 +13,7 @@
   <script src="js/mAPI.js"                                                     ></script>
   <script src="js/sAPI.js"                                                     ></script>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
   <link rel="stylesheet" href="css/themes/Bitlab.css" />
@@ -105,8 +105,8 @@
         <button id="loginpopbutton" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
         <script>
         $("#loginpopbutton").click(function() {
-          var userform = $('#popupLogin').find('input[name="user"]').val();
-          var passform = $('#popupLogin').find('input[name="pass"]').val();
+          var userform = $('#popupLogin').find('input[name="user"]').val() || "guest";
+          var passform = $('#popupLogin').find('input[name="pass"]').val() || "guest";
           mainLogin(userform, passform);
           $("#popupLogin").popup('close');
         });
@@ -222,8 +222,8 @@
       <button id="loginS3popupbutton" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
       <script>
       $("#loginS3popupbutton").click(function() {
-        var userform = $('#loginS3').find('input[name="user"]').val();
-        var passform = $('#loginS3').find('input[name="pass"]').val();
+        var userform = $('#loginS3').find('input[name="user"]').val() || "guest";
+        var passform = $('#loginS3').find('input[name="pass"]').val() || "guest";
         loginS3(userform, passform);
         $("#loginS3").popup('close');
       });
