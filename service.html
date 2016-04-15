@@ -112,7 +112,7 @@
   }
 
   window.nuevoParametro = function(id, hiddentext, text) {
-    // $("#popupMenu" + id).popup("close");
+    $( "#popupMenu" + id).popup("close")
     $("#parameter" + id).val(text);
     $("#parameterhidden" + id).val(hiddentext);
     // $("#parameter" + id).val(text.split("#")[0]);
