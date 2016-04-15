@@ -243,7 +243,7 @@ function generateInterface(parameters) {
               // '<li><a onclick="nuevoParametro(' + x + ',\'' + filesList[y].id + '\'); window.location.href=\'#\';">' + filesList[y].name + '</a></li>'
               '<li><a onclick="nuevoParametro(' + x + ',\''
                + filesList[y].id + '\',\''
-               + filesList[y].name + '\'); $(\'#popupMenu\'' + x + ').popup(\'close\'');">' + filesList[y].name + '</a></li>'
+               + filesList[y].name + '\'); $(\'#popupMenu\'' + x + ').popup(\'close\');">' + filesList[y].name + '</a></li>'
             );
 
           }
