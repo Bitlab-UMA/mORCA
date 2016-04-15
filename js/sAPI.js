@@ -229,7 +229,7 @@ function generateInterface(parameters) {
 
           );
 
-        document.write('<div data-role="popup" id="popupMenu' + x + '" data-theme="b">' +
+        document.write('<div data-role="popup" id="popupMenu' + x + '" data-theme="b" data-dismissible="true">' +
           '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-right">Close</a>' +
           '<ul data-role="listview" data-inset="true" style="min-width:210px;">' +
           '<li data-role="list-divider">Files:</li>');
