@@ -115,35 +115,21 @@
     $( "#popupMenu" + id).popup("close")
     $("#parameter" + id).val(text);
     $("#parameterhidden" + id).val(hiddentext);
-    // $("#parameter" + id).val(text.split("#")[0]);
     $('#checkbox' + id).prop('checked', true).checkboxradio('refresh');
     document.getElementById("runrun").disabled = false;
-    // document.getElementById("mainresults").style.display = 'none';
-    // $("#mainresults").disabled=true;
     $("#mainresults").text("");
+    // poner un nombre adecuado, si no le han puesto ya uno
     var currentNameFile = $("#nameFile").value;
     if (currentNameFile.length > 0) {
       var posseparation = currentNameFile.lastIndexOf(' fetch a file!');
       if (posseparation == -1) {
-        posseparation = currentNameFile.lastIndexOf('-WITH-')
+        posseparation = currentNameFile.indexOf('-WITH-')
       }
       if (posseparation >= 0) {
         currentNameFile = currentNameFile.substr(0,posseparation) + '-WITH-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
       }
     }
-    // var currentNameFile = document.getElementById("nameFile").value;
-
-    // if (currentNameFile.match(/\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d/)) {
-    //   var posseparation = currentNameFile.lastIndexOf('-WITH-');
-    //   if (posseparation == -1) {
-    //     posseparation = currentNameFile.length;
-    //   }
-    //   currentNameFile = currentNameFile.substr(0,posseparation) + '-WITH-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
-    //   // currentNameFile = currentNameFile.substr(0,posseparation) + '-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
-    // }
-    document.getElementById("nameFile").value = currentNameFile;
-    // document.getElementById("resultbutton").innerHTML= "View results";
-    // document.getElementById("resultbutton").hidden = true;
+    $("#nameFile").value = currentNameFile;
 
   }
   </script>
