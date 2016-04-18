@@ -121,7 +121,7 @@
     // poner un nombre adecuado, si no le han puesto ya uno
     var currentNameFile = $("#nameFile").value;
     if (currentNameFile.length > 0) {
-      var posseparation = currentNameFile.lastIndexOf(' fetch a file!');
+      var posseparation = currentNameFile.lastIndexOf(' give me a name!');
       if (posseparation == -1) {
         posseparation = currentNameFile.indexOf('-WITH-')
       }
@@ -163,7 +163,8 @@ onclick='getFile(resultfile,getCookie("token"), repoid); document.getElementById
  <!--     <textarea id="mainresults" readonly style="margin-left: 10px;" >
     Results:
     </textarea>
- -->    <div data-role="footer" data-position="fixed">
+ -->
+  <div data-role="footer" data-position="fixed">
       <h4>&copy; 2016 Bioinformatics and Information Technology Laboratories</h4>
     </div>
   </div>
@@ -173,11 +174,12 @@ onclick='getFile(resultfile,getCookie("token"), repoid); document.getElementById
     </div>
 <!--     <div data-role='content' id="mainresults">
     </div>
- -->    <div data-role="footer" data-position="fixed">
+ -->
+<!--   <div data-role="footer" data-position="fixed">
       <h4>&copy; 2016 Bioinformatics and Information Technology Laboratories</h4>
     </div>
   </div>
-
+ -->
 </body>
 
 </html>

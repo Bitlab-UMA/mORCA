@@ -270,10 +270,10 @@ function generateInterface(parameters) {
   }
 
   var laFechaHoraExt = fechaHoraExt();
-  var fileName = name + " fetch a file!";
+  var fileName = name + " give me a name!";
 
   document.write('<div data-role="fieldcontain" id="parameterbox">' +
-    '<label for="nameFile"><b>File name:</b>  <font color = "gray">change it</font></label>' +
+    '<label for="nameFile"><b>Output file:</b>  <font color = "gray">name it</font></label>' +
     '<input type="text" name="text-basic" id="nameFile" data-inline="true" value="' + fileName + '">' +
     '</div>');
 
