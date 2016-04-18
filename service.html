@@ -122,8 +122,8 @@
     // var currentFileName = $("#nameFile").value;
     var currentFileName = document.getElementById("nameFile").value;
     if (currentFileName.length > 0) {
-    alert("Value nameFile: " + currentFileName);
       var posseparation = currentFileName.lastIndexOf(' give me a name!');
+    alert("pos nameFile: " + posseparation);
       if (posseparation == -1) {
         posseparation = currentFileName.indexOf('-WITH-')
       }
