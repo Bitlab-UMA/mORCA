@@ -119,18 +119,19 @@
     document.getElementById("runrun").disabled = false;
     $("#mainresults").text("");
     // poner un nombre adecuado, si no le han puesto ya uno
-    var currentNameFile = $("#nameFile").value;
-    console.log("nameFile: " + currentNameFile);
-    if (currentNameFile.length > 0) {
-      var posseparation = currentNameFile.lastIndexOf(' give me a name!');
+    // var currentFileName = $("#nameFile").value;
+    var currentFileName = document.getElementById("nameFile").value;
+    console.log("nameFile: " + currentFileName);
+    if (currentFileName.length > 0) {
+      var posseparation = currentFileName.lastIndexOf(' give me a name!');
       if (posseparation == -1) {
-        posseparation = currentNameFile.indexOf('-WITH-')
+        posseparation = currentFileName.indexOf('-WITH-')
       }
       if (posseparation >= 0) {
-        currentNameFile = currentNameFile.substr(0,posseparation) + '-WITH-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
+        currentFileName = currentFileName.substr(0,posseparation) + '-WITH-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
       }
     }
-    $("#nameFile").value = currentNameFile;
+    $("#nameFile").value = currentFileName;
 
   }
   </script>
