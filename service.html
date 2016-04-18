@@ -112,7 +112,7 @@
   }
 
   window.nuevoParametro = function(id, hiddentext, text) {
-    $( "#popupMenu" + id).popup("close")
+    $("#popupMenu" + id).popup("close")
     $("#parameter" + id).val(text);
     $("#parameterhidden" + id).val(hiddentext);
     $('#checkbox' + id).prop('checked', true).checkboxradio('refresh');
@@ -129,8 +129,9 @@
       if (posseparation >= 0) {
         currentFileName = currentFileName.substr(0,posseparation) + '-WITH-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
 
-        alert("pos nameFile: " + $("#parameter" + id).val());
-        alert("pos nameFile: " + posseparation);
+        alert("parameter nameFile: " + $("#parameter" + id).val());
+        alert("posseparation nameFile: " + posseparation);
+        alert("currentFileName nameFile: " + currentFileName);
 
       }
     }
