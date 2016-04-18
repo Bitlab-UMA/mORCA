@@ -120,6 +120,7 @@
     $("#mainresults").text("");
     // poner un nombre adecuado, si no le han puesto ya uno
     var currentNameFile = $("#nameFile").value;
+    console.log("nameFile: " + currentNameFile);
     if (currentNameFile.length > 0) {
       var posseparation = currentNameFile.lastIndexOf(' give me a name!');
       if (posseparation == -1) {
