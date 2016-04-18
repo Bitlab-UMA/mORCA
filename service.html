@@ -132,10 +132,12 @@
         alert("parameter nameFile: " + $("#parameter" + id).val());
         alert("posseparation nameFile: " + posseparation);
         alert("currentFileName nameFile: " + currentFileName);
-        document.getElementById("nameFile").value = currentFileName;
 
       }
+    } else {
+      currentFileName = $("#parameter" + id).val() + '_' +fechaHoraExt()
     }
+    document.getElementById("nameFile").value = currentFileName;
 
   }
   </script>
