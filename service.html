@@ -128,11 +128,6 @@
       }
       if (posseparation >= 0) {
         currentFileName = currentFileName.substr(0,posseparation) + '-WITH-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
-
-        alert("parameter nameFile: " + $("#parameter" + id).val());
-        alert("posseparation nameFile: " + posseparation);
-        alert("currentFileName nameFile: " + currentFileName);
-
       }
     } else {
       currentFileName = $("#parameter" + id).val() + '_' +fechaHoraExt()
