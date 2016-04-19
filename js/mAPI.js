@@ -600,12 +600,12 @@ function displayFile(idfile, session, repoid) {
       var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
       var ii1 = data.indexOf('[CDATA[');
       var ii2 = data.lastIndexOf(']]');
-      data = data.substring(ii1+7, ii2);
+      data = data.substring(ii1+7, ii2+1);
 
       // resultadosFinales = data;
       // $("#mainresults").text("resultadosFinales: " + resultadosFinales);
       // $("#rmainresults").text("desde geFile: " + data);
-      alert("Output: " + data);
+      alert("" + data);
       // document.getElementById("mainresults").style.display = 'block';
       // document.getElementById("mainresults").innerHTML = "<pre>" + data + "</pre>";
 
