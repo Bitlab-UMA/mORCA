@@ -592,7 +592,16 @@ function displayFile(idfile, session, repoid) {
         xmlDoc.loadXML(soapResponse.toString());
       }
 
+
+      // Output: <?xml version="1.0" encoding="UTF-8"?>
+      // <AminoAcidSequence id="" namespace=""><String articleName="SequenceString"><![CDATA[MAMSSGGSGGGVPEQEDSVLFRRGTGQSDDSDIWDDTALIKAYDKAVASFKHALKNGDICETSGKPKTTPKRKPAKKNKSQKKNTAASLQQWKVGDKCSAIWSEDGCIYPATIASIDFKRETCVVVYTGYGNREEQNLSDLLSPICEVANNIEQNAQENENESQVSTDESENSRSPGNKSDNIKPKSAPWNSFLPPPPPMPGPRLGPGKPGLKFNGPPPPPPPPPPHLLSCWLPPFPSGPPIIPPPPPICPDSLDDADALGSMLISWYMSGYHTGYYMGFRQNQKEGRCSHSLN]]></String><Integer articleName="Length"></Integer></AminoAcidSequence>
+
+
       var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
+      var ii1 = data.indexOf('[CDATA[');
+      var ii2 = data.lastIndexOf(']]');
+      data = data.substring(ii1+7, ii2);
+
       // resultadosFinales = data;
       // $("#mainresults").text("resultadosFinales: " + resultadosFinales);
       // $("#rmainresults").text("desde geFile: " + data);
