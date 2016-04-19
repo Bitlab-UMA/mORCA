@@ -383,8 +383,8 @@ function getFile(idfile, session, repoid) {
       // $("#rmainresults").text("desde geFile: " + data);
       // alert("Output: " + data);
       // document.getElementById("mainresults").style.display = 'block';
-      alert(data);
-      document.getElementById("mainresults").innerHTML = "<pre>" + data + "</pre>";
+      // alert(data);
+      document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
 
       // return data;  NO SIRVE, no hay return
     },
@@ -566,6 +566,12 @@ function deleteElement(elementid, session, repoid) {
 };
 
 
+function cleanData(s) {
+  var ii1 = data.indexOf('[CDATA[');
+  var ii2 = data.indexOf(']]>');
+  return data.substring(ii1+7, ii2);
+}
+
 function displayFile(idfile, session, repoid) {
   soap();
   $.soap({
@@ -594,9 +600,7 @@ function displayFile(idfile, session, repoid) {
       }
 
       var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
-      var ii1 = data.indexOf('[CDATA[');
-      var ii2 = data.indexOf(']]>');
-      data = data.substring(ii1+7, ii2);
+      data = cleanData(data);
 
       // resultadosFinales = data;
       // $("#mainresults").text("resultadosFinales: " + resultadosFinales);
