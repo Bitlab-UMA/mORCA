@@ -566,7 +566,7 @@ function deleteElement(elementid, session, repoid) {
 };
 
 
-function cleanData(s) {
+function cleanData(data) {
   var ii1 = data.indexOf('[CDATA[');
   var ii2 = data.indexOf(']]>');
   return data.substring(ii1+7, ii2);
