@@ -62,12 +62,12 @@
           var parameter = new Array();
           var generatedID = 'parameter' + x + '';
           console.log("GeneratedID: " + generatedID);
-          if (document.getElementById('parameterhidden' + x)) {
-            var para = document.getElementById('parameterhidden' + x).value
-          } else {
-            var para = document.getElementById('parameter' + x).value
-          }
-          parameter.push();
+
+          var para = document.getElementById('parameter' + x).value
+          try {para = document.getElementById('parameterhidden' + x).value } catch(e){}
+
+          parameter.push(para);
+
           // parameter.push(document.getElementById(generatedID).value.split("#")[0]);
           parameter.push(parameters[x].dataTypeID);
           parameter.push("Moby");
