@@ -383,7 +383,7 @@ function getFile(idfile, session, repoid) {
       // $("#rmainresults").text("desde geFile: " + data);
       // alert("Output: " + data);
       // document.getElementById("mainresults").style.display = 'block';
-      // alert(data);
+      alert(data);
       document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
 
       // return data;  NO SIRVE, no hay return
