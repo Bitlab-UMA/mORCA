@@ -516,7 +516,8 @@ function loadFileBrowser() {
       '<div class="ui-block-b">' +
       // eliminado lápiz
       // '<a href="#fileInfo' + x + '"data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all">No text</a>' +
-      '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
+      '<a onclick="displayElement(filesList[' + x + '].id,' + token + ', repoid.toString());" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
+      // '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
       '<a onclick="deleteElement(filesList[' + x + '].id,' + token + ', repoid.toString());" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all">No text</a>' +
       '</div> </div> </div> </li>');
   }

@@ -563,3 +563,48 @@ function deleteElement(elementid, session, repoid) {
     }
   });
 };
+
+
+function displayFile(idfile, session, repoid) {
+  soap();
+  $.soap({
+    method: 'getFile',
+    namespaceQualifier: 'q0',
+
+    data: {
+      id: idfile,
+      session: session,
+      repoid: repoid
+    },
+
+    beforeSend: function(SOAPEnvelope) {
+      console.log(SOAPEnvelope.toString());
+    },
+
+    success: function(soapResponse) {
+      if (window.DOMParser) {
+        parser = new DOMParser();
+        xmlDoc = parser.parseFromString(soapResponse.toString(), "text/xml");
+      } else // Internet Explorer
+      {
+        xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+        xmlDoc.async = false;
+        xmlDoc.loadXML(soapResponse.toString());
+      }
+
+      var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
+      // resultadosFinales = data;
+      // $("#mainresults").text("resultadosFinales: " + resultadosFinales);
+      // $("#rmainresults").text("desde geFile: " + data);
+      alert("Output: " + data);
+      // document.getElementById("mainresults").style.display = 'block';
+      // document.getElementById("mainresults").innerHTML = "<pre>" + data + "</pre>";
+
+      // return data;  NO SIRVE, no hay return
+    },
+    error: function(SOAPResponse) {
+      // NEED TO IMPLEMENT
+      console.log(SOAPResponse.toString());
+    }
+  });
+};
