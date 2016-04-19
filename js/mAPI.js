@@ -599,7 +599,7 @@ function displayFile(idfile, session, repoid) {
 
       var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
       var ii1 = data.indexOf('[CDATA[');
-      var ii2 = data.lastIndexOf(']]>');
+      var ii2 = data.indexOf(']]>');
       data = data.substring(ii1+7, ii2);
 
       // resultadosFinales = data;
