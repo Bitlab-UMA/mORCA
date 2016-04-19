@@ -63,8 +63,10 @@
           var generatedID = 'parameter' + x + '';
           console.log("GeneratedID: " + generatedID);
 
-          var para = document.getElementById('parameter' + x).value
-          try {para = document.getElementById('parameterhidden' + x).value } catch(e){}
+          var para = document.getElementById('parameter' + x).value;
+          // puede que haya un valor oculto correspondiente, si salió de una lista, entonces
+          // cogerlo
+          try {para = document.getElementById('parameterhidden' + x).value } catch(e){};
 
           parameter.push(para);
 
