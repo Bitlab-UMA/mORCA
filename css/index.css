@@ -10,7 +10,7 @@
 
 .ui-grid-a>.ui-block-a{
     width: 50%;
-    padding-top: 12px;
+    padding-top: 3px;
 }
 
 .ui-grid-a>.ui-block-b{
@@ -24,7 +24,7 @@
 
 .rowElement>.ui-block-a{
     width: 60%;
-    padding-top: 10px;
+    padding-top: 3px;
 }
 
 .rowElement>.ui-block-b {
