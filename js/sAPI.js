@@ -417,7 +417,7 @@ $(document).ready(function() {
   if (logged()) {
     user = getCookie('username');
     // $("#usernamediv").html("");
-    $("#usernamediv").html("Logged in as: <b>" + user + "</b></br>")
+    $("#usernamediv").html("<div font-size="1">Logged in as: <b>" + user + "</b></div>")
     $('#loginButton').html('logout');
     $('#loginButton').removeAttr('href');
     $('#loginButton').attr('onclick', 'mainLogout()');
