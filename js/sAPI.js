@@ -330,7 +330,7 @@ function mainLogin(user, pass) {
     loginWS(user, pass)
 
     // $("#usernamediv").html("");
-    $("#usernamediv").html("Logged in as: <b>" + user + "</b>")
+    $("#usernamediv").html("<font size=1>Logged in as: <b>" + user + "</b></font>")
 
     $('#loginButton').html('Logout');
     $('#loginButton').removeAttr('href');
