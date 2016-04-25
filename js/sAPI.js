@@ -329,7 +329,7 @@ function mainLogin(user, pass) {
   if (!logged()) {
     loginWS(user, pass)
 
-    $("#genheader").text("Bitlab logged in as: <b>" + user + "</b>")
+    $("#genheader").append(" logged in as: <b>" + user + "</b>")
     // $("#usernamediv").html("");
     // $("#usernamediv").append("</br>" + "Welcome, logged in as: <b>" + user + "</b></br>")
 
@@ -420,12 +420,12 @@ $(document).ready(function() {
   if (logged()) {
     user = getCookie('username');
 
-    $("#genheader").text("Bitlab. logged in as: <b>" + user + "</b>")
+    $("#genheader").append(" logged in as: <b>" + user + "</b>")
 
     // $("#usernamediv").html("");
     // $("#usernamediv").append("</br>" + "Welcome, logged in as: <b>" + user + "</b></br>")
 
-    $("#genheader").text("Bitlab logged in as: <b>" + user + "</b>")
+    $("#genheader").append(" logged in as: <b>" + user + "</b>")
     // $("#usernamediv").html("");
     // $("#usernamediv").append("</br>" + "Welcome, logged in as: <b>" + user + "</b></br>")
     $('#loginButton').html('logout');
