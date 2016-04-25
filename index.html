@@ -67,17 +67,18 @@
                 <script>
                 checkCookies()
                 </script>
-                 <div id="usernamediv">
-                    <p font-size="1">Welcome! (please sign in)</p>
-                </div>
              </div>
 
             <!-- LOGIN -->
             <center>
+                 <div id="usernamediv">
+                    <p font-size="1">Welcome! (please sign in)</p>
+                </div>
                 <a href="#popupLogin" id="loginButton" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Sign in</a>
             </center>
             <div id="popupLogin" data-role="popup" data-theme="a" class="ui-corner-all">
-                <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+                <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete"
+                   data-iconpos="notext" class="ui-btn-right">Close</a>
                 <h3>Sign in</h3>
                 <label for="un" class="ui-hidden-accessible">Username:</label>
                 <input type="text" name="user" id="un" value="guest" placeholder="Username" data-theme="a">
@@ -183,6 +184,7 @@
             </div>
             <div id="listviewplace">
                 <ul id="fileListUL" data-inset="true">
+                <script>loadFileBrowser()</script>
                     <li data-role="list-divider">
                         <div class="rowElement">
                             <div class="ui-bar ui-grid-a" id="filelistheader">
