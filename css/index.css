@@ -45,9 +45,9 @@
 .ui-listview > li p {
     white-space:normal;
     line-height:1em;
-    max-height:3em;
+    max-height:1em;
     text-overflow: ellipsis;
-    padding-right: 1.5em;
+    padding-right: 1em;
 }​
 
  .ui-listview > li {
