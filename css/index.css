@@ -9,12 +9,12 @@
 }
 
 .ui-grid-a>.ui-block-a{
-    width: 60%;
+    width: 50%;
     padding-top: 12px;
 }
 
 .ui-grid-a>.ui-block-b{
-    width: 40%;
+    width: 50%;
     float:left;
 }
 

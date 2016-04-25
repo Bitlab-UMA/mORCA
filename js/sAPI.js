@@ -513,7 +513,8 @@ function loadFileBrowser() {
     $('#fileListUL').append('<li class="ui-btn">' +
       '<div class="rowElement">' +
       '<div class="ui-bar ui-grid-a">' +
-      '<div class="ui-block-a"><span class="fileText">' + filesList[x].name.substr(0, 25) + '</span></div>' +
+      '<div class="ui-block-a"><span class="fileText">' + filesList[x].name + '</span></div>' +
+      // '<div class="ui-block-a"><span class="fileText">' + filesList[x].name.substr(0, 25) + '</span></div>' +
       '<div class="ui-block-b">' +
       // eliminado lápiz
       // '<a href="#fileInfo' + x + '"data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all">No text</a>' +
