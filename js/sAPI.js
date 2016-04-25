@@ -329,8 +329,9 @@ function mainLogin(user, pass) {
   if (!logged()) {
     loginWS(user, pass)
 
-    $("#usernamediv").html("");
-    $("#usernamediv").append("</br>" + "Welcome, logged in as: <b>" + user + "</b></br>")
+    $("#genheader").text("Bitlab logged in as: <b>" + user + "</b>")
+    // $("#usernamediv").html("");
+    // $("#usernamediv").append("</br>" + "Welcome, logged in as: <b>" + user + "</b></br>")
 
     $('#loginButton').html('Logout');
     $('#loginButton').removeAttr('href');
@@ -347,8 +348,10 @@ function mainLogout() {
     $('#loginButton').html('Sign in');
     $('#loginButton').removeAttr('onclick');
 
-    $("#usernamediv").html("");
-    $("#usernamediv").append("</br>" + "Bye bye!" + "</br>")
+    $("#genheader").text("Bitlab")
+
+    // $("#usernamediv").html("");
+    // $("#usernamediv").append("</br>" + "Bye bye!" + "</br>")
 
     window.location.reload();
   }
@@ -416,8 +419,15 @@ $(document).ready(function() {
   var user = "not logged in";
   if (logged()) {
     user = getCookie('username');
-    $("#usernamediv").html("");
-    $("#usernamediv").append("</br>" + "Welcome, logged in as: <b>" + user + "</b></br>")
+
+    $("#genheader").text("Bitlab. logged in as: <b>" + user + "</b>")
+
+    // $("#usernamediv").html("");
+    // $("#usernamediv").append("</br>" + "Welcome, logged in as: <b>" + user + "</b></br>")
+
+    $("#genheader").text("Bitlab logged in as: <b>" + user + "</b>")
+    // $("#usernamediv").html("");
+    // $("#usernamediv").append("</br>" + "Welcome, logged in as: <b>" + user + "</b></br>")
     $('#loginButton').html('logout');
     $('#loginButton').removeAttr('href');
     $('#loginButton').attr('onclick', 'mainLogout()');

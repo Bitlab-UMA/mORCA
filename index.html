@@ -4,15 +4,13 @@
 <head>
   <meta charset="utf-8" />
   <title>Bitlab</title>
-  <script src="http://code.jquery.com/jquery-1.11.1.min.js"                    ></script>
-  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js" ></script>
-  <script src="js/jquery.soap.js"                                              ></script>
-  <script src="js/jquery.mobile.nestedlists.js"                                ></script>
-  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.26.min.js"             ></script>
-
-  <script src="js/mAPI.js"                                                     ></script>
-  <script src="js/sAPI.js"                                                     ></script>
-
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <script src="js/jquery.soap.js"></script>
+  <script src="js/jquery.mobile.nestedlists.js"></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.26.min.js"></script>
+  <script src="js/mAPI.js"></script>
+  <script src="js/sAPI.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
@@ -81,20 +79,30 @@
       // repoid = "undefined";
       getRoot(getCookie('username'), getCookie('token'), '', repoid);
       </script>
+
+      <!-- REPOSITORY -->
+
       <div id="divSelectRepository" data-role="content" style="align-self: center">
-        <p id="currRepId">Current repository:</br>
-          <select id="selectRepository" idname="select-choice-a" id="repository" data-native-menu="false" onchange="changeRepository();" data-mini="true">
-            <option id="initialRepo">…</option>
-            <option value="MrSymbiomath">MrSymbiomath</option>
-            <option value="INB">INB</option>
-            <option value="Edusoft" onclick='changeRepository("Edusoft  [chirimoyo.ac.uma.es]")'>Edusoft</option>
-          </select>
+        <!-- <p id="currRepId">Current repository:</br> -->
+        <select id="selectRepository" idname="select-choice-a" id="repository" data-native-menu="false" onchange="changeRepository();" data-mini="true">
+          <option id="initialRepo">…</option>
+          <option value="MrSymbiomath">MrSymbiomath</option>
+          <option value="INB">INB</option>
+          <option value="Edusoft" onclick='changeRepository("Edusoft  [chirimoyo.ac.uma.es]")'>Edusoft</option>
+        </select>
         </p>
       </div>
       <script>
-      $("#initialRepo").text(repoid)
+      $("#initialRepo").text("Current repository: " + repoid)
       </script>
-      <center><a href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop" id="loginButton">Sign in</a></center>
+
+
+      <!-- LOGIN -->
+
+
+      <center>
+        <a href="#popupLogin" id="loginButton" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Sign in</a>
+      </center>
       <div id="popupLogin" data-role="popup" data-theme="a" class="ui-corner-all">
         <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
         <h3>Sign in</h3>
@@ -113,8 +121,16 @@
         </script>
       </div>
       <!-- <center><a href="index.html" data-role="button" onclick="getToolListAsXML('Bitlab [chirimoyo.ac.uma.es]')">TEST</a> </center>
-      <center><a href="index.html" data-role="button" onclick="readXMLToolList('mrsymbiomathtoollist.xml')">TEST2</a> </center> -->
+    <center><a href="index.html" data-role="button" onclick="readXMLToolList('mrsymbiomathtoollist.xml')">TEST2</a> </center> -->
     </div>
+
+
+
+      <!-- BOTTON BANNER -->
+
+
+
+
     <div data-role="footer" data-position="fixed">
       <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
       <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
@@ -126,6 +142,8 @@
       </div>
     </div>
   </div>
+
+
   <div data-role="page" id="home">
     <div data-role="header" data-position="fixed">
       <h1>Bitlab</h1>
@@ -142,6 +160,15 @@
         </div>
       </div>
     </div>
+
+
+
+
+      <!-- botton menu -->
+
+
+
+
     <div data-role="footer" data-position="fixed">
       <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
       <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
@@ -190,7 +217,7 @@
     </div>
     <div data-role="popup" id="uploadFilePopup" data-theme="a" class="ui-corner-all center">
       <span class="btn btn-primary btn-file">
-                <span class="styledheader">Select File:</span>
+        <span class="styledheader">Select File:</span>
       <input id="fileToUpload" type='file'>
       </span>
       <fieldset data-role="controlgroup" data-type="horizontal">
