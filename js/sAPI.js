@@ -488,6 +488,7 @@ function fileUploadHandler() {
   } else {
     alert('FileReader is not supported in this browser.');
   }
+
 }
 
 function loadHandler(event) {
