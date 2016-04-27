@@ -385,7 +385,9 @@ function getFile(idfile, session, repoid) {
       // document.getElementById("mainresults").style.display = 'block';
       // alert(data);
       document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
-      $("#mainresults").select();
+      $("#mainresults").select(function() {
+        alert( "Handler for .select() called." );
+      });
       $("#runrun").text("you can Copy results");
 
 
