@@ -412,7 +412,7 @@ alert(clData);
             'charsPerLine': 60,
             'toolbar': false,
             'search': true,
-            'title': "Seq"
+            'title': "$('#parameter0').value"
         });
       }
 
