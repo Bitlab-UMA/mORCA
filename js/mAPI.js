@@ -412,7 +412,7 @@ alert(clData);
             'charsPerLine': 60,
             'toolbar': false,
             'search': true,
-            'title': document.getElementById("parameter0").value;
+            'title': document.getElementById("parameter0").value
         });
       }
 
