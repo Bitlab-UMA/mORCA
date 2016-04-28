@@ -396,7 +396,7 @@ function getFile(idfile, session, repoid) {
       // alert(data);
       document.getElementById("mainresults").innerHTML = cleanData(data);
       // document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
-      selectElementContents(document.getElementById("mainresults");
+      selectElementContents(document.getElementById("mainresults"));
 
       // document.getElementById("mainresults").select();
       // $("#mainresults").select(function() {
