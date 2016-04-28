@@ -395,25 +395,29 @@ function getFile(idfile, session, repoid) {
       // alert("Output: " + data);
       // document.getElementById("mainresults").style.display = 'block';
       // alert(data);
-      document.getElementById("mainresults").innerHTML = cleanData(data);
+      var clData = cleanData(data);
+      document.getElementById("mainresults").innerHTML = clData;
       // document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
 
 // VIEWER
       var Sequence = require("sequence-viewer");
-      var seq1 = new Sequence($("#mainresults").text());
-      // You can add some rendering options
-      seq1.render('#mainresults', {
-          'showLineNumbers': true,
-          'wrapAminoAcids': true,
-          'charsPerLine': 60,
-          'toolbar': false,
-          'search': true,
-          'title': "Seq"
-      });
+      if (resultsType(data) == 'AminoAcidSequence') {
+
+        var seqstring = clData.substring(0, ((r=clData.indexOf('>'))==-1)? clData.length : r);
+        var seq = new Sequence(seqstring);
+        // You can add some rendering options
+        seq.render('#mainresults', {
+            'showLineNumbers': true,
+            'wrapAminoAcids': true,
+            'charsPerLine': 60,
+            'toolbar': false,
+            'search': true,
+            'title': "Seq"
+        });
+      }
 
 
-
-      selectElementContents("mainresults");
+      // selectElementContents("mainresults");
 
       // document.getElementById("mainresults").select();
       // $("#mainresults").select(function() {
@@ -606,6 +610,12 @@ function cleanData(data) {
   var ii1 = data.indexOf('[CDATA[');
   var ii2 = data.indexOf(']]>');
   return data.substring(ii1+7, ii2);
+}
+
+function resultsType(data) {
+  var ii1 = data.indexOf('<', 2) + 1;
+  var ii2 = data.indexOf(' ', ii1);
+  return data.substring(ii1, ii2);
 }
 
 function displayFile(idfile, session, repoid) {
