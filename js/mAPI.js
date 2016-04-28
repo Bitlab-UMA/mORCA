@@ -350,12 +350,13 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
 
 }
 
-function selectElementContents(el) {
-    var range = document.createRange();
-    range.selectNodeContents(el);
-    var sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
+function selectElementContents(elid) {
+  var el = document.getElementById(elid)
+  var range = document.createRange();
+  range.selectNodeContents(el);
+  var sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
 }
 
 
@@ -396,7 +397,7 @@ function getFile(idfile, session, repoid) {
       // alert(data);
       document.getElementById("mainresults").innerHTML = cleanData(data);
       // document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
-      selectElementContents(document.getElementById("mainresults"));
+      selectElementContents("mainresults");
 
       // document.getElementById("mainresults").select();
       // $("#mainresults").select(function() {
