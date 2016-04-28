@@ -384,7 +384,8 @@ function getFile(idfile, session, repoid) {
       // alert("Output: " + data);
       // document.getElementById("mainresults").style.display = 'block';
       // alert(data);
-      document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
+      document.getElementById("mainresults").innerHTML = cleanData(data);
+      // document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
       document.getElementById("mainresults").select();
       // $("#mainresults").select(function() {
       //   alert( "Handler for .select() called." );
