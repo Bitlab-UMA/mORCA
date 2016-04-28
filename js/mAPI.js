@@ -402,7 +402,7 @@ function getFile(idfile, session, repoid) {
 // VIEWER
       var Sequence = require("sequence-viewer");
       if (resultsType(data) == 'AminoAcidSequence') {
-
+alert(clData);
         var seqstring = clData.substring(0, ((r=clData.indexOf('>'))==-1)? clData.length : r);
         var seq = new Sequence(seqstring);
         // You can add some rendering options
