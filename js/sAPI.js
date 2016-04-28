@@ -164,7 +164,7 @@ function generateInterface(parameters) {
             '<div class="ui-block-stringa">' +
             '<div data-role="fieldcontain">' +
             //'<input type="text" name="text-basic" id="parameter'+x+'" value="" data-inline="true">' +
-            '<textarea name="text-basic" id="parameter' + x + '" value="" data-inline="true"> </textarea>' +
+            '<textarea name="text-basic" id="parameter' + x + '" value="" data-inline="true"></textarea>' +
             '</div></div>' +
             '<div class="ui-block-stringb">' +
             //'<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all" data-inline="true">No text</a>' +
