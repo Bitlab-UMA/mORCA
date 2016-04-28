@@ -350,6 +350,16 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
 
 }
 
+function selectElementContents(el) {
+    var range = document.createRange();
+    range.selectNodeContents(el);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+}
+
+
+
 function getFile(idfile, session, repoid) {
   soap();
   $.soap({
@@ -386,7 +396,9 @@ function getFile(idfile, session, repoid) {
       // alert(data);
       document.getElementById("mainresults").innerHTML = cleanData(data);
       // document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
-      document.getElementById("mainresults").select();
+      selectElementContents(document.getElementById("mainresults");
+
+      // document.getElementById("mainresults").select();
       // $("#mainresults").select(function() {
       //   alert( "Handler for .select() called." );
       // });
