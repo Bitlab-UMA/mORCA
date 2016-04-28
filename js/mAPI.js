@@ -397,6 +397,22 @@ function getFile(idfile, session, repoid) {
       // alert(data);
       document.getElementById("mainresults").innerHTML = cleanData(data);
       // document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
+
+// VIEWER
+      var Sequence = require("sequence-viewer");
+      var seq1 = new Sequence($("#mainresults").text());
+      // You can add some rendering options
+      seq1.render('#mainresults', {
+          'showLineNumbers': true,
+          'wrapAminoAcids': true,
+          'charsPerLine': 60,
+          'toolbar': false,
+          'search': true,
+          'title': "Seq"
+      });
+
+
+
       selectElementContents("mainresults");
 
       // document.getElementById("mainresults").select();
