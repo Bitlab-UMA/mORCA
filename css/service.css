@@ -49,7 +49,7 @@ div#results {
     /*box-sizing: border-box;*/
     /*background-color: #3CBC8D;*/
     color: blue;
-    generic-family: "monospace";
+    font-family: "Lucida Console", Monaco, monospace;
 }
 
 input[type=text] {
