@@ -50,6 +50,7 @@ div#results {
     /*background-color: #3CBC8D;*/
     color: blue;
     font-family: "Lucida Console", Monaco, monospace;
+    font-size: 75%;
     white-space: pre-wrap;
     display: block;
 }
