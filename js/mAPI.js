@@ -385,10 +385,11 @@ function getFile(idfile, session, repoid) {
       // document.getElementById("mainresults").style.display = 'block';
       // alert(data);
       document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
-      $("#mainresults").select(function() {
-        alert( "Handler for .select() called." );
-      });
-      $("#runrun").text("you can Copy results");
+      document.getElementById("mainresults").select();
+      // $("#mainresults").select(function() {
+      //   alert( "Handler for .select() called." );
+      // });
+      // $("#runrun").text("you can Copy results");
 
 
       // return data;  NO SIRVE, no hay return
