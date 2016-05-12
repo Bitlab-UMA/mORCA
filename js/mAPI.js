@@ -655,7 +655,7 @@ function displayFile(idfile, session, repoid) {
       // resultadosFinales = data;
       // $("#mainresults").text("resultadosFinales: " + resultadosFinales);
       // $("#rmainresults").text("desde geFile: " + data);
-      alert("" + data);
+      // alert("" + data);
       // document.getElementById("mainresults").style.display = 'block';
       // document.getElementById("mainresults").innerHTML = "<pre>" + data + "</pre>";
 
