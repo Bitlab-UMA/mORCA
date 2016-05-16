@@ -422,6 +422,7 @@ $(document).ready(function() {
     $('#loginButton').removeAttr('href');
     $('#loginButton').attr('onclick', 'mainLogout()');
     loadFileBrowser();
+
   }
 
   if (S3Logged()) {
