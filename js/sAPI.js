@@ -58,7 +58,8 @@ function cargarXMLDoc(archivoXML) {
 }
 
 function fechaHoraExt() {
-  return new Date().toISOString() + '.txt';
+  return (new Date().getTime() % 10000000).toString(32) + '.txt';
+  // return new Date().toISOString() + '.txt';
   // return new Date().toLocaleString().replace(' ', 'T');
 }
 
@@ -270,7 +271,8 @@ function generateInterface(parameters) {
   }
 
   var laFechaHoraExt = fechaHoraExt();
-  var fileName = name + " give me a name!";
+  var fileName = "changeMe_" + laFechaHoraExt;
+  // var fileName = name + " give me a name!";
 
   document.write('<div data-role="fieldcontain" id="parameterbox">' +
     '<label for="nameFile"><b>Output file:</b>  <font color = "gray">name it</font></label>' +
