@@ -41,3 +41,24 @@ div#results {
 .ui-grid-a>.ui-block-stringb{
     width: 20%;
 }
+
+#mainresults {
+    width: 100%;
+    padding: 4px;
+    margin: 12px;
+    /*box-sizing: border-box;*/
+    /*background-color: #3CBC8D;*/
+    color: blue;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 75%;
+    white-space: pre-wrap;
+    display: block;
+}
+
+input[type=text] {
+}
+
+input[type=text]:focus {
+    /*background-color: lightblue;*/
+}
+

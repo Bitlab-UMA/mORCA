@@ -1,308 +1,297 @@
 <!DOCTYPE html>
 <html>
-<head>
 
+<head>
     <meta charset="utf-8" />
     <title>Bitlab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/jquery.soap.js"></script>
+    <script src="js/jquery.mobile.nestedlists.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.26.min.js"></script>
+    <script src="js/mAPI.js"></script>
+    <script src="js/sAPI.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" href="css/themes/Bitlab.css" />
     <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="css/index.css" />
-
     <link rel="apple-touch-icon" href="ios/Icon.png" />
-    <link rel=”apple-touch-icon-precomposed” href="ios/Icon.png">
+    <link rel="apple-touch-icon-precomposed" href="ios/Icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="ios/Icon-72.png" />
     <link rel="apple-touch-icon" sizes="114x114" href="ios/Icon@2x.png" />
     <link rel="apple-touch-icon" sizes="144x144" href="ios/Icon-72@2x.png" />
-
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="js/jquery.soap.js" type="text/javascript"></script>
-    <script src="js/mAPI.js" type="text/javascript"></script>
-    <script src="js/sAPI.js" type="text/javascript"></script>
-    <script src="js/jquery.mobile.nestedlists.js" type="text/javascript"></script>
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.26.min.js"></script>
     <script>
+    var toolid = "urn:symbiomath:tool:";
+    var repoid = "Bitlab [chirimoyo.ac.uma.es]";
 
-        var toolid = new String("urn:symbiomath:tool:");
-        var repoid = new String("Bitlab [chirimoyo.ac.uma.es]");
+    function changeRepository() {
 
-        function changeRepository(){
+        var selectRepository = document.getElementById("selectRepository");
+        var selectedValue = selectRepository.options[selectRepository.selectedIndex].value;
 
-            var selectRepository = document.getElementById("selectRepository");
-            var selectedValue = selectRepository.options[selectRepository.selectedIndex].value;
+        switch (selectedValue) {
+            case 'INB':
+                $("#treeview").load("data/inb.html");
+                toolid = "urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es";
+                repoid = "INB  [chirimoyo.ac.uma.es]";
+                break;
 
-            switch (selectedValue) {
-                case 'INB':
-                    $("#treeview").load("data/inb.html");
-                    toolid = new String("urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es");
-                    repoid =  new String("INB  [chirimoyo.ac.uma.es]");
-                    break;
-
-                case 'MrSymbiomath':
-                    $("#treeview").load("data/mrsymbiomath.html");
-                    toolid = new String("urn:symbiomath:tool:");
-                    repoid = new String("Bitlab [chirimoyo.ac.uma.es]");
-                    break;
-            }
+            case 'MrSymbiomath':
+                $("#treeview").load("data/mrsymbiomath.html");
+                toolid = "urn:symbiomath:tool:";
+                repoid = "Bitlab [chirimoyo.ac.uma.es]";
+                break;
         }
+    }
 
-        function loadService(name){
-            var page = "service.html";
-            page += "?"+name;
-            page +="?"+repoid;
-            page +="?"+toolid;
-            location.href= page;
-        }
-
+    function loadService(name) {
+        var page = "service.html";
+        page += "?" + name;
+        page += "?" + repoid;
+        page += "?" + toolid;
+        location.href = page;
+    }
     </script>
-
 </head>
+
 <body>
-
-<div data-role="page" id="index">
-
-    <div data-role="header" data-position="fixed">
-        <h1>Bitlab</h1>
-    </div>
-
-    <div id="repositorymain" role="main" class="ui-content">
-
-        <div id="welcomediv">
-        <img src="img/logo.png" alt="MrSymbiomath">
-            <script> checkCookies() </script>
-            <div id="usernamediv"><p>Welcome!</p></div>
+    <div data-role="page" id="index">
+        <div data-role="header" data-position="fixed" id="genheader">
+            <h1>Bitlab</h1>
         </div>
+        <div id="repositorymain" role="main" class="ui-content">
+            <div id="welcomediv">
+                <img src="img/logo.png" alt="MrSymbiomath">
+                <script>
+                checkCookies()
+                </script>
+             </div>
 
-
-
-        <div data-role="content" id="treeview">
-            <!-- Where the menu is loaded -->
-        </div>
-
-        <script type="text/javascript">
-           $("#treeview").load("data/mrsymbiomath.html");
-        </script>
-
-
-        <div id="divSelectRepository" data-role="content" style="align-self: center">
-                    <select id="selectRepository" idname="select-choice-a" id="repository" data-native-menu="false" onchange="changeRepository();" data-mini="true">
-                        <option>Change Repository:</option>
-                        <option value="MrSymbiomath">MrSymbiomath</option>
-                        <option value="INB">INB</option>
-                        <option value="Edusoft" onclick='changeRepository("Edusoft  [chirimoyo.ac.uma.es]")'>Edusoft</option>
-                    </select>
-        </div>
-
-        <center><a href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop" id="loginButton">Sign in</a></center>
-
-
-        <div id="popupLogin" data-role="popup"  data-theme="a" class="ui-corner-all">
-                    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+            <!-- LOGIN -->
+            <center>
+                 <div id="usernamediv">
+                    <p font-size="1">Welcome! (please sign in)</p>
+                </div>
+                <a href="#popupLogin" id="loginButton" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Sign in</a>
+            </center>
+            <div id="popupLogin" data-role="popup" data-theme="a" class="ui-corner-all">
+                <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete"
+                   data-iconpos="notext" class="ui-btn-right">Close</a>
                 <h3>Sign in</h3>
                 <label for="un" class="ui-hidden-accessible">Username:</label>
-                <input type="text" name="user" id="un" value="" placeholder="Username" data-theme="a">
+                <input type="text" name="user" id="un" value="guest" placeholder="Username" data-theme="a">
                 <label for="pw" class="ui-hidden-accessible">Password:</label>
-                <input type="password" name="pass" id="pw" value="" placeholder="Password" data-theme="a">
+                <input type="password" name="pass" id="pw" value="guest" placeholder="Password" data-theme="a">
                 <button id="loginpopbutton" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
-
-            <script>
+                <script>
                 $("#loginpopbutton").click(function() {
-                    var userform = $('#popupLogin').find('input[name="user"]').val();
-                    var passform = $('#popupLogin').find('input[name="pass"]').val();
+                    var userform = $('#popupLogin').find('input[name="user"]').val() || "guest";
+                    var passform = $('#popupLogin').find('input[name="pass"]').val() || "guest";
                     mainLogin(userform, passform);
                     $("#popupLogin").popup('close');
                 });
+                </script>
+            </div>
+
+
+            <div data-role="content" id="treeview">
+                <!-- Where the menu is loaded -->
+            </div>
+            <script type="text/javascript">
+            $("#treeview").load("data/mrsymbiomath.html");
+            // repoid = "undefined";
+            getRoot(getCookie('username'), getCookie('token'), '', repoid);
             </script>
 
-        </div>
 
-
-     <!-- <center><a href="index.html" data-role="button" onclick="getToolListAsXML('Bitlab [chirimoyo.ac.uma.es]')">TEST</a> </center>
-      <center><a href="index.html" data-role="button" onclick="readXMLToolList('mrsymbiomathtoollist.xml')">TEST2</a> </center> -->
-
-    </div>
-
-
-    <div data-role="footer" data-position="fixed">
-        <h6>&copy; 2014 Bioinformatics and Information Technology Laboratories</h6>
-        <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
-            <ul>
-                <li><a href="#home"  data-icon="home">Home</a></li>
-                <li><a href="#index" data-icon="gear" class="ui-btn-active">Repository</a></li>
-                <li><a href="#filebrowser" data-icon="grid">File Browser</a></li>
-            </ul>
-        </div>
-    </div>
-
-</div>
-
-<div data-role="page" id="home">
-
-    <div data-role="header" data-position="fixed">
-        <h1>Bitlab</h1>
-    </div>
-
-    <div id="homemain" role="main" class="ui-content">
-
-        <div id="hometext">
-            <div class="headtext"><h1>Welcome to mORCA!</h1></div>
-            <div class="bodytext">
-            <p>mORCA is a mobile client able to efficiently integrate different type of web-services repositories mapping metadata over a general definition to support scalable service discovery and to achieve flexible inter-communication between tools.
-              mORCA manages repositories heterogeneity supported by the Modular-API that provides a uniform view of metadata (e.g. GRID-based, WSDL–services, BioMoby and others), making the integration of bioinformatics Web-Services easier. </p>
+            <!-- REPOSITORY -->
+            <div id="divSelectRepository" data-role="content" style="align-self: center">
+                <!-- <p id="currRepId">Current repository:</br> -->
+                <select id="selectRepository" idname="select-choice-a" id="repository" data-native-menu="false" onchange="changeRepository();" data-mini="true">
+                    <option id="initialRepo">…</option>
+                    <option value="MrSymbiomath">MrSymbiomath</option>
+                    <option value="INB">INB</option>
+                    <option value="Edusoft" onclick='changeRepository("Edusoft  [chirimoyo.ac.uma.es]")'>Edusoft</option>
+                </select>
+                </p>
             </div>
-            <div class="headerwrap" id="imagehome">
-                <img src="img/DNA.png" alt="DNA Photo">
+
+
+            <script>
+            $("#initialRepo").text("Current repository: " + repoid)
+            </script>
+
+
+
+            <!-- <center><a href="index.html" data-role="button" onclick="getToolListAsXML('Bitlab [chirimoyo.ac.uma.es]')">TEST</a> </center>
+    <center><a href="index.html" data-role="button" onclick="readXMLToolList('mrsymbiomathtoollist.xml')">TEST2</a> </center> -->
+        </div>
+
+        <!-- BOTTON navbar -->
+
+        <div data-role="footer" data-position="fixed">
+            <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
+            <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
+                <ul>
+                    <li><a href="#home" data-icon="home">Home</a></li>
+                    <li><a href="#index" data-icon="gear" class="ui-btn-active">Repository</a></li>
+                    <li><a href="#filebrowser" data-icon="grid">File Browser</a></li>
+                </ul>
             </div>
         </div>
-
     </div>
-
-    <div data-role="footer" data-position="fixed">
-        <h6>&copy; 2014 Bioinformatics and Information Technology Laboratories</h6>
-        <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
-            <ul>
-                <li><a href="#home"  class="ui-btn-active"  data-icon="home">Home</a></li>
-                <li><a href="#index" data-icon="gear">Repository</a></li>
-                <li><a href="#filebrowser" data-icon="grid">File Browser</a></li>
-            </ul>
+    <div data-role="page" id="home">
+        <div data-role="header" data-position="fixed">
+            <h1>Bitlab</h1>
+        </div>
+        <div id="homemain" role="main" class="ui-content">
+            <div id="hometext">
+                <div class="headtext">
+                    <h1>Welcome to mORCA!</h1></div>
+                <div class="bodytext">
+                    <p>mORCA is a mobile client able to efficiently integrate different type of web-services repositories mapping metadata over a general definition to support scalable service discovery and to achieve flexible inter-communication between tools. mORCA manages repositories heterogeneity supported by the Modular-API that provides a uniform view of metadata (e.g. GRID-based, WSDL–services, BioMoby and others), making the integration of bioinformatics Web-Services easier. </p>
+                </div>
+                <div class="headerwrap" id="imagehome">
+                    <img src="img/DNA.png" alt="DNA Photo">
+                </div>
+            </div>
+        </div>
+        <!-- botton menu -->
+        <div data-role="footer" data-position="fixed">
+            <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
+            <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
+                <ul>
+                    <li><a href="#home" class="ui-btn-active" data-icon="home">Home</a></li>
+                    <li><a href="#index" data-icon="gear">Repository</a></li>
+                    <li><a href="#filebrowser" data-icon="grid">File Browser</a></li>
+                </ul>
+            </div>
         </div>
     </div>
+    <div data-role="page" id="filebrowser">
+        <div data-role="header" data-position="fixed">
+            <h1>Bitlab</h1>
+        </div>
+        <div data-role="content" id="filebrowsermain">
+            <div class="ui-field-contain" id="optionsbar">
+                <fieldset data-role="controlgroup" data-type="horizontal">
 
-</div>
+                    <a href="#uploadFilePopup" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop" id="uploadButton">Upload File</a>
 
-<div data-role="page" id="filebrowser">
+                    <a id="loginS3button" href="#loginS3" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Login in Amazon S3</a>
+                    <a id="importS3button" href="#importS3File" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Import from S3</a>
+                </fieldset>
+            </div>
+            <div id="listviewplace">
+                <ul id="fileListUL" data-inset="true">
+                <!-- <script>loadFileBrowser()</script> -->
+                    <li data-role="list-divider">
+                        <div class="rowElement">
+                            <div class="ui-bar ui-grid-a" id="filelistheader">
+                                <div class='ui-block-a'>File</div>
+                                <div class='ui-block-b center padding-refresh'>
+                                <a onclick='window.location.reload()' class='ui-btn ui-icon-refresh ui-btn-icon-notext ui-corner-all'>No text</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
+            <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
+                <ul>
+                    <li><a href="#home" data-icon="home">Home</a></li>
+                    <li><a href="#index" data-icon="gear">Repository</a></li>
+                    <li><a href="#filebrowser" data-icon="grid" class="ui-btn-active">File Browser</a></li>
+                </ul>
+            </div>
+        </div>
 
-    <div data-role="header" data-position="fixed">
-        <h1>Bitlab</h1>
-    </div>
-
-    <div data-role="content" id="filebrowsermain">
-
-        <div class="ui-field-contain" id="optionsbar">
+        <div data-role="popup" id="uploadFilePopup" data-theme="a" class="ui-corner-all center">
+            <span class="btn btn-primary btn-file">
+        <span class="styledheader">Select File:</span>
+            <input id="fileToUpload" type='file'>
+            </span>
             <fieldset data-role="controlgroup" data-type="horizontal">
-                <a href="#uploadFilePopup" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop" id="uploadButton">Upload File</a>
-                <a id="loginS3button" href="#loginS3" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Login in Amazon S3</a>
-                <a id="importS3button" href="#importS3File" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Import from S3</a>
+                <div class="ui-bar ui-grid-upload" id="UploadFormBottom">
+                    <div class="ui-block-upload-a">
+                        <form>
+                            <div class="ui-field-contain">
+                                <label for="selectFileType" class="ui-hidden-accessible">Type:</label>
+                                <select id="selectFileType" data-mini="true">
+                                    <option value="Fasta">Fasta Sequence</option>
+                                    <option value="Moby">Moby File</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="ui-block-upload-b">
+                        <button class="ui-btn ui-btn-inline ui-btn-b ui-mini" onclick='fileUploadHandler()'>Upload</button>
+                    </div>
+                </div>
             </fieldset>
         </div>
 
-        <div id="listviewplace">
-            <ul id="fileListUL" data-inset="true">
-
-                <li data-role="list-divider">
-                    <div class="rowElement">
-                        <div class="ui-bar ui-grid-a" id="filelistheader">
-                            <div class='ui-block-a' >File</div>
-                            <div class='ui-block-b center padding-refresh'><a onclick='window.location.reload()' class='ui-btn ui-icon-refresh ui-btn-icon-notext ui-corner-all'>No text</a></div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-
-    <div data-role="footer" data-position="fixed">
-        <h6>&copy; 2014 Bioinformatics and Information Technology Laboratories</h6>
-        <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
-            <ul>
-                <li><a href="#home"  data-icon="home">Home</a></li>
-                <li><a href="#index" data-icon="gear">Repository</a></li>
-                <li><a href="#filebrowser" data-icon="grid" class="ui-btn-active" >File Browser</a></li>
-            </ul>
-        </div>
-    </div>
-
-
-    <div data-role="popup" id="uploadFilePopup" data-theme="a" class="ui-corner-all center">
-
-            <span class="btn btn-primary btn-file">
-                <span class="styledheader">Select File:</span>
-                <input id="fileToUpload" type='file'>
-            </span>
-        <fieldset data-role="controlgroup" data-type="horizontal">
-            <div class="ui-bar ui-grid-upload" id="UploadFormBottom">
-                <div class="ui-block-upload-a" >
-                    <form>
-                        <div class="ui-field-contain">
-                            <label for="selectFileType" class="ui-hidden-accessible">Type:</label>
-                            <select id="selectFileType" data-mini="true">
-                                <option value="Fasta">Fasta Sequence</option>
-                                <option value="Moby">Moby File</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <div class="ui-block-upload-b" >
-                    <button class="ui-btn ui-btn-inline ui-btn-b ui-mini" onclick='fileUploadHandler()'>Upload</button>
-                </div>
-            </div>
-        </fieldset>
-    </div>
-
-    <div data-role="popup" id="loginS3" data-theme="a" class="ui-corner-all center">
-        <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-        <h3>Sign in</h3>
-        <label for="un" class="ui-hidden-accessible">Username:</label>
-        <input type="text" name="user" id="un" value="" placeholder="Username" data-theme="a">
-        <label for="pw" class="ui-hidden-accessible">Password:</label>
-        <input type="password" name="pass" id="pw" value="" placeholder="Password" data-theme="a">
-        <button id="loginS3popupbutton" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
-
-        <script>
+        <div data-role="popup" id="loginS3" data-theme="a" class="ui-corner-all center">
+            <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-right">Close</a>
+            <h3>Sign in</h3>
+            <label for="un" class="ui-hidden-accessible">Username:</label>
+            <input type="text" name="user" id="un" value="guest" placeholder="Username" data-theme="a">
+            <label for="pw" class="ui-hidden-accessible">Password:</label>
+            <input type="password" name="pass" id="pw" value="guest" placeholder="Password" data-theme="a">
+            <button id="loginS3popupbutton" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
+            <script>
             $("#loginS3popupbutton").click(function() {
-                var userform = $('#loginS3').find('input[name="user"]').val();
-                var passform = $('#loginS3').find('input[name="pass"]').val();
+                var userform = $('#loginS3').find('input[name="user"]').val() || "guest";
+                var passform = $('#loginS3').find('input[name="pass"]').val() || "guest";
                 loginS3(userform, passform);
                 $("#loginS3").popup('close');
             });
-        </script>
-    </div>
+            </script>
+        </div>
 
-
-    <div data-role="popup" id="importS3File" data-theme="b" class="ui-corner-all center">
-
-        <div id="status"></div>
-        <ul id="objects" data-role="listview" data-inset="true" style="min-width:210px;" data-theme="b">
-            <li data-role="divider" data-theme="b">Files in the bucket:</li>
-        </ul>
-
-        <script type="text/javascript">
-
-            AWS.config.update({accessKeyId: 'AKIAIMXVBS4HNMY45OZA', secretAccessKey: '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'});
+        <div data-role="popup" id="importS3File" data-theme="b" class="ui-corner-all center">
+            <div id="status"></div>
+            <ul id="objects" data-role="listview" data-inset="true" style="min-width:210px;" data-theme="b">
+                <li data-role="divider" data-theme="b">Files in the bucket:</li>
+            </ul>
+            <script type="text/javascript">
+            AWS.config.update({
+                accessKeyId: 'AKIAIMXVBS4HNMY45OZA',
+                secretAccessKey: '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'
+            });
             AWS.config.region = 'eu-west-1';
             var ep = new AWS.Endpoint('s3-eu-west-1.amazonaws.com');
-            var s3 = new AWS.S3({endpoint:ep});
+            var s3 = new AWS.S3({
+                endpoint: ep
+            });
 
-            var bucket = new AWS.S3({params: {Bucket: 'morcabucket'}});
-            bucket.listObjects(function (err, data) {
+            var bucket = new AWS.S3({
+                params: {
+                    Bucket: 'morcabucket'
+                }
+            });
+            bucket.listObjects(function(err, data) {
                 if (err) {
                     $('#status').append('<p>Could not load objects from S3</p>');
                     $('#status').append(err.toString());
                 } else {
                     $('#status').append('<p>Loaded ' + data.Contents.length + ' items from S3</p>');
                     for (var i = 0; i < data.Contents.length; i++) {
-                        $('#objects').append('<li><a href="#" id="'+i+'" onclick="importFile('+"'"+data.Contents[i].Key+"'"+');">' + data.Contents[i].Key + '</a></li>');
+                        $('#objects').append('<li><a href="#" id="' + i + '" onclick="importFile(' + "'" + data.Contents[i].Key + "'" + ');">' + data.Contents[i].Key + '</a></li>');
                         $('#objects').listview().listview('refresh');
                     }
                 }
             });
-
-        </script>
-
+            </script>
+        </div>
+        <div id="fileInfoPopups">
+        </div>
     </div>
-
-
-    <div id="fileInfoPopups">
-
-    </div>
-
-</div>
-
 </body>
 
 </html>

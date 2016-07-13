@@ -1,171 +1,211 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+  <meta charset="utf-8" />
+  <title>Mr.Symbiomath</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
+  <link rel="stylesheet" href="css/themes/Bitlab.css" />
+  <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+  <link rel="stylesheet" href="css/service.css" />
+  <script src="http://code.jquery.com/jquery-1.11.1-rc2.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+  <script src="js/jquery.soap.js" type="text/javascript"></script>
+  <script src="js/mAPI.js" type="text/javascript"></script>
+  <script src="js/sAPI.js" type="text/javascript"></script>
+  <script>
 
-    <meta charset="utf-8" />
-    <title>Mr.Symbiomath</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
-    <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
-    <link rel="stylesheet" href="css/themes/Bitlab.css" />
-    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
-    <link rel="stylesheet" href="css/service.css" />
 
-    <script src="http://code.jquery.com/jquery-1.11.1-rc2.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
-    <script src="js/jquery.soap.js" type="text/javascript"></script>
-    <script src="js/mAPI.js" type="text/javascript"></script>
-    <script src="js/sAPI.js" type="text/javascript"></script>
+  var name, urlOperation, idOperation, repoID;
+  var parameters = new Array();
+  var resultfile = "";
+  filesList = new Array();
 
-    <script>
+  function loadServiceInfo() {
+    name = String(window.location.href.split('?')[1])
 
-        var name, urlOperation, idOperation, repoID;
-        var parameters = new Array();
-        var resultfile = new String();
-        filesList = new Array();
+    repoid = String(window.location.href.split('?')[2])
+    repoid = decodeURI(repoid);
 
-        function loadServiceInfo() {
-            name = String(window.location.href.split('?')[1])
+    toolid = String(window.location.href.split('?')[3])
+    toolid = decodeURI(toolid)
 
-            repoid = String(window.location.href.split('?')[2])
-            repoid = decodeURI(repoid);
+    console.log(toolid);
 
-            toolid = String(window.location.href.split('?')[3])
-            toolid = decodeURI(toolid)
+    urlOperation = toolid + name;
+    idOperation = toolid + name + ";" + name;
 
-            console.log(toolid);
+    repoID = repoid;
+  };
 
-            urlOperation = new String(toolid+ name);
-            idOperation = new String(toolid + name + ";" + name);
+  function processParameters() {
+    if (logged()) {
+      var d = new Date();
+      d.setTime(d.getTime());
+      var nameFile = document.getElementById("nameFile").value
+      var idFolder = "";
+      var token = getCookie("token");
+      var user = getCookie("username");
+      var inputList = new Array();
+      var outputList = new Array();
 
-            repoID = repoid;
-        };
+      console.log("Processing DATA...");
 
-        function processParameters() {
-            if(logged()) {
-                var d = new Date(); d.setTime(d.getTime());
-                var nameFile = document.getElementById("nameFile").value
-                var idFolder = new String("");
-                var token = getCookie("token");
-                var user = getCookie("username");
-                var inputList = new Array();
-                var outputList = new Array();
+      for (var x = 0; x < parameters.length; x++) {
 
-                console.log("Processing DATA...");
+        console.log("ParameterName: " + parameters[x].name)
 
-                for(var x = 0; x<parameters.length; x++){
+        if (parameters[x].input == "true") {
+          var parameter = new Array();
+          var generatedID = 'parameter' + x + '';
+          console.log("GeneratedID: " + generatedID);
 
-                    console.log("ParameterName: "+parameters[x].name)
+          var para = document.getElementById('parameter' + x).value;
+          // puede que haya un valor oculto correspondiente, si salió de una lista, entonces
+          // cogerlo
+          try {para = document.getElementById('parameterhidden' + x).value } catch(e){};
 
-                    if(parameters[x].input=="true") {
-                        var parameter = new Array();
-                        var generatedID = new String('parameter'+x+'');
-                        console.log("GeneratedID: "+generatedID);
-                        parameter.push(document.getElementById(generatedID).value);
-                        parameter.push(parameters[x].dataTypeID);
-                        parameter.push("Moby");
-                        parameter.push(parameters[x].name);
-                        parameter.push(null);
-                        parameter.push(null);
-                        parameter.push(parameters[x].type);
+          parameter.push(para);
 
-                        if(document.getElementById("checkbox"+x)){
-                            if(document.getElementById("checkbox"+x).checked){
-                                parameter.push("true");
-                            } else {
-                                parameter.push("false");
-                            }
+          // parameter.push(document.getElementById(generatedID).value.split("#")[0]);
+          parameter.push(parameters[x].dataTypeID);
+          parameter.push("Moby");
+          parameter.push(parameters[x].name);
+          parameter.push(null);
+          parameter.push(null);
+          parameter.push(parameters[x].type);
 
-                        } else {
-                            parameter.push("false");
-                        }
-
-                        inputList.push(parameter);
-                    }
-                };
-
-                for(var x = 0; x<parameters.length; x++){
-                    if(parameters[x].input == "false") {
-
-                        var outParameter = new Array();
-                        outParameter.push(null);
-                        outParameter.push(parameters[x].dataTypeID);
-                        outParameter.push("");
-                        outParameter.push(parameters[x].name);
-                        outParameter.push(null);
-                        outParameter.push(null);
-                        outParameter.push(parameters[x].type);
-                        outParameter.push("false");
-
-                        outputList.push(outParameter);
-                    }
-                }
-
-                executeService(inputList,outputList,urlOperation,idOperation,nameFile,idFolder,token,user,repoID);
-
+          if (document.getElementById("checkbox" + x)) {
+            if (document.getElementById("checkbox" + x).checked) {
+              parameter.push("true");
             } else {
-                $.mobile.loading("hide");
-                alert("Please, log in if you want to execute a service");
+              parameter.push("false");
             }
+
+          } else {
+            parameter.push("false");
+          }
+
+          inputList.push(parameter);
         }
+      };
 
-        window.fillText = function(id, text){
-            $("#parameter"+id).val(text);
-            $('#checkbox'+id).prop('checked', true).checkboxradio('refresh');
+      for (var x = 0; x < parameters.length; x++) {
+        if (parameters[x].input == "false") {
+
+          var outParameter = new Array();
+          outParameter.push(null);
+          outParameter.push(parameters[x].dataTypeID);
+          outParameter.push("");
+          outParameter.push(parameters[x].name);
+          outParameter.push(null);
+          outParameter.push(null);
+          outParameter.push(parameters[x].type);
+          outParameter.push("false");
+
+          outputList.push(outParameter);
         }
+      }
 
-    </script>
+      executeService(inputList, outputList, urlOperation, idOperation, nameFile, idFolder, token, user, repoID);
 
+    } else {
+      $.mobile.loading("hide");
+      alert("Please, log in if you want to execute a service");
+    }
+  }
+
+  window.nuevoParametro = function(id, hiddentext, text) {
+    $("#popupMenu" + id).popup("close")
+    $("#parameter" + id).val(text);
+    $("#parameterhidden" + id).val(hiddentext);
+    $('#checkbox' + id).prop('checked', true).checkboxradio('refresh');
+    document.getElementById("runrun").disabled = false;
+    $("#mainresults").text("");
+    // poner un nombre adecuado, si no le han puesto ya uno
+    // var currentFileName = $("#nameFile").value;
+    var currentFileName = document.getElementById("nameFile").value;
+    if (currentFileName.length > 0) {
+      var posseparation = currentFileName.lastIndexOf(' give me a name!');
+      if (posseparation == -1) {
+        posseparation = currentFileName.indexOf('-WITH-')
+      }
+      if (posseparation >= 0) {
+        currentFileName = currentFileName.substr(0,posseparation) + '-WITH-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
+      }
+    } else {
+      currentFileName = $("#parameter" + id).val() + '_' +fechaHoraExt()
+    }
+    document.getElementById("nameFile").value = currentFileName;
+
+  }
+  </script>
 </head>
+
 <body>
-    <div data-role="page" id="main">
+  <div data-role="page" id="main">
+    <script>
+    loadServiceInfo();
+    getRoot(getCookie('username'), getCookie('token'), '', repoid);
 
-        <script>
+    document.write('<div data-role="header" data-position="fixed"><a href="index.html" data-icon="arrow-l" data-rel="back" data-direction="reverse">Back<Home></Home></a><h1>' + name + '</h1></div>');
 
-            loadServiceInfo();
-            getRoot(getCookie('username'), getCookie('token'),'',repoid);
+    getParameters(idOperation, repoID, (function(array) {
+      console.log(array);
+      generateInterface(array);
+      parameters = array;
+    }));
 
-            document.write('<div data-role="header" data-position="fixed"><a href="index.html" data-icon="arrow-l" data-rel="back" data-direction="reverse">Back <Home></Home></a><h1>'+name+'</h1></div>');
+    console.log("-------");
+    </script>
+<!--     <center><a data-role="button" id="resultbutton" class="ui-disabled"
+onclick='getFile(resultfile,getCookie("token"), repoid); document.getElementById("resultbutton").innerHTML= "Results:" '>
+                Show results…</a>
+    </center>
+ -->
 
-            getParameters(idOperation,repoID, (function(array){
-                console.log(array);
-                generateInterface(array);
-                parameters = array;
-            }));
+     <div id="mainresults" contenteditable style="margin-left: 10px;" disabled >
+RESULTS…
+    </dif>
 
-            console.log("-------");
+<!-- VIEWER -->
+    <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/rslprpr/biojs-vis-blast/master/lib/style.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/rslprpr/biojs-vis-blast/master/lib/jquery-ui-slider-pips.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/rslprpr/biojs-vis-blast/master/lib/slider/css/slider.css">
+    <script src="https://cdn.rawgit.com/rslprpr/biojs-vis-blast/master/d3.min.js"></script>
+    <script src="https://cdn.rawgit.com/rslprpr/biojs-vis-blast/master/lib/jquery-ui-slider-pips.js"></script>
+    <script src="https://cdn.rawgit.com/rslprpr/biojs-vis-blast/master/lib/color-scheme.min.js"></script>
+    <script src="https://wzrd.in/bundle/biojs-vis-blast@0.1.5"></script>
+    <script src="https://wzrd.in/bundle/biojs-io-blast@latest"></script>
+    <script src="https://wzrd.in/bundle/sequence-viewer@0.2.17"></script>
 
-        </script>
 
 
-        <center><a data-role="button" id="resultbutton" class="ui-disabled" onclick="getFile(resultfile,getCookie('token'), repoid)">See Results...</a> </center>
+<!--  -->
 
-
-        <div id="resultado"> </div>
-
-        <div data-role="footer" data-position="fixed">
-            <h4>&copy; 2014 Bioinformatics and Information Technology Laboratories</h4>
-        </div>
-
+ <!--     <textarea id="mainresults" readonly style="margin-left: 10px;" >
+    Results:
+    </textarea>
+ -->
+  <div data-role="footer" data-position="fixed">
+      <h4>&copy; 2016 Bioinformatics and Information Technology Laboratories</h4>
     </div>
-
-    <div data-role="page" id="results">
-
-        <div data-role="header" data-position="fixed" data-add-back-btn="true">
-            <h1>Results</h1>
-        </div>
-
-        <div data-role='content' id="mainresults">
-
-        </div>
-
-        <div data-role="footer" data-position="fixed">
-            <h4>&copy; 2014 Bioinformatics and Information Technology Laboratories</h4>
-        </div>
-
-
+  </div>
+  <div data-role="page" id="results">
+    <div data-role="header" data-position="fixed" data-add-back-btn="true">
+      <h1>Results</h1>
     </div>
-
+<!--     <div data-role='content' id="mainresults">
+    </div>
+ -->
+<!--   <div data-role="footer" data-position="fixed">
+      <h4>&copy; 2016 Bioinformatics and Information Technology Laboratories</h4>
+    </div>
+  </div>
+ -->
 </body>
+
 </html>
