@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <title>Mr.Symbiomath</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
   <link rel="stylesheet" href="css/themes/Bitlab.css" />
@@ -16,6 +16,9 @@
   <script src="js/mAPI.js" type="text/javascript"></script>
   <script src="js/sAPI.js" type="text/javascript"></script>
   <script>
+
+
+
   var name, urlOperation, idOperation, repoID;
   var parameters = new Array();
   var resultfile = "";
@@ -59,7 +62,14 @@
           var parameter = new Array();
           var generatedID = 'parameter' + x + '';
           console.log("GeneratedID: " + generatedID);
-          parameter.push(document.getElementById('parameterhidden' + x).value);
+
+          var para = document.getElementById('parameter' + x).value;
+          // puede que haya un valor oculto correspondiente, si salió de una lista, entonces
+          // cogerlo
+          try {para = document.getElementById('parameterhidden' + x).value } catch(e){};
+
+          parameter.push(para);
+
           // parameter.push(document.getElementById(generatedID).value.split("#")[0]);
           parameter.push(parameters[x].dataTypeID);
           parameter.push("Moby");
@@ -109,16 +119,27 @@
   }
 
   window.nuevoParametro = function(id, hiddentext, text) {
+    $("#popupMenu" + id).popup("close")
     $("#parameter" + id).val(text);
     $("#parameterhidden" + id).val(hiddentext);
-    // $("#parameter" + id).val(text.split("#")[0]);
     $('#checkbox' + id).prop('checked', true).checkboxradio('refresh');
     document.getElementById("runrun").disabled = false;
-    // document.getElementById("mainresults").style.display = 'none';
-    // $("#mainresults").disabled=true;
     $("#mainresults").text("");
-    // document.getElementById("resultbutton").innerHTML= "View results";
-    // document.getElementById("resultbutton").hidden = true;
+    // poner un nombre adecuado, si no le han puesto ya uno
+    // var currentFileName = $("#nameFile").value;
+    var currentFileName = document.getElementById("nameFile").value;
+    if (currentFileName.length > 0) {
+      var posseparation = currentFileName.lastIndexOf(' give me a name!');
+      if (posseparation == -1) {
+        posseparation = currentFileName.indexOf('-WITH-')
+      }
+      if (posseparation >= 0) {
+        currentFileName = currentFileName.substr(0,posseparation) + '-WITH-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
+      }
+    } else {
+      currentFileName = $("#parameter" + id).val() + '_' +fechaHoraExt()
+    }
+    document.getElementById("nameFile").value = currentFileName;
 
   }
   </script>
@@ -145,14 +166,31 @@ onclick='getFile(resultfile,getCookie("token"), repoid); document.getElementById
                 Show results…</a>
     </center>
  -->
-     <p id="mainresults" contenteditable style="margin-left: 10px;" disabled>
-        RESULTS:
-    </p>
+
+     <div id="mainresults" contenteditable style="margin-left: 10px;" disabled >
+RESULTS…
+    </dif>
+
+<!-- VIEWER -->
+    <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/rslprpr/biojs-vis-blast/master/lib/style.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/rslprpr/biojs-vis-blast/master/lib/jquery-ui-slider-pips.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/rslprpr/biojs-vis-blast/master/lib/slider/css/slider.css">
+    <script src="https://cdn.rawgit.com/rslprpr/biojs-vis-blast/master/d3.min.js"></script>
+    <script src="https://cdn.rawgit.com/rslprpr/biojs-vis-blast/master/lib/jquery-ui-slider-pips.js"></script>
+    <script src="https://cdn.rawgit.com/rslprpr/biojs-vis-blast/master/lib/color-scheme.min.js"></script>
+    <script src="https://wzrd.in/bundle/biojs-vis-blast@0.1.5"></script>
+    <script src="https://wzrd.in/bundle/biojs-io-blast@latest"></script>
+    <script src="https://wzrd.in/bundle/sequence-viewer@0.2.17"></script>
+
+
+
+<!--  -->
 
  <!--     <textarea id="mainresults" readonly style="margin-left: 10px;" >
     Results:
     </textarea>
- -->    <div data-role="footer" data-position="fixed">
+ -->
+  <div data-role="footer" data-position="fixed">
       <h4>&copy; 2016 Bioinformatics and Information Technology Laboratories</h4>
     </div>
   </div>
@@ -162,11 +200,12 @@ onclick='getFile(resultfile,getCookie("token"), repoid); document.getElementById
     </div>
 <!--     <div data-role='content' id="mainresults">
     </div>
- -->    <div data-role="footer" data-position="fixed">
+ -->
+<!--   <div data-role="footer" data-position="fixed">
       <h4>&copy; 2016 Bioinformatics and Information Technology Laboratories</h4>
     </div>
   </div>
-
+ -->
 </body>
 
 </html>

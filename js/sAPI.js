@@ -57,6 +57,12 @@ function cargarXMLDoc(archivoXML) {
   return null;
 }
 
+function fechaHoraExt() {
+  return (new Date().getTime() % 10000000).toString(32) + '.txt';
+  // return new Date().toISOString() + '.txt';
+  // return new Date().toLocaleString().replace(' ', 'T');
+}
+
 function generateInterface(parameters) {
 
   document.write("<div data-role='content'>" +
@@ -159,7 +165,7 @@ function generateInterface(parameters) {
             '<div class="ui-block-stringa">' +
             '<div data-role="fieldcontain">' +
             //'<input type="text" name="text-basic" id="parameter'+x+'" value="" data-inline="true">' +
-            '<textarea name="text-basic" id="parameter' + x + '" value="" data-inline="true"> </textarea>' +
+            '<textarea name="text-basic" id="parameter' + x + '" value="" data-inline="true"></textarea>' +
             '</div></div>' +
             '<div class="ui-block-stringb">' +
             //'<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all" data-inline="true">No text</a>' +
@@ -205,21 +211,24 @@ function generateInterface(parameters) {
           '<div class="ui-block-a">' +
           '<div data-role="fieldcontain">' +
           '<p id="parameterhidden' + x + '" class="texthidden"></p>' +
-          '<input type="text" name="text-basic" id="parameter' + x + '" value="" data-inline="true" placeholder="Fetch a file from the cloud">' +
+          '<input type="text" name="text-basic" id="parameter' + x + '" value="" data-inline="true" placeholder="Fetch a file from mORCA previous outputs">' +
           //'<textarea name="text-basic" id="parameter'+x+'" value="" data-inline="true"> </textarea>' +
           '</div></div>' +
           '<div class="ui-block-b" style="padding-top:5px">' +
-          '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
-          '<a href="#popupMenu' + x + '" data-rel="popup" data-transition="slideup" id="' + x + '"class="ui-btn ui-icon-cloud ui-btn-icon-notext ui-corner-all" data-inline="true" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+          // elminado lápiz
+          // '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
+          '<a href="#popupMenu' + x + '" data-rel="popup" data-transition="slideup" id="' + x + '"class="ui-btn ui-icon-cloud ui-btn-icon-left ui-corner-all" data-inline="true" data-jsb_prepared="2nis0xjxn9">Cloud files</a>' +
 
           // poner esto sólo si lo hay!
           infoTextHtml +
 
-          '</div><div class="ui-block-c" style="padding-top:7px">' +
+          '</div><div class="ui-block-c ui-screen-hidden" style="padding-top:7px">' +
           '<fieldset data-role="controlgroup">' +
-          '<label for="checkbox' + x + '" data-inline="true">File</label>' +
+          '<label for="checkbox' + x + '" data-inline="true" >File</label>' +
           '<input type="checkbox" id="checkbox' + x + '" data-inline="true">' +
-          '</fieldset></div></div></div>');
+          '</fieldset></div></div></div>'
+
+          );
 
         document.write('<div data-role="popup" id="popupMenu' + x + '" data-theme="b">' +
           '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-right">Close</a>' +
@@ -233,8 +242,9 @@ function generateInterface(parameters) {
           for (var y in filesList) {
             document.write(
               // '<li><a onclick="nuevoParametro(' + x + ',\'' + filesList[y].id + '\'); window.location.href=\'#\';">' + filesList[y].name + '</a></li>'
-              '<li><a onclick="nuevoParametro(' + x + ',\'' + filesList[y].id + '\',\'' + filesList[y].name + '\'); window.location.href=\'#\'; ">' + filesList[y].name + '</a></li>'
-
+              '<li><a onclick="nuevoParametro(' + x + ',\''
+               + filesList[y].id + '\',\''
+               + filesList[y].name + '\'); $(\'#popupMenu' + x + '\').popup(\'close\');">' + filesList[y].name + '</a></li>'
             );
 
           }
@@ -260,15 +270,17 @@ function generateInterface(parameters) {
 
   }
 
-  var fileName = name + "_" + new Date().toISOString().slice(0, 16) + '.txt';
+  var laFechaHoraExt = fechaHoraExt();
+  var fileName = "changeMe_" + laFechaHoraExt;
+  // var fileName = name + " give me a name!";
 
   document.write('<div data-role="fieldcontain" id="parameterbox">' +
-    '<label for="nameFile"><b>File name:</b>  <font color = "gray">change it</font></label>' +
+    '<label for="nameFile"><b>Output file:</b>  <font color = "gray">name it</font></label>' +
     '<input type="text" name="text-basic" id="nameFile" data-inline="true" value="' + fileName + '">' +
     '</div>');
 
   document.write(
-    "<button type='submit' id='runrun' class='show-page-loading-msg' data-textonly='false' data-textvisible='true' disabled>Run</button>");
+    "<button type='submit' id='runrun' class='show-page-loading-msg' data-textonly='false' data-textvisible='true' >Run</button>");
   document.write("</form></div>");
 }
 
@@ -319,8 +331,8 @@ function mainLogin(user, pass) {
   if (!logged()) {
     loginWS(user, pass)
 
-    $("#usernamediv").html("");
-    $("#usernamediv").append("</br>" + "Welcome, logged in as: <b>" + user + "</b></br>")
+    // $("#usernamediv").html("");
+    $("#usernamediv").html("<font size=1>Logged in as: <b>" + user + "</b></font>")
 
     $('#loginButton').html('Logout');
     $('#loginButton').removeAttr('href');
@@ -337,9 +349,8 @@ function mainLogout() {
     $('#loginButton').html('Sign in');
     $('#loginButton').removeAttr('onclick');
 
-
-    $("#usernamediv").html("");
-    $("#usernamediv").append("</br>" + "Bye bye!" + "</br>")
+    // $("#usernamediv").html("");
+    $("#usernamediv").text("Bye bye!")
 
     window.location.reload();
   }
@@ -381,18 +392,20 @@ function capitalise(string) {
 
 
 $(document).on("click", ".show-page-loading-msg", function() {
-    var $this = $(this),
-      theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
-      msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
-      textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
-      textonly = !!$this.jqmData("textonly");
+    var $this       = $(this),
+        theme       = $this.jqmData("theme")       || $.mobile.loader.prototype.options.theme,
+        msgText     = $this.jqmData("msgtext")     || $.mobile.loader.prototype.options.text,
+        textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
+        textonly    = !!$this.jqmData("textonly");
+
     html = $this.jqmData("html") || "";
+
     $.mobile.loading("show", {
-      text: msgText,
-      textVisible: textVisible,
-      theme: theme,
-      textonly: textonly,
-      html: html
+      text        : msgText,
+      textVisible : textVisible,
+      theme       : theme,
+      textonly    : textonly,
+      html        : html
     });
   })
   .on("click", ".hide-page-loading-msg", function() {
@@ -402,14 +415,16 @@ $(document).on("click", ".show-page-loading-msg", function() {
   });
 
 $(document).ready(function() {
+  var user = "not logged in";
   if (logged()) {
-    var user = getCookie('username');
-    $("#usernamediv").html("");
-    $("#usernamediv").append("</br>" + "Welcome, logged in as: <b>" + user + "</b></br>")
+    user = getCookie('username');
+    // $("#usernamediv").html("");
+    $("#usernamediv").html("<font size=1>Logged in as: <b>" + user + "</b></font>");
     $('#loginButton').html('logout');
     $('#loginButton').removeAttr('href');
     $('#loginButton').attr('onclick', 'mainLogout()');
     loadFileBrowser();
+
   }
 
   if (S3Logged()) {
@@ -476,6 +491,7 @@ function fileUploadHandler() {
   } else {
     alert('FileReader is not supported in this browser.');
   }
+
 }
 
 function loadHandler(event) {
@@ -500,10 +516,13 @@ function loadFileBrowser() {
     $('#fileListUL').append('<li class="ui-btn">' +
       '<div class="rowElement">' +
       '<div class="ui-bar ui-grid-a">' +
-      '<div class="ui-block-a"><span class="fileText">' + filesList[x].name.substr(0, 25) + '</span></div>' +
+      '<div class="ui-block-a"><span class="fileText">' + filesList[x].name + '</span></div>' +
+      // '<div class="ui-block-a"><span class="fileText">' + filesList[x].name.substr(0, 25) + '</span></div>' +
       '<div class="ui-block-b">' +
-      '<a href="#fileInfo' + x + '"data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all">No text</a>' +
-      '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
+      // eliminado lápiz
+      // '<a href="#fileInfo' + x + '"data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all">No text</a>' +
+      '<a onclick="displayFile(filesList[' + x + '].id,' + token + ', repoid.toString());" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
+      // '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
       '<a onclick="deleteElement(filesList[' + x + '].id,' + token + ', repoid.toString());" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all">No text</a>' +
       '</div> </div> </div> </li>');
   }
@@ -553,20 +572,19 @@ function importFile(fileName, type) {
             break;
         }
 
-        user = getCookie('username');
-        session = getCookie('token');
-        repoid = 'Bitlab [chirimoyo.ac.uma.es]';
-        data = dataAux;
-        name = fileName;
-        format = 'Moby';
-        folderid = '';
-        user = user;
-        session = session;
+        user        = getCookie('username');
+        session     = getCookie('token');
+        repoid      = 'Bitlab [chirimoyo.ac.uma.es]';
+        data        = dataAux;
+        name        = fileName;
+        format      = 'Moby';
+        folderid    = '';
+        user        = user;
+        session     = session;
         description = 'Test Description';
-        repoid = repoid;
+        repoid      = repoid;
 
-        newFile
-          (name, data, format, folderid, description, user, session, repoid);
+        newFile(name, data, format, folderid, description, user, session, repoid);
       }
     }
   );
