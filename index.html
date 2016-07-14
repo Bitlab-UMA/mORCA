@@ -43,6 +43,13 @@
                 toolid = "urn:symbiomath:tool:";
                 repoid = "Bitlab [chirimoyo.ac.uma.es]";
                 break;
+
+            case 'Biotools':
+                $("#treeview").load("data/biotools.html");
+                toolid = "urn:biotools:tool:";
+                repoid = "Biotools";
+                break;
+
         }
     }
 
@@ -113,7 +120,7 @@
                     <option id="initialRepo">…</option>
                     <option value="MrSymbiomath">MrSymbiomath</option>
                     <option value="INB">INB</option>
-                    <option value="Edusoft" onclick='changeRepository("Edusoft  [chirimoyo.ac.uma.es]")'>Edusoft</option>
+                    <option value="Biotools" onclick='changeRepository("Biotools")'>Biotools</option>
                 </select>
                 </p>
             </div>

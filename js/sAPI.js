@@ -591,3 +591,34 @@ function importFile(fileName, type) {
 }
 
 ////// END File Browser Functions  //////////
+
+
+////// BioTools  //////////
+
+function loadBioToolsServiceList(){
+
+  function endsWith(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+  }
+
+  $.ajax({
+    url: "https://bio.tools/api/tool?format=json"
+  }).then(function(data) {
+    content = data;
+    var list = '<ul data-role="listview" id="tree" data-inset="true">';
+    for (var i = 0; i < content.length; i++) {
+      var object = content[i];
+      var interface = object.interface;
+      for (var j = 0; j < interface.length; j++){
+        //document.write('interfaceType: ' + interface[j].interfaceType);
+        if(interface[j].interfaceType === 'SOAP WS' && (typeof interface[j].interfaceSpecURL !== 'undefined' || endsWith(object.homepage,".wsdl"))) {
+          list += '<li>' +
+                      '<a href="#"><img src="img/serviceicon.png" alt="'+object.name+'">'+'<h2>'+object.name+'</h2>'+'<p>'+object.description+'</p></a></li>'
+        }
+      }
+    }
+    console.log("Biotools: "+list)
+  });
+};
+
+////// END BioTools  //////////
