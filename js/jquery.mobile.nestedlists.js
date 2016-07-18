@@ -3,7 +3,7 @@
         options: {
             childPages: true,
             page: "<div data-role='page'></div>",
-            header: "<div data-role='header'><a href='#' data-icon='arrow-l' data-rel='back'>Back</a><h1></h1></div>",
+            header: "<div data-role='header'><a href='#' data-icon='arrow-l' data-rel='back'>Back</a><h1></h1><a href='#popupLoginAux' id='loginButton' data-rel='popup' data-position-to='window' class='ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a' data-transition='pop'>Sign in</a></div>",
             content: "<div class='ui-content'></div>"
         },
         _create: function(){
@@ -66,12 +66,46 @@
                         $( this.options.content )
                     ).find( "div.ui-content" ).append( this.nestedList );
 
+                if(!getCookie("username")) {
+
+                    var popupID = "popupLogin"+this.pageID;
+                    var loginpopupbuttonID = "loginpopbutton"+this.pageID;
+
+                    this.newPage.find( "div.ui-content" ).append('<div id="'+popupID+'" data-role="popup" data-theme="a" class="ui-corner-all">' +
+                    '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete"' +
+                    'data-iconpos="notext" class="ui-btn-right">Close</a>' +
+                    '<h3>Sign in</h3>' +
+                    '<label for="un" class="ui-hidden-accessible">Username:</label>' +
+                    '<input type="text" name="user" id="un" value="guest" placeholder="Username" data-theme="a">' +
+                    '<label for="pw" class="ui-hidden-accessible">Password:</label>' +
+                    '<input type="password" name="pass" id="pw" value="guest" placeholder="Password" data-theme="a">' +
+                    '<button id="'+loginpopupbuttonID+'" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button></div></div>');
+
+                    $("#"+loginpopupbuttonID).click(function () {
+                        var userform = $('#'+popupID).find('input[name="user"]').val() || "guest";
+                        var passform = $('#'+popupID).find('input[name="pass"]').val() || "guest";
+                        mainLogin(userform, passform);
+                        $('#'+popupID).popup('close');
+                    })
+
+                    this.newPage.find('#loginButton').attr('href', '#'+popupID)
+
+                } else {
+
+                    var loginButton = this.newPage.find('#loginButton');
+                        loginButton.html('logout')
+                            .removeAttr('href')
+                            .attr('onclick', 'mainLogout()');
+                }
+
                 $( "body" ).append( this.newPage );
                 //save subpage id as data attribute of the LI
                 $li.data("nextpageid", this.pageID);
+
             }
 
             $( "body" ).pagecontainer( "change", "#" + this.pageID );
+
         }
     });
 })( jQuery, this );

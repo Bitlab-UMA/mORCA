@@ -1,5 +1,5 @@
 //Objects definitions
-function parameter(allowedValues, dataTypeID, dataTypeName, name, description, paramIndex, type, input) {
+function parameter(allowedValues, defaultValue, dataTypeID, dataTypeName, name, description, paramIndex, type, input) {
 
   this.allowedValues = new Array([]);
   this.dataTypeID    = dataTypeID;
@@ -10,6 +10,7 @@ function parameter(allowedValues, dataTypeID, dataTypeName, name, description, p
   this.paramIndex    = paramIndex;
   this.type          = type;
   this.allowedValues = allowedValues;
+  this.defaultValue  = defaultValue;
 
   function addValues(value) {
     this.allowedValues.add(value);
@@ -187,21 +188,28 @@ function getParameters(operationID, repoID, returnFunction)  {
 
     success: function(soapResponse) {
 
+      console.log("Parameters XML: "+soapResponse);
+
       var response   = soapResponse.toXML();
       var noderoot   = response.documentElement;
-      var parameters = new Array();
+      var parameters = [];
 
       parametersReturns = noderoot.getElementsByTagName("getParametersReturn");
       for (x = 0; x < parametersReturns.length; x++) {
 
         //Getting allowedValues for this parameter
-        var allowedValues = new Array([]);
+        var allowedValues = [];
 
         allowedValuesNodes = parametersReturns[x].getElementsByTagName("allowedValues");
         for (y = 0; y < allowedValuesNodes.length; y++) {
           if (typeof(allowedValuesNodes[y].childNodes[0]) != "undefined") {
             allowedValues.push(allowedValuesNodes[y].childNodes[0].nodeValue);
           }
+        }
+
+        var defaultValue = "";
+        if (typeof(parametersReturns[x].getElementsByTagName("defaultValue")[0].childNodes[0]) != "undefined") {
+          defaultValue = parametersReturns[x].getElementsByTagName("defaultValue")[0].childNodes[0].nodeValue;
         }
 
         //Getting the other values
@@ -218,7 +226,7 @@ function getParameters(operationID, repoID, returnFunction)  {
         var type       = parametersReturns[x].getElementsByTagName("type")[0].childNodes[0].nodeValue;
         var input      = parametersReturns[x].getElementsByTagName("input")[0].childNodes[0].nodeValue;
 
-        parameters.push(new parameter(allowedValues, dataTypeID, dataTypeName, name, description, paramIndex, type, input));
+        parameters.push(new parameter(allowedValues, defaultValue, dataTypeID, dataTypeName, name, description, paramIndex, type, input));
 
       }
 

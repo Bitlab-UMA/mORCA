@@ -50,6 +50,12 @@
                 repoid = "Biotools";
                 break;
 
+            case 'Biocatalogue':
+                $("#treeview").load("data/biocatalogue.html");
+                toolid = "urn:biocatalogue:tool:";
+                repoid = "biocatalogue";
+                break;
+
         }
     }
 
@@ -121,6 +127,7 @@
                     <option value="MrSymbiomath">MrSymbiomath</option>
                     <option value="INB">INB</option>
                     <option value="Biotools" onclick='changeRepository("Biotools")'>Biotools</option>
+                    <option value="Biocatalogue" onclick='changeRepository("Biocatalogue")'>Biocatalogue</option>
                 </select>
                 </p>
             </div>

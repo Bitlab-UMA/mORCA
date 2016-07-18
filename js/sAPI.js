@@ -63,226 +63,255 @@ function fechaHoraExt() {
   // return new Date().toLocaleString().replace(' ', 'T');
 }
 
-function generateInterface(parameters) {
+function generateInterface(parameters, serviceName) {
 
   document.write("<div data-role='content'>" +
-    "<form name='parametersForm' action='javascript:processParameters()' method='post' id='parametersFormID'>")
+    "<form name='parametersForm' action='javascript:processParameters()' method='post' id='parametersFormID'>");
+
+  document.write('<div id="inputs"></div><div id="outputs"></div>');
 
   for (var x = 0; x < parameters.length; x++) {
 
+
+    var outputCount = 0; var outputIndex = 0;
+    var parametersDiv;
+      (parameters[x].input=='true') ? parametersDiv = $("#inputs") : parametersDiv = $("#outputs");
+
     var infoTextHtml = "";
     console.log("parameters[" + x + "].description: " + parameters[x].description);
+
+
     if (parameters[x].description) {
       infoTextHtml = '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-inline="true" data-jsb_prepared="2nis0xjxn9">No text</a>';
     }
 
-    switch (parameters[x].dataTypeName) {
-      case 'Integer':
-        document.write('<div data-role="fieldcontain" id="parameterbox">');
-        document.write('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
+    if(parameters[x].input == 'true') {
+      switch (parameters[x].dataTypeName) {
+        case 'Integer':
+          parametersDiv.append('<div data-role="fieldcontain" id="parameterbox">');
+          parametersDiv.append('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
 
-        if (parameters[x].allowedValues.length > 1) {
-          document.write('<select name="select-choice-mini" id="parameter' + x + '" data-mini="true" data-inline="true"');
-          for (var y = 0; y < parameters[x].allowedValues.length; y++) {
-            document.write('<option value="' + parameters[x].allowedValues[y] + '">' + parameters[x].allowedValues[y] + '</option>');
+          if (parameters[x].allowedValues.length > 1) {
+            parametersDiv.append('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
+            var selectAux = '<select name="select-choice-mini" id="parameter' + x + '" data-mini="true" data-inline="true">';
+            for (var y = 0; y < parameters[x].allowedValues.length; y++) {
+              var selectedValue = "";
+              if (parameters[x].allowedValues == parameters[x].defaultValue) {
+                selectedValue = "selected";
+              }
+              selectAux += '<option ' + selectedValue + ' value="' + parameters[x].allowedValues[y] + '">' + parameters[x].allowedValues[y] + '</option>';
+            }
+            selectAux += '</select>';
+            parametersDiv.append(selectAux);
+          } else {
+            parametersDiv.append('<input type="number" name="text-basic" id="parameter' + x + '" value="" data-inline="true" step="any" min="0">')
           }
-          document.write('</select>')
-        } else {
-          document.write('<input type="number" name="text-basic" id="parameter' + x + '" value="" data-inline="true" step="any" min="0">')
-        }
-
-        // poner esto sólo si lo hay!
-        document.write('<div style="float: right">' + infoTextHtml + '</div>');
-
-        // document.write('<div style="float: right">' +
-        //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-        //   '</div>');
-
-        document.write('</div>');
-        break;
-
-      case 'Float':
-        document.write('<div data-role="fieldcontain" id="parameterbox">');
-        document.write('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
-
-        if (parameters[x].allowedValues.length > 1) {
-          document.write('<select name="select-choice-mini" id="parameter' + x + '" data-mini="true" data-inline="true"');
-          for (var y = 0; y < parameters[x].allowedValues.length; y++) {
-            document.write('<option value="' + parameters[x].allowedValues[y] + '">' + parameters[x].allowedValues[y] + '</option>');
-          }
-          document.write('</select>')
-        } else {
-          document.write('<input type="number" name="text-basic" id="parameter' + x + '" value="" data-inline="true" step="any" min="0">')
-        }
-
-        // poner esto sólo si lo hay!
-        document.write('<div style="float: right">' + infoTextHtml + '</div>');
-
-        // document.write('<div style="float: right">' +
-        //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-        //   '</div>');
-
-        document.write('</div>');
-        break;
-
-      case 'CEL':
-        document.write('<div data-role="fieldcontain" id="parameterbox">');
-        document.write('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
-        document.write('<input type="text" name="text-basic" id="parameter' + x + '" value="">');
-
-        // poner esto sólo si lo hay!
-        document.write('<div style="float: right">' + infoTextHtml + '</div>');
-
-        // document.write('<div style="float: right">' +
-        //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-        //   '</div>');
-
-        document.write('</div>');
-        break;
-
-      case 'String':
-        document.write('<div data-role="fieldcontain" id="parameterbox">');
-
-        //If it has allowedValues, it needs a 'select' box
-        if (parameters[x].allowedValues.length > 1) {
-          document.write('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
-          document.write('<select name="select-choice-mini" id="parameter' + x + '" data-mini="true" data-inline="true"');
-          for (var y = 0; y < parameters[x].allowedValues.length; y++) {
-            document.write('<option value="' + parameters[x].allowedValues[y] + '">' + parameters[x].allowedValues[y] + '</option>');
-          }
-          document.write('</select>')
 
           // poner esto sólo si lo hay!
-          document.write('<div style="float: right">' + infoTextHtml + '</div>');
+          parametersDiv.append('<div style="float: right">' + infoTextHtml + '</div>');
 
           // document.write('<div style="float: right">' +
           //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
           //   '</div>');
 
-        } else {
-          document.write('<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #66AB8A; ">' +
+          parametersDiv.append('</div>');
+          break;
+
+        case 'Float':
+          parametersDiv.append('<div data-role="fieldcontain" id="parameterbox">');
+          parametersDiv.append('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
+
+          if (parameters[x].allowedValues.length > 1) {
+            parametersDiv.append('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
+            var selectAux = '<select name="select-choice-mini" id="parameter' + x + '" data-mini="true" data-inline="true">';
+            for (var y = 0; y < parameters[x].allowedValues.length; y++) {
+              selectAux += '<option value="' + parameters[x].allowedValues[y] + '">' + parameters[x].allowedValues[y] + '</option>';
+            }
+            selectAux += '</select>';
+            parametersDiv.append(selectAux);
+          } else {
+            parametersDiv.append('<input type="number" name="text-basic" id="parameter' + x + '" value="" data-inline="true" step="any" min="0">')
+          }
+
+          // poner esto sólo si lo hay!
+          parametersDiv.append('<div style="float: right">' + infoTextHtml + '</div>');
+
+          // document.write('<div style="float: right">' +
+          //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+          //   '</div>');
+
+          parametersDiv.append('</div>');
+          break;
+
+        case 'CEL':
+          parametersDiv.append('<div data-role="fieldcontain" id="parameterbox">');
+          parametersDiv.append('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
+          parametersDiv.append('<input type="text" name="text-basic" id="parameter' + x + '" value="">');
+
+          // poner esto sólo si lo hay!
+          parametersDiv.append('<div style="float: right">' + infoTextHtml + '</div>');
+
+          // document.write('<div style="float: right">' +
+          //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+          //   '</div>');
+
+          parametersDiv.append('</div>');
+          break;
+
+        case 'String':
+          parametersDiv.append('<div data-role="fieldcontain" id="parameterbox">');
+
+          //If it has allowedValues, it needs a 'select' box
+          if (parameters[x].allowedValues.length > 1) {
+            parametersDiv.append('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
+            var selectAux = '<select name="select-choice-mini" id="parameter' + x + '" data-mini="true" data-inline="true">';
+            for (var y = 0; y < parameters[x].allowedValues.length; y++) {
+              var selectedValue = "";
+              console.log("Allowed: " + parameters[x].allowedValues[y] + " Default: " + parameters[x].defaultValue);
+              if (parameters[x].allowedValues[y] == parameters[x].defaultValue) {
+                console.log("EntraIF");
+                selectedValue = "selected";
+              }
+              selectAux += '<option ' + selectedValue + ' value="' + parameters[x].allowedValues[y] + '">' + parameters[x].allowedValues[y] + '</option>';
+            }
+            selectAux += '</select>';
+            parametersDiv.append(selectAux);
+
+            // poner esto sólo si lo hay!
+            parametersDiv.append('<div style="float: right">' + infoTextHtml + '</div>');
+
+            // document.write('<div style="float: right">' +
+            //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+            //   '</div>');
+
+          } else {
+            parametersDiv.append('<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #66AB8A; ">' +
             '<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>' +
             '<div class="ui-block-stringa">' +
             '<div data-role="fieldcontain">' +
-            //'<input type="text" name="text-basic" id="parameter'+x+'" value="" data-inline="true">' +
+              //'<input type="text" name="text-basic" id="parameter'+x+'" value="" data-inline="true">' +
             '<textarea name="text-basic" id="parameter' + x + '" value="" data-inline="true"></textarea>' +
             '</div></div>' +
             '<div class="ui-block-stringb">' +
-            //'<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all" data-inline="true">No text</a>' +
-            //'<a href="#" class="ui-btn ui-icon-cloud ui-btn-icon-notext ui-corner-all" data-inline="true">No text</a>' +
+              //'<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all" data-inline="true">No text</a>' +
+              //'<a href="#" class="ui-btn ui-icon-cloud ui-btn-icon-notext ui-corner-all" data-inline="true">No text</a>' +
             infoTextHtml +
-            // '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+              // '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
             '</div></div>');
-        }
+          }
 
-        document.write('</div>');
-        break;
-
-      case 'Boolean':
-        document.write('<div data-role="fieldcontain" id="parameterbox">');
-        document.write('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
-        document.write('<input type="checkbox" data-role="flipswitch" name="switch" id="parameter' + x + '" data-on-text="True" data-off-text="False">');
-        /*document.write('<select name="flip" id="flip" data-role="slider">');
-        document.write('<option value="true" selected="">True</option>');
-        document.write('<option value="false">False</option>');
-        document.write('</select>');*/
-
-
-        // poner esto sólo si lo hay!
-        document.write('<div style="float: right">' + infoTextHtml + '</div>');
-
-        // document.write('<div style="float: right">' +
-        //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-        //   '</div>');
-
-        document.write('</div>');
-        break;
-
-      default:
-
-        if (parameters[x].input == "false") {
+          parametersDiv.append('</div>');
           break;
-        }
 
+        case 'Boolean':
+          parametersDiv.append('<div data-role="fieldcontain" id="parameterbox">');
+          parametersDiv.append('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
+          parametersDiv.append('<input type="checkbox" data-role="flipswitch" name="switch" id="parameter' + x + '" data-on-text="True" data-off-text="False">');
+          /*document.write('<select name="flip" id="flip" data-role="slider">');
+           document.write('<option value="true" selected="">True</option>');
+           document.write('<option value="false">False</option>');
+           document.write('</select>');*/
 
-        document.write('<div data-role="fieldcontain" id="parameterbox">' +
-          '<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #66AB8A; ">' +
-          '<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>' +
-          '<div class="ui-block-a">' +
-          '<div data-role="fieldcontain">' +
-          '<p id="parameterhidden' + x + '" class="texthidden"></p>' +
-          '<input type="text" name="text-basic" id="parameter' + x + '" value="" data-inline="true" placeholder="Fetch a file from mORCA previous outputs">' +
-          //'<textarea name="text-basic" id="parameter'+x+'" value="" data-inline="true"> </textarea>' +
-          '</div></div>' +
-          '<div class="ui-block-b" style="padding-top:5px">' +
-          // elminado lápiz
-          // '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
-          '<a href="#popupMenu' + x + '" data-rel="popup" data-transition="slideup" id="' + x + '"class="ui-btn ui-icon-cloud ui-btn-icon-left ui-corner-all" data-inline="true" data-jsb_prepared="2nis0xjxn9">Cloud files</a>' +
 
           // poner esto sólo si lo hay!
-          infoTextHtml +
+          parametersDiv.append('<div style="float: right">' + infoTextHtml + '</div>');
 
-          '</div><div class="ui-block-c ui-screen-hidden" style="padding-top:7px">' +
-          '<fieldset data-role="controlgroup">' +
-          '<label for="checkbox' + x + '" data-inline="true" >File</label>' +
-          '<input type="checkbox" id="checkbox' + x + '" data-inline="true">' +
-          '</fieldset></div></div></div>'
+          // document.write('<div style="float: right">' +
+          //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
+          //   '</div>');
 
+          parametersDiv.append('</div>');
+          break;
+
+        default:
+
+          if (parameters[x].input == "false") {
+            break;
+          }
+
+
+          parametersDiv.append('<div data-role="fieldcontain" id="parameterbox">' +
+              '<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #66AB8A; ">' +
+              '<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>' +
+              '<div class="ui-block-a">' +
+              '<div data-role="fieldcontain">' +
+              '<p id="parameterhidden' + x + '" class="texthidden"></p>' +
+              '<input type="text" name="text-basic" id="parameter' + x + '" value="" data-inline="true" placeholder="Fetch a file from mORCA previous outputs">' +
+                //'<textarea name="text-basic" id="parameter'+x+'" value="" data-inline="true"> </textarea>' +
+              '</div></div>' +
+              '<div class="ui-block-b" style="padding-top:5px">' +
+                // elminado lápiz
+                // '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
+              '<a href="#popupMenu' + x + '" data-rel="popup" data-transition="slideup" id="' + x + '"class="ui-btn ui-icon-cloud ui-btn-icon-left ui-corner-all" data-inline="true" data-jsb_prepared="2nis0xjxn9">Cloud files</a>' +
+
+                // poner esto sólo si lo hay!
+              infoTextHtml +
+
+              '</div><div class="ui-block-c ui-screen-hidden" style="padding-top:7px">' +
+              '<fieldset data-role="controlgroup">' +
+              '<label for="checkbox' + x + '" data-inline="true" >File</label>' +
+              '<input type="checkbox" id="checkbox' + x + '" data-inline="true">' +
+              '</fieldset></div></div></div>'
           );
 
-        document.write('<div data-role="popup" id="popupMenu' + x + '" data-theme="b">' +
+          parametersDiv.append('<div data-role="popup" id="popupMenu' + x + '" data-theme="b">' +
           '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-right">Close</a>' +
           '<ul data-role="listview" data-inset="true" style="min-width:210px;">' +
           '<li data-role="list-divider">Files:</li>');
 
-        if (!getCookie('username')) {
-          document.write('<li><i>You must be logged to use the file system!</i></li>');
-        } else {
+          if (!getCookie('username')) {
+            parametersDiv.append('<li><i>You must be logged to use the file system!</i></li>');
+          } else {
 
-          for (var y in filesList) {
-            document.write(
-              // '<li><a onclick="nuevoParametro(' + x + ',\'' + filesList[y].id + '\'); window.location.href=\'#\';">' + filesList[y].name + '</a></li>'
-              '<li><a onclick="nuevoParametro(' + x + ',\''
-               + filesList[y].id + '\',\''
-               + filesList[y].name + '\'); $(\'#popupMenu' + x + '\').popup(\'close\');">' + filesList[y].name + '</a></li>'
-            );
+            for (var y in filesList) {
+              parametersDiv.append(
+                  // '<li><a onclick="nuevoParametro(' + x + ',\'' + filesList[y].id + '\'); window.location.href=\'#\';">' + filesList[y].name + '</a></li>'
+                  '<li><a onclick="nuevoParametro(' + x + ',\''
+                  + filesList[y].id + '\',\''
+                  + filesList[y].name + '\'); $(\'#popupMenu' + x + '\').popup(\'close\');">' + filesList[y].name + '</a></li>'
+              );
 
+            }
           }
-        }
 
-        repoid = String(window.location.href.split('?')[2])
-        repoid = decodeURI(repoid);
+          repoid = String(window.location.href.split('?')[2])
+          repoid = decodeURI(repoid);
 
-        document.write('</ul></div>');
-        // document.ready(function(){
-        //     $("#resultbutton").click(function(){
-        //         getFile(resultfile,getCookie("token"), repoid);
-        //         $("#mainresults").text("");
-        //     });
+          parametersDiv.append('</ul></div>');
+          // document.ready(function(){
+          //     $("#resultbutton").click(function(){
+          //         getFile(resultfile,getCookie("token"), repoid);
+          //         $("#mainresults").text("");
+          //     });
 
 
-        break;
-    }
+          break;
+      }
 
-    document.write('<div data-role="popup" id="popupDescription' + x + '" data-theme="b">' +
+      parametersDiv.append('<div data-role="popup" id="popupDescription' + x + '" data-theme="b">' +
       '<p>' + parameters[x].description + '</p>' +
       '</div>');
-
+    } else if (outputCount==0){
+      outputIndex = x;
+    }
   }
 
+  parametersDiv = $("#outputs");
+
   var laFechaHoraExt = fechaHoraExt();
-  var fileName = "changeMe_" + laFechaHoraExt;
+  var fileName = serviceName +'_' + laFechaHoraExt;
   // var fileName = name + " give me a name!";
 
-  document.write('<div data-role="fieldcontain" id="parameterbox">' +
-    '<label for="nameFile"><b>Output file:</b>  <font color = "gray">name it</font></label>' +
+  parametersDiv.append('<div data-role="fieldcontain" id="parameterbox">' +
+    '<label for="nameFile"><b>'+parameters[outputIndex].name+':</b>  <font color = "gray">(Output File)</font></label>' +
     '<input type="text" name="text-basic" id="nameFile" data-inline="true" value="' + fileName + '">' +
     '</div>');
 
-  document.write(
+  parametersDiv.append(
     "<button type='submit' id='runrun' class='show-page-loading-msg' data-textonly='false' data-textvisible='true' >Run</button>");
-  document.write("</form></div>");
+  parametersDiv.append("</form></div>");
 }
+
 
 /////// Cookie Functions ////////
 
@@ -622,3 +651,25 @@ function loadBioToolsServiceList(){
 };
 
 ////// END BioTools  //////////
+
+
+function listBiocatalogue() {
+
+  $.ajax({
+    url: 'getJSON.php',
+    success: function(data) {
+      var content = jQuery.parseJSON(data);
+      console.log(content);
+      content = content.search.results;
+      console.log(content);
+      var list = '<ul data-role="listview" id="tree" data-inset="true">';
+      for (var i = 0; i < content.length; i++) {
+        var object = content[i];
+        list += '<li>' +
+            '<a href="#"><img src="img/serviceicon.png" alt="'+object.name+'">'+'<h2>'+object.name+'</h2>'+'<p>'+object.resource+'</p></a></li>'
+          }
+
+      console.log(list)
+    }
+  });
+}
