@@ -58,9 +58,14 @@ function cargarXMLDoc(archivoXML) {
 }
 
 function fechaHoraExt() {
-  return (new Date().getTime() % 10000000).toString(32) + '.txt';
-  // return new Date().toISOString() + '.txt';
-  // return new Date().toLocaleString().replace(' ', 'T');
+
+  var d = new Date();
+  var day = d.getUTCDate();
+  var h = d.getHours();
+  var m = d.getMinutes();
+
+  return (day+'-'+h+'H'+m + 'M.txt');
+
 }
 
 function generateInterface(parameters, serviceName) {
@@ -323,7 +328,7 @@ function getCookie(cname) {
     if (c.indexOf(name) == 0)
       return c.substring(name.length, c.length);
   }
-  return "";
+  return false;
 };
 
 
@@ -442,32 +447,6 @@ $(document).on("click", ".show-page-loading-msg", function() {
     // intento que automáticamente se carguen los resultados al terminar
 
   });
-
-$(document).ready(function() {
-  var user = "not logged in";
-  if (logged()) {
-    user = getCookie('username');
-    // $("#usernamediv").html("");
-    $("#usernamediv").html("<font size=1>Logged in as: <b>" + user + "</b></font>");
-    $('#loginButton').html('logout');
-    $('#loginButton').removeAttr('href');
-    $('#loginButton').attr('onclick', 'mainLogout()');
-    loadFileBrowser();
-
-  }
-
-  if (S3Logged()) {
-    var S3User = getCookie('s3user');
-    var S3Key = getCookie('s3key');
-
-    $('#loginS3button').closest('.ui-btn').hide();
-    $('#importS3button').closest('.ui-btn').show();
-  } else {
-    $('#loginS3button').closest('.ui-btn').show();
-    console.log("HIDING2");
-    $('#importS3button').closest('.ui-btn').hide();
-  }
-});
 
 ////// END jQuery Interface Functions //////////
 

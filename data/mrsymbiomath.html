@@ -17,6 +17,27 @@
                     </a>
                     </li>
                     <li>
+                        <a href="#" onclick="loadService('HomologySearchAndPhylogeneticStudy2')">
+                            <img src="img/serviceicon.png" alt="HomologySearchAndPhylogeneticStudy2">
+                            <h2>Homology Search and Phylogenetic Study 2</h2>
+                            <p>When a researcher has one amino acid query sequence it is interesting to search for similar
+                                sequences with a common evolutive history Later we can follow the study comparing the query sequence
+                                with others and searching for these evolutive relations This workflow run a homology search and performs a
+                                phylogenetic study To do that it run several services including EBI services  runEBIBlast It runs a
+                                BlastP homology search using a protein database with the given sequence and reports the output and
+                                links with the next service  getBestHitsFromBlast It takes the best hits from the Blast report using a
+                                secondary parameter as a Evalue threshold This value is fixed to  The output is a collection of Object each
+                                with an IDACC and namespace database name  getAminoAcidSequenceCollection This service takes a
+                                Object collection with IdNamespace pairs and retrieves its corresponding amino acid sequences
+                                The output showed for the workflow is the list of retrieved sequences  runClustalwFast
+                                It runs the Clustalw algorithm with the retrieved sequences to build a multiple alignments
+                                This alignment contains the sequence similarity among the analysis sequences
+                                runCreateTreeFromClustalw Finally the relations obtained with the multiple alignment are used to build a
+                                phylogenetic tree with Newick format
+                                This tree will be useful to study the evolutionary relationships of all retrieved sequences</p>
+                        </a>
+                    </li>
+                    <li>
                         <a href="#" onclick="loadService('runEBIClustalOmega')">
                             <img src="img/serviceicon.png" alt="runEBIClustalOmega">
                             <h2>Clustal Omega (EBI)</h2>

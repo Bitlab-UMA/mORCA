@@ -115,7 +115,9 @@
             <script type="text/javascript">
             $("#treeview").load("data/mrsymbiomath.html");
             // repoid = "undefined";
-            getRoot(getCookie('username'), getCookie('token'), '', repoid);
+            if(getCookie('username')){
+                getRoot(getCookie('username'), getCookie('token'), '', repoid);
+            }
             </script>
 
 
@@ -268,7 +270,7 @@
             </script>
         </div>
 
-        <div data-role="popup" id="importS3File" data-theme="b" class="ui-corner-all center">
+        < data-role="popup" id="importS3File" data-theme="b" class="ui-corner-all center">
             <div id="status"></div>
             <ul id="objects" data-role="listview" data-inset="true" style="min-width:210px;" data-theme="b">
                 <li data-role="divider" data-theme="b">Files in the bucket:</li>
@@ -301,6 +303,36 @@
                     }
                 }
             });
+            </script>
+
+            <script>
+
+                $(document).ready(function() {
+                    var user = "not logged in";
+                    if (logged()) {
+                        user = getCookie('username');
+                        // $("#usernamediv").html("");
+                        $("#usernamediv").html("<font size=1>Logged in as: <b>" + user + "</b></font>");
+                        $('#loginButton').html('logout');
+                        $('#loginButton').removeAttr('href');
+                        $('#loginButton').attr('onclick', 'mainLogout()');
+                        loadFileBrowser();
+
+                    }
+
+                    if (S3Logged()) {
+                        var S3User = getCookie('s3user');
+                        var S3Key = getCookie('s3key');
+
+                        $('#loginS3button').closest('.ui-btn').hide();
+                        $('#importS3button').closest('.ui-btn').show();
+                    } else {
+                        $('#loginS3button').closest('.ui-btn').show();
+                        console.log("HIDING2");
+                        $('#importS3button').closest('.ui-btn').hide();
+                    }
+                });
+
             </script>
         </div>
         <div id="fileInfoPopups">

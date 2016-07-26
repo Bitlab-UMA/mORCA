@@ -150,11 +150,10 @@
 
     <script>
     loadServiceInfo();
-    getRoot(getCookie('username'), getCookie('token'), '', repoid);
 
-    document.write('<div data-role="header" data-position="fixed"><a href="index.html" data-icon="arrow-l" data-rel="back" data-direction="reverse">Back<Home></Home></a><h1>' + name + '</h1>')
+    document.write('<div data-role="header" data-position="fixed"><a href="index.html" data-icon="arrow-l" data-rel="back" data-direction="reverse">Back</a><h1>' + name + '</h1>');
 
-    document.write('<a href="#popupLogin" id="loginButton" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Sign in</a>')
+    document.write('<a href="#popupLogin" id="loginButton" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Sign in</a></div>')
 
             if(!getCookie("username")) {
               document.write('<div id="popupLogin" data-role="popup" data-theme="a" class="ui-corner-all">' +
@@ -165,7 +164,7 @@
               '<input type="text" name="user" id="un" value="guest" placeholder="Username" data-theme="a">' +
               '<label for="pw" class="ui-hidden-accessible">Password:</label>' +
               '<input type="password" name="pass" id="pw" value="guest" placeholder="Password" data-theme="a">' +
-              '<button id="loginpopbutton" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button></div></div>');
+              '<button id="loginpopbutton" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button></div>');
 
               $("#loginpopbutton").click(function () {
                 var userform = $('#popupLogin').find('input[name="user"]').val() || "guest";
@@ -178,6 +177,7 @@
               $('#loginButton').html('logout');
               $('#loginButton').removeAttr('href');
               $('#loginButton').attr('onclick', 'mainLogout()');
+              getRoot(getCookie('username'), getCookie('token'), '', repoid);
             }
 
     getParameters(idOperation, repoID, (function(array) {
@@ -186,13 +186,7 @@
       parameters = array;
     }));
 
-    console.log("-------");
     </script>
-<!--     <center><a data-role="button" id="resultbutton" class="ui-disabled"
-onclick='getFile(resultfile,getCookie("token"), repoid); document.getElementById("resultbutton").innerHTML= "Results:" '>
-                Show results…</a>
-    </center>
- -->
 
      <div id="mainresults" contenteditable style="margin-left: 10px;" disabled >
 RESULTS…
@@ -221,10 +215,6 @@ RESULTS…
       <h4>&copy; 2016 Bioinformatics and Information Technology Laboratories</h4>
     </div>
   </div>
-  <div data-role="page" id="results">
-    <div data-role="header" data-position="fixed" data-add-back-btn="true">
-      <h1>Results</h1>
-    </div>
 <!--     <div data-role='content' id="mainresults">
     </div>
  -->
