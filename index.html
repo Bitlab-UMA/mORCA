@@ -4,13 +4,15 @@
 <head>
     <meta charset="utf-8" />
     <title>Bitlab</title>
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/jquery.soap.js"></script>
     <script src="js/jquery.mobile.nestedlists.js"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.26.min.js"></script>
     <script src="js/mAPI.js"></script>
     <script src="js/sAPI.js"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
@@ -77,9 +79,6 @@
         <div id="repositorymain" role="main" class="ui-content">
             <div id="welcomediv">
                 <img src="img/logo.png" alt="MrSymbiomath">
-                <script>
-                checkCookies()
-                </script>
              </div>
 
             <!-- LOGIN -->
@@ -151,14 +150,14 @@
             <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
             <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
                 <ul>
-                    <li><a href="#home" data-icon="home">Home</a></li>
-                    <li><a href="#index" data-icon="gear" class="ui-btn-active">Repository</a></li>
+                    <li><a href="#index" data-icon="gear" class="ui-btn-active">Home</a></li>
                     <li><a href="#filebrowser" data-icon="grid">File Browser</a></li>
+                    <li><a href="#about" data-icon="home">About</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <div data-role="page" id="home">
+    <div data-role="page" id="about">
         <div data-role="header" data-position="fixed">
             <h1>Bitlab</h1>
         </div>
@@ -179,9 +178,9 @@
             <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
             <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
                 <ul>
-                    <li><a href="#home" class="ui-btn-active" data-icon="home">Home</a></li>
-                    <li><a href="#index" data-icon="gear">Repository</a></li>
+                    <li><a href="#index" data-icon="gear">Home</a></li>
                     <li><a href="#filebrowser" data-icon="grid">File Browser</a></li>
+                    <li><a href="#about" data-icon="home" class="ui-btn-active">About</a></li>
                 </ul>
             </div>
         </div>
@@ -202,7 +201,6 @@
             </div>
             <div id="listviewplace">
                 <ul id="fileListUL" data-inset="true">
-                <!-- <script>loadFileBrowser()</script> -->
                     <li data-role="list-divider">
                         <div class="rowElement">
                             <div class="ui-bar ui-grid-a" id="filelistheader">
@@ -220,9 +218,9 @@
             <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
             <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
                 <ul>
-                    <li><a href="#home" data-icon="home">Home</a></li>
-                    <li><a href="#index" data-icon="gear">Repository</a></li>
+                    <li><a href="#index" data-icon="gear">Home</a></li>
                     <li><a href="#filebrowser" data-icon="grid" class="ui-btn-active">File Browser</a></li>
+                    <li><a href="#about" data-icon="home" >About</a></li>
                 </ul>
             </div>
         </div>
@@ -270,7 +268,7 @@
             </script>
         </div>
 
-        < data-role="popup" id="importS3File" data-theme="b" class="ui-corner-all center">
+        <div data-role="popup" id="importS3File" data-theme="b" class="ui-corner-all center">
             <div id="status"></div>
             <ul id="objects" data-role="listview" data-inset="true" style="min-width:210px;" data-theme="b">
                 <li data-role="divider" data-theme="b">Files in the bucket:</li>
