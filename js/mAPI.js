@@ -403,7 +403,9 @@ function getFile(idfile, session, repoid) {
       // alert("Output: " + data);
       // document.getElementById("mainresults").style.display = 'block';
       // alert(data);
+      console.log("Preclean: "+data);
       var clData = cleanData(data);
+      console.log("Clean: "+clData)
       document.getElementById("mainresults").innerHTML = clData;
       // document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
 
@@ -412,8 +414,7 @@ function getFile(idfile, session, repoid) {
       var rt = resultsType(data);
       if (rt == 'AminoAcidSequence') {
 // alert(clData);
-        var seqstring = clData.substring(0, ((r=clData.indexOf('>'))==-1)? clData.length : r);
-        var seq = new Sequence(seqstring);
+        var seq = new Sequence(clData);
         // You can add some rendering options
         seq.render('#mainresults', {
             'showLineNumbers': true,
@@ -423,22 +424,8 @@ function getFile(idfile, session, repoid) {
             'search': true,
             'title': document.getElementById("parameter0").value + "  "
         });
-      } else if (rt == 'BLAST-Text') {
-
       }
 
-
-
-      // selectElementContents("mainresults");
-
-      // document.getElementById("mainresults").select();
-      // $("#mainresults").select(function() {
-      //   alert( "Handler for .select() called." );
-      // });
-      // $("#runrun").text("you can Copy results");
-
-
-      // return data;  NO SIRVE, no hay return
     },
     error: function(SOAPResponse) {
       // NEED TO IMPLEMENT
@@ -619,9 +606,18 @@ function deleteElement(elementid, session, repoid) {
 
 
 function cleanData(data) {
-  var ii1 = data.indexOf('[CDATA[');
-  var ii2 = data.indexOf(']]>');
-  return data.substring(ii1+7, ii2);
+  var rt = resultsType(data)
+  if (rt == 'AminoAcidSequence') {
+    var ii1 = data.indexOf('SequenceString">', 2)+16;
+    var ii2 = data.indexOf('</AminoAcidSequence>', ii1);
+    var seqstring = data.substring(ii1, ii2);
+    console.log("Seq: "+seqstring);
+    return seqstring;
+  } else {
+    var ii1 = data.indexOf('[CDATA[');
+    var ii2 = data.indexOf(']]>');
+    return data.substring(ii1+7, ii2);
+  }
 }
 
 function resultsType(data) {

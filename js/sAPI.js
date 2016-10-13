@@ -259,30 +259,31 @@ function generateInterface(parameters, serviceName) {
               '</fieldset></div></div></div>'
           );
 
-          parametersDiv.append('<div data-role="popup" id="popupMenu' + x + '" data-theme="b">' +
+          var generatePopup='<div data-role="popup" id="popupMenu' + x + '" data-theme="b">' +
           '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-right">Close</a>' +
           '<ul data-role="listview" data-inset="true" style="min-width:210px;">' +
-          '<li data-role="list-divider">Files:</li>');
+          '<li data-role="list-divider">Files:</li>';
+
 
           if (!getCookie('username')) {
-            parametersDiv.append('<li><i>You must be logged to use the file system!</i></li>');
+            generatePopup +='<li><i>You must be logged to use the file system!</i></li>';
           } else {
-
             for (var y in filesList) {
-              parametersDiv.append(
-                  // '<li><a onclick="nuevoParametro(' + x + ',\'' + filesList[y].id + '\'); window.location.href=\'#\';">' + filesList[y].name + '</a></li>'
+              generatePopup +=
                   '<li><a onclick="nuevoParametro(' + x + ',\''
                   + filesList[y].id + '\',\''
-                  + filesList[y].name + '\'); $(\'#popupMenu' + x + '\').popup(\'close\');">' + filesList[y].name + '</a></li>'
-              );
-
+                  + filesList[y].name + '\'); $(\'#popupMenu' + x + '\').popup(\'close\');">' + filesList[y].name + '</a></li>';
             }
           }
 
-          repoid = String(window.location.href.split('?')[2])
+          generatePopup+=('</ul></div></div>');
+
+          parametersDiv.append(generatePopup);
+
+          repoid = String(window.location.href.split('?')[2]);
           repoid = decodeURI(repoid);
 
-          parametersDiv.append('</ul></div>');
+
           // document.ready(function(){
           //     $("#resultbutton").click(function(){
           //         getFile(resultfile,getCookie("token"), repoid);
