@@ -6,9 +6,8 @@ var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
 var user_schema = new Schema({
-    _id                 : Number,
     userName            :   String,
-    jobList             : [{ type: Schema.Types.ObjectId, ref: 'Job' }]
+    jobList             :   [{ type: Schema.Types.ObjectId, ref: 'Job' }]
 });
 
 module.exports = mongoose.model('User', user_schema);
