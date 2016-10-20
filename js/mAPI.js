@@ -243,120 +243,150 @@ function getParameters(operationID, repoID, returnFunction)  {
 
 
 function executeService(inputList, outputList, urlOperation, idOperation, nameFile, idFolder, token, user, repoID)  {
-  soap();
-  $.soap({
-    method: 'executeService',
-    namespaceQualifier: 'q0',
 
-    data: function(SOAPObject) {
-      SOAPObject = new SOAPObject("soapenv:Body")
-      var execute = SOAPObject.newChild('q0:executeService')
+  //Create request array to stringify in JSON
+  var data = [];
+  data.push(inputList);
+  data.push(outputList);
+  data.push(urlOperation);
+  data.push(idOperation);
+  data.push(nameFile);
+  data.push(idFolder);
+  data.push(token);
+  data.push(user);
+  data.push(repoID);
 
-      //Creating input parameters list
-      for (var x in inputList) {
-        var input = execute.newChild("q0:inputList")
-
-        if (inputList[x][0] != null) {
-          input.addParameter("q0:data", inputList[x][0])
-        } else {
-          input.newChild("q0:data").attr("nil", "true");
-        }
-
-        if (inputList[x][1] != null) {
-          input.addParameter("q0:dataType", inputList[x][1])
-        } else {
-          input.newChild("q0:dataType").attr("nil", "true");
-        }
-
-        if (inputList[x][2] != null) {
-          input.addParameter("q0:format", inputList[x][2])
-        } else {
-          input.newChild("q0:format").attr("nil", "true");
-        }
-
-        if (inputList[x][3] != null) {
-          input.addParameter("q0:name", inputList[x][3])
-        } else {
-          input.newChild("q0:name").attr("nil", "true");
-        }
-
-        if (inputList[x][4] != null) {
-          input.addParameter("q0:paramType", inputList[x][4])
-        } else {
-          input.newChild("q0:paramType").attr("nil", "true");
-        }
-
-        if (inputList[x][5] != null) {
-          input.addParameter("q0:store", inputList[x][5])
-        } else {
-          input.newChild("q0:store").attr("nil", "true");
-        }
-
-        if (inputList[x][6] != null) {
-          input.addParameter("q0:type", inputList[x][6])
-        } else {
-          input.newChild("q0:type").attr("nil", "true");
-        }
-
-        if (inputList[x][6] != null) {
-          input.addParameter("q0:file", inputList[x][7])
-        } else {
-          input.newChild("q0:file").attr("nil", "true");
-        }
-
-      }
-
-      //Creating output parameters list
-      for (var y in outputList) {
-        var output = execute.newChild("q0:outputList")
-        output.addParameter("q0:data",      outputList[y][0])
-        output.addParameter("q0:dataType",  outputList[y][1])
-        output.addParameter("q0:format",    outputList[y][2])
-        output.addParameter("q0:name",      outputList[y][3])
-        output.addParameter("q0:paramType", outputList[y][4])
-        output.addParameter("q0:store",     outputList[y][5])
-        output.addParameter("q0:type",      outputList[y][6])
-        output.addParameter("q0:file",      outputList[y][7])
-      }
-
-      //Creating service parameters
-      execute.addParameter("q0:urlOperation", urlOperation.toString())
-      execute.addParameter("q0:idOperation",  idOperation.toString())
-      execute.addParameter("q0:nameFile",     nameFile.toString())
-      execute.addParameter("q0:idFolder",     idFolder.toString())
-      execute.addParameter("q0:token",        token.toString())
-      execute.addParameter("q0:user",         user.toString())
-      execute.addParameter("q0:repoid",       repoID.toString())
-
-      return SOAPObject;
-    },
-
-    beforeSend: function(SOAPEnvelope) {
-      console.log(SOAPEnvelope.toString());
-    },
-
-    success: function(soapResponse) {
-      var response = soapResponse.toXML();
-      var noderoot = response.documentElement;
-      resultfile = noderoot.getElementsByTagName("executeServiceReturn")[0].childNodes[0].nodeValue;
+  $.ajax({
+    type: 'POST',
+    data: JSON.stringify(data),
+    contentType: 'application/json',
+    url: 'http://pistacho.ac.uma.es/morcanode/execute',
+    success: function(data) {
       $.mobile.loading('hide');
-      // $('#resultbutton').prop('disabled', "").removeClass('ui-disabled');
-
-      // intento que se vean los resultados inmediatamente:
-      getFile(resultfile,getCookie("token"), repoid);
-      // document.getElementById("resultbutton").innerHTML= "Results:"
-
-    },
-
-    error: function(SOAPResponse) {
-      // NEED TO IMPLEMENT
-      $.mobile.loading('hide');
-      console.log(SOAPResponse.toString());
     }
   });
 
+  //Deprecated executeService
+  /*
+   $.soap({
+   url: 'http://pistacho.ac.uma.es/morcanode/execute',
+   SOAPAction: '',
+   method: '',
+   namespaceQualifier: 'q0',
 
+   data: function(SOAPObject) {
+   SOAPObject = new SOAPObject("soapenv:Body")
+   var execute = SOAPObject.newChild('q0:executeService')
+
+   //Creating input parameters list
+   for (var x in inputList) {
+   var input = execute.newChild("q0:inputList")
+
+   if (inputList[x][0] != null) {
+   input.addParameter("q0:data", inputList[x][0])
+   } else {
+   input.newChild("q0:data").attr("nil", "true");
+   }
+
+   if (inputList[x][1] != null) {
+   input.addParameter("q0:dataType", inputList[x][1])
+   } else {
+   input.newChild("q0:dataType").attr("nil", "true");
+   }
+
+   if (inputList[x][2] != null) {
+   input.addParameter("q0:format", inputList[x][2])
+   } else {
+   input.newChild("q0:format").attr("nil", "true");
+   }
+
+   if (inputList[x][3] != null) {
+   input.addParameter("q0:name", inputList[x][3])
+   } else {
+   input.newChild("q0:name").attr("nil", "true");
+   }
+
+   if (inputList[x][4] != null) {
+   input.addParameter("q0:paramType", inputList[x][4])
+   } else {
+   input.newChild("q0:paramType").attr("nil", "true");
+   }
+
+   if (inputList[x][5] != null) {
+   input.addParameter("q0:store", inputList[x][5])
+   } else {
+   input.newChild("q0:store").attr("nil", "true");
+   }
+
+   if (inputList[x][6] != null) {
+   input.addParameter("q0:type", inputList[x][6])
+   } else {
+   input.newChild("q0:type").attr("nil", "true");
+   }
+
+   if (inputList[x][6] != null) {
+   input.addParameter("q0:file", inputList[x][7])
+   } else {
+   input.newChild("q0:file").attr("nil", "true");
+   }
+
+   }
+
+   //Creating output parameters list
+   for (var y in outputList) {
+   var output = execute.newChild("q0:outputList")
+   output.addParameter("q0:data",      outputList[y][0])
+   output.addParameter("q0:dataType",  outputList[y][1])
+   output.addParameter("q0:format",    outputList[y][2])
+   output.addParameter("q0:name",      outputList[y][3])
+   output.addParameter("q0:paramType", outputList[y][4])
+   output.addParameter("q0:store",     outputList[y][5])
+   output.addParameter("q0:type",      outputList[y][6])
+   output.addParameter("q0:file",      outputList[y][7])
+   }
+
+   //Creating service parameters
+   execute.addParameter("q0:urlOperation", urlOperation.toString())
+   execute.addParameter("q0:idOperation",  idOperation.toString())
+   execute.addParameter("q0:nameFile",     nameFile.toString())
+   execute.addParameter("q0:idFolder",     idFolder.toString())
+   execute.addParameter("q0:token",        token.toString())
+   execute.addParameter("q0:user",         user.toString())
+   execute.addParameter("q0:repoid",       repoID.toString())
+
+   return SOAPObject;
+   },
+
+   beforeSend: function(SOAPEnvelope) {
+   console.log(SOAPEnvelope.toString());
+   },
+
+   success: function(soapResponse) {
+
+   console.log("Success");
+   console.log(soapResponse.toString());
+
+   /*
+   var response = soapResponse.toXML();
+   var noderoot = response.documentElement;
+   resultfile = noderoot.getElementsByTagName("executeServiceReturn")[0].childNodes[0].nodeValue;
+   $.mobile.loading('hide');
+   // $('#resultbutton').prop('disabled', "").removeClass('ui-disabled');
+
+   // intento que se vean los resultados inmediatamente:
+   getFile(resultfile,getCookie("token"), repoid);
+   // document.getElementById("resultbutton").innerHTML= "Results:"
+   },
+
+   error: function(SOAPResponse) {
+   // NEED TO IMPLEMENT
+   $.mobile.loading('hide');
+   console.log(SOAPResponse.toString());
+   }
+   });
+   */
 }
+
 
 function selectElementContents(elid) {
   var el = document.getElementById(elid)
