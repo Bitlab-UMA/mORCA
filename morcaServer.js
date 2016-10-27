@@ -9,11 +9,24 @@ var doc = jsdom();
 var window = doc.defaultView;
 var $ = require("jquery")(window);
 
-/*app.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+app.use(function (req, res, next) {
+
+	// Website you wish to allow to connect
+	res.setHeader('Access-Control-Allow-Origin', 'http://chirimoyo.ac.uma.es');
+
+	// Request methods you wish to allow
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+
+	// Request headers you wish to allow
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+	// Set to true if you need the website to include cookies in the requests sent
+	// to the API (e.g. in case you use sessions)
+	res.setHeader('Access-Control-Allow-Credentials', true);
+
+	// Pass to next layer of middleware
 	next();
-});*/
+});
 
 var rawParser = bodyParser.text({ type: 'text/xml'});
 var JSONParser = bodyParser.json();
@@ -30,10 +43,12 @@ app.use(bodyParser.json());
 var port = process.env.PORT || 8082;
 
 var jobs = express.Router();
+
 jobs.route('/addJob')
     .post(jobsCtrl.addJob);
 
 jobs.post('/morcanode/execute', JSONParser, mapiCtrl.executeServiceJSON);
+jobs.get('/morcanode/joblist', JSONParser, jobsCtrl.listJobs);
 
 app.use(jobs);
 

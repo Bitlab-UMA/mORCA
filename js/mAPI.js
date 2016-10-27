@@ -263,6 +263,7 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
     url: 'http://pistacho.ac.uma.es/morcanode/execute',
     success: function(data) {
       $.mobile.loading('hide');
+      $('#serviceRunning').append("<p>Service launched,<a href='chirimoyo.ac.uma.es/mrsymbiomathapp/#about'>check status</a><p>")
     }
   });
 
@@ -387,6 +388,28 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
    */
 }
 
+function getJobList(){
+
+  var user = getCookie("username");
+  $.ajax({
+    type: 'GET',
+    data: {username : user},
+    contentType: 'application/json',
+    url: 'http://pistacho.ac.uma.es/morcanode/joblist',
+    beforeSend: function(jqXHR, settings){
+      console.log(settings.data);
+    },
+    success: function(data) {
+      console.log("cucu");
+      console.log(data);
+    },
+    error: function(err){
+      console.log("Error: ");
+      console.log(err)
+    }
+  });
+
+}
 
 function selectElementContents(elid) {
   var el = document.getElementById(elid)
@@ -396,8 +419,6 @@ function selectElementContents(elid) {
   sel.removeAllRanges();
   sel.addRange(range);
 }
-
-
 
 function getFile(idfile, session, repoid) {
   soap();

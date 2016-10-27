@@ -7,8 +7,7 @@ var doc = jsdom();
 var window = doc.defaultView;
 var $ = require("jquery")(window);
 var soap = require('../node_modules/jquery-soap/lib/jquery.soap.js');
-
-
+var jobs = require('./jobs');
 
 
 var configureSoap = function(req, res) {
@@ -29,13 +28,13 @@ var configureSoap = function(req, res) {
         HTTPHeaders: {},
 
         error: function(soapResponse) {
-            console.log(SOAPResponse.toString());
+            console.log(SoapResponse.toString());
         }
     });
-}
+};
 
 var getToolListAsXML = function(req, send) {
-    this.configureSoap();
+    configureSoap();
     var reponame = 'Bitlab [chirimoyo.ac.uma.es]';
     soap.soap({
         method: 'getToolListAsXML',
@@ -84,6 +83,8 @@ var executeServiceJSON = function (req, res) {
     var token = req.body[6];
     var user = req.body[7];
     var repoID = req.body[8];
+
+    var jobID;
 
     configureSoap(req,res);
 
@@ -174,9 +175,40 @@ var executeServiceJSON = function (req, res) {
             return SOAPObject;
         },
 
+        beforeSend: function (soapResponse) {
+            console.log("Storing job...");
+            var userName = user.toString();
+            var serviceName = urlOperation.split(':').pop();
+            var outputFile = "";
+            var status = "Running";
+
+            console.log("User: "+user+" serviceName: "+serviceName);
+            console.log("outputFile: "+outputFile+" Status:"+status);
+
+            jobs.addJob(userName, serviceName, outputFile, status);
+        },
+
         success: function (soapResponse) {
             console.log("Success");
             console.log(soapResponse.toString());
+
+            var xml = soapResponse.toString();
+            var parseString = require('xml2js').parseString;
+            var outputFile;
+
+            parseString(xml, function (err, result) {
+                console.dir(JSON.stringify(result));
+                console.log(result["soapenv:Envelope"]["soapenv:Body"][0]["executeServiceResponse"][0]["executeServiceReturn"][0]);
+                outputFile =result["soapenv:Envelope"]["soapenv:Body"][0]["executeServiceResponse"][0]["executeServiceReturn"][0];
+            });
+
+            jobs.updateJob(jobID, outputFile,'finished')
+        },
+        error: function (soapResponse) {
+            console.log("Error");
+            console.log(soapResponse.toString());
+
+            jobs.updateJob(jobID, "NOT",'failed')
         }
     });
 };
