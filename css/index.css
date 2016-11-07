@@ -162,3 +162,16 @@ img, object{
     max-width:100%;
 }
 
+/*** Joblist CSS ****/
+
+#jobTable > tbody > tr.finished {
+    background: #B2D5C4;
+}
+
+#jobTable > tbody > tr.failed {
+    background: #d5bab3;
+}
+
+#jobTable > tbody > tr.Running {
+    background: #f6f3cb;
+}

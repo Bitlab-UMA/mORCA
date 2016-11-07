@@ -632,7 +632,6 @@ function loadBioToolsServiceList(){
 
 ////// END BioTools  //////////
 
-
 function listBiocatalogue() {
 
   $.ajax({
@@ -652,4 +651,42 @@ function listBiocatalogue() {
       console.log(list)
     }
   });
+}
+
+function generateJobMonitoringInterface (jobs) {
+
+
+  /* Dictionary for id/namefile
+
+   var token = getCookie("token");
+   var user = getCookie("username");
+   getRoot(user, token, '', repoid.toString());
+
+   var files = [];
+   for (i in filesList) {
+   var key = filesList[i].id ;
+   files[key] = filesList[i].name
+   }
+
+   */
+
+  //Order array DESC
+  jobs.sort(function(a, b) {
+    a = new Date(a.date);
+    b = new Date(b.date);
+    return a>b ? -1 : a<b ? 1 : 0;
+  });
+
+
+  //Append each job as a row in the table
+  for (i in jobs) {
+    var date = new Date(jobs[i].date);
+    var classes = jobs[i].status
+
+    $('#jobTable > tbody').append('<tr class="'+classes+'"> <td>'+jobs[i].jobName+'</td><td><a href="index.html" data-inline="true" data-role="button" data-icon="action" data-iconpos="notext">Open</a><a href="index.html" data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Open</a></td><td>'+date.toUTCString()+'</td></tr>').trigger('create');
+
+
+  }
+
+  $('#jobTable').table("refresh");
 }

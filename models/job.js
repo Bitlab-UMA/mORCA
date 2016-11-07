@@ -5,7 +5,8 @@ var job_schema = new Schema({
     user              : { type: String, ref: 'User' },
     jobName           :   String,
     outputFile        :   String,
-    status            :   String
+    status            :   String,
+    date              : { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('Job', job_schema);

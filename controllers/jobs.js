@@ -8,97 +8,76 @@ var jsdom = require("jsdom").jsdom;
 var doc = jsdom();
 var window = doc.defaultView;
 var $ = require("jquery")(window);
+var async = require('async');
 
-exports.addJob = function(user, serviceName, outputFile, status) {
+exports.addJob = function(username, serviceName, outputFile, status, cb) {
 
-    var findUser = User.find({userName: user}, function (err, query) {
-        if (query.length) {
-            console.log('Name exists already');
-            console.log(query);
+    async.waterfall([
+        async.apply(findUser, username),
+        saveJob,
+        updateJoblist
+    ], cb);
 
-            var user = query.pop();
 
-            console.log("User found: "+user);
 
-            var job1 = new Job ({
-                user              :    user._id,
-                jobName           :    serviceName,
-                outputFile        :    outputFile,
-                status            :    status
-            });
+    function findUser(username, callback) {
+        var user;
 
-            var saveJob = job1.save(function(err, job) {
-                if(err){
-                    console.log("Error saving job: "+err);
-                    return false;
-                }
-            });
+        User.find({userName: username}, function(error, query) {
 
-            saveJob.then(function(job){
-                console.log("Job created: "+job1._id);
-                return job1._id;
-            });
+            if (query.length) {
 
-            User.findByIdAndUpdate(user._id,
-                {$push: {'jobList': job1._id}},
-                {safe: true, upsert: false},
-                function(err, model) {
-                    console.log(err);
-                    console.log(model);
-                }
-            );
+                user = query.pop();
 
-        } else {
-            console.log("User doesn't exist");
-
-            var user = new User({
-                userName: 'guest'
-            });
-
-            user.save(function (err) {
-                if (err) console.log(err);
-            });
-
-            console.log("User saved: "+user);
-
-            var job1 = new Job ({
-                user              :    user._id,
-                jobName           :    serviceName,
-                outputFile        :    outputFile,
-                status            :    status
-            });
-
-            job1.save(function(err, job) {
-                if(err){
-                    console.log("Error saving job: "+err);
-                    return false;
-                }
-            });
-
-            User.findByIdAndUpdate(user._id,
-                {$push: {'jobList': job1._id}},
-                {safe: true, upsert: false},
-                function(err, model) {
-                    if(err) console.log("Error updating user: "+err); else console.log("Job added to user: "+model);
+            } else {
+                user = new User ({
+                    userName : username
                 });
 
-            var jobID = job1._id;
-            console.log("JobID2: ")
-            console.log(jobID);
-            return jobID
-        }
-    });
+                user.save(function(err, job) {
+                    if (err) console.log("Error saving user: " + err);
+                });
+            }
 
-    findUser.then(function (doc) {
-        console.log("Now: ");
-        console.log(doc);
-    });
+            console.log(user);
+
+            callback(null, user);
+        });
+    }
+
+    function saveJob(user, callback) {
+
+        var job1 = new Job ({
+            user              :    user._id,
+            jobName           :    serviceName,
+            outputFile        :    outputFile,
+            status            :    status
+        });
+
+        job1.save(function(err, job) {
+            if (err) console.log("Error saving job: " + err);
+        });
+
+
+
+        callback(null, user, job1);
+    }
+
+    function updateJoblist(user,job,callback){
+
+        console.log("Updating Joblist of user: "+user.userName);
+
+        User.findByIdAndUpdate(user._id,
+            {$push: {'jobList': job._id}},
+            {safe: true, upsert: false}, function (err, user){
+                if (err) console.log("Error updating joblist: " + err); else console.log("Joblist updated correctly: " + user);
+            });
+
+        callback(null, job);
+    }
 };
 
 exports.updateJob = function(jobID, outputFile, status) {
-
-    console.log("jobID: "+jobID+ " / outputFile: "+outputFile+" / status: "+status);
-
     Job.findByIdAndUpdate(jobID,
         {'outputFile': outputFile, 'status': status},
         {safe: true, upsert: false},
@@ -112,20 +91,16 @@ exports.listJobs = function(req, res, returnData){
 
     User.find({userName: user}, function (err, query) {
         if (query.length) {
-            console.log('Name exists already');
-            console.log(query);
-
             var user = query.pop();
-
-            Job.find({user:user._id}, function(err, jobs){
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(jobs));
-            });
+            Job.find({user: user._id}, function (err, query) {
+                if (query.length) {
+                    res.json(query);
+                }
+            })
 
         } else {
-            console.log('User doesnt exist')
-            res.setHeader('Content-Type', 'application/json');
-            res.send("No");
+            console.log('User doesnt exist');
+            res.status(500).send('User doesnt exist');
         }
     });
 };

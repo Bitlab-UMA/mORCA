@@ -86,7 +86,18 @@ var executeServiceJSON = function (req, res) {
 
     var jobID;
 
-    configureSoap(req,res);
+    var userName = user.toString();
+    var serviceName = urlOperation.split(':').pop();
+    var outputFile = "";
+    var status = "Running";
+
+    res.sendStatus(200);
+
+    addJob(userName, serviceName, outputFile, status, function(err, job){
+       jobID = job._id;
+    });
+
+    configureSoap(req, res);
 
     soap.soap({
         method: 'executeService',
@@ -176,41 +187,33 @@ var executeServiceJSON = function (req, res) {
         },
 
         beforeSend: function (soapResponse) {
-            console.log("Storing job...");
-            var userName = user.toString();
-            var serviceName = urlOperation.split(':').pop();
-            var outputFile = "";
-            var status = "Running";
-
-            console.log("User: "+user+" serviceName: "+serviceName);
-            console.log("outputFile: "+outputFile+" Status:"+status);
-
-            jobs.addJob(userName, serviceName, outputFile, status);
+            console.log("SENDING...")
         },
 
         success: function (soapResponse) {
-            console.log("Success");
-            console.log(soapResponse.toString());
-
             var xml = soapResponse.toString();
             var parseString = require('xml2js').parseString;
             var outputFile;
 
+            console.log(soapResponse);
+
             parseString(xml, function (err, result) {
-                console.dir(JSON.stringify(result));
-                console.log(result["soapenv:Envelope"]["soapenv:Body"][0]["executeServiceResponse"][0]["executeServiceReturn"][0]);
                 outputFile =result["soapenv:Envelope"]["soapenv:Body"][0]["executeServiceResponse"][0]["executeServiceReturn"][0];
             });
 
             jobs.updateJob(jobID, outputFile,'finished')
         },
-        error: function (soapResponse) {
-            console.log("Error");
-            console.log(soapResponse.toString());
 
+        error: function (soapResponse) {
+            console.log("Error executing service");
+            console.log(soapResponse);
             jobs.updateJob(jobID, "NOT",'failed')
         }
     });
+
+    function addJob (userName, serviceName, outputFile, status, cb){
+        jobs.addJob(userName, serviceName, outputFile, status, cb)
+    }
 };
 
 

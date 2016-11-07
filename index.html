@@ -19,12 +19,14 @@
     <link rel="stylesheet" href="css/themes/Bitlab.css" />
     <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="css/index.css" />
+    <link type="text/css" rel="stylesheet" href="css/jqm-font-awesome-isvg-ipng.min.css" />
     <link rel="apple-touch-icon" href="ios/Icon.png" />
     <link rel="apple-touch-icon-precomposed" href="ios/Icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="ios/Icon-72.png" />
     <link rel="apple-touch-icon" sizes="114x114" href="ios/Icon@2x.png" />
     <link rel="apple-touch-icon" sizes="144x144" href="ios/Icon-72@2x.png" />
     <script>
+
     var toolid = "urn:symbiomath:tool:";
     var repoid = "Bitlab [chirimoyo.ac.uma.es]";
 
@@ -343,12 +345,21 @@
         <div data-role="header" data-position="fixed">
             <h1>Bitlab</h1>
         </div>
-        <div id="execution list" role="main" class="ui-content">
+        <div id="executionList" data-role="content" class="ui-content">
+
+            <table data-role="table" class="table-stroke ui-responsive ui-shadow" id="jobTable">
+                <thead>
+                    <tr> <th>Service name</th> <th>Results</th> <th>Date</th> </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
 
 
             <script>
                 $(document).on("pageshow","#executionInfo",function(){ // When entering pagetwo
-                    alert("Showing");
+                    var jobs = getJobList();
+                    generateJobMonitoringInterface(jobs);
                 });
             </script>
         </div>
@@ -359,8 +370,8 @@
                 <ul>
                     <li><a href="#index" data-icon="gear">Home</a></li>
                     <li><a href="#filebrowser" data-icon="grid">File Browser</a></li>
-                    <li><a href="#about" data-icon="home" class="ui-btn-active">About</a></li>
-                    <li><a href="#executionInfo" data-icon="gear">Execution Info</a></li>
+                    <li><a href="#about" data-icon="home">About</a></li>
+                    <li><a href="#executionInfo" data-icon="gear" class="ui-btn-active">Execution Info</a></li>
                 </ul>
             </div>
         </div>

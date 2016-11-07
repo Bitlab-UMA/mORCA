@@ -263,7 +263,7 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
     url: 'http://pistacho.ac.uma.es/morcanode/execute',
     success: function(data) {
       $.mobile.loading('hide');
-      $('#serviceRunning').append("<p>Service launched,<a href='chirimoyo.ac.uma.es/mrsymbiomathapp/#about'>check status</a><p>")
+      $('#serviceRunning').append("<p>Service launched,<a rel='external' data-transition='slidedown' href='index.html#executionInfo'>check status</a><p>")
     }
   });
 
@@ -391,8 +391,9 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
 function getJobList(){
 
   var user = getCookie("username");
-  $.ajax({
+  var response = $.ajax({
     type: 'GET',
+    async: false,
     data: {username : user},
     contentType: 'application/json',
     url: 'http://pistacho.ac.uma.es/morcanode/joblist',
@@ -400,14 +401,14 @@ function getJobList(){
       console.log(settings.data);
     },
     success: function(data) {
-      console.log("cucu");
-      console.log(data);
+      return data;
     },
     error: function(err){
-      console.log("Error: ");
       console.log(err)
     }
   });
+
+  return response.responseJSON;
 
 }
 
