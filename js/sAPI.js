@@ -190,7 +190,7 @@ function generateInterface(parameters, serviceName) {
             //   '</div>');
 
           } else {
-            parametersDiv.append('<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #66AB8A; ">' +
+            parametersDiv.append('<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #FF8C00; ">' +
             '<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>' +
             '<div class="ui-block-stringa">' +
             '<div data-role="fieldcontain">' +
@@ -236,7 +236,7 @@ function generateInterface(parameters, serviceName) {
 
 
           parametersDiv.append('<div data-role="fieldcontain" id="parameterbox">' +
-              '<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #66AB8A; ">' +
+              '<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #FF8C00; ">' +
               '<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>' +
               '<div class="ui-block-a">' +
               '<div data-role="fieldcontain">' +
@@ -681,9 +681,16 @@ function generateJobMonitoringInterface (jobs) {
   //Append each job as a row in the table
   for (i in jobs) {
     var date = new Date(jobs[i].date);
+    var minutes = function (){
+      if (date.getUTCMinutes() <10){
+        return "0"+date.getUTCMinutes();
+      } else {
+        return date.getUTCMinutes();
+      }
+    }
     var classes = jobs[i].status
 
-    $('#jobTable > tbody').append('<tr class="'+classes+'"> <td>'+jobs[i].jobName+'</td><td><a href="index.html" data-inline="true" data-role="button" data-icon="action" data-iconpos="notext">Open</a><a href="index.html" data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Open</a></td><td>'+date.toUTCString()+'</td></tr>').trigger('create');
+    $('#jobTable > tbody').append('<tr class="'+classes+'"> <td>'+jobs[i].jobName+'</td><td><a href="index.html" data-inline="true" data-role="button" data-icon="action" data-iconpos="notext">Open</a><a href="index.html" data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Open</a></td><td>'+date.getDay()+'/'+date.getMonth()+'/'+date.getFullYear()+' - '+date.getUTCHours()+':'+minutes()+'</td></tr>').trigger('create');
 
 
   }

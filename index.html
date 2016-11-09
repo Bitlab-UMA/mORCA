@@ -16,10 +16,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-    <link rel="stylesheet" href="css/themes/Bitlab.css" />
+    <link rel="stylesheet" href="css/themes/bitlab-exilir.css" />
     <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="css/index.css" />
-    <link type="text/css" rel="stylesheet" href="css/jqm-font-awesome-isvg-ipng.min.css" />
     <link rel="apple-touch-icon" href="ios/Icon.png" />
     <link rel="apple-touch-icon-precomposed" href="ios/Icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="ios/Icon-72.png" />
@@ -70,35 +69,82 @@
         page += "?" + toolid;
         location.href = page;
     }
+
+    $.mobile.filterable.prototype.options.filterCallback = function(text, searchValue ) {
+            function findLongestSubstring(str1, str2){
+
+                var longest = "";
+                for (var i = 0; i < str1.length; ++i) {
+                    for (var j = 0; j < str2.length; ++j) {
+                        if (str1[i] === str2[j]) {
+                            var str = str1[i];
+                            var k = 1;
+                            while (i + k < str1.length && j + k < str2.length && str1[i+k] === str2[j+k]) { // same letter
+                                str += str1[i+k];
+                                ++k;
+                            }
+
+                            if (str.length > longest.length) { longest = str }
+                        }
+                    }
+
+                }
+                return longest;
+            }
+
+            if(searchValue.length>2) {
+                var title = $(this).find("h2").first().text().toLowerCase();
+                searchValue = searchValue.toLowerCase();
+
+                console.log("Title: "+title);
+                console.log("search: "+searchValue);
+
+                if(title.indexOf(searchValue)>-1) {
+                    return false;
+                } else {
+                    var subst = findLongestSubstring(searchValue,title);
+                    console.log("Substr: "+subst);
+                    console.log("%: " +subst.length*100/searchValue.length)
+                    if(subst.length*100/searchValue.length>=60){
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+            }
+    };
     </script>
 </head>
 
 <body>
     <div data-role="page" id="index">
         <div data-role="header" data-position="fixed" id="genheader">
-            <h1>Bitlab</h1>
+            <h1>mORCA</h1>
+            <a href="#popupLogin" id="loginButton" data-rel="popup" data-position-to="window" class="ui-btn-right" data-transition="pop">Sign in</a>
         </div>
         <div id="repositorymain" role="main" class="ui-content">
+
             <div id="welcomediv">
-                <img src="img/logo.png" alt="MrSymbiomath">
-             </div>
+                <img src="img/logobitlab.png" alt="MrSymbiomath" class="logobitlab">
+            </div>
 
             <!-- LOGIN -->
             <center>
                  <div id="usernamediv">
                     <p font-size="1">Welcome! (please sign in)</p>
                 </div>
-                <a href="#popupLogin" id="loginButton" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Sign in</a>
             </center>
             <div id="popupLogin" data-role="popup" data-theme="a" class="ui-corner-all">
-                <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete"
-                   data-iconpos="notext" class="ui-btn-right">Close</a>
-                <h3>Sign in</h3>
-                <label for="un" class="ui-hidden-accessible">Username:</label>
-                <input type="text" name="user" id="un" value="guest" placeholder="Username" data-theme="a">
-                <label for="pw" class="ui-hidden-accessible">Password:</label>
-                <input type="password" name="pass" id="pw" value="guest" placeholder="Password" data-theme="a">
-                <button id="loginpopbutton" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
+                <div class="popupContent">
+                    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete"
+                       data-iconpos="notext" class="ui-btn-right">Close</a>
+                    <h3>Sign in</h3>
+                    <label for="un" class="ui-hidden-accessible">Username:</label>
+                    <input type="text" name="user" id="un" value="guest" placeholder="Username" data-theme="a">
+                    <label for="pw" class="ui-hidden-accessible">Password:</label>
+                    <input type="password" name="pass" id="pw" value="guest" placeholder="Password" data-theme="a">
+                    <button id="loginpopbutton" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
+                </div>
                 <script>
                 $("#loginpopbutton").click(function() {
                     var userform = $('#popupLogin').find('input[name="user"]').val() || "guest";
@@ -140,6 +186,10 @@
             $("#initialRepo").text("Current repository: " + repoid)
             </script>
 
+            <div id="elixirlogodiv">
+                <img src="img/logo.png" alt="MrSymbiomath" class="logo">
+            </div>
+
 
 
             <!-- <center><a href="index.html" data-role="button" onclick="getToolListAsXML('Bitlab [chirimoyo.ac.uma.es]')">TEST</a> </center>
@@ -152,9 +202,9 @@
             <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
             <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
                 <ul>
-                    <li><a href="#index" data-icon="gear" class="ui-btn-active">Home</a></li>
-                    <li><a href="#filebrowser" data-icon="grid">File Browser</a></li>
-                    <li><a href="#about" data-icon="home">About</a></li>
+                    <li><a href="#index" data-icon="home" class="ui-btn-active">Home</a></li>
+                    <li><a href="#filebrowser" data-icon="bars">File Browser</a></li>
+                    <li><a href="#about" data-icon="info">About</a></li>
                     <li><a href="#executionInfo" data-icon="gear">Execution Info</a></li>
                 </ul>
             </div>
@@ -162,7 +212,8 @@
     </div>
     <div data-role="page" id="about">
         <div data-role="header" data-position="fixed">
-            <h1>Bitlab</h1>
+            <h1>mORCA</h1>
+            <a href="#popupLogin" id="loginButton" data-rel="popup" data-position-to="window" class="ui-btn-right" data-transition="pop">Sign in</a>
         </div>
         <div id="homemain" role="main" class="ui-content">
             <div id="hometext">
@@ -181,9 +232,9 @@
             <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
             <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
                 <ul>
-                    <li><a href="#index" data-icon="gear">Home</a></li>
-                    <li><a href="#filebrowser" data-icon="grid">File Browser</a></li>
-                    <li><a href="#about" data-icon="home" class="ui-btn-active">About</a></li>
+                    <li><a href="#index" data-icon="home">Home</a></li>
+                    <li><a href="#filebrowser" data-icon="bars">File Browser</a></li>
+                    <li><a href="#about" data-icon="info" class="ui-btn-active">About</a></li>
                     <li><a href="#executionInfo" data-icon="gear">Execution Info</a></li>
                 </ul>
             </div>
@@ -191,18 +242,17 @@
     </div>
     <div data-role="page" id="filebrowser">
         <div data-role="header" data-position="fixed">
-            <h1>Bitlab</h1>
+            <h1>mORCA</h1>
+            <a href="#popupLogin" id="loginButton" data-rel="popup" data-position-to="window" class="ui-btn-right" data-transition="pop">Sign in</a>
+
         </div>
         <div data-role="content" id="filebrowsermain">
-            <div class="ui-field-contain" id="optionsbar">
-                <fieldset data-role="controlgroup" data-type="horizontal">
-
+            <div data-role="controlgroup" data-type="horizontal" align="center" data-exclude-invisible="true">
                     <a href="#uploadFilePopup" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop" id="uploadButton">Upload File</a>
-
-                    <a id="loginS3button" href="#loginS3" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Login in Amazon S3</a>
-                    <a id="importS3button" href="#importS3File" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Import from S3</a>
-                </fieldset>
+                    <a id="loginS3button" href="#loginS3" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Amazon S3</a>
+                    <a id="importS3button" href="#importS3File" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">From S3</a>
             </div>
+
             <div id="listviewplace">
                 <ul id="fileListUL" data-inset="true">
                     <li data-role="list-divider">
@@ -222,9 +272,9 @@
             <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
             <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
                 <ul>
-                    <li><a href="#index" data-icon="gear">Home</a></li>
-                    <li><a href="#filebrowser" data-icon="grid" class="ui-btn-active">File Browser</a></li>
-                    <li><a href="#about" data-icon="home" >About</a></li>
+                    <li><a href="#index" data-icon="home">Home</a></li>
+                    <li><a href="#filebrowser" data-icon="bars" class="ui-btn-active">File Browser</a></li>
+                    <li><a href="#about" data-icon="info" >About</a></li>
                     <li><a href="#executionInfo" data-icon="gear">Execution Info</a></li>
                 </ul>
             </div>
@@ -343,8 +393,18 @@
     </div>
     <div data-role="page" id="executionInfo">
         <div data-role="header" data-position="fixed">
-            <h1>Bitlab</h1>
+            <h1>mORCA</h1>
+            <a href="#popupLogin" id="loginButton" data-rel="popup" data-position-to="window" class="ui-btn-right" data-transition="pop">Sign in</a>
+
         </div>
+
+        <div id="legendStatus">
+            <p class="Running">Running</p>
+            <p class="finished">Finished</p>
+            <p class="failed">Failed</p>
+        </div>
+
+
         <div id="executionList" data-role="content" class="ui-content">
 
             <table data-role="table" class="table-stroke ui-responsive ui-shadow" id="jobTable">
@@ -357,9 +417,11 @@
 
 
             <script>
-                $(document).on("pageshow","#executionInfo",function(){ // When entering pagetwo
-                    var jobs = getJobList();
-                    generateJobMonitoringInterface(jobs);
+                $(document).on("pageshow","#executionInfo",function(){
+                    if(logged()){
+                        var jobs = getJobList();
+                        generateJobMonitoringInterface(jobs);
+                    }
                 });
             </script>
         </div>
@@ -368,9 +430,9 @@
             <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
             <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
                 <ul>
-                    <li><a href="#index" data-icon="gear">Home</a></li>
-                    <li><a href="#filebrowser" data-icon="grid">File Browser</a></li>
-                    <li><a href="#about" data-icon="home">About</a></li>
+                    <li><a href="#index" data-icon="home">Home</a></li>
+                    <li><a href="#filebrowser" data-icon="bars">File Browser</a></li>
+                    <li><a href="#about" data-icon="info">About</a></li>
                     <li><a href="#executionInfo" data-icon="gear" class="ui-btn-active">Execution Info</a></li>
                 </ul>
             </div>

@@ -117,22 +117,15 @@
 
 /* Repository CSS */
 
-#elixirlogodiv {
-    text-align: center;
-}
-
 #welcomediv {
     text-align: center;
+    border-style: solid;
+    border: 2px;
 }
 
 .logo {
-    max-width: 100px;
-    width: 20%;
-}
-
-.logobitlab {
-    max-width: 200px;
-    width: 40%;
+    max-width: 20%;
+    max-height: 20%;
 }
 
 .popupContent{
@@ -193,28 +186,4 @@ img, object{
 
 #legendStatus {
     margin: auto !important;
-    display:table;
-}
-
-#legendStatus > p.finished {
-    background: #B2D5C4;
-    float:left;
-    margin-left: 20px;
-    width: 100px;
-    text-align: center;
-}
-
-#legendStatus > p.failed {
-    background: #d5bab3;
-    float:left;
-    margin-left: 20px;
-    width: 100px;
-    text-align: center;
-}
-
-#legendStatus > p.Running {
-    background: #f6f3cb;
-    float:left;
-    width: 100px;
-    text-align: center;
 }
