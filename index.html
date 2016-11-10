@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8" />
@@ -68,7 +68,7 @@
         page += "?" + repoid;
         page += "?" + toolid;
         location.href = page;
-    }
+        }
 
     $.mobile.filterable.prototype.options.filterCallback = function(text, searchValue ) {
             function findLongestSubstring(str1, str2){
@@ -117,6 +117,28 @@
 </head>
 
 <body>
+
+    <div id="popupLogin" data-role="popup" data-theme="a" class="ui-corner-all">
+    <div class="popupContent">
+        <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete"
+           data-iconpos="notext" class="ui-btn-right">Close</a>
+        <h3>Sign in</h3>
+        <label for="un" class="ui-hidden-accessible">Username:</label>
+        <input type="text" name="user" id="un" value="guest" placeholder="Username" data-theme="a">
+        <label for="pw" class="ui-hidden-accessible">Password:</label>
+        <input type="password" name="pass" id="pw" value="guest" placeholder="Password" data-theme="a">
+        <button id="loginpopbutton" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
+    </div>
+    <script>
+        $("#loginpopbutton").click(function() {
+            var userform = $('#popupLogin').find('input[name="user"]').val() || "guest";
+            var passform = $('#popupLogin').find('input[name="pass"]').val() || "guest";
+            mainLogin(userform, passform);
+            $("#popupLogin").popup('close');
+        });
+    </script>
+</div>
+
     <div data-role="page" id="index">
         <div data-role="header" data-position="fixed" id="genheader">
             <h1>mORCA</h1>
@@ -134,27 +156,6 @@
                     <p font-size="1">Welcome! (please sign in)</p>
                 </div>
             </center>
-            <div id="popupLogin" data-role="popup" data-theme="a" class="ui-corner-all">
-                <div class="popupContent">
-                    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete"
-                       data-iconpos="notext" class="ui-btn-right">Close</a>
-                    <h3>Sign in</h3>
-                    <label for="un" class="ui-hidden-accessible">Username:</label>
-                    <input type="text" name="user" id="un" value="guest" placeholder="Username" data-theme="a">
-                    <label for="pw" class="ui-hidden-accessible">Password:</label>
-                    <input type="password" name="pass" id="pw" value="guest" placeholder="Password" data-theme="a">
-                    <button id="loginpopbutton" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
-                </div>
-                <script>
-                $("#loginpopbutton").click(function() {
-                    var userform = $('#popupLogin').find('input[name="user"]').val() || "guest";
-                    var passform = $('#popupLogin').find('input[name="pass"]').val() || "guest";
-                    mainLogin(userform, passform);
-                    $("#popupLogin").popup('close');
-                });
-                </script>
-            </div>
-
 
             <div data-role="content" id="treeview">
                 <!-- Where the menu is loaded -->
@@ -170,7 +171,6 @@
 
             <!-- REPOSITORY -->
             <div id="divSelectRepository" data-role="content" style="align-self: center">
-                <!-- <p id="currRepId">Current repository:</br> -->
                 <select id="selectRepository" idname="select-choice-a" id="repository" data-native-menu="false" onchange="changeRepository();" data-mini="true">
                     <option id="initialRepo">…</option>
                     <option value="MrSymbiomath">MrSymbiomath</option>
@@ -200,42 +200,12 @@
 
         <div data-role="footer" data-position="fixed">
             <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
-            <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
+            <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
                 <ul>
                     <li><a href="#index" data-icon="home" class="ui-btn-active">Home</a></li>
-                    <li><a href="#filebrowser" data-icon="bars">File Browser</a></li>
-                    <li><a href="#about" data-icon="info">About</a></li>
-                    <li><a href="#executionInfo" data-icon="gear">Execution Info</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div data-role="page" id="about">
-        <div data-role="header" data-position="fixed">
-            <h1>mORCA</h1>
-            <a href="#popupLogin" id="loginButton" data-rel="popup" data-position-to="window" class="ui-btn-right" data-transition="pop">Sign in</a>
-        </div>
-        <div id="homemain" role="main" class="ui-content">
-            <div id="hometext">
-                <div class="headtext">
-                    <h1>Welcome to mORCA!</h1></div>
-                <div class="bodytext">
-                    <p>mORCA is a mobile client able to efficiently integrate different type of web-services repositories mapping metadata over a general definition to support scalable service discovery and to achieve flexible inter-communication between tools. mORCA manages repositories heterogeneity supported by the Modular-API that provides a uniform view of metadata (e.g. GRID-based, WSDL–services, BioMoby and others), making the integration of bioinformatics Web-Services easier. </p>
-                </div>
-                <div class="headerwrap" id="imagehome">
-                    <img src="img/DNA.png" alt="DNA Photo">
-                </div>
-            </div>
-        </div>
-        <!-- botton menu -->
-        <div data-role="footer" data-position="fixed">
-            <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
-            <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
-                <ul>
-                    <li><a href="#index" data-icon="home">Home</a></li>
-                    <li><a href="#filebrowser" data-icon="bars">File Browser</a></li>
-                    <li><a href="#about" data-icon="info" class="ui-btn-active">About</a></li>
-                    <li><a href="#executionInfo" data-icon="gear">Execution Info</a></li>
+                    <li><a href="#filebrowser" data-icon="bars" data-transition="none">File Browser</a></li>
+                    <li><a href="#executionInfo" data-icon="gear" data-transition="none">Monitoring</a></li>
+                    <li><a href="#about" data-icon="info" data-transition="none">About</a></li>
                 </ul>
             </div>
         </div>
@@ -248,9 +218,9 @@
         </div>
         <div data-role="content" id="filebrowsermain">
             <div data-role="controlgroup" data-type="horizontal" align="center" data-exclude-invisible="true">
-                    <a href="#uploadFilePopup" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop" id="uploadButton">Upload File</a>
-                    <a id="loginS3button" href="#loginS3" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Amazon S3</a>
-                    <a id="importS3button" href="#importS3File" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">From S3</a>
+                <a href="#uploadFilePopup" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop" id="uploadButton">Upload File</a>
+                <a id="loginS3button" href="#loginS3" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Amazon S3</a>
+                <a id="importS3button" href="#importS3File" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">From S3</a>
             </div>
 
             <div id="listviewplace">
@@ -260,7 +230,7 @@
                             <div class="ui-bar ui-grid-a" id="filelistheader">
                                 <div class='ui-block-a'>File</div>
                                 <div class='ui-block-b center padding-refresh'>
-                                <a onclick='window.location.reload()' class='ui-btn ui-icon-refresh ui-btn-icon-notext ui-corner-all'>No text</a>
+                                    <a onclick='window.location.reload()' class='ui-btn ui-icon-refresh ui-btn-icon-notext ui-corner-all'>No text</a>
                                 </div>
                             </div>
                         </div>
@@ -268,17 +238,7 @@
                 </ul>
             </div>
         </div>
-        <div data-role="footer" data-position="fixed">
-            <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
-            <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
-                <ul>
-                    <li><a href="#index" data-icon="home">Home</a></li>
-                    <li><a href="#filebrowser" data-icon="bars" class="ui-btn-active">File Browser</a></li>
-                    <li><a href="#about" data-icon="info" >About</a></li>
-                    <li><a href="#executionInfo" data-icon="gear">Execution Info</a></li>
-                </ul>
-            </div>
-        </div>
+
 
         <div data-role="popup" id="uploadFilePopup" data-theme="a" class="ui-corner-all center">
             <span class="btn btn-primary btn-file">
@@ -314,12 +274,12 @@
             <input type="password" name="pass" id="pw" value="guest" placeholder="Password" data-theme="a">
             <button id="loginS3popupbutton" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
             <script>
-            $("#loginS3popupbutton").click(function() {
-                var userform = $('#loginS3').find('input[name="user"]').val() || "guest";
-                var passform = $('#loginS3').find('input[name="pass"]').val() || "guest";
-                loginS3(userform, passform);
-                $("#loginS3").popup('close');
-            });
+                $("#loginS3popupbutton").click(function() {
+                    var userform = $('#loginS3').find('input[name="user"]').val() || "guest";
+                    var passform = $('#loginS3').find('input[name="pass"]').val() || "guest";
+                    loginS3(userform, passform);
+                    $("#loginS3").popup('close');
+                });
             </script>
         </div>
 
@@ -329,33 +289,33 @@
                 <li data-role="divider" data-theme="b">Files in the bucket:</li>
             </ul>
             <script type="text/javascript">
-            AWS.config.update({
-                accessKeyId: 'AKIAIMXVBS4HNMY45OZA',
-                secretAccessKey: '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'
-            });
-            AWS.config.region = 'eu-west-1';
-            var ep = new AWS.Endpoint('s3-eu-west-1.amazonaws.com');
-            var s3 = new AWS.S3({
-                endpoint: ep
-            });
+                AWS.config.update({
+                    accessKeyId: 'AKIAIMXVBS4HNMY45OZA',
+                    secretAccessKey: '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'
+                });
+                AWS.config.region = 'eu-west-1';
+                var ep = new AWS.Endpoint('s3-eu-west-1.amazonaws.com');
+                var s3 = new AWS.S3({
+                    endpoint: ep
+                });
 
-            var bucket = new AWS.S3({
-                params: {
-                    Bucket: 'morcabucket'
-                }
-            });
-            bucket.listObjects(function(err, data) {
-                if (err) {
-                    $('#status').append('<p>Could not load objects from S3</p>');
-                    $('#status').append(err.toString());
-                } else {
-                    $('#status').append('<p>Loaded ' + data.Contents.length + ' items from S3</p>');
-                    for (var i = 0; i < data.Contents.length; i++) {
-                        $('#objects').append('<li><a href="#" id="' + i + '" onclick="importFile(' + "'" + data.Contents[i].Key + "'" + ');">' + data.Contents[i].Key + '</a></li>');
-                        $('#objects').listview().listview('refresh');
+                var bucket = new AWS.S3({
+                    params: {
+                        Bucket: 'morcabucket'
                     }
-                }
-            });
+                });
+                bucket.listObjects(function(err, data) {
+                    if (err) {
+                        $('#status').append('<p>Could not load objects from S3</p>');
+                        $('#status').append(err.toString());
+                    } else {
+                        $('#status').append('<p>Loaded ' + data.Contents.length + ' items from S3</p>');
+                        for (var i = 0; i < data.Contents.length; i++) {
+                            $('#objects').append('<li><a href="#" id="' + i + '" onclick="importFile(' + "'" + data.Contents[i].Key + "'" + ');">' + data.Contents[i].Key + '</a></li>');
+                            $('#objects').listview().listview('refresh');
+                        }
+                    }
+                });
             </script>
 
             <script>
@@ -388,7 +348,18 @@
 
             </script>
         </div>
-        <div id="fileInfoPopups">
+        <div id="fileInfoPopups"></div>
+
+        <div data-role="footer" data-position="fixed">
+            <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
+            <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
+                <ul>
+                    <li><a href="#index" data-icon="home" data-transition="none" >Home</a></li>
+                    <li><a href="#filebrowser" data-icon="bars" class="ui-btn-active">File Browser</a></li>
+                    <li><a href="#executionInfo" data-icon="gear" data-transition="none">Monitoring</a></li>
+                    <li><a href="#about" data-icon="info" data-transition="none">About</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     <div data-role="page" id="executionInfo">
@@ -409,7 +380,7 @@
 
             <table data-role="table" class="table-stroke ui-responsive ui-shadow" id="jobTable">
                 <thead>
-                    <tr> <th>Service name</th> <th>Results</th> <th>Date</th> </tr>
+                <tr> <th>Service name</th> <th>Results</th> <th>Date</th> </tr>
                 </thead>
                 <tbody>
                 </tbody>
@@ -428,16 +399,87 @@
         <!-- botton menu -->
         <div data-role="footer" data-position="fixed">
             <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
-            <div data-role="navbar" class="ui-body-b ui-body" data-iconpos="right">
+            <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
                 <ul>
-                    <li><a href="#index" data-icon="home">Home</a></li>
-                    <li><a href="#filebrowser" data-icon="bars">File Browser</a></li>
-                    <li><a href="#about" data-icon="info">About</a></li>
-                    <li><a href="#executionInfo" data-icon="gear" class="ui-btn-active">Execution Info</a></li>
+                    <li><a href="#index" data-icon="home" data-transition="none">Home</a></li>
+                    <li><a href="#filebrowser" data-icon="bars" data-transition="none">File Browser</a></li>
+                    <li><a href="#executionInfo" data-icon="gear" class="ui-btn-active">Monitoring</a></li>
+                    <li><a href="#about" data-icon="info" data-transition="none">About</a></li>
                 </ul>
             </div>
         </div>
     </div>
+    <div data-role="page" id="about">
+        <div data-role="header" data-position="fixed">
+            <h1>mORCA</h1>
+            <a href="#popupLogin" id="loginButton" data-rel="popup" data-position-to="window" class="ui-btn-right" data-transition="pop">Sign in</a>
+        </div>
+        <div id="homemain" role="main" class="ui-content">
+            <div id="hometext">
+                <div class="headtext">
+                    <h1>Welcome to mORCA!</h1></div>
+                <div class="bodytext">
+                    <p>mORCA is a mobile client able to efficiently integrate different type of web-services repositories mapping metadata over a general definition to support scalable service discovery and to achieve flexible inter-communication between tools. mORCA manages repositories heterogeneity supported by the Modular-API that provides a uniform view of metadata (e.g. GRID-based, WSDL–services, BioMoby and others), making the integration of bioinformatics Web-Services easier. </p>
+                </div>
+                <div class="headerwrap" id="imagehome">
+                    <img src="img/DNA.png" alt="DNA Photo">
+                </div>
+            </div>
+        </div>
+        <!-- botton menu -->
+        <div data-role="footer" data-position="fixed">
+            <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
+            <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
+                <ul>
+                    <li><a href="#index" data-icon="home" data-transition="none">Home</a></li>
+                    <li><a href="#filebrowser" data-icon="bars" data-transition="none">File Browser</a></li>
+                    <li><a href="#executionInfo" data-icon="gear" data-transition="none">Monitoring</a></li>
+                    <li><a href="#about" data-icon="info" class="ui-btn-active">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="fileViewer">
+        <div data-role="header" data-position="fixed" data-add-back-btn="true">
+            <h1>mORCA</h1>
+            <a href="#popupLogin" id="loginButton" data-rel="popup" data-position-to="window" class="ui-btn-right" data-transition="pop">Sign in</a>
+        </div>
+
+        <div data-role="content">
+            <label for="results">Results:</label>
+            <textarea type="text" name="results" id="results" readonly>
+
+            </textarea>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
+            <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
+                <ul>
+                    <li><a href="#index" data-icon="home" data-transition="none">Home</a></li>
+                    <li><a href="#filebrowser" data-icon="bars" data-transition="none">File Browser</a></li>
+                    <li><a href="#executionInfo" data-icon="gear" class="ui-btn-active">Monitoring</a></li>
+                    <li><a href="#about" data-icon="info" data-transition="none">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $( function() {
+            $( "#popupLogin" ).enhanceWithin().popup();
+        });
+
+
+        function loadFileInFileViewer(id){
+            var session = getCookie('token');
+            getFile(id,session,repoid);
+            $( "body" ).pagecontainer( "change", "#fileViewer", {transition: "slide"});
+        }
+
+    </script>
+
 </body>
 
 </html>

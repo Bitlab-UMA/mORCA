@@ -458,7 +458,7 @@ function getFile(idfile, session, repoid) {
       console.log("Preclean: "+data);
       var clData = cleanData(data);
       console.log("Clean: "+clData)
-      document.getElementById("mainresults").innerHTML = clData;
+      $("#results").val(clData).keyup();
       // document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
 
 // VIEWER

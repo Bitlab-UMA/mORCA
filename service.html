@@ -124,7 +124,6 @@
     $("#parameterhidden" + id).val(hiddentext);
     $('#checkbox' + id).prop('checked', true).checkboxradio('refresh');
     document.getElementById("runrun").disabled = false;
-    $("#mainresults").text("");
     // poner un nombre adecuado, si no le han puesto ya uno
     // var currentFileName = $("#nameFile").value;
     var currentFileName = document.getElementById("nameFile").value;
@@ -189,11 +188,7 @@
     </script>
 
       <div id="serviceRunning"></div>
-
-     <div id="mainresults" contenteditable style="margin-left: 10px;" disabled >
-RESULTS…
-    </div>
-
+      
 <!-- VIEWER -->
     <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/rslprpr/biojs-vis-blast/master/lib/style.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/rslprpr/biojs-vis-blast/master/lib/jquery-ui-slider-pips.css">

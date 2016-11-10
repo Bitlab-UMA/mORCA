@@ -86,7 +86,7 @@
                         var passform = $('#'+popupID).find('input[name="pass"]').val() || "guest";
                         mainLogin(userform, passform);
                         $('#'+popupID).popup('close');
-                    })
+                    });
 
                     this.newPage.find('#loginButton').attr('href', '#'+popupID)
 
@@ -104,7 +104,7 @@
 
             }
 
-            $( "body" ).pagecontainer( "change", "#" + this.pageID );
+            $( "body" ).pagecontainer( "change", "#" + this.pageID, {transition: "slide"});
 
         }
     });

@@ -218,3 +218,23 @@ img, object{
     width: 100px;
     text-align: center;
 }
+
+.tabMenu > ul > li > a {
+    text-align: center !important;
+}
+
+.tabMenu > ul > li > a::after {
+    margin-top: 0px !important;
+}
+
+#results {
+    width: 100%;
+    padding: 4px;
+    margin: 12px;
+    color: blue;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 75%;
+    white-space: pre-wrap;
+    display: block;
+    outline: none;
+}

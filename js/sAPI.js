@@ -456,9 +456,9 @@ $(document).on("click", ".show-page-loading-msg", function() {
 function fileUploadHandler() {
 
   var data = null;
-  user = getCookie('username');
-  session = getCookie('token');
-  repoid = 'Bitlab [chirimoyo.ac.uma.es]';
+  var user = getCookie('username');
+  var session = getCookie('token');
+  var repoid = 'Bitlab [chirimoyo.ac.uma.es]';
 
   getRoot(user, session, '', repoid);
 
@@ -678,6 +678,10 @@ function generateJobMonitoringInterface (jobs) {
   });
 
 
+  console.log(jobs);
+
+  $('#jobTable > tbody').html("");
+
   //Append each job as a row in the table
   for (i in jobs) {
     var date = new Date(jobs[i].date);
@@ -690,7 +694,9 @@ function generateJobMonitoringInterface (jobs) {
     }
     var classes = jobs[i].status
 
-    $('#jobTable > tbody').append('<tr class="'+classes+'"> <td>'+jobs[i].jobName+'</td><td><a href="index.html" data-inline="true" data-role="button" data-icon="action" data-iconpos="notext">Open</a><a href="index.html" data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Open</a></td><td>'+date.getDay()+'/'+date.getMonth()+'/'+date.getFullYear()+' - '+date.getUTCHours()+':'+minutes()+'</td></tr>').trigger('create');
+
+
+    $('#jobTable > tbody').append('<tr class="'+classes+'"> <td>'+jobs[i].jobName+'</td><td><a onClick="loadFileInFileViewer('+"'"+jobs[i].outputFile+"'"+')" data-inline="true" data-role="button" data-icon="action" data-iconpos="notext">Open</a><a href="index.html" data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Open</a></td><td>'+date.getDay()+'/'+date.getMonth()+'/'+date.getFullYear()+' - '+date.getUTCHours()+':'+minutes()+'</td></tr>').trigger('create');
 
 
   }
