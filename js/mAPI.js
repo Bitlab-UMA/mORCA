@@ -468,13 +468,13 @@ function getFile(idfile, session, repoid) {
 // alert(clData);
         var seq = new Sequence(clData);
         // You can add some rendering options
-        seq.render('#mainresults', {
+        seq.render('#resultsdiv', {
             'showLineNumbers': true,
             'wrapAminoAcids': true,
             'charsPerLine': 60,
             'toolbar': false,
             'search': true,
-            'title': document.getElementById("parameter0").value + "  "
+            'title': "results"
         });
       }
 
