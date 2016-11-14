@@ -5,7 +5,7 @@
 }
 
 .ui-grid-a{
-
+    text-align: left !important;
 }
 
 .ui-grid-a>.ui-block-a{
@@ -112,7 +112,7 @@
 }
 
 .padding-refresh{
-    padding-left: 26%;
+    padding-left: 25%;
 }
 
 /* Repository CSS */

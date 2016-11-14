@@ -29,6 +29,7 @@ jobs.route('/addJob')
     .post(jobsCtrl.addJob);
 
 jobs.post('/morcanode/execute', JSONParser, mapiCtrl.executeServiceJSON);
+jobs.post('/morcanode/deleteJob', JSONParser, jobsCtrl.deleteJob);
 jobs.get('/morcanode/joblist', JSONParser, jobsCtrl.listJobs);
 
 app.use(jobs);

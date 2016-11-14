@@ -691,15 +691,47 @@ function generateJobMonitoringInterface (jobs) {
       } else {
         return date.getUTCMinutes();
       }
+    };
+
+    var classes = jobs[i].status;
+    var viewFile = "";
+
+    if(jobs[i].outputFile!='NOT' && jobs[i].outputFile!="") {
+      viewFile = '<a onclick="loadFileInFileViewer('+"'"+jobs[i].outputFile+"'"+')" data-inline="true" data-role="button" data-icon="eye" data-iconpos="notext">Open</a>';
+    } else {
+      viewFile = '<a class="ui-disabled" data-inline="true" data-role="button" data-icon="eye" data-iconpos="notext">Open</a>';
     }
-    var classes = jobs[i].status
 
-
-
-    $('#jobTable > tbody').append('<tr class="'+classes+'"> <td>'+jobs[i].jobName+'</td><td><a onClick="loadFileInFileViewer('+"'"+jobs[i].outputFile+"'"+')" data-inline="true" data-role="button" data-icon="action" data-iconpos="notext">Open</a><a href="index.html" data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Open</a></td><td>'+date.getDay()+'/'+date.getMonth()+'/'+date.getFullYear()+' - '+date.getUTCHours()+':'+minutes()+'</td></tr>').trigger('create');
-
+    $('#jobTable > tbody').append('<tr class="'+classes+'"> <td>'+jobs[i].jobName+'</td><td>'+viewFile+'<a onclick="deleteJobByID('+"'"+jobs[i]._id+"'"+')"data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Delete</a></td><td>'+date.getUTCDate()+'/'+date.getUTCMonth()+'/'+date.getUTCFullYear()+' - '+date.getUTCHours()+':'+minutes()+'</td></tr>').trigger('create');
 
   }
 
   $('#jobTable').table("refresh");
+}
+
+function deleteJobByID (id) {
+
+  if(logged()){
+    var username = getCookie('username');
+    var data = {
+      'id' : id,
+      'username':username
+    }
+
+    $.ajax({
+      type: 'POST',
+      async: false,
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+      url: 'http://pistacho.ac.uma.es/morcanode/deleteJob',
+      success: function(data) {
+        var jobs = getJobList();
+        generateJobMonitoringInterface(jobs);
+      },
+      error: function(err){
+        console.log(err)
+      }
+    });
+  }
+
 }

@@ -4,6 +4,7 @@
 
 var User  = require('../models/user.js');
 var Job  = require('../models/job.js');
+var mongoose = require('mongoose');
 var jsdom = require("jsdom").jsdom;
 var doc = jsdom();
 var window = doc.defaultView;
@@ -103,4 +104,27 @@ exports.listJobs = function(req, res, returnData){
             res.status(500).send('User doesnt exist');
         }
     });
+};
+
+exports.deleteJob = function (req, res, returnData) {
+
+    var id = req.body.id;
+    var username = req.body.username;
+
+    //Delete job from user JobList
+    User.findOneAndUpdate( {userName: username}, { $pull: {jobList: [id]} }, {new: true}, function(err, user){
+        if(err){
+            console.log("Error updating user jobList");
+        }
+
+    });
+
+    //Delete job
+    Job.findOneAndRemove({_id : new mongoose.mongo.ObjectID(id)}, function(err, job) {
+        if(err){
+            console.log("Error deleting job");
+        }
+    });
+
+    res.sendStatus(200);
 };

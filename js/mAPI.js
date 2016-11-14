@@ -461,30 +461,30 @@ function getFile(idfile, session, repoid) {
       $("#results").val(clData).keyup();
       // document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
 
-// VIEWER
-      var Sequence = require("sequence-viewer");
-      var rt = resultsType(data);
-      if (rt == 'AminoAcidSequence') {
-// alert(clData);
-        var seq = new Sequence(clData);
-        // You can add some rendering options
-        seq.render('#mainresults', {
-            'showLineNumbers': true,
-            'wrapAminoAcids': true,
-            'charsPerLine': 60,
-            'toolbar': false,
-            'search': true,
-            'title': document.getElementById("parameter0").value + "  "
-        });
-      }
-
+      /* VIEWER
+            var Sequence = require("sequence-viewer");
+            var rt = resultsType(data);
+            if (rt == 'AminoAcidSequence') {
+      // alert(clData);
+              var seq = new Sequence(clData);
+              // You can add some rendering options
+              seq.render('#mainresults', {
+                  'showLineNumbers': true,
+                  'wrapAminoAcids': true,
+                  'charsPerLine': 60,
+                  'toolbar': false,
+                  'search': true,
+                  'title': document.getElementById("parameter0").value + "  "
+              });
+            }
+      */
     },
     error: function(SOAPResponse) {
       // NEED TO IMPLEMENT
       console.log(SOAPResponse.toString());
     }
   });
-};
+}
 
 function getFolder(id, username, session, dtid, repoid) {
   soap();

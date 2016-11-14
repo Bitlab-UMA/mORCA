@@ -201,7 +201,12 @@ var executeServiceJSON = function (req, res) {
                 outputFile =result["soapenv:Envelope"]["soapenv:Body"][0]["executeServiceResponse"][0]["executeServiceReturn"][0];
             });
 
-            jobs.updateJob(jobID, outputFile,'finished')
+            if(outputFile.indexOf('chirimoyo:files:')) {
+                jobs.updateJob(jobID, outputFile,'finished')
+            } else {
+                jobs.updateJob(jobID, "InvalidInput",'failed')
+            }
+
         },
 
         error: function (soapResponse) {
