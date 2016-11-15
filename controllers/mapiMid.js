@@ -17,6 +17,7 @@ var configureSoap = function(req, res) {
         appendMethodToURL: false,
         SOAPAction: '',
         crossDomain: true,
+        timeout: 3600000,
 
         envAttributes: { // additional attributes (like namespaces) for the Envelope:
             'xmlns:q0':      'http://api.bitlab.org',
@@ -187,7 +188,9 @@ var executeServiceJSON = function (req, res) {
         },
 
         beforeSend: function (soapResponse) {
-            console.log("SENDING...")
+            console.log("SENDING...");
+            console.log(soapResponse.toString());
+
         },
 
         success: function (soapResponse) {

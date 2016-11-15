@@ -96,15 +96,10 @@
                 var title = $(this).find("h2").first().text().toLowerCase();
                 searchValue = searchValue.toLowerCase();
 
-                console.log("Title: "+title);
-                console.log("search: "+searchValue);
-
                 if(title.indexOf(searchValue)>-1) {
                     return false;
                 } else {
                     var subst = findLongestSubstring(searchValue,title);
-                    console.log("Substr: "+subst);
-                    console.log("%: " +subst.length*100/searchValue.length)
                     if(subst.length*100/searchValue.length>=60){
                         return false;
                     } else {
@@ -202,7 +197,7 @@
             <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
             <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
                 <ul>
-                    <li><a href="#index" data-icon="home" class="ui-btn-active">Home</a></li>
+                    <li><a href="#index" data-icon="home" class="ui-btn-active ui-state-persist">Home</a></li>
                     <li><a href="#filebrowser" data-icon="bars" data-transition="none">File Browser</a></li>
                     <li><a href="#executionInfo" data-icon="gear" data-transition="none">Monitoring</a></li>
                     <li><a href="#about" data-icon="info" data-transition="none">About</a></li>
@@ -281,6 +276,14 @@
                     $("#loginS3").popup('close');
                 });
             </script>
+
+            <script>
+                $(document).on("pageinit","#filebrowser",function(){
+                    if(logged()){
+                        loadFileBrowser();
+                    }
+                });
+            </script>
         </div>
 
         <div data-role="popup" id="importS3File" data-theme="b" class="ui-corner-all center">
@@ -341,7 +344,6 @@
                         $('#importS3button').closest('.ui-btn').show();
                     } else {
                         $('#loginS3button').closest('.ui-btn').show();
-                        console.log("HIDING2");
                         $('#importS3button').closest('.ui-btn').hide();
                     }
                 });
@@ -355,7 +357,7 @@
             <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
                 <ul>
                     <li><a href="#index" data-icon="home" data-transition="none" >Home</a></li>
-                    <li><a href="#filebrowser" data-icon="bars" class="ui-btn-active">File Browser</a></li>
+                    <li><a href="#filebrowser" data-icon="bars" class="ui-btn-active ui-state-persist">File Browser</a></li>
                     <li><a href="#executionInfo" data-icon="gear" data-transition="none">Monitoring</a></li>
                     <li><a href="#about" data-icon="info" data-transition="none">About</a></li>
                 </ul>
@@ -403,7 +405,7 @@
                 <ul>
                     <li><a href="#index" data-icon="home" data-transition="none">Home</a></li>
                     <li><a href="#filebrowser" data-icon="bars" data-transition="none">File Browser</a></li>
-                    <li><a href="#executionInfo" data-icon="gear" class="ui-btn-active">Monitoring</a></li>
+                    <li><a href="#executionInfo" data-icon="gear" class="ui-btn-active ui-state-persist">Monitoring</a></li>
                     <li><a href="#about" data-icon="info" data-transition="none">About</a></li>
                 </ul>
             </div>
@@ -434,7 +436,7 @@
                     <li><a href="#index" data-icon="home" data-transition="none">Home</a></li>
                     <li><a href="#filebrowser" data-icon="bars" data-transition="none">File Browser</a></li>
                     <li><a href="#executionInfo" data-icon="gear" data-transition="none">Monitoring</a></li>
-                    <li><a href="#about" data-icon="info" class="ui-btn-active">About</a></li>
+                    <li><a href="#about" data-icon="info" class="ui-btn-active ui-state-persist">About</a></li>
                 </ul>
             </div>
         </div>
@@ -474,6 +476,7 @@
 
         function loadFileInFileViewer(id){
             var session = getCookie('token');
+            $("#results").html();
             getFile(id,session,repoid);
             $( "body" ).pagecontainer( "change", "#fileViewer", {transition: "slide"});
         }

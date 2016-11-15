@@ -3,7 +3,7 @@
         options: {
             childPages: true,
             page: "<div data-role='page'></div>",
-            header: "<div data-role='header'><a href='#' data-icon='arrow-l' data-rel='back'>Back</a><h1></h1><a href='#popupLoginAux' id='loginButton' data-rel='popup' data-position-to='window' class='ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a' data-transition='pop'>Sign in</a></div>",
+            header: "<div data-role='header'><a href='#' data-icon='arrow-l' data-rel='back'>Back</a><h1></h1><a href='#popupLogin' id='generatedloginButton' data-rel='popup' data-position-to='window' class='ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a loginButton' data-transition='pop'>Sign in</a></div>",
             content: "<div class='ui-content'></div>"
         },
         _create: function(){
@@ -81,18 +81,19 @@
                     '<input type="password" name="pass" id="pw" value="guest" placeholder="Password" data-theme="a">' +
                     '<button id="'+loginpopupbuttonID+'" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button></div></div>');
 
-                    $("#"+loginpopupbuttonID).click(function () {
+                    this.newPage.find('#generatedloginButton').attr('href', '#'+popupID)
+
+                    this.newPage.find("#"+loginpopupbuttonID).click(function () {
+                        console.log("Login...");
                         var userform = $('#'+popupID).find('input[name="user"]').val() || "guest";
                         var passform = $('#'+popupID).find('input[name="pass"]').val() || "guest";
                         mainLogin(userform, passform);
                         $('#'+popupID).popup('close');
                     });
 
-                    this.newPage.find('#loginButton').attr('href', '#'+popupID)
-
                 } else {
 
-                    var loginButton = this.newPage.find('#loginButton');
+                    var loginButton = this.newPage.find('.loginButton');
                         loginButton.html('logout')
                             .removeAttr('href')
                             .attr('onclick', 'mainLogout()');

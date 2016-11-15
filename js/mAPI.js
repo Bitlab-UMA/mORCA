@@ -48,13 +48,10 @@ function soap() {
     HTTPHeaders: {},
 
     error: function(soapResponse) {
-      // NEED TO IMPLEMENT
       console.log(SOAPResponse.toString());
     }
   });
-};
-
-
+}
 //Methods ApiWS
 
 function getToolListAsXML(repoName) {
@@ -68,21 +65,14 @@ function getToolListAsXML(repoName) {
       repoid: repoName.toString()
     },
 
-    beforeSend: function(SOAPEnvelope) {
-      console.log(SOAPEnvelope.toString());
-    },
-
     success: function(soapResponse) {
-      // NEED TO IMPLEMENT
       console.log(soapResponse.toString());
     },
     error: function(SOAPResponse) {
-      // NEED TO IMPLEMENT
       console.log(SOAPResponse.toString());
     }
   });
-};
-
+}
 function loginWS(user, pass) {
   soap();
   $.soap({
@@ -101,7 +91,6 @@ function loginWS(user, pass) {
     },
 
     beforeSend: function(SOAPEnvelope) {
-      console.log(SOAPEnvelope.toString());
       $.mobile.loading("show");
     },
 
@@ -127,15 +116,12 @@ function loginWS(user, pass) {
       document.cookie = 'token=' + token + '; expires=' + now.toUTCString();
       document.cookie = 'username=' + user + '; expires=' + now.toUTCString();
 
-      console.log(soapResponse.toString());
       $.mobile.loading("hide");
     },
 
     error: function(SOAPResponse) {
       $.mobile.loading("hide");
       alert("Wrong user. Please, try again.");
-      console.log(SOAPResponse.toString());
-
     }
   });
 }
@@ -152,17 +138,12 @@ function getOperations(toolID, repoID)  {
       repoid: repoID.toString()
     },
 
-    beforeSend: function(SOAPEnvelope) {
-      console.log(SOAPEnvelope.toString());
-    },
 
     success: function(soapResponse) {
-      // NEED TO IMPLEMENT
-      console.log(soapResponse.toString());
+      //console.log(soapResponse.toString());
     },
 
     error: function(SOAPResponse) {
-      // NEED TO IMPLEMENT
       console.log(SOAPResponse.toString());
     }
   });
@@ -182,13 +163,7 @@ function getParameters(operationID, repoID, returnFunction)  {
       repoid: repoID.toString()
     },
 
-    beforeSend: function(SOAPEnvelope) {
-      console.log(SOAPEnvelope.toString());
-    },
-
     success: function(soapResponse) {
-
-      console.log("Parameters XML: "+soapResponse);
 
       var response   = soapResponse.toXML();
       var noderoot   = response.documentElement;
@@ -234,13 +209,11 @@ function getParameters(operationID, repoID, returnFunction)  {
     },
 
     error: function(SOAPResponse) {
-      // NEED TO IMPLEMENT
       console.log(SOAPResponse.toString());
     }
   });
 
 }
-
 
 function executeService(inputList, outputList, urlOperation, idOperation, nameFile, idFolder, token, user, repoID)  {
 
@@ -397,9 +370,7 @@ function getJobList(){
     data: {username : user},
     contentType: 'application/json',
     url: 'http://pistacho.ac.uma.es/morcanode/joblist',
-    beforeSend: function(jqXHR, settings){
-      console.log(settings.data);
-    },
+
     success: function(data) {
       return data;
     },
@@ -413,7 +384,7 @@ function getJobList(){
 }
 
 function selectElementContents(elid) {
-  var el = document.getElementById(elid)
+  var el = document.getElementById(elid);
   var range = document.createRange();
   range.selectNodeContents(el);
   var sel = window.getSelection();
@@ -431,10 +402,6 @@ function getFile(idfile, session, repoid) {
       id: idfile,
       session: session,
       repoid: repoid
-    },
-
-    beforeSend: function(SOAPEnvelope) {
-      console.log(SOAPEnvelope.toString());
     },
 
     success: function(soapResponse) {
@@ -455,9 +422,7 @@ function getFile(idfile, session, repoid) {
       // alert("Output: " + data);
       // document.getElementById("mainresults").style.display = 'block';
       // alert(data);
-      console.log("Preclean: "+data);
       var clData = cleanData(data);
-      console.log("Clean: "+clData)
       $("#results").val(clData).keyup();
       // document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
 
@@ -480,7 +445,6 @@ function getFile(idfile, session, repoid) {
       */
     },
     error: function(SOAPResponse) {
-      // NEED TO IMPLEMENT
       console.log(SOAPResponse.toString());
     }
   });
@@ -500,24 +464,16 @@ function getFolder(id, username, session, dtid, repoid) {
       repoid  : repoid
     },
 
-    beforeSend: function(SOAPEnvelope) {
-      //Need to implement
-      console.log(SOAPEnvelope.toString());
-    },
-
     success: function(soapResponse) {
-      //Need to implement
-      console.log(soapResponse.toString());
+      //console.log(soapResponse.toString());
     },
 
     error: function(SOAPResponse) {
-      //Need to implement
       console.log(SOAPResponse.toString());
 
     }
   });
 }
-
 
 function getRoot(username, session, dtid, repoid) {
   soap();
@@ -531,11 +487,6 @@ function getRoot(username, session, dtid, repoid) {
       session: session,
       dtid: dtid,
       repoid: repoid
-    },
-
-    beforeSend: function(SOAPEnvelope) {
-      //Need to implement
-      console.log(SOAPEnvelope.toString());
     },
 
     success: function(soapResponse) {
@@ -577,7 +528,6 @@ function getRoot(username, session, dtid, repoid) {
     },
 
     error: function(SOAPResponse) {
-      //Need to implement
       console.log(SOAPResponse.toString());
 
     }
@@ -608,21 +558,11 @@ function newFile(name, data, format, folderid, description, user, session, repoi
       repoid: repoid
     },
 
-    beforeSend: function(SOAPEnvelope) {
-      //Need to implement
-      console.log(SOAPEnvelope.toString());
-    },
-
     success: function(soapResponse) {
-      //Need to implement
-      console.log("Success");
-      window.location.reload();
-      console.log(soapResponse.toString());
+      loadFileBrowser();
     },
 
     error: function(SOAPResponse) {
-      //Need to implement
-      console.log("Error");
       console.log(SOAPResponse.toString());
 
     }
@@ -641,29 +581,20 @@ function deleteElement(elementid, session, repoid) {
       repoid: repoid
     },
 
-    beforeSend: function(SOAPEnvelope) {
-      console.log(SOAPEnvelope.toString());
-    },
-
     success: function(soapResponse) {
-      window.location.reload();
-      console.log(soapResponse.toString());
+      loadFileBrowser();
     },
     error: function(SOAPResponse) {
-      // NEED TO IMPLEMENT
       console.log(SOAPResponse.toString());
     }
   });
-};
-
-
+}
 function cleanData(data) {
-  var rt = resultsType(data)
+  var rt = resultsType(data);
   if (rt == 'AminoAcidSequence') {
     var ii1 = data.indexOf('SequenceString">', 2)+16;
-    var ii2 = data.indexOf('</AminoAcidSequence>', ii1);
+    var ii2 = (data.indexOf('</AminoAcidSequence>', ii1))-10;
     var seqstring = data.substring(ii1, ii2);
-    console.log("Seq: "+seqstring);
     return seqstring;
   } else {
     var ii1 = data.indexOf('[CDATA[');
@@ -690,10 +621,6 @@ function displayFile(idfile, session, repoid) {
       repoid: repoid
     },
 
-    beforeSend: function(SOAPEnvelope) {
-      console.log(SOAPEnvelope.toString());
-    },
-
     success: function(soapResponse) {
       if (window.DOMParser) {
         parser = new DOMParser();
@@ -718,8 +645,7 @@ function displayFile(idfile, session, repoid) {
       // return data;  NO SIRVE, no hay return
     },
     error: function(SOAPResponse) {
-      // NEED TO IMPLEMENT
       console.log(SOAPResponse.toString());
     }
   });
-};
+}

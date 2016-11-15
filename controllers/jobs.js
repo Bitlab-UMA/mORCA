@@ -71,7 +71,7 @@ exports.addJob = function(username, serviceName, outputFile, status, cb) {
         User.findByIdAndUpdate(user._id,
             {$push: {'jobList': job._id}},
             {safe: true, upsert: false}, function (err, user){
-                if (err) console.log("Error updating joblist: " + err); else console.log("Joblist updated correctly: " + user);
+                if (err) console.log("Error updating joblist: " + err); else console.log("Joblist updated correctly");
             });
 
         callback(null, job);
@@ -83,7 +83,7 @@ exports.updateJob = function(jobID, outputFile, status) {
         {'outputFile': outputFile, 'status': status},
         {safe: true, upsert: false},
         function (err, model) {
-            if (err) console.log("Error updating job: " + err); else console.log("Job updated correctly: " + model);
+            if (err) console.log("Error updating job: " + err); else console.log("Job updated correctly");
         });
 };
 
@@ -111,8 +111,13 @@ exports.deleteJob = function (req, res, returnData) {
     var id = req.body.id;
     var username = req.body.username;
 
+    console.log("ID:");
+    console.log(id);
+
     //Delete job from user JobList
-    User.findOneAndUpdate( {userName: username}, { $pull: {jobList: [id]} }, {new: true}, function(err, user){
+    User.findOneAndUpdate( {userName: username}, { $pull: { "jobList" : id } }, {new: true}, function(err, user){
+        console.log("User: ");
+        console.log(user);
         if(err){
             console.log("Error updating user jobList");
         }

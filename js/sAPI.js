@@ -7,17 +7,11 @@ function readXMLToolList(repofile) {
 
   var route = "data/" + repofile;
 
-  console.log("Loading XML Document...")
-  var xmlDoc = cargarXMLDoc(route)
-  console.log("XML document: " + (new XMLSerializer()).serializeToString(xmlDoc))
-  console.log("Parsing XML response")
-
+  var xmlDoc = cargarXMLDoc(route);
   var noderoot = xmlDoc.documentElement;
-  list += "<ul data-role='listview' id='tree'>"
-  generateTree(noderoot)
-  list += "</ul>"
-
-  //generateArrray(noderoot)
+  list += "<ul data-role='listview' id='tree'>";
+  generateTree(noderoot);
+  list += "</ul>";
 
   console.log('Final: ' + list);
 }
@@ -83,8 +77,6 @@ function generateInterface(parameters, serviceName) {
       (parameters[x].input=='true') ? parametersDiv = $("#inputs") : parametersDiv = $("#outputs");
 
     var infoTextHtml = "";
-    console.log("parameters[" + x + "].description: " + parameters[x].description);
-
 
     if (parameters[x].description) {
       infoTextHtml = '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-inline="true" data-jsb_prepared="2nis0xjxn9">No text</a>';
@@ -112,12 +104,7 @@ function generateInterface(parameters, serviceName) {
             parametersDiv.append('<input type="number" name="text-basic" id="parameter' + x + '" value="" data-inline="true" step="any" min="0">')
           }
 
-          // poner esto sólo si lo hay!
           parametersDiv.append('<div style="float: right">' + infoTextHtml + '</div>');
-
-          // document.write('<div style="float: right">' +
-          //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-          //   '</div>');
 
           parametersDiv.append('</div>');
           break;
@@ -138,12 +125,7 @@ function generateInterface(parameters, serviceName) {
             parametersDiv.append('<input type="number" name="text-basic" id="parameter' + x + '" value="" data-inline="true" step="any" min="0">')
           }
 
-          // poner esto sólo si lo hay!
           parametersDiv.append('<div style="float: right">' + infoTextHtml + '</div>');
-
-          // document.write('<div style="float: right">' +
-          //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-          //   '</div>');
 
           parametersDiv.append('</div>');
           break;
@@ -153,12 +135,7 @@ function generateInterface(parameters, serviceName) {
           parametersDiv.append('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
           parametersDiv.append('<input type="text" name="text-basic" id="parameter' + x + '" value="">');
 
-          // poner esto sólo si lo hay!
           parametersDiv.append('<div style="float: right">' + infoTextHtml + '</div>');
-
-          // document.write('<div style="float: right">' +
-          //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-          //   '</div>');
 
           parametersDiv.append('</div>');
           break;
@@ -172,9 +149,7 @@ function generateInterface(parameters, serviceName) {
             var selectAux = '<select name="select-choice-mini" id="parameter' + x + '" data-mini="true" data-inline="true">';
             for (var y = 0; y < parameters[x].allowedValues.length; y++) {
               var selectedValue = "";
-              console.log("Allowed: " + parameters[x].allowedValues[y] + " Default: " + parameters[x].defaultValue);
               if (parameters[x].allowedValues[y] == parameters[x].defaultValue) {
-                console.log("EntraIF");
                 selectedValue = "selected";
               }
               selectAux += '<option ' + selectedValue + ' value="' + parameters[x].allowedValues[y] + '">' + parameters[x].allowedValues[y] + '</option>';
@@ -182,12 +157,7 @@ function generateInterface(parameters, serviceName) {
             selectAux += '</select>';
             parametersDiv.append(selectAux);
 
-            // poner esto sólo si lo hay!
             parametersDiv.append('<div style="float: right">' + infoTextHtml + '</div>');
-
-            // document.write('<div style="float: right">' +
-            //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-            //   '</div>');
 
           } else {
             parametersDiv.append('<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #FF8C00; ">' +
@@ -198,10 +168,7 @@ function generateInterface(parameters, serviceName) {
             '<textarea name="text-basic" id="parameter' + x + '" value="" data-inline="true"></textarea>' +
             '</div></div>' +
             '<div class="ui-block-stringb">' +
-              //'<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all" data-inline="true">No text</a>' +
-              //'<a href="#" class="ui-btn ui-icon-cloud ui-btn-icon-notext ui-corner-all" data-inline="true">No text</a>' +
             infoTextHtml +
-              // '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
             '</div></div>');
           }
 
@@ -212,18 +179,8 @@ function generateInterface(parameters, serviceName) {
           parametersDiv.append('<div data-role="fieldcontain" id="parameterbox">');
           parametersDiv.append('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
           parametersDiv.append('<input type="checkbox" data-role="flipswitch" name="switch" id="parameter' + x + '" data-on-text="True" data-off-text="False">');
-          /*document.write('<select name="flip" id="flip" data-role="slider">');
-           document.write('<option value="true" selected="">True</option>');
-           document.write('<option value="false">False</option>');
-           document.write('</select>');*/
 
-
-          // poner esto sólo si lo hay!
           parametersDiv.append('<div style="float: right">' + infoTextHtml + '</div>');
-
-          // document.write('<div style="float: right">' +
-          //   '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-jsb_prepared="2nis0xjxn9">No text</a>' +
-          //   '</div>');
 
           parametersDiv.append('</div>');
           break;
@@ -234,7 +191,6 @@ function generateInterface(parameters, serviceName) {
             break;
           }
 
-
           parametersDiv.append('<div data-role="fieldcontain" id="parameterbox">' +
               '<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #FF8C00; ">' +
               '<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>' +
@@ -242,14 +198,10 @@ function generateInterface(parameters, serviceName) {
               '<div data-role="fieldcontain">' +
               '<p id="parameterhidden' + x + '" class="texthidden"></p>' +
               '<input type="text" name="text-basic" id="parameter' + x + '" value="" data-inline="true" placeholder="Fetch a file from mORCA previous outputs">' +
-                //'<textarea name="text-basic" id="parameter'+x+'" value="" data-inline="true"> </textarea>' +
               '</div></div>' +
               '<div class="ui-block-b" style="padding-top:5px">' +
-                // elminado lápiz
-                // '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
               '<a href="#popupMenu' + x + '" data-rel="popup" data-transition="slideup" id="' + x + '"class="ui-btn ui-icon-cloud ui-btn-icon-left ui-corner-all" data-inline="true" data-jsb_prepared="2nis0xjxn9">Cloud files</a>' +
 
-                // poner esto sólo si lo hay!
               infoTextHtml +
 
               '</div><div class="ui-block-c ui-screen-hidden" style="padding-top:7px">' +
@@ -269,10 +221,12 @@ function generateInterface(parameters, serviceName) {
             generatePopup +='<li><i>You must be logged to use the file system!</i></li>';
           } else {
             for (var y in filesList) {
-              generatePopup +=
-                  '<li><a onclick="nuevoParametro(' + x + ',\''
-                  + filesList[y].id + '\',\''
-                  + filesList[y].name + '\'); $(\'#popupMenu' + x + '\').popup(\'close\');">' + filesList[y].name + '</a></li>';
+              if(y<10){
+                generatePopup +=
+                    '<li><a onclick="nuevoParametro(' + x + ',\''
+                    + filesList[y].id + '\',\''
+                    + filesList[y].name + '\'); $(\'#popupMenu' + x + '\').popup(\'close\');">' + filesList[y].name + '</a></li>';
+              }
             }
           }
 
@@ -282,14 +236,6 @@ function generateInterface(parameters, serviceName) {
 
           repoid = String(window.location.href.split('?')[2]);
           repoid = decodeURI(repoid);
-
-
-          // document.ready(function(){
-          //     $("#resultbutton").click(function(){
-          //         getFile(resultfile,getCookie("token"), repoid);
-          //         $("#mainresults").text("");
-          //     });
-
 
           break;
       }
@@ -306,16 +252,16 @@ function generateInterface(parameters, serviceName) {
 
   var laFechaHoraExt = fechaHoraExt();
   var fileName = serviceName +'_' + laFechaHoraExt;
-  // var fileName = name + " give me a name!";
 
   parametersDiv.append('<div data-role="fieldcontain" id="parameterbox">' +
     '<label for="nameFile"><b>'+parameters[outputIndex].name+':</b>  <font color = "gray">(Output File)</font></label>' +
-    '<input type="text" name="text-basic" id="nameFile" data-inline="true" value="' + fileName + '">' +
+    '<input type="text" name="text-basic" id="nameFile" data-inline="true" placeholder="Insert output file name" maxlength="15">' +
     '</div>');
 
   parametersDiv.append(
     "<button type='submit' id='runrun' class='show-page-loading-msg' data-textonly='false' data-textvisible='true' >Run</button>");
   parametersDiv.append("</form></div>");
+
 }
 
 
@@ -369,10 +315,11 @@ function mainLogin(user, pass) {
     // $("#usernamediv").html("");
     $("#usernamediv").html("<font size=1>Logged in as: <b>" + user + "</b></font>")
 
-    $('#loginButton').html('Logout');
-    $('#loginButton').removeAttr('href');
-    $('#loginButton').attr('onclick', 'mainLogout()');
+    $('.loginButton').html('Logout');
+    $('.loginButton').removeAttr('href');
+    $('.loginButton').attr('onclick', 'mainLogout()');
 
+    loadFileBrowser();
   }
 };
 
@@ -381,8 +328,8 @@ function mainLogout() {
     eraseCookie('username');
     eraseCookie('token');
 
-    $('#loginButton').html('Sign in');
-    $('#loginButton').removeAttr('onclick');
+    $('.loginButton').html('Sign in');
+    $('.loginButton').removeAttr('onclick');
 
     // $("#usernamediv").html("");
     $("#usernamediv").text("Bye bye!")
@@ -424,30 +371,6 @@ function loginS3(username, password) {
 function capitalise(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
-
-$(document).on("click", ".show-page-loading-msg", function() {
-    var $this       = $(this),
-        theme       = $this.jqmData("theme")       || $.mobile.loader.prototype.options.theme,
-        msgText     = $this.jqmData("msgtext")     || $.mobile.loader.prototype.options.text,
-        textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
-        textonly    = !!$this.jqmData("textonly");
-
-    html = $this.jqmData("html") || "";
-
-    $.mobile.loading("show", {
-      text        : msgText,
-      textVisible : textVisible,
-      theme       : theme,
-      textonly    : textonly,
-      html        : html
-    });
-  })
-  .on("click", ".hide-page-loading-msg", function() {
-    $.mobile.loading("hide");
-    // intento que automáticamente se carguen los resultados al terminar
-
-  });
 
 ////// END jQuery Interface Functions //////////
 
@@ -530,7 +453,7 @@ function loadFileBrowser() {
       '<div class="ui-block-b">' +
       // eliminado lápiz
       // '<a href="#fileInfo' + x + '"data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all">No text</a>' +
-      '<a onclick="loadFileInFileViewer(filesList[' + x + '].id)" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
+      '<a onclick="loadFileInFileViewer(filesList[' + x + '].id)" class="ui-btn ui-icon-eye ui-btn-icon-notext ui-corner-all">No text</a>' +
       // '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
       '<a onclick="deleteElement(filesList[' + x + '].id,' + token + ', repoid.toString());" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all">No text</a>' +
       '</div> </div> </div> </li>');
@@ -626,7 +549,6 @@ function loadBioToolsServiceList(){
         }
       }
     }
-    console.log("Biotools: "+list)
   });
 };
 
@@ -638,20 +560,18 @@ function listBiocatalogue() {
     url: 'getJSON.php',
     success: function(data) {
       var content = jQuery.parseJSON(data);
-      console.log(content);
       content = content.search.results;
-      console.log(content);
       var list = '<ul data-role="listview" id="tree" data-inset="true">';
       for (var i = 0; i < content.length; i++) {
         var object = content[i];
         list += '<li>' +
             '<a href="#"><img src="img/serviceicon.png" alt="'+object.name+'">'+'<h2>'+object.name+'</h2>'+'<p>'+object.resource+'</p></a></li>'
           }
-
-      console.log(list)
     }
   });
 }
+
+// Monitoring //
 
 function generateJobMonitoringInterface (jobs) {
 
@@ -677,9 +597,6 @@ function generateJobMonitoringInterface (jobs) {
     return a>b ? -1 : a<b ? 1 : 0;
   });
 
-
-  console.log(jobs);
-
   $('#jobTable > tbody').html("");
 
   //Append each job as a row in the table
@@ -696,7 +613,7 @@ function generateJobMonitoringInterface (jobs) {
     var classes = jobs[i].status;
     var viewFile = "";
 
-    if(jobs[i].outputFile!='NOT' && jobs[i].outputFile!="") {
+    if(jobs[i].outputFile!='NOT' && jobs[i].outputFile!="" && jobs[i].outputFile!='InvalidInput') {
       viewFile = '<a onclick="loadFileInFileViewer('+"'"+jobs[i].outputFile+"'"+')" data-inline="true" data-role="button" data-icon="eye" data-iconpos="notext">Open</a>';
     } else {
       viewFile = '<a class="ui-disabled" data-inline="true" data-role="button" data-icon="eye" data-iconpos="notext">Open</a>';
@@ -716,7 +633,7 @@ function deleteJobByID (id) {
     var data = {
       'id' : id,
       'username':username
-    }
+    };
 
     $.ajax({
       type: 'POST',
