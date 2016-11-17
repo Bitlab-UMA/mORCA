@@ -178,6 +178,10 @@ img, object{
 
 /*** Joblist CSS ****/
 
+#jobTable {
+    border-collapse:separate;
+}
+
 #jobTable > tbody > tr.finished {
     background: #B2D5C4;
 }

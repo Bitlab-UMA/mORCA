@@ -11,7 +11,7 @@ var window = doc.defaultView;
 var $ = require("jquery")(window);
 var async = require('async');
 
-exports.addJob = function(username, serviceName, outputFile, status, cb) {
+exports.addJob = function(username, serviceName, outputFile, nameFile, status,  cb) {
 
     async.waterfall([
         async.apply(findUser, username),
@@ -52,6 +52,7 @@ exports.addJob = function(username, serviceName, outputFile, status, cb) {
             user              :    user._id,
             jobName           :    serviceName,
             outputFile        :    outputFile,
+            nameFile          :    nameFile,
             status            :    status
         });
 

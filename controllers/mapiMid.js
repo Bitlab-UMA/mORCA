@@ -94,7 +94,7 @@ var executeServiceJSON = function (req, res) {
 
     res.sendStatus(200);
 
-    addJob(userName, serviceName, outputFile, status, function(err, job){
+    addJob(userName, serviceName, outputFile, nameFile, status, function(err, job){
        jobID = job._id;
     });
 
@@ -219,8 +219,8 @@ var executeServiceJSON = function (req, res) {
         }
     });
 
-    function addJob (userName, serviceName, outputFile, status, cb){
-        jobs.addJob(userName, serviceName, outputFile, status, cb)
+    function addJob (userName, serviceName, outputFile, nameFile, status, cb){
+        jobs.addJob(userName, serviceName, outputFile, nameFile, status, cb)
     }
 };
 

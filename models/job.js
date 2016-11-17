@@ -5,6 +5,7 @@ var job_schema = new Schema({
     user              : { type: String, ref: 'User' },
     jobName           :   String,
     outputFile        :   String,
+    nameFile          :   String,
     status            :   String,
     date              : { type: Date, default: Date.now }
 });

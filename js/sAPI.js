@@ -621,7 +621,7 @@ function generateJobMonitoringInterface (jobs) {
       viewFile = '<a class="ui-disabled" data-inline="true" data-role="button" data-icon="eye" data-iconpos="notext">Open</a>';
     }
 
-    $('#jobTable > tbody').append('<tr class="'+classes+'"> <td>'+jobs[i].jobName+'</td><td>'+viewFile+'<a onclick="deleteJobByID('+"'"+jobs[i]._id+"'"+')"data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Delete</a></td><td>'+date.getUTCDate()+'/'+date.getUTCMonth()+'/'+date.getUTCFullYear()+' - '+date.getUTCHours()+':'+minutes()+'</td></tr>').trigger('create');
+    $('#jobTable > tbody').append('<tr class="'+classes+'"> <td>'+jobs[i].jobName+'</td><td>'+jobs[i].nameFile+'</td><td>'+date.getUTCDate()+'/'+date.getUTCMonth()+'/'+date.getUTCFullYear()+' - '+date.getUTCHours()+':'+minutes()+'</td><td>'+viewFile+'<a onclick="deleteJobByID('+"'"+jobs[i]._id+"'"+')"data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Delete</a></td></tr>').trigger('create');
 
   }
 
