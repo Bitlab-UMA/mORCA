@@ -102,7 +102,7 @@ $country  = $_POST['country'];											// Country typed in the form
 $email = $_POST['email'];												// Email typed in the form
 $email2 = $_POST['email2'];												// Email (retyped) typed in the form
 $loginName  = $_POST['loginname'];										// Login Name typed in the form
-$password = $_POST['password'];
+$passworduser = $_POST['password'];
 
 if ($email != $email2)
 {
@@ -126,9 +126,9 @@ else
 		//$id = crypt((String)rand());
 		$id = (String)rand();
 		// Create the user
-		createUser($firstName, $lastName, $institution, $department, $state, $country, $email, $loginName, $password, $id, $connection);
+		createUser($firstName, $lastName, $institution, $department, $state, $country, $email, $loginName, $passworduser, $id, $connection);
 		// Send an email to the user
-//		sendEMail($email, $firstName, $lastName, $loginName, $password);
+//		sendEMail($email, $firstName, $lastName, $loginName, $passworduser);
 		// Redirect to User Logged Page
 	    echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 	    echo "<?xml-stylesheet href=\"created.xsl\" type=\"text/xsl\"?>";

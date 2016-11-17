@@ -1,5 +1,6 @@
 var list = "";
 var filesList = new Array();
+var response = "";
 
 function readXMLToolList(repofile) {
 
@@ -654,3 +655,4 @@ function deleteJobByID (id) {
   }
 
 }
+

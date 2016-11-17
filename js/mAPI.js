@@ -661,7 +661,7 @@ function registerUser(){
 
   var data = {
     firstname: 'sergio',
-    lastName: 'diaz',
+    lastname: 'diaz',
     institution: 'UMA',
     department: 'AdC',
     state: 'malaga',

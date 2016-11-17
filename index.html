@@ -150,6 +150,7 @@
             <center>
                  <div id="usernamediv">
                     <p font-size="1">Welcome! (please sign in)</p>
+                     <p>Not already registered? sign-up <a href="#registerUserForm" data-rel="dialog">here</a></p>
                 </div>
             </center>
 
@@ -444,6 +445,7 @@
         </div>
     </div>
 
+
     <div data-role="page" id="fileViewer">
         <div data-role="header" data-position="fixed" data-add-back-btn="true">
             <h1>mORCA</h1>
@@ -467,6 +469,90 @@
                     <li><a href="#about" data-icon="info" data-transition="none">About</a></li>
                 </ul>
             </div>
+        </div>
+    </div>
+    <div data-role="page" id="registerUserForm">
+        <div data-role="header" data-position="fixed" data-close-btn="right">
+            <h1>Register user</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+
+            <div id="registerInfo">
+
+            </div>
+
+            <form method="post" action="createuser.php" id="registerForm">
+                <div class="ui-field-contain">
+                    <label for="loginname">Username:</label>
+                    <input type="text" name="loginname" id="loginname" placeholder="Username..." data-clear-btn="true">
+
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" data-clear-btn="true">
+
+                    <label for="firstname">First name:</label>
+                    <input type="text" name="firstname" id="firstname" placeholder="First name..." data-clear-btn="true">
+
+                    <label for="lastname">Last name:</label>
+                    <input type="text" name="lastname" id="lastname" placeholder="Last name..." data-clear-btn="true">
+
+                    <label for="institution">Institution:</label>
+                    <input type="text" name="institution" id="institution" placeholder="Institution..." data-clear-btn="true">
+
+                    <label for="department">Deparment:</label>
+                    <input type="text" name="department" id="department" placeholder="Department..." data-clear-btn="true">
+
+                    <label for="state">State:</label>
+                    <input type="text" name="state" id="state" placeholder="State..." data-clear-btn="true">
+
+                    <label for="country">Country:</label>
+                    <input type="text" name="country" id="country" placeholder="Country..." data-clear-btn="true">
+
+                    <label for="email">email:</label>
+                    <input type="email" name="email" id="email" placeholder="email..." data-clear-btn="true">
+
+                    <label for="email2">email (Retype): </label>
+                    <input type="email" name="email2" id="email2" placeholder="email..." data-clear-btn="true">
+
+                </div>
+                <input type="submit" value="Submit" data-icon="check" data-iconpos="right" data-inline="true">
+            </form>
+
+            <script>
+                $('#registerForm').on('submit', function (e) {
+
+                console.log("registering");
+                if (e.preventDefault) e.preventDefault();
+
+                var serializedFormData = $('#registerForm').serialize();
+
+                $.ajax({
+                type: "POST",
+                url: "createuser.php",
+                data: serializedFormData,
+                success: function(res) {
+                    console.log("Success..");
+                    console.log(res);
+                    $('#registerInfo').html("");
+                    $('#registerInfo').append(res.lastChild.getAttribute("message")).
+                    $.mobile.silentScroll(0);
+                },
+                error: function(err){
+                    console.log("Error..");
+                    console.log(err);
+                    response = err;
+                    $('#registerInfo').html("");
+                    $('#registerInfo').append(err.responseText);
+                    $('#registerInfo').css("background", "#d5bab3");
+                    $.mobile.silentScroll(0);
+                }
+                });
+
+                return false;
+                });
+            </script>
+
+
         </div>
     </div>
 
