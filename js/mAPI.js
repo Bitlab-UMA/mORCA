@@ -73,6 +73,7 @@ function getToolListAsXML(repoName) {
     }
   });
 }
+
 function loginWS(user, pass) {
   soap();
   $.soap({
@@ -592,6 +593,7 @@ function deleteElement(elementid, session, repoid) {
     }
   });
 }
+
 function cleanData(data) {
   var rt = resultsType(data);
   if (rt == 'AminoAcidSequence') {
@@ -651,4 +653,40 @@ function displayFile(idfile, session, repoid) {
       console.log(SOAPResponse.toString());
     }
   });
+}
+
+function registerUser(){
+
+  console.log("cucu");
+
+  var data = {
+    firstname: 'sergio',
+    lastName: 'diaz',
+    institution: 'UMA',
+    department: 'AdC',
+    state: 'malaga',
+    country: 'spain',
+    email: 'sergiodiazdp@gmail.com',
+    email2: 'sergiodiazdp@gmail.com',
+    loginname: 'ynlogintest'
+  };
+
+  $.ajax({
+    type: "POST",
+    url: "createuser.php",
+    data: data,
+    beforeSend: function (res) {
+      console.log("Sending..");
+      console.log(res)
+    },
+    success: function(res) {
+      console.log("Success..");
+      console.log(res)
+    },
+    error: function(err){
+      console.log("Error..");
+      console.log(err);
+    }
+  });
+
 }
