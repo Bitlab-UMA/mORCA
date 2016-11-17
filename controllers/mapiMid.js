@@ -204,7 +204,7 @@ var executeServiceJSON = function (req, res) {
                 outputFile =result["soapenv:Envelope"]["soapenv:Body"][0]["executeServiceResponse"][0]["executeServiceReturn"][0];
             });
 
-            if(outputFile.indexOf('chirimoyo:files:')) {
+            if(outputFile.indexOf('chirimoyo:files:')>-1) {
                 jobs.updateJob(jobID, outputFile,'finished')
             } else {
                 jobs.updateJob(jobID, "InvalidInput",'failed')

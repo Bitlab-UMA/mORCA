@@ -122,6 +122,30 @@
     });
   }
 
+  window.nuevoParametro = function(id, hiddentext, text) {
+    $("#popupMenu" + id).popup("close")
+    $("#parameter" + id).val(text);
+    $("#parameterhidden" + id).val(hiddentext);
+    $('#checkbox' + id).prop('checked', true).checkboxradio('refresh');
+    document.getElementById("runrun").disabled = false;
+    // poner un nombre adecuado, si no le han puesto ya uno
+    // var currentFileName = $("#nameFile").value;
+    var currentFileName = document.getElementById("nameFile").value;
+    if (currentFileName.length > 0) {
+      var posseparation = currentFileName.lastIndexOf(' give me a name!');
+      if (posseparation == -1) {
+        posseparation = currentFileName.indexOf('-WITH-')
+      }
+      if (posseparation >= 0) {
+        currentFileName = currentFileName.substr(0,posseparation) + '-WITH-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
+      }
+    } else {
+      currentFileName = $("#parameter" + id).val() + '_' +fechaHoraExt()
+    }
+    document.getElementById("nameFile").value = currentFileName;
+
+  }
+
   </script>
 </head>
 

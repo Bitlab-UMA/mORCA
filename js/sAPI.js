@@ -599,6 +599,8 @@ function generateJobMonitoringInterface (jobs) {
 
   $('#jobTable > tbody').html("");
 
+  console.log(jobs);
+
   //Append each job as a row in the table
   for (i in jobs) {
     var date = new Date(jobs[i].date);

@@ -405,6 +405,9 @@ function getFile(idfile, session, repoid) {
     },
 
     success: function(soapResponse) {
+
+      console.log(soapResponse.toString())
+
       if (window.DOMParser) {
         parser = new DOMParser();
         xmlDoc = parser.parseFromString(soapResponse.toString(), "text/xml");
