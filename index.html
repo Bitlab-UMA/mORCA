@@ -9,6 +9,7 @@
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/jquery.soap.js"></script>
     <script src="js/jquery.mobile.nestedlists.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.26.min.js"></script>
     <script src="js/mAPI.js"></script>
     <script src="js/sAPI.js"></script>
@@ -124,6 +125,7 @@
         <label for="pw" class="ui-hidden-accessible">Password:</label>
         <input type="password" name="pass" id="pw" value="guest" placeholder="Password" data-theme="a">
         <button id="loginpopbutton" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
+        <p class="lowfont">Not already registered? Sign-up <a href="#registerUserForm" data-rel="dialog">here</a></p>
     </div>
     <script>
         $("#loginpopbutton").click(function() {
@@ -150,7 +152,6 @@
             <center>
                  <div id="usernamediv">
                     <p font-size="1">Welcome! (please sign in)</p>
-                     <p>Not already registered? sign-up <a href="#registerUserForm" data-rel="dialog">here</a></p>
                 </div>
             </center>
 
@@ -190,8 +191,7 @@
 
 
 
-            <!-- <center><a href="index.html" data-role="button" onclick="getToolListAsXML('Bitlab [chirimoyo.ac.uma.es]')">TEST</a> </center>
-    <center><a href="index.html" data-role="button" onclick="readXMLToolList('mrsymbiomathtoollist.xml')">TEST2</a> </center> -->
+
         </div>
 
         <!-- BOTTON navbar -->
@@ -485,10 +485,10 @@
             <form method="post" action="createuser.php" id="registerForm">
                 <div class="ui-field-contain">
                     <label for="loginname">Username:</label>
-                    <input type="text" name="loginname" id="loginname" placeholder="Username..." data-clear-btn="true">
+                    <input type="text" name="loginname" id="loginname" placeholder="Username..." data-clear-btn="true" minlength="5">
 
                     <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" data-clear-btn="true">
+                    <input type="password" name="password" id="password" data-clear-btn="true" minlength="5">
 
                     <label for="firstname">First name:</label>
                     <input type="text" name="firstname" id="firstname" placeholder="First name..." data-clear-btn="true">
@@ -509,47 +509,86 @@
                     <input type="text" name="country" id="country" placeholder="Country..." data-clear-btn="true">
 
                     <label for="email">email:</label>
-                    <input type="email" name="email" id="email" placeholder="email..." data-clear-btn="true">
+                    <input type="email" name="email" id="email" placeholder="email..." data-clear-btn="true" minlength="5">
 
                     <label for="email2">email (Retype): </label>
-                    <input type="email" name="email2" id="email2" placeholder="email..." data-clear-btn="true">
+                    <input type="email" name="email2" id="email2" placeholder="email..." data-clear-btn="true" minlength="5">
 
                 </div>
-                <input type="submit" value="Submit" data-icon="check" data-iconpos="right" data-inline="true">
+                <input type="submit" value="Submit" data-icon="check" data-iconpos="right">
             </form>
 
             <script>
+
+                $( "#registerUserForm" ).on( "pageinit", function() {
+                    $( "#registerForm" ).validate({
+                        rules: {
+                            loginname: {
+                                required: true
+                            },
+                            password: {
+                                required: true
+                            },
+
+                            firstname: {
+                                required: true
+                            },
+                            country : {
+                                required: true
+                            },
+                            email: {
+                                required: true
+                            },
+                            email2: {
+                                required: true
+                            }
+                        },
+                        errorPlacement: function( error, element ) {
+                            error.insertAfter( element.parent() );
+                        }
+                    });
+                });
+
                 $('#registerForm').on('submit', function (e) {
 
-                console.log("registering");
-                if (e.preventDefault) e.preventDefault();
+                    if (e.preventDefault) e.preventDefault();
 
-                var serializedFormData = $('#registerForm').serialize();
+                    $('#registerForm').validate();
 
-                $.ajax({
-                type: "POST",
-                url: "createuser.php",
-                data: serializedFormData,
-                success: function(res) {
-                    console.log("Success..");
-                    console.log(res);
-                    $('#registerInfo').html("");
-                    $('#registerInfo').append(res.lastChild.getAttribute("message")).
-                    $.mobile.silentScroll(0);
-                },
-                error: function(err){
-                    console.log("Error..");
-                    console.log(err);
-                    response = err;
-                    $('#registerInfo').html("");
-                    $('#registerInfo').append(err.responseText);
-                    $('#registerInfo').css("background", "#d5bab3");
-                    $.mobile.silentScroll(0);
-                }
-                });
+                    var serializedFormData = $('#registerForm').serialize();
 
-                return false;
-                });
+                    if($('#registerForm').valid()){
+                        $.ajax({
+                            type: "POST",
+                            url: "createuser.php",
+                            data: serializedFormData,
+                            success: function(res) {
+
+                                var message = res.lastChild.getAttribute("message");
+
+                                $('#registerInfo').html("");
+                                $('#registerInfo').append(message);
+                                $("html, body").animate({ "scrollTop" : 0 }, 500);
+
+                                message = message.toLowerCase();
+
+                                if(message.indexOf("exists")>0 || (message.indexOf("match")>0) ){
+                                    $('#registerInfo').css("background", "#f6f3cb");
+                                } else {
+                                    $('#registerInfo').css("background", "#B2D5C4");
+                                }
+                            },
+                            error: function(err){
+                                $('#registerInfo').html("");
+                                $('#registerInfo').append(err.responseText);
+                                $('#registerInfo').css("background", "#d5bab3");
+                                $("html, body").animate({ "scrollTop" : 0 }, 500);
+                            }
+                        });
+                    }
+
+                    return false;
+                    });
             </script>
 
 

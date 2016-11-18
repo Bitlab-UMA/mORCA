@@ -132,7 +132,7 @@ else
 		// Redirect to User Logged Page
 	    echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 	    echo "<?xml-stylesheet href=\"created.xsl\" type=\"text/xsl\"?>";
-		echo "<messages message='User $loginName was assigned password \"$password\". Please take note!'/>";	
+		echo "<messages message='User $loginName was assigned password \"$passworduser\". Please take note!'/>";
 	}
 	else if ($check == 1) 													// Login Exists
 	{

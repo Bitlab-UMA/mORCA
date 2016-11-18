@@ -1,6 +1,5 @@
 var list = "";
 var filesList = new Array();
-var response = "";
 
 function readXMLToolList(repofile) {
 
@@ -473,7 +472,6 @@ function loadFileBrowser() {
 
 
 }
-
 
 function importFile(fileName, type) {
   AWS.config.update({ accessKeyId: 'AKIAIMXVBS4HNMY45OZA', secretAccessKey: '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' });
