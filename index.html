@@ -7,9 +7,9 @@
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="js/jquery.soap.js"></script>
-    <script src="js/jquery.mobile.nestedlists.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/plugins/jquery.soap.js"></script>
+    <script src="js/plugins/jquery.mobile.nestedlists.js"></script>
+    <script src="js/plugins/jquery.validate.min.js"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.26.min.js"></script>
     <script src="js/mAPI.js"></script>
     <script src="js/sAPI.js"></script>
@@ -64,13 +64,10 @@
     }
 
     function loadService(name) {
-        var page = "service.html";
-        page += "?" + name;
-        page += "?" + repoid;
-        page += "?" + toolid;
-        location.href = page;
-        //$( ":mobile-pagecontainer" ).pagecontainer( "load", page, { role: "page" } );
-        }
+
+        loadServiceInfo(name);
+        $("body").pagecontainer( "change", "#servicePage", {transition: "slide", showLoadMsg:true} );
+    }
 
     $.mobile.filterable.prototype.options.filterCallback = function(text, searchValue ) {
             function findLongestSubstring(str1, str2){
@@ -593,6 +590,35 @@
 
 
         </div>
+    </div>
+    <div data-role="page" id="servicePage">
+        <div data-role="header" data-position="fixed" data-add-back-btn="true">
+            <h1>mORCA</h1>
+            <a href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn-right loginButton" data-transition="pop">Sign in</a>
+        </div>
+        <div id="serviceInterface" role="main" class="ui-content">
+
+        </div>
+
+        <div id="serviceRunning"></div>
+
+        <div data-role="footer" data-position="fixed">
+            <h4>&copy; 2016 Bioinformatics and Information Technology Laboratories</h4>
+        </div>
+
+        <script>
+            $(document).on("pagebeforeshow","#servicePage",function() {
+                getParameters(idOperation, repoID, (function(array) {
+                    generateInterface(array, name);
+                    parameters = array;
+                }));
+            });
+
+            $(document).on("pagehide","#servicePage",function() {
+                $("#serviceInterface").html("");
+            });
+        </script>
+
     </div>
 
     <script>

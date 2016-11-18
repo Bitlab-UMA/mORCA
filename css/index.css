@@ -281,3 +281,47 @@ em {
     padding-right: .25em;
 }
 
+/* Service.css */
+
+#serviceInterface .ui-grid-a a{
+    float: left;
+}
+
+#serviceInterface .ui-grid-a{
+    padding-left: 5px;
+}
+
+#serviceInterface .ui-block-b{
+    margin: 12px 0px;
+}
+
+#serviceInterface .ui-grid-a>.ui-block-a{
+    width: 100%;
+}
+
+#serviceInterface .ui-grid-a>.ui-block-b{
+    width: 50%;
+}
+
+#serviceInterface .ui-grid-a >.ui-block-c{
+    width: 50%;
+}
+
+div#parameterbox {
+    padding-left: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#serviceInterface .ui-grid-a>.ui-block-stringa{
+    width: 75%;
+}
+
+#serviceInterface .ui-grid-a>.ui-block-stringb{
+    width: 20%;
+}
+
+#serviceRunning {
+    text-align: center !important;
+}
+

@@ -64,13 +64,12 @@ function fechaHoraExt() {
 
 function generateInterface(parameters, serviceName) {
 
-  document.write("<div data-role='content'>" +
+  $("#serviceInterface").append("<div data-role='content'>" +
     "<form name='parametersForm' action='javascript:processParameters()' method='post' id='parametersFormID'>");
 
-  document.write('<div id="inputs"></div><div id="outputs"></div>');
+  $("#parametersFormID").append('<div id="inputs"></div><div id="outputs"></div>');
 
   for (var x = 0; x < parameters.length; x++) {
-
 
     var outputCount = 0; var outputIndex = 0;
     var parametersDiv;
@@ -234,9 +233,7 @@ function generateInterface(parameters, serviceName) {
 
           parametersDiv.append(generatePopup);
 
-          repoid = String(window.location.href.split('?')[2]);
-          repoid = decodeURI(repoid);
-
+          repoid = repoID;
           break;
       }
 
@@ -246,6 +243,7 @@ function generateInterface(parameters, serviceName) {
     } else if (outputCount==0){
       outputIndex = x;
     }
+
   }
 
   parametersDiv = $("#outputs");
@@ -262,6 +260,7 @@ function generateInterface(parameters, serviceName) {
     "<button type='submit' id='runrun' class='show-page-loading-msg' data-textonly='false' data-textvisible='true' >Run</button>");
   parametersDiv.append("</form></div>");
 
+  $("#servicePage").trigger("create");
 }
 
 
@@ -653,4 +652,129 @@ function deleteJobByID (id) {
   }
 
 }
+
+// Service JS //
+
+var name, urlOperation, idOperation, repoID;
+var parameters = new Array();
+var resultfile = "";
+filesList = new Array();
+
+function loadServiceInfo(serviceName) {
+  name = serviceName;
+  urlOperation = toolid + name;
+  idOperation = toolid + name + ";" + name;
+
+  repoID = repoid;
+};
+
+function processParameters() {
+
+
+  if (logged() && $('#nameFile').val().length != 0) {
+    var d = new Date();
+    d.setTime(d.getTime());
+    var nameFile = document.getElementById("nameFile").value
+    var idFolder = "";
+    var token = getCookie("token");
+    var user = getCookie("username");
+    var inputList = new Array();
+    var outputList = new Array();
+
+    for (var x = 0; x < parameters.length; x++) {
+
+      if (parameters[x].input == "true") {
+        var parameter = new Array();
+        var generatedID = 'parameter' + x + '';
+
+        var para = document.getElementById('parameter' + x).value;
+
+        try {para = document.getElementById('parameterhidden' + x).value } catch(e){};
+
+        parameter.push(para);
+
+        parameter.push(parameters[x].dataTypeID);
+        parameter.push("Moby");
+        parameter.push(parameters[x].name);
+        parameter.push(null);
+        parameter.push(null);
+        parameter.push(parameters[x].type);
+
+        if (document.getElementById("checkbox" + x)) {
+          if (document.getElementById("checkbox" + x).checked) {
+            parameter.push("true");
+          } else {
+            parameter.push("false");
+          }
+
+        } else {
+          parameter.push("false");
+        }
+
+        inputList.push(parameter);
+      }
+    };
+
+    for (var x = 0; x < parameters.length; x++) {
+      if (parameters[x].input == "false") {
+
+        var outParameter = new Array();
+        outParameter.push(null);
+        outParameter.push(parameters[x].dataTypeID);
+        outParameter.push("");
+        outParameter.push(parameters[x].name);
+        outParameter.push(null);
+        outParameter.push(null);
+        outParameter.push(parameters[x].type);
+        outParameter.push("false");
+
+        outputList.push(outParameter);
+      }
+    }
+
+    executeService(inputList, outputList, urlOperation, idOperation, nameFile, idFolder, token, user, repoID);
+
+  } else {
+    $.mobile.loading("hide");
+    if(logged()) {
+      $('#nameFile').attr("placeholder", "Please, insert a output file name. (i.e. 'myFile.txt')")
+      $('#nameFile').focus()
+    } else {
+      alert("Please, log in if you want to execute a service");
+    }
+  }
+}
+
+// Navigation Fix
+if ( ("standalone" in window.navigator) && window.navigator.standalone ) {
+  $(document).on('click', "a[rel*=external], area[rel*=external]", function(){
+    self.location=this.href;
+    return false;
+  });
+}
+
+window.nuevoParametro = function(id, hiddentext, text) {
+  $("#popupMenu" + id).popup("close")
+  $("#parameter" + id).val(text);
+  $("#parameterhidden" + id).val(hiddentext);
+  $('#checkbox' + id).prop('checked', true).checkboxradio('refresh');
+  document.getElementById("runrun").disabled = false;
+  // poner un nombre adecuado, si no le han puesto ya uno
+  // var currentFileName = $("#nameFile").value;
+  var currentFileName = document.getElementById("nameFile").value;
+  if (currentFileName.length > 0) {
+    var posseparation = currentFileName.lastIndexOf(' give me a name!');
+    if (posseparation == -1) {
+      posseparation = currentFileName.indexOf('-WITH-')
+    }
+    if (posseparation >= 0) {
+      currentFileName = currentFileName.substr(0,posseparation) + '-WITH-' + $("#parameter" + id).val() + '_' +fechaHoraExt();
+    }
+  } else {
+    currentFileName = $("#parameter" + id).val() + '_' +fechaHoraExt()
+  }
+  document.getElementById("nameFile").value = currentFileName;
+
+}
+
 
