@@ -20,98 +20,18 @@
     <link rel="stylesheet" href="css/themes/bitlab-exilir.css" />
     <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="css/index.css" />
+
     <link rel="apple-touch-icon" href="ios/Icon.png" />
     <link rel="apple-touch-icon-precomposed" href="ios/Icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="ios/Icon-72.png" />
     <link rel="apple-touch-icon" sizes="114x114" href="ios/Icon@2x.png" />
     <link rel="apple-touch-icon" sizes="144x144" href="ios/Icon-72@2x.png" />
-    <script>
 
-    var toolid = "urn:symbiomath:tool:";
-    var repoid = "Bitlab [chirimoyo.ac.uma.es]";
-
-    function changeRepository() {
-
-        var selectRepository = document.getElementById("selectRepository");
-        var selectedValue = selectRepository.options[selectRepository.selectedIndex].value;
-
-        switch (selectedValue) {
-            case 'INB':
-                $("#treeview").load("data/inb.html");
-                toolid = "urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es";
-                repoid = "INB  [chirimoyo.ac.uma.es]";
-                break;
-
-            case 'MrSymbiomath':
-                $("#treeview").load("data/mrsymbiomath.html");
-                toolid = "urn:symbiomath:tool:";
-                repoid = "Bitlab [chirimoyo.ac.uma.es]";
-                break;
-
-            case 'Biotools':
-                $("#treeview").load("data/biotools.html");
-                toolid = "urn:biotools:tool:";
-                repoid = "Biotools";
-                break;
-
-            case 'Biocatalogue':
-                $("#treeview").load("data/biocatalogue.html");
-                toolid = "urn:biocatalogue:tool:";
-                repoid = "biocatalogue";
-                break;
-
-        }
-    }
-
-    function loadService(name) {
-
-        loadServiceInfo(name);
-        $("body").pagecontainer( "change", "#servicePage", {transition: "slide", showLoadMsg:true} );
-    }
-
-    $.mobile.filterable.prototype.options.filterCallback = function(text, searchValue ) {
-            function findLongestSubstring(str1, str2){
-
-                var longest = "";
-                for (var i = 0; i < str1.length; ++i) {
-                    for (var j = 0; j < str2.length; ++j) {
-                        if (str1[i] === str2[j]) {
-                            var str = str1[i];
-                            var k = 1;
-                            while (i + k < str1.length && j + k < str2.length && str1[i+k] === str2[j+k]) { // same letter
-                                str += str1[i+k];
-                                ++k;
-                            }
-
-                            if (str.length > longest.length) { longest = str }
-                        }
-                    }
-
-                }
-                return longest;
-            }
-
-            if(searchValue.length>2) {
-                var title = $(this).find("h2").first().text().toLowerCase();
-                searchValue = searchValue.toLowerCase();
-
-                if(title.indexOf(searchValue)>-1) {
-                    return false;
-                } else {
-                    var subst = findLongestSubstring(searchValue,title);
-                    if(subst.length*100/searchValue.length>=60){
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }
-            }
-    };
-    </script>
 </head>
 
 <body>
 
+    <!-- General Popup login for each header page -->
     <div id="popupLogin" data-role="popup" data-theme="a" class="ui-corner-all">
     <div class="popupContent">
         <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete"
@@ -134,6 +54,7 @@
     </script>
 </div>
 
+    <!-- Main tabs -->
     <div data-role="page" id="index">
         <div data-role="header" data-position="fixed" id="genheader">
             <h1>mORCA</h1>
@@ -166,21 +87,16 @@
 
 
             <!-- REPOSITORY -->
-            <div id="divSelectRepository" data-role="content" style="align-self: center">
-                <select id="selectRepository" idname="select-choice-a" id="repository" data-native-menu="false" onchange="changeRepository();" data-mini="true">
-                    <option id="initialRepo">…</option>
-                    <option value="MrSymbiomath">MrSymbiomath</option>
+            <div id="divSelectRepository" data-role="content" class="ui-field-contain" style="align-self: center">
+                <label for="repository">Select repository: </label>
+                <select id="selectRepository" name="repository" idname="select-choice-a" id="repository" data-native-menu="false" onchange="changeRepository();" data-mini="true">
+                    <option value="MrSymbiomath" selected="selected">MrSymbiomath</option>
                     <option value="INB">INB</option>
                     <option value="Biotools" onclick='changeRepository("Biotools")'>Biotools</option>
                     <option value="Biocatalogue" onclick='changeRepository("Biocatalogue")'>Biocatalogue</option>
                 </select>
                 </p>
             </div>
-
-
-            <script>
-            $("#initialRepo").text("Current repository: " + repoid)
-            </script>
 
             <div id="elixirlogodiv">
                 <img src="img/logo.png" alt="MrSymbiomath" class="logo">
@@ -442,198 +358,202 @@
         </div>
     </div>
 
+    <!-- Additional pages -->
 
-    <div data-role="page" id="fileViewer">
-        <div data-role="header" data-position="fixed" data-add-back-btn="true">
-            <h1>mORCA</h1>
-            <a href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn-right loginButton" data-transition="pop">Sign in</a>
-        </div>
+        <!-- File viewer -->
+        <div data-role="page" id="fileViewer">
 
-        <div data-role="content">
-            <label for="results">Results:</label>
-            <textarea type="text" name="results" id="results" readonly>
-
-            </textarea>
-        </div>
-
-        <div data-role="footer" data-position="fixed">
-            <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
-            <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
-                <ul>
-                    <li><a href="#index" data-icon="home" data-transition="none">Home</a></li>
-                    <li><a href="#filebrowser" data-icon="bars" data-transition="none">File Browser</a></li>
-                    <li><a href="#executionInfo" data-icon="gear" class="ui-btn-active">Monitoring</a></li>
-                    <li><a href="#about" data-icon="info" data-transition="none">About</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div data-role="page" id="registerUserForm">
-        <div data-role="header" data-position="fixed" data-close-btn="right">
-            <h1>Register user</h1>
-        </div>
-
-        <div role="main" class="ui-content">
-
-            <div id="registerInfo">
-
+            <div data-role="header" data-position="fixed" data-add-back-btn="true">
+                <h1>mORCA</h1>
+                <a href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn-right loginButton" data-transition="pop">Sign in</a>
             </div>
 
-            <form method="post" action="createuser.php" id="registerForm">
-                <div class="ui-field-contain">
-                    <label for="loginname">Username:</label>
-                    <input type="text" name="loginname" id="loginname" placeholder="Username..." data-clear-btn="true" minlength="5">
+            <div data-role="content">
+                <label for="results">Results:</label>
+                <textarea type="text" name="results" id="results" readonly>
 
-                    <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" data-clear-btn="true" minlength="5">
+                </textarea>
+            </div>
 
-                    <label for="firstname">First name:</label>
-                    <input type="text" name="firstname" id="firstname" placeholder="First name..." data-clear-btn="true">
+            <div data-role="footer" data-position="fixed">
+                <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
+                <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
+                    <ul>
+                        <li><a href="#index" data-icon="home" data-transition="none">Home</a></li>
+                        <li><a href="#filebrowser" data-icon="bars" data-transition="none">File Browser</a></li>
+                        <li><a href="#executionInfo" data-icon="gear" class="ui-btn-active">Monitoring</a></li>
+                        <li><a href="#about" data-icon="info" data-transition="none">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-                    <label for="lastname">Last name:</label>
-                    <input type="text" name="lastname" id="lastname" placeholder="Last name..." data-clear-btn="true">
+        <!-- Register user form -->
+        <div data-role="page" id="registerUserForm">
+            <div data-role="header" data-position="fixed" data-close-btn="right">
+                <h1>Register user</h1>
+            </div>
 
-                    <label for="institution">Institution:</label>
-                    <input type="text" name="institution" id="institution" placeholder="Institution..." data-clear-btn="true">
+            <div role="main" class="ui-content">
 
-                    <label for="department">Deparment:</label>
-                    <input type="text" name="department" id="department" placeholder="Department..." data-clear-btn="true">
-
-                    <label for="state">State:</label>
-                    <input type="text" name="state" id="state" placeholder="State..." data-clear-btn="true">
-
-                    <label for="country">Country:</label>
-                    <input type="text" name="country" id="country" placeholder="Country..." data-clear-btn="true">
-
-                    <label for="email">email:</label>
-                    <input type="email" name="email" id="email" placeholder="email..." data-clear-btn="true" minlength="5">
-
-                    <label for="email2">email (Retype): </label>
-                    <input type="email" name="email2" id="email2" placeholder="email..." data-clear-btn="true" minlength="5">
+                <div id="registerInfo">
 
                 </div>
-                <input type="submit" value="Submit" data-icon="check" data-iconpos="right">
-            </form>
 
-            <script>
+                <form method="post" action="createuser.php" id="registerForm">
+                    <div class="ui-field-contain">
+                        <label for="loginname">Username:</label>
+                        <input type="text" name="loginname" id="loginname" placeholder="Username..." data-clear-btn="true" minlength="5">
 
-                $( "#registerUserForm" ).on( "pageinit", function() {
-                    $( "#registerForm" ).validate({
-                        rules: {
-                            loginname: {
-                                required: true
-                            },
-                            password: {
-                                required: true
-                            },
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" id="password" data-clear-btn="true" minlength="5">
 
-                            firstname: {
-                                required: true
-                            },
-                            country : {
-                                required: true
-                            },
-                            email: {
-                                required: true
-                            },
-                            email2: {
-                                required: true
-                            }
-                        },
-                        errorPlacement: function( error, element ) {
-                            error.insertAfter( element.parent() );
-                        }
-                    });
-                });
+                        <label for="firstname">First name:</label>
+                        <input type="text" name="firstname" id="firstname" placeholder="First name..." data-clear-btn="true">
 
-                $('#registerForm').on('submit', function (e) {
+                        <label for="email">email:</label>
+                        <input type="email" name="email" id="email" placeholder="email..." data-clear-btn="true" minlength="5">
 
-                    if (e.preventDefault) e.preventDefault();
+                        <label for="email2">email (Retype): </label>
+                        <input type="email" name="email2" id="email2" placeholder="email..." data-clear-btn="true" minlength="5">
+                    </div>
 
-                    $('#registerForm').validate();
+                    <!-- Additional information for registering -->
+                    <div data-role="collapsible" data-theme="a" data-content-theme="a">
+                        <h5>Additional information (Optional)</h5>
 
-                    var serializedFormData = $('#registerForm').serialize();
+                        <div class="ui-field-contain">
+                            <label for="lastname">Last name:</label>
+                            <input type="text" name="lastname" id="lastname" placeholder="Last name..." data-clear-btn="true">
 
-                    if($('#registerForm').valid()){
-                        $.ajax({
-                            type: "POST",
-                            url: "createuser.php",
-                            data: serializedFormData,
-                            success: function(res) {
+                            <label for="institution">Institution:</label>
+                            <input type="text" name="institution" id="institution" placeholder="Institution..." data-clear-btn="true">
 
-                                var message = res.lastChild.getAttribute("message");
+                            <label for="department">Deparment:</label>
+                            <input type="text" name="department" id="department" placeholder="Department..." data-clear-btn="true">
 
-                                $('#registerInfo').html("");
-                                $('#registerInfo').append(message);
-                                $("html, body").animate({ "scrollTop" : 0 }, 500);
+                            <label for="state">State:</label>
+                            <input type="text" name="state" id="state" placeholder="State..." data-clear-btn="true">
 
-                                message = message.toLowerCase();
+                            <label for="country">Country:</label>
+                            <input type="text" name="country" id="country" placeholder="Country..." data-clear-btn="true">
+                        </div>
+                    </div>
+                    <input type="submit" value="Submit" data-icon="check" data-iconpos="right">
+                </form>
 
-                                if(message.indexOf("exists")>0 || (message.indexOf("match")>0) ){
-                                    $('#registerInfo').css("background", "#f6f3cb");
-                                } else {
-                                    $('#registerInfo').css("background", "#B2D5C4");
+                <script>
+
+                    $( "#registerUserForm" ).on( "pageinit", function() {
+                        $( "#registerForm" ).validate({
+                            rules: {
+                                loginname: {
+                                    required: true
+                                },
+                                password: {
+                                    required: true
+                                },
+
+                                firstname: {
+                                    required: true
+                                },
+                                country : {
+                                    required: true
+                                },
+                                email: {
+                                    required: true
+                                },
+                                email2: {
+                                    required: true
                                 }
                             },
-                            error: function(err){
-                                $('#registerInfo').html("");
-                                $('#registerInfo').append(err.responseText);
-                                $('#registerInfo').css("background", "#d5bab3");
-                                $("html, body").animate({ "scrollTop" : 0 }, 500);
+                            errorPlacement: function( error, element ) {
+                                error.insertAfter( element.parent() );
                             }
                         });
-                    }
-
-                    return false;
                     });
+
+                    $('#registerForm').on('submit', function (e) {
+
+                        if (e.preventDefault) e.preventDefault();
+
+                        $('#registerForm').validate();
+
+                        var serializedFormData = $('#registerForm').serialize();
+
+                        if($('#registerForm').valid()){
+                            $.ajax({
+                                type: "POST",
+                                url: "createuser.php",
+                                data: serializedFormData,
+                                success: function(res) {
+
+                                    var message = res.lastChild.getAttribute("message");
+
+                                    $('#registerInfo').html("");
+                                    $('#registerInfo').append(message);
+                                    $("html, body").animate({ "scrollTop" : 0 }, 500);
+
+                                    message = message.toLowerCase();
+
+                                    if(message.indexOf("exists")>0 || (message.indexOf("match")>0) ){
+                                        $('#registerInfo').css("background", "#f6f3cb");
+                                    } else {
+                                        $('#registerInfo').css("background", "#B2D5C4");
+                                    }
+                                },
+                                error: function(err){
+                                    $('#registerInfo').html("");
+                                    $('#registerInfo').append(err.responseText);
+                                    $('#registerInfo').css("background", "#d5bab3");
+                                    $("html, body").animate({ "scrollTop" : 0 }, 500);
+                                }
+                            });
+                        }
+
+                        return false;
+                        });
+                </script>
+
+
+            </div>
+        </div>
+
+        <!-- Service Interface page -->
+        <div data-role="page" id="servicePage">
+            <div data-role="header" data-position="fixed" data-add-back-btn="true">
+                <h1>mORCA</h1>
+                <a href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn-right loginButton" data-transition="pop">Sign in</a>
+            </div>
+            <div id="serviceInterface" role="main" class="ui-content">
+
+            </div>
+
+            <div id="serviceRunning"></div>
+
+            <div data-role="footer" data-position="fixed">
+                <h4>&copy; 2016 Bioinformatics and Information Technology Laboratories</h4>
+            </div>
+
+            <script>
+                $(document).on("pagebeforeshow","#servicePage",function() {
+                    getParameters(idOperation, repoID, (function(array) {
+                        generateInterface(array, name);
+                        parameters = array;
+                    }));
+                });
+
+                $(document).on("pagehide","#servicePage",function() {
+                    $("#serviceInterface").html("");
+                });
             </script>
 
-
         </div>
-    </div>
-    <div data-role="page" id="servicePage">
-        <div data-role="header" data-position="fixed" data-add-back-btn="true">
-            <h1>mORCA</h1>
-            <a href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn-right loginButton" data-transition="pop">Sign in</a>
-        </div>
-        <div id="serviceInterface" role="main" class="ui-content">
-
-        </div>
-
-        <div id="serviceRunning"></div>
-
-        <div data-role="footer" data-position="fixed">
-            <h4>&copy; 2016 Bioinformatics and Information Technology Laboratories</h4>
-        </div>
-
-        <script>
-            $(document).on("pagebeforeshow","#servicePage",function() {
-                getParameters(idOperation, repoID, (function(array) {
-                    generateInterface(array, name);
-                    parameters = array;
-                }));
-            });
-
-            $(document).on("pagehide","#servicePage",function() {
-                $("#serviceInterface").html("");
-            });
-        </script>
-
-    </div>
 
     <script>
         $( function() {
             $( "#popupLogin" ).enhanceWithin().popup();
         });
-
-
-        function loadFileInFileViewer(id){
-            var session = getCookie('token');
-            $("#results").html();
-            getFile(id,session,repoid);
-            $( "body" ).pagecontainer( "change", "#fileViewer", {transition: "slide"});
-        }
-
     </script>
 
 </body>

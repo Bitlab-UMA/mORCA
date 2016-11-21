@@ -252,6 +252,11 @@ img, object{
     outline: none;
 }
 
+
+.ui-field-contain{
+    border-bottom-width: 0px !important;
+}
+
 /* Validate Form CSS */
 
 label.error {

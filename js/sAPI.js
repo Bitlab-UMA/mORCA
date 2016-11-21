@@ -263,7 +263,6 @@ function generateInterface(parameters, serviceName) {
   $("#servicePage").trigger("create");
 }
 
-
 /////// Cookie Functions ////////
 
 function getCookie(cname) {
@@ -293,11 +292,8 @@ function eraseCookie(cname) {
   }
 };
 
-////////// END Cookie Functions //////////////
 
-
-///////// Login Functions ///////////////////
-
+///////// Login Functions ////////////////
 
 function logged() {
   if (getCookie('username')) {
@@ -360,18 +356,84 @@ function loginS3(username, password) {
   window.location.reload();
 }
 
-///// END Login Functions //////////////
-
-
 
 ////// jQuery Interface Functions /////
-
 
 function capitalise(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-////// END jQuery Interface Functions //////////
+$.mobile.filterable.prototype.options.filterCallback = function(text, searchValue ) {
+  function findLongestSubstring(str1, str2){
+
+    var longest = "";
+    for (var i = 0; i < str1.length; ++i) {
+      for (var j = 0; j < str2.length; ++j) {
+        if (str1[i] === str2[j]) {
+          var str = str1[i];
+          var k = 1;
+          while (i + k < str1.length && j + k < str2.length && str1[i+k] === str2[j+k]) { // same letter
+            str += str1[i+k];
+            ++k;
+          }
+
+          if (str.length > longest.length) { longest = str }
+        }
+      }
+
+    }
+    return longest;
+  }
+
+  if(searchValue.length>2) {
+    var title = $(this).find("h2").first().text().toLowerCase();
+    searchValue = searchValue.toLowerCase();
+
+    if(title.indexOf(searchValue)>-1) {
+      return false;
+    } else {
+      var subst = findLongestSubstring(searchValue,title);
+      if(subst.length*100/searchValue.length>=60){
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
+};
+
+function changeRepository() {
+
+  var selectRepository = document.getElementById("selectRepository");
+  var selectedValue = selectRepository.options[selectRepository.selectedIndex].value;
+
+  switch (selectedValue) {
+    case 'INB':
+      $("#treeview").load("data/inb.html");
+      toolid = "urn:lsid:biomoby.org:serviceinstance:chirimoyo.ac.uma.es";
+      repoid = "INB  [chirimoyo.ac.uma.es]";
+      break;
+
+    case 'MrSymbiomath':
+      $("#treeview").load("data/mrsymbiomath.html");
+      toolid = "urn:symbiomath:tool:";
+      repoid = "Bitlab [chirimoyo.ac.uma.es]";
+      break;
+
+    case 'Biotools':
+      $("#treeview").load("data/biotools.html");
+      toolid = "urn:biotools:tool:";
+      repoid = "Biotools";
+      break;
+
+    case 'Biocatalogue':
+      $("#treeview").load("data/biocatalogue.html");
+      toolid = "urn:biocatalogue:tool:";
+      repoid = "biocatalogue";
+      break;
+
+  }
+}
 
 ////// File Browser Functions  //////////
 
@@ -520,8 +582,12 @@ function importFile(fileName, type) {
   );
 }
 
-////// END File Browser Functions  //////////
-
+function loadFileInFileViewer(id){
+  var session = getCookie('token');
+  $("#results").html();
+  getFile(id,session,repoid);
+  $( "body" ).pagecontainer( "change", "#fileViewer", {transition: "slide"});
+}
 
 ////// BioTools  //////////
 
@@ -569,7 +635,7 @@ function listBiocatalogue() {
   });
 }
 
-// Monitoring //
+////// Monitoring /////
 
 function generateJobMonitoringInterface (jobs) {
 
@@ -653,12 +719,17 @@ function deleteJobByID (id) {
 
 }
 
-// Service JS //
+///// Service JS /////
 
 var name, urlOperation, idOperation, repoID;
 var parameters = new Array();
 var resultfile = "";
 filesList = new Array();
+
+function loadService(name) {
+  loadServiceInfo(name);
+  $("body").pagecontainer( "change", "#servicePage", {transition: "slide"} );
+};
 
 function loadServiceInfo(serviceName) {
   name = serviceName;
