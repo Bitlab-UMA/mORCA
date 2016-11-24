@@ -1,5 +1,7 @@
 var list = "";
 var filesList = new Array();
+var repoid = "Bitlab [chirimoyo.ac.uma.es]";
+var toolid = "urn:symbiomath:tool:";
 
 function readXMLToolList(repofile) {
 
@@ -655,6 +657,8 @@ function generateJobMonitoringInterface (jobs) {
    */
 
   //Order array DESC
+  var someoneRunning = false;
+
   jobs.sort(function(a, b) {
     a = new Date(a.date);
     b = new Date(b.date);
@@ -676,6 +680,10 @@ function generateJobMonitoringInterface (jobs) {
       }
     };
 
+    if(jobs[i].status=='Running') {
+      someoneRunning = true;
+    }
+
     var classes = jobs[i].status;
     var viewFile = "";
 
@@ -690,6 +698,32 @@ function generateJobMonitoringInterface (jobs) {
   }
 
   $('#jobTable').table("refresh");
+
+  if(someoneRunning) return true; else return false;
+}
+
+function refreshAutomatically (running){
+
+  var jobs = getJobList();
+  running = generateJobMonitoringInterface(jobs);
+
+  var time = 1000;
+
+  var myFunction = function(){
+    clearInterval(interval);
+    if (time < 15000) time += time;
+
+    if(running) {
+        var jobs = getJobList();
+        running = generateJobMonitoringInterface(jobs);
+        clearInterval(interval)
+      }
+
+    if(running) interval = setInterval(myFunction, time);
+  };
+
+  var interval = setInterval(myFunction, time);
+
 }
 
 function deleteJobByID (id) {

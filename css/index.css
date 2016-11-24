@@ -185,6 +185,12 @@ img, object{
     font-size: 9pt;
 }
 
+.info {
+    text-align: center;
+    margin-bottom: -20px;
+    font-style: italic;
+}
+
 /*** Joblist CSS ****/
 
 #jobTable {

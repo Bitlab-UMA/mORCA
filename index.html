@@ -293,7 +293,7 @@
             <p class="failed">Failed</p>
         </div>
 
-
+        <p class="lowfont info" >This list is automatically refreshed</p>
         <div id="executionList" data-role="content" class="ui-content">
 
             <table data-role="table" class="table-stroke ui-responsive ui-shadow" id="jobTable">
@@ -304,16 +304,16 @@
                 </tbody>
             </table>
 
-
-            <script>
-                $(document).on("pageshow","#executionInfo",function(){
-                    if(logged()){
-                        var jobs = getJobList();
-                        generateJobMonitoringInterface(jobs);
-                    }
-                });
-            </script>
         </div>
+
+        <script>
+            $(document).on("pageshow","#executionInfo",function(){
+                if(logged()){
+                    refreshAutomatically(true);
+                }
+            });
+        </script>
+
         <!-- botton menu -->
         <div data-role="footer" data-position="fixed">
             <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
