@@ -489,6 +489,100 @@ function fileUploadHandler() {
 
 }
 
+function generateFileBrowserInterface(){
+
+  var token = getCookie("token");
+  var user = getCookie("username");
+
+  $('#fileListUL').empty();
+
+  $('#fileListUL').append("<li data-role='list-divider'>" +
+      '<div class="rowElement">' +
+      '<div class="ui-bar ui-grid-a" id="filelistheader">' +
+      "<div class='ui-block-a' >Filename</div>" +
+      "<div class='ui-block-b center padding-refresh'><a onclick='loadFileBrowser()' class='ui-btn ui-icon-refresh ui-btn-icon-notext ui-corner-all'>No text</a></div>" +
+      "</div></div> </li>");
+
+  for (x = 0; x < filesList.length; x++) {
+    $('#fileListUL').append('<li class="ui-btn">' +
+        '<div class="rowElement">' +
+        '<div class="ui-bar ui-grid-a">' +
+        '<div class="ui-block-a"><span class="fileText">' + filesList[x].name + '</span></div>' +
+        // '<div class="ui-block-a"><span class="fileText">' + filesList[x].name.substr(0, 25) + '</span></div>' +
+        '<div class="ui-block-b">' +
+        '<a onclick="loadFileInFileViewer(filesList[' + x + '].id)" class="ui-btn ui-icon-eye ui-btn-icon-notext ui-corner-all">No text</a>' +
+        '<a onclick="deleteElement(filesList[' + x + '].id,' + token + ', repoid.toString());" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all">No text</a>' +
+        '<a onclick="downloadResults(filesList[' + x + '].id,' + token + ', repoid.toString(),'+"'"+ filesList[x].name +"'"+');" class="ui-btn ui-icon-arrow-d ui-btn-icon-notext ui-corner-all">No text</a>' +
+        '</div> </div> </div> </li>');
+  }
+
+  $('#fileInfoPopups').empty();
+
+  for (x = 0; x < filesList.length; x++) {
+    $('#fileInfoPopups').append("<div data-role='popup' id='fileInfo" + x + "' data-theme='a' class='ui-corner-all'>" +
+        "<p>Name: " + filesList[x].name + "</p></br>" +
+        "<p>Created: " + filesList[x].creationTime + "</p></br>" +
+        "</div>");
+
+    $('#fileInfo' + x).popup();
+  }
+
+}
+
+function downloadResults (idFile, token, repoid, filename) {
+  if (logged()) {
+    var token = getCookie("token");
+
+    $.soap({
+      method: 'getFile',
+      namespaceQualifier: 'q0',
+
+      data: {
+        id: idFile,
+        session: token,
+        repoid: repoid
+      },
+
+      success: function (soapResponse) {
+        if (window.DOMParser) {
+          parser = new DOMParser();
+          xmlDoc = parser.parseFromString(soapResponse.toString(), "text/xml");
+        } else // Internet Explorer
+        {
+          xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+          xmlDoc.async = false;
+          xmlDoc.loadXML(soapResponse.toString());
+        }
+
+        var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
+        var clData = cleanData(data);
+        downloadFile(filename, clData);
+      }
+
+    });
+  }
+}
+
+function downloadFile(name, contents, mime_type) {
+  mime_type = mime_type || "text/plain";
+
+  var blob = new Blob([contents], {type: mime_type});
+
+  var dlink = document.createElement('a');
+  dlink.download = name;
+  dlink.href = window.URL.createObjectURL(blob);
+  dlink.onclick = function(e) {
+    // revokeObjectURL needs a delay to work properly
+    var that = this;
+    setTimeout(function() {
+      window.URL.revokeObjectURL(that.href);
+    }, 1500);
+  };
+
+  dlink.click();
+  dlink.remove();
+}
+
 function loadHandler(event) {
   var data = event.target.result;
 }
@@ -497,43 +591,6 @@ function loadFileBrowser() {
   var token = getCookie("token");
   var user = getCookie("username");
   getRoot(user, token, '', repoid.toString());
-
-  $('#fileListUL').empty();
-
-  $('#fileListUL').append("<li data-role='list-divider'>" +
-    '<div class="rowElement">' +
-    '<div class="ui-bar ui-grid-a" id="filelistheader">' +
-    "<div class='ui-block-a' >File</div>" +
-    "<div class='ui-block-b center padding-refresh'><a onclick='window.location.reload()' class='ui-btn ui-icon-refresh ui-btn-icon-notext ui-corner-all'>No text</a></div>" +
-    "</div></div> </li>");
-
-  for (x = 0; x < filesList.length; x++) {
-    $('#fileListUL').append('<li class="ui-btn">' +
-      '<div class="rowElement">' +
-      '<div class="ui-bar ui-grid-a">' +
-      '<div class="ui-block-a"><span class="fileText">' + filesList[x].name + '</span></div>' +
-      // '<div class="ui-block-a"><span class="fileText">' + filesList[x].name.substr(0, 25) + '</span></div>' +
-      '<div class="ui-block-b">' +
-      // eliminado lápiz
-      // '<a href="#fileInfo' + x + '"data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all">No text</a>' +
-      '<a onclick="loadFileInFileViewer(filesList[' + x + '].id)" class="ui-btn ui-icon-eye ui-btn-icon-notext ui-corner-all">No text</a>' +
-      // '<a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all">No text</a>' +
-      '<a onclick="deleteElement(filesList[' + x + '].id,' + token + ', repoid.toString());" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all">No text</a>' +
-      '</div> </div> </div> </li>');
-  }
-
-  $('#fileInfoPopups').empty();
-
-  for (x = 0; x < filesList.length; x++) {
-    $('#fileInfoPopups').append("<div data-role='popup' id='fileInfo" + x + "' data-theme='a' class='ui-corner-all'>" +
-      "<p>Name: " + filesList[x].name + "</p></br>" +
-      "<p>Created: " + filesList[x].creationTime + "</p></br>" +
-      "</div>");
-
-    $('#fileInfo' + x).popup();
-  }
-
-
 }
 
 function importFile(fileName, type) {
@@ -666,8 +723,6 @@ function generateJobMonitoringInterface (jobs) {
   });
 
   $('#jobTable > tbody').html("");
-
-  console.log(jobs);
 
   //Append each job as a row in the table
   for (i in jobs) {
@@ -881,5 +936,3 @@ window.nuevoParametro = function(id, hiddentext, text) {
   document.getElementById("nameFile").value = currentFileName;
 
 }
-
-

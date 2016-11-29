@@ -4,6 +4,11 @@
     left: 70%;
 }
 
+.ui-grid-a .ui-btn{
+    margin-left: 0;
+    margin-right:0;
+}
+
 .ui-grid-a{
     text-align: left !important;
 }
@@ -14,7 +19,7 @@
 }
 
 .ui-grid-a>.ui-block-b{
-    width: 70%;
+    width: 60%;
     float:left;
 }
 

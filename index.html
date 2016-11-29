@@ -46,6 +46,7 @@
     </div>
     <script>
         $("#loginpopbutton").click(function() {
+            $("#loginpopbutton").html('Authenticating...');
             var userform = $('#popupLogin').find('input[name="user"]').val() || "guest";
             var passform = $('#popupLogin').find('input[name="pass"]').val() || "guest";
             mainLogin(userform, passform);
@@ -90,7 +91,7 @@
             <div id="divSelectRepository" data-role="content" class="ui-field-contain" style="align-self: center">
                 <label for="repository">Select repository: </label>
                 <select id="selectRepository" name="repository" idname="select-choice-a" id="repository" data-native-menu="false" onchange="changeRepository();" data-mini="true">
-                    <option value="MrSymbiomath" selected="selected">MrSymbiomath</option>
+                    <option value="MrSymbiomath" selected="selected">Bitlab</option>
                     <option value="INB">INB</option>
                     <option value="Biotools" onclick='changeRepository("Biotools")'>Biotools</option>
                     <option value="Biocatalogue" onclick='changeRepository("Biocatalogue")'>Biocatalogue</option>
@@ -192,14 +193,6 @@
                     $("#loginS3").popup('close');
                 });
             </script>
-
-            <script>
-                $(document).on("pageinit","#filebrowser",function(){
-                    if(logged()){
-                        loadFileBrowser();
-                    }
-                });
-            </script>
         </div>
 
         <div data-role="popup" id="importS3File" data-theme="b" class="ui-corner-all center">
@@ -266,7 +259,16 @@
 
             </script>
         </div>
+
         <div id="fileInfoPopups"></div>
+
+        <script>
+            $(document).on("pageinit","#filebrowser",function(){
+                if(logged()){
+                    loadFileBrowser();
+                }
+            });
+        </script>
 
         <div data-role="footer" data-position="fixed">
             <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
@@ -537,6 +539,11 @@
 
             <script>
                 $(document).on("pagebeforeshow","#servicePage",function() {
+
+                    if(getCookie('username')){
+                        getRoot(getCookie('username'), getCookie('token'), '', repoid);
+                    }
+
                     getParameters(idOperation, repoID, (function(array) {
                         generateInterface(array, name);
                         parameters = array;

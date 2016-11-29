@@ -53,9 +53,10 @@
                 this.nestedList  = $( event.target ).closest( "li" ).children( "ul" )
                     .clone().attr( "data-" + $.mobile.ns + "role", "listview")
                     .attr("data-filter","true")
+                    .attr("data-children", "")
                     .css( "display", "block" );
                 this.pageName = (
-                    $( event.target.childNodes[0] ).text().replace(/^\s+|\s+$/g, '').length > 0 )?
+                    $(event.target.childNodes[0] ).text().replace(/^\s+|\s+$/g, '').length > 0 )?
                     $(event.target.childNodes[0]).closest( "li").children( "h2").text() : $( event.target.childNodes[1] ).text();
                 this.pageID = this.newPage.attr( "id" );
 

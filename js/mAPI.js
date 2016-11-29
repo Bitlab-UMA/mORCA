@@ -79,7 +79,6 @@ function loginWS(user, pass) {
   $.soap({
     method: 'loginWS',
     namespaceQualifier: 'q0',
-    async: false,
 
     data: {
       "auth0": [{
@@ -89,10 +88,6 @@ function loginWS(user, pass) {
         "key": "pass",
         "value": pass
       }]
-    },
-
-    beforeSend: function(SOAPEnvelope) {
-      $.mobile.loading("show");
     },
 
     success: function(soapResponse) {
@@ -117,12 +112,11 @@ function loginWS(user, pass) {
       document.cookie = 'token=' + token + '; expires=' + now.toUTCString();
       document.cookie = 'username=' + user + '; expires=' + now.toUTCString();
 
-      $.mobile.loading("hide");
     },
 
     error: function(SOAPResponse) {
-      $.mobile.loading("hide");
       alert("Wrong user. Please, try again.");
+      $("#loginpopbutton").html('Sing in');
     }
   });
 }
@@ -157,7 +151,7 @@ function getParameters(operationID, repoID, returnFunction)  {
   $.soap({
     method: 'getParameters',
     namespaceQualifier: 'q0',
-    async: false,
+    async: true,
 
     data: {
       operationid: operationID.toString(),
@@ -238,6 +232,8 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
     success: function(data) {
       $.mobile.loading('hide');
       $('#serviceRunning').append("<p>Service launched,<a rel='external' data-transition='slidedown' href='index.html#executionInfo'>check status</a><p>")
+      $('#serviceRunning').append("<p class='lowfont center'>You are going to be redirected automatically in a few seconds</p>")
+      setTimeout(function(){ window.location = "index.html#executionInfo"; }, 2000);
     }
   });
 
@@ -407,8 +403,6 @@ function getFile(idfile, session, repoid) {
 
     success: function(soapResponse) {
 
-      console.log(soapResponse.toString())
-
       if (window.DOMParser) {
         parser = new DOMParser();
         xmlDoc = parser.parseFromString(soapResponse.toString(), "text/xml");
@@ -484,7 +478,7 @@ function getRoot(username, session, dtid, repoid) {
   $.soap({
     method: 'getRoot',
     namespaceQualifier: 'q0',
-    async: false,
+    async: true,
 
     data: {
       user: username,
@@ -529,6 +523,8 @@ function getRoot(username, session, dtid, repoid) {
 
         filesList.push(new file(category, creationTime, data, dataTypeId, description, f, format, id, name, owner, parentId));
       }
+
+      generateFileBrowserInterface();
     },
 
     error: function(SOAPResponse) {
