@@ -402,7 +402,6 @@ function getFile(idfile, session, repoid) {
     },
 
     success: function(soapResponse) {
-
       if (window.DOMParser) {
         parser = new DOMParser();
         xmlDoc = parser.parseFromString(soapResponse.toString(), "text/xml");
@@ -414,33 +413,9 @@ function getFile(idfile, session, repoid) {
       }
 
       var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
-      // resultadosFinales = data;
-      // $("#mainresults").text("resultadosFinales: " + resultadosFinales);
-      // $("#rmainresults").text("desde geFile: " + data);
-      // alert("Output: " + data);
-      // document.getElementById("mainresults").style.display = 'block';
-      // alert(data);
+
       var clData = cleanData(data);
       $("#results").val(clData).keyup();
-      // document.getElementById("mainresults").innerHTML = "<pre>" + cleanData(data) + "</pre>";
-
-      /* VIEWER
-            var Sequence = require("sequence-viewer");
-            var rt = resultsType(data);
-            if (rt == 'AminoAcidSequence') {
-      // alert(clData);
-              var seq = new Sequence(clData);
-              // You can add some rendering options
-              seq.render('#mainresults', {
-                  'showLineNumbers': true,
-                  'wrapAminoAcids': true,
-                  'charsPerLine': 60,
-                  'toolbar': false,
-                  'search': true,
-                  'title': document.getElementById("parameter0").value + "  "
-              });
-            }
-      */
     },
     error: function(SOAPResponse) {
       console.log(SOAPResponse.toString());
@@ -597,10 +572,13 @@ function cleanData(data) {
     var ii2 = (data.indexOf('</AminoAcidSequence>', ii1))-10;
     var seqstring = data.substring(ii1, ii2);
     return seqstring;
-  } else {
+  } else if (rt == 'BLAST-Text') {
     var ii1 = data.indexOf('[CDATA[');
     var ii2 = data.indexOf(']]>');
     return data.substring(ii1+7, ii2);
+  } else {
+    console.log("RT: "+rt);
+    return data
   }
 }
 

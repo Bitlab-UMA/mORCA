@@ -377,6 +377,12 @@
                 </textarea>
             </div>
 
+            <script>
+                $(document).on("pagehide","#fileViewer",function(){
+                    $("#results").val("");
+                });
+            </script>
+
             <div data-role="footer" data-position="fixed">
                 <h6>&copy; 2016 Bioinformatics and Information Technology Laboratories</h6>
                 <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
