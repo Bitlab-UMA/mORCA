@@ -97,6 +97,8 @@ exports.listJobs = function(req, res, returnData){
             Job.find({user: user._id}, function (err, query) {
                 if (query.length) {
                     res.json(query);
+                } else {
+                    res.json([]);
                 }
             })
 

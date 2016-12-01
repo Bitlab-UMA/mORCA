@@ -66,6 +66,9 @@ function fechaHoraExt() {
 
 function generateInterface(parameters, serviceName) {
 
+  console.log("Parameters: ");
+  console.log(parameters);
+
   $("#serviceInterface").append("<div data-role='content'>" +
     "<form name='parametersForm' action='javascript:processParameters()' method='post' id='parametersFormID'>");
 
@@ -79,7 +82,7 @@ function generateInterface(parameters, serviceName) {
 
     var infoTextHtml = "";
 
-    if (parameters[x].description) {
+    if ((parameters[x].description) && (parameters[x].description != "NULL")) {
       infoTextHtml = '<a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-icon-info ui-btn-icon-notext ui-corner-all" data-transition="pop" data-inline="true" data-jsb_prepared="2nis0xjxn9">No text</a>';
     }
 
@@ -90,7 +93,6 @@ function generateInterface(parameters, serviceName) {
           parametersDiv.append('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
 
           if (parameters[x].allowedValues.length > 1) {
-            parametersDiv.append('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
             var selectAux = '<select name="select-choice-mini" id="parameter' + x + '" data-mini="true" data-inline="true">';
             for (var y = 0; y < parameters[x].allowedValues.length; y++) {
               var selectedValue = "";
@@ -103,6 +105,7 @@ function generateInterface(parameters, serviceName) {
             parametersDiv.append(selectAux);
           } else {
             parametersDiv.append('<input type="number" name="text-basic" id="parameter' + x + '" value="" data-inline="true" step="any" min="0">')
+            $('#parameter'+x).val(parameters[x].defaultValue);
           }
 
           parametersDiv.append('<div style="float: right">' + infoTextHtml + '</div>');
@@ -123,18 +126,10 @@ function generateInterface(parameters, serviceName) {
             selectAux += '</select>';
             parametersDiv.append(selectAux);
           } else {
-            parametersDiv.append('<input type="number" name="text-basic" id="parameter' + x + '" value="" data-inline="true" step="any" min="0">')
+            console.log("Float -> DefaultValue: "+parameters[x].defaultValue)
+            parametersDiv.append('<input type="number" name="text-basic" id="parameter' + x + '" value="" data-inline="true" step="0.01" min="0">')
+            $('#parameter'+x).val(parameters[x].defaultValue);
           }
-
-          parametersDiv.append('<div style="float: right">' + infoTextHtml + '</div>');
-
-          parametersDiv.append('</div>');
-          break;
-
-        case 'CEL':
-          parametersDiv.append('<div data-role="fieldcontain" id="parameterbox">');
-          parametersDiv.append('<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>');
-          parametersDiv.append('<input type="text" name="text-basic" id="parameter' + x + '" value="">');
 
           parametersDiv.append('<div style="float: right">' + infoTextHtml + '</div>');
 
@@ -192,20 +187,24 @@ function generateInterface(parameters, serviceName) {
             break;
           }
 
+          if ((parameters[x].description) && (parameters[x].description != "NULL")) {
+            infoTextHtml = '<div class="ui-block-b"><a href="#popupDescription' + x + '" data-rel="popup" class="ui-btn ui-mini ui-icon-info ui-btn-icon-left ui-corner-all" data-transition="pop" data-inline="true" data-jsb_prepared="2nis0xjxn9">Info</a></div>';
+          }
+
           parametersDiv.append('<div data-role="fieldcontain" id="parameterbox">' +
-              '<div class="ui-grid-a" style="border-width: 2px; border-style: double; border-color: #FF8C00; ">' +
+              '<div class="parameterWrapper"">' +
               '<label for="parameter' + x + '">' + capitalise(parameters[x].name) + '</label>' +
-              '<div class="ui-block-a">' +
+              '<div>' +
               '<div data-role="fieldcontain">' +
               '<p id="parameterhidden' + x + '" class="texthidden"></p>' +
               '<input type="text" name="text-basic" id="parameter' + x + '" value="" data-inline="true" placeholder="Fetch a file from mORCA previous outputs">' +
               '</div></div>' +
-              '<div class="ui-block-b" style="padding-top:5px">' +
-              '<a href="#popupMenu' + x + '" data-rel="popup" data-transition="slideup" id="' + x + '"class="ui-btn ui-icon-cloud ui-btn-icon-left ui-corner-all" data-inline="true" data-jsb_prepared="2nis0xjxn9">Cloud files</a>' +
+              '<div class="ui-grid-b">' +
+              '<div class="ui-block-a"><a href="#popupMenu' + x + '" data-rel="popup" data-transition="slideup" id="' + x + '"class="ui-btn ui-mini ui-icon-cloud ui-btn-icon-left ui-corner-all" data-jsb_prepared="2nis0xjxn9">Cloud files</a></div>' +
 
               infoTextHtml +
 
-              '</div><div class="ui-block-c ui-screen-hidden" style="padding-top:7px">' +
+              '</div><div class="ui-screen-hidden" style="padding-top:7px">' +
               '<fieldset data-role="controlgroup">' +
               '<label for="checkbox' + x + '" data-inline="true" >File</label>' +
               '<input type="checkbox" id="checkbox' + x + '" data-inline="true">' +
@@ -222,12 +221,10 @@ function generateInterface(parameters, serviceName) {
             generatePopup +='<li><i>You must be logged to use the file system!</i></li>';
           } else {
             for (var y in filesList) {
-              if(y<10){
                 generatePopup +=
                     '<li><a onclick="nuevoParametro(' + x + ',\''
                     + filesList[y].id + '\',\''
                     + filesList[y].name + '\'); $(\'#popupMenu' + x + '\').popup(\'close\');">' + filesList[y].name + '</a></li>';
-              }
             }
           }
 
@@ -255,7 +252,7 @@ function generateInterface(parameters, serviceName) {
 
   parametersDiv.append('<div data-role="fieldcontain" id="parameterbox">' +
     '<label for="nameFile"><b>'+parameters[outputIndex].name+':</b>  <font color = "gray">(Output File)</font></label>' +
-    '<input type="text" name="text-basic" id="nameFile" data-inline="true" placeholder="Insert output file name" maxlength="15">' +
+    '<input type="text" name="text-basic" id="nameFile" data-inline="true" placeholder="Insert output file name" maxlength="60">' +
     '</div>');
 
   parametersDiv.append(
@@ -278,7 +275,6 @@ function getCookie(cname) {
   return false;
 };
 
-
 function checkCookies() {
   /*var user = getCookie('username');
   if(user){
@@ -294,30 +290,20 @@ function eraseCookie(cname) {
   }
 };
 
-
 ///////// Login Functions ////////////////
 
 function logged() {
   if (getCookie('username')) {
     return true;
   } else {
+    mainLogin('guest','guest');
     return false;
   }
 };
 
 function mainLogin(user, pass) {
-  if (!logged()) {
     loginWS(user, pass)
-
-    // $("#usernamediv").html("");
-    $("#usernamediv").html("<font size=1>Logged in as: <b>" + user + "</b></font>")
-
-    $('.loginButton').html('Logout');
-    $('.loginButton').removeAttr('href');
-    $('.loginButton').attr('onclick', 'mainLogout()');
-
     loadFileBrowser();
-  }
 };
 
 function mainLogout() {
@@ -504,15 +490,18 @@ function generateFileBrowserInterface(){
       "</div></div> </li>");
 
   for (x = 0; x < filesList.length; x++) {
+
+    var filename =  trimFilename(filesList[x].name, 20);
+
     $('#fileListUL').append('<li class="ui-btn">' +
         '<div class="rowElement">' +
         '<div class="ui-bar ui-grid-a">' +
-        '<div class="ui-block-a"><span class="fileText">' + filesList[x].name + '</span></div>' +
+        '<div class="ui-block-a"><span class="fileText">' + filename + '</span></div>' +
         // '<div class="ui-block-a"><span class="fileText">' + filesList[x].name.substr(0, 25) + '</span></div>' +
         '<div class="ui-block-b">' +
         '<a onclick="loadFileInFileViewer(filesList[' + x + '].id)" class="ui-btn ui-icon-eye ui-btn-icon-notext ui-corner-all">No text</a>' +
         '<a onclick="deleteElement(filesList[' + x + '].id,' + token + ', repoid.toString());" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all">No text</a>' +
-        '<a onclick="downloadResults(filesList[' + x + '].id,' + token + ', repoid.toString(),'+"'"+ filesList[x].name +"'"+');" class="ui-btn ui-icon-arrow-d ui-btn-icon-notext ui-corner-all">No text</a>' +
+        '<a onclick="downloadResults(filesList[' + x + '].id,' + token + ', repoid.toString(),'+"'"+ filesList[x].name +"'"+');" class="ui-btn ui-icon-arrow-d ui-btn-icon-notext ui-corner-all downloadLink">No text</a>' +
         '</div> </div> </div> </li>');
   }
 
@@ -526,6 +515,10 @@ function generateFileBrowserInterface(){
 
     $('#fileInfo' + x).popup();
   }
+
+  var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+  if(iOS) $(".downloadLink").addClass("ui-disabled");
 
 }
 
@@ -556,7 +549,10 @@ function downloadResults (idFile, token, repoid, filename) {
 
         var data = xmlDoc.getElementsByTagName("data")[0].childNodes[0].nodeValue;
         var clData = cleanData(data);
-        downloadFile(filename, clData);
+
+        var file = new File([clData], filename, {type: "text/plain;charset=utf-8"});
+          saveAs(file);
+
       }
 
     });
@@ -713,46 +709,62 @@ function generateJobMonitoringInterface (jobs) {
 
    */
 
-  //Order array DESC
+
   var someoneRunning = false;
+  var token = "";
 
-  jobs.sort(function(a, b) {
-    a = new Date(a.date);
-    b = new Date(b.date);
-    return a>b ? -1 : a<b ? 1 : 0;
-  });
+  if(logged()){
+    token = getCookie("token");
 
-  $('#jobTable > tbody').html("");
+    $('#jobTable > tbody').html("");
 
-  //Append each job as a row in the table
-  for (i in jobs) {
-    var date = new Date(jobs[i].date);
-    var minutes = function (){
-      if (date.getUTCMinutes() <10){
-        return "0"+date.getUTCMinutes();
-      } else {
-        return date.getUTCMinutes();
-      }
-    };
-
-    if(jobs[i].status=='Running') {
-      someoneRunning = true;
-    }
-
-    var classes = jobs[i].status;
-    var viewFile = "";
-
-    if(jobs[i].outputFile!='NOT' && jobs[i].outputFile!="" && jobs[i].outputFile!='InvalidInput') {
-      viewFile = '<a onclick="loadFileInFileViewer('+"'"+jobs[i].outputFile+"'"+')" data-inline="true" data-role="button" data-icon="eye" data-iconpos="notext">Open</a>';
+    if(jobs.length>0){     //Order array DESC
+      jobs.sort(function(a, b) {
+        a = new Date(a.date);
+        b = new Date(b.date);
+        return a>b ? -1 : a<b ? 1 : 0;
+      });
     } else {
-      viewFile = '<a class="ui-disabled" data-inline="true" data-role="button" data-icon="eye" data-iconpos="notext">Open</a>';
+      $('#jobTable > tbody').html("<p class='codeText'> NO SERVICES LAUNCHED </p>")
     }
 
-    $('#jobTable > tbody').append('<tr class="'+classes+'"> <td>'+jobs[i].jobName+'</td><td>'+jobs[i].nameFile+'</td><td>'+date.getUTCDate()+'/'+date.getUTCMonth()+'/'+date.getUTCFullYear()+' - '+date.getUTCHours()+':'+minutes()+'</td><td>'+viewFile+'<a onclick="deleteJobByID('+"'"+jobs[i]._id+"'"+')"data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Delete</a></td></tr>').trigger('create');
 
+
+    //Append each job as a row in the table
+    for (i in jobs) {
+      var date = new Date(jobs[i].date);
+      var minutes = function (){
+        if (date.getUTCMinutes() <10){
+          return "0"+date.getUTCMinutes();
+        } else {
+          return date.getUTCMinutes();
+        }
+      };
+
+      if(jobs[i].status=='Running') {
+        someoneRunning = true;
+      }
+
+      var classes = jobs[i].status;
+      var viewFile = "";
+      var downloadFile = "";
+
+      if(jobs[i].outputFile!='NOT' && jobs[i].outputFile!="" && jobs[i].outputFile!='InvalidInput') {
+        viewFile = '<a onclick="loadFileInFileViewer('+"'"+jobs[i].outputFile+"'"+')" data-inline="true" data-role="button" data-icon="eye" data-iconpos="notext">Open</a>';
+        downloadFile = '<a onclick="downloadResults('+"'"+jobs[i].outputFile+"',"+ token + ",'" + repoid.toString() + "','" +jobs[i].nameFile+"'"+')" data-inline="true" data-role="button" data-icon="arrow-d" data-iconpos="notext">Download</a>';
+      } else {
+        viewFile = '<a class="ui-disabled" data-inline="true" data-role="button" data-icon="eye" data-iconpos="notext">Open</a>';
+        downloadFile = '<a class="ui-disabled" onclick="downloadResults('+"'"+jobs[i].outputFile+"',"+ token + ",'" + repoid.toString() + "','" +jobs[i].nameFile+"'"+')" data-inline="true" data-role="button" data-icon="arrow-d" data-iconpos="notext">Download</a>';
+      }
+
+      var filename =  trimFilename(jobs[i].nameFile, 15);
+
+      $('#jobTable > tbody').append('<tr class="'+classes+'"> <td>'+jobs[i].jobName+'</td><td>'+filename+'</td><td>'+date.getUTCDate()+'/'+date.getUTCMonth()+'/'+date.getUTCFullYear()+' - '+date.getUTCHours()+':'+minutes()+'</td><td>'+viewFile+'<a onclick="deleteJobByID('+"'"+jobs[i]._id+"'"+')"data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Delete</a>'+downloadFile+'</td></tr>').trigger('create');
+
+    }
+
+    $('#jobTable').table("refresh");
   }
-
-  $('#jobTable').table("refresh");
 
   if(someoneRunning) return true; else return false;
 }
@@ -778,7 +790,6 @@ function refreshAutomatically (running){
   };
 
   var interval = setInterval(myFunction, time);
-
 }
 
 function deleteJobByID (id) {
@@ -936,3 +947,16 @@ window.nuevoParametro = function(id, hiddentext, text) {
   document.getElementById("nameFile").value = currentFileName;
 
 }
+
+//// ---------- ////
+
+function trimFilename(filename, length){
+
+  if (filename.length > 20) {
+    filename = filename.substr(0,20);
+    filename += "..."
+  }
+
+  return filename;
+}
+

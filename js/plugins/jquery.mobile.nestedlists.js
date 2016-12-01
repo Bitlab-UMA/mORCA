@@ -67,7 +67,7 @@
                         $( this.options.content )
                     ).find( "div.ui-content" ).append( this.nestedList );
 
-                if(!getCookie("username")) {
+                if((!getCookie("username")) || (getCookie("username") == 'guest')) {
 
                     var popupID = "popupLogin"+this.pageID;
                     var loginpopupbuttonID = "loginpopbutton"+this.pageID;
@@ -93,7 +93,6 @@
                     });
 
                 } else {
-
                     var loginButton = this.newPage.find('.loginButton');
                         loginButton.html('logout')
                             .removeAttr('href')

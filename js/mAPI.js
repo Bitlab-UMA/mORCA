@@ -112,6 +112,18 @@ function loginWS(user, pass) {
       document.cookie = 'token=' + token + '; expires=' + now.toUTCString();
       document.cookie = 'username=' + user + '; expires=' + now.toUTCString();
 
+
+      // $("#usernamediv").html("");
+      $("#usernamediv").html("<font size=1>Logged in as: <b>" + user + "</b></font>");
+
+      if(user != 'guest') {
+        $('.loginButton').html('Logout');
+        $('.loginButton').removeAttr('href');
+        $('.loginButton').attr('onclick', 'mainLogout()');
+      } else {
+        $("#loginpopbutton").html('Sing in');
+      }
+
     },
 
     error: function(SOAPResponse) {
@@ -359,7 +371,6 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
 }
 
 function getJobList(){
-
   var user = getCookie("username");
   var response = $.ajax({
     type: 'GET',

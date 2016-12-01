@@ -10,6 +10,7 @@
     <script src="js/plugins/jquery.soap.js"></script>
     <script src="js/plugins/jquery.mobile.nestedlists.js"></script>
     <script src="js/plugins/jquery.validate.min.js"></script>
+    <script src="js/plugins/FileSaver.min.js"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.26.min.js"></script>
     <script src="js/mAPI.js"></script>
     <script src="js/sAPI.js"></script>
@@ -75,19 +76,19 @@
             </center>
 
             <div data-role="content" id="treeview">
-                <!-- Where the menu is loaded -->
+                <!-- Where the service tree is loaded -->
             </div>
 
             <script type="text/javascript">
             $("#treeview").load("data/mrsymbiomath.html");
-            // repoid = "undefined";
+
             if(getCookie('username')){
                 getRoot(getCookie('username'), getCookie('token'), '', repoid);
             }
             </script>
 
 
-            <!-- REPOSITORY -->
+            <!-- Repository Select -->
             <div id="divSelectRepository" data-role="content" class="ui-field-contain" style="align-self: center">
                 <label for="repository">Select repository: </label>
                 <select id="selectRepository" name="repository" idname="select-choice-a" id="repository" data-native-menu="false" onchange="changeRepository();" data-mini="true">
@@ -102,9 +103,6 @@
             <div id="elixirlogodiv">
                 <img src="img/logo.png" alt="MrSymbiomath" class="logo">
             </div>
-
-
-
 
         </div>
 
@@ -238,11 +236,16 @@
                         user = getCookie('username');
                         // $("#usernamediv").html("");
                         $("#usernamediv").html("<font size=1>Logged in as: <b>" + user + "</b></font>");
-                        $('.loginButton').html('logout');
-                        $('.loginButton').removeAttr('href');
-                        $('.loginButton').attr('onclick', 'mainLogout()');
-                        loadFileBrowser();
 
+                        if(user != 'guest') {
+                            $('.loginButton').html('Logout');
+                            $('.loginButton').removeAttr('href');
+                            $('.loginButton').attr('onclick', 'mainLogout()');
+                        } else {
+                            $("#loginpopbutton").html('Sign in');
+                        }
+
+                        loadFileBrowser();
                     }
 
                     if (S3Logged()) {
@@ -558,6 +561,7 @@
 
                 $(document).on("pagehide","#servicePage",function() {
                     $("#serviceInterface").html("");
+                    $("#serviceRunning").html("");
                 });
             </script>
 
