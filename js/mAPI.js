@@ -121,14 +121,14 @@ function loginWS(user, pass) {
         $('.loginButton').removeAttr('href');
         $('.loginButton').attr('onclick', 'mainLogout()');
       } else {
-        $("#loginpopbutton").html('Sing in');
+        $("#loginpopbutton").html('Sign in');
       }
 
     },
 
     error: function(SOAPResponse) {
       alert("Wrong user. Please, try again.");
-      $("#loginpopbutton").html('Sing in');
+      $("#loginpopbutton").html('Sign in');
     }
   });
 }

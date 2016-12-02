@@ -354,6 +354,9 @@ function capitalise(string) {
 $.mobile.filterable.prototype.options.filterCallback = function(text, searchValue ) {
   function findLongestSubstring(str1, str2){
 
+    str1 = str1.replace(/\s+/g, '');
+    str2 = str2.replace(/\s+/g, '');
+
     var longest = "";
     for (var i = 0; i < str1.length; ++i) {
       for (var j = 0; j < str2.length; ++j) {
@@ -378,15 +381,26 @@ $.mobile.filterable.prototype.options.filterCallback = function(text, searchValu
     searchValue = searchValue.toLowerCase();
 
     if(title.indexOf(searchValue)>-1) {
+      $(this).css("background", "");
       return false;
     } else {
       var subst = findLongestSubstring(searchValue,title);
       if(subst.length*100/searchValue.length>=60){
+        $(this).css("background", "");
         return false;
       } else {
-        return true;
+        if ($(this).children().is(':contains("'+searchValue+'")')) {
+          $(this).css("background", "#B2D5C4");
+          $(this).css("background-color", "#B2D5C4");
+          return false;
+        } else {
+          $(this).css("background", "");
+          return true;
+        }
       }
     }
+  } else {
+    $(this).css("background", "");
   }
 };
 
@@ -724,8 +738,9 @@ function generateJobMonitoringInterface (jobs) {
         b = new Date(b.date);
         return a>b ? -1 : a<b ? 1 : 0;
       });
+      $('#monitoringInfo').html("");
     } else {
-      $('#jobTable > tbody').html("<p class='codeText'> NO SERVICES LAUNCHED </p>")
+      $('#monitoringInfo').html("<p class='codeText'> NO SERVICES LAUNCHED </p>");
     }
 
 
@@ -760,10 +775,10 @@ function generateJobMonitoringInterface (jobs) {
       var filename =  trimFilename(jobs[i].nameFile, 15);
 
       $('#jobTable > tbody').append('<tr class="'+classes+'"> <td>'+jobs[i].jobName+'</td><td>'+filename+'</td><td>'+date.getUTCDate()+'/'+date.getUTCMonth()+'/'+date.getUTCFullYear()+' - '+date.getUTCHours()+':'+minutes()+'</td><td>'+viewFile+'<a onclick="deleteJobByID('+"'"+jobs[i]._id+"'"+')"data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Delete</a>'+downloadFile+'</td></tr>').trigger('create');
-
     }
 
     $('#jobTable').table("refresh");
+
   }
 
   if(someoneRunning) return true; else return false;
