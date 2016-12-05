@@ -198,6 +198,11 @@ img, object{
     width: 100%;
 }
 
+#mailtoInfo {
+    text-align: center;
+    max-width:70%;
+}
+
 .searchSuccess{
     background: #B2D5C4 !important;
 }

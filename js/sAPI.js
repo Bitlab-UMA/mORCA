@@ -220,7 +220,10 @@ function generateInterface(parameters, serviceName) {
           if (!getCookie('username')) {
             generatePopup +='<li><i>You must be logged to use the file system!</i></li>';
           } else {
+            console.log(filesList);
             for (var y in filesList) {
+              console.log(filesList[y]);
+              alert("adding "+filesList[y].name);
                 generatePopup +=
                     '<li><a onclick="nuevoParametro(' + x + ',\''
                     + filesList[y].id + '\',\''
@@ -376,7 +379,7 @@ $.mobile.filterable.prototype.options.filterCallback = function(text, searchValu
     return longest;
   }
 
-  if(searchValue.length>2) {
+  if(searchValue.length>0) {
     var title = $(this).find("h2").first().text().toLowerCase();
     searchValue = searchValue.toLowerCase();
 
@@ -669,21 +672,22 @@ function loadBioToolsServiceList(){
   $.ajax({
     url: "https://bio.tools/api/tool?format=json"
   }).then(function(data) {
-    content = data;
     var list = '<ul data-role="listview" id="tree" data-inset="true">';
-    for (var i = 0; i < content.length; i++) {
-      var object = content[i];
+    for (var i = 0; i < data.length; i++) {
+      var object = data[i];
       var interface = object.interface;
       for (var j = 0; j < interface.length; j++){
-        //document.write('interfaceType: ' + interface[j].interfaceType);
-        if(interface[j].interfaceType === 'SOAP WS' && (typeof interface[j].interfaceSpecURL !== 'undefined' || endsWith(object.homepage,".wsdl"))) {
+        if(interface[j].interfaceType === 'SOAP WS' &&
+            (typeof interface[j].interfaceSpecURL !== 'undefined' || endsWith(object.homepage,".wsdl"))) {
           list += '<li>' +
-                      '<a href="#"><img src="img/serviceicon.png" alt="'+object.name+'">'+'<h2>'+object.name+'</h2>'+'<p>'+object.description+'</p></a></li>'
+                      '<a href="#"><img src="img/serviceicon.png" alt="'+object.name+'">'+
+                      '<h2>'+object.name+'</h2>'+
+                      '<p>'+object.description+'</p></a></li>'
         }
       }
     }
   });
-};
+}
 
 ////// END BioTools  //////////
 
@@ -698,7 +702,9 @@ function listBiocatalogue() {
       for (var i = 0; i < content.length; i++) {
         var object = content[i];
         list += '<li>' +
-            '<a href="#"><img src="img/serviceicon.png" alt="'+object.name+'">'+'<h2>'+object.name+'</h2>'+'<p>'+object.resource+'</p></a></li>'
+            '<a href="#"><img src="img/serviceicon.png" alt="'+object.name+'">'+
+            '<h2>'+object.name+'</h2>'+
+            '<p>'+object.resource+'</p></a></li>'
           }
     }
   });
