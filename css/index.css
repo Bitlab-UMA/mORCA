@@ -1,24 +1,24 @@
 /*FileBrowser CSS*/
 
-.ui-grid-a a{
+#filebrowser .ui-grid-a a{
     left: 70%;
 }
 
-.ui-grid-a .ui-btn{
+#filebrowser .ui-grid-a .ui-btn{
     margin-left: 0;
     margin-right:0;
 }
 
-.ui-grid-a{
+#filebrowser  .ui-grid-a{
     text-align: left !important;
 }
 
-.ui-grid-a>.ui-block-a{
+#filebrowser .ui-grid-a>.ui-block-a{
     width: 30%;
     padding-top: 12px;
 }
 
-.ui-grid-a>.ui-block-b{
+#filebrowser .ui-grid-a>.ui-block-b{
     width: 60%;
     float:left;
 }
@@ -150,7 +150,7 @@
 }
 
 .headtext h1 {
-    font-size: 30px;
+    font-size: 25px;
     font-style: italic;
     font-family: monospace;
     font-variant: small-caps;
@@ -158,8 +158,7 @@
 }
 
 .bodytext {
-    width: 60%;
-    float: left;
+    width: 100%;
 }
 
 .bodytext p {
@@ -359,3 +358,33 @@ div#parameterbox {
     text-align: center !important;
 }
 
+#serviceName {
+    margin-top: 10px !important;
+}
+
+/*** LogoGrid ****/
+
+#logosDiv {
+    margin-top: 5px;
+}
+
+#logosDiv .ui-grid-a > .ui-block-a > .ui-bar-a {
+    height: 60px;
+    background: transparent;
+    border: 0;
+}
+
+#logosDiv .ui-grid-a > .ui-block-b > .ui-bar-a {
+    height: 60px;
+    background: transparent;
+    border: 0;
+}
+
+#logosDiv .ui-grid-a img {
+    width  : auto;
+    height : 60px;
+}
+
+#ministerioLogo{
+    max-height:100px;
+}

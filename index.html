@@ -97,17 +97,16 @@
             }
             </script>
 
-
             <!-- Repository Select -->
             <div id="divSelectRepository" data-role="content" class="ui-field-contain" style="align-self: center">
                 <label for="repository">Select repository: </label>
-                <select id="selectRepository" name="repository" idname="select-choice-a" id="repository" data-native-menu="false" onchange="changeRepository();" data-mini="true">
+                <select id="selectRepository" name="repository" idname="select-choice-a" id="repository"
+                        data-native-menu="false" onchange="changeRepository();" data-mini="true">
                     <option value="MrSymbiomath" selected="selected">Bitlab</option>
                     <option value="INB">INB</option>
                     <option value="Biotools" onclick='changeRepository("Biotools")'>Biotools</option>
                     <option value="Biocatalogue" onclick='changeRepository("Biocatalogue")'>Biocatalogue</option>
                 </select>
-                </p>
             </div>
 
             <div id="elixirlogodiv">
@@ -353,15 +352,25 @@
             <a href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn-right loginButton" data-transition="pop">Sign in</a>
         </div>
         <div id="homemain" role="main" class="ui-content">
-            <div id="hometext">
                 <div class="headtext">
                     <h1>Welcome to mORCA!</h1></div>
                 <div class="bodytext">
                     <p>mORCA is a mobile client able to efficiently integrate different type of web-services repositories mapping metadata over a general definition to support scalable service discovery and to achieve flexible inter-communication between tools. mORCA manages repositories heterogeneity supported by the Modular-API that provides a uniform view of metadata (e.g. GRID-based, WSDL–services, BioMoby and others), making the integration of bioinformatics Web-Services easier. </p>
                 </div>
-                <div class="headerwrap" id="imagehome">
-                    <img src="img/DNA.png" alt="DNA Photo">
-                </div>
+
+            <div class="center" id="logosDiv">
+            <div class="ui-grid-a">
+                <div class="ui-block-a"><div class="ui-bar ui-bar-a"><img src="img/logos/logo.FEDER.jpg" alt="logo FEDER"></div></div>
+                <div class="ui-block-b"><div class="ui-bar ui-bar-a"><img src="img/logos/logo.INB.English.png" alt="logo INB"></div></div>
+            </div>
+
+            <div class="ui-grid-a">
+                <div class="ui-block-a"><div class="ui-bar ui-bar-a"><img src="img/logos/logo.PRB2.png" alt="logo PRB2"></div></div>
+                <div class="ui-block-b"><div class="ui-bar ui-bar-a"><img src="img/logos/logo.UE.jpg" alt="logo UE"></div></div>
+            </div>
+
+            <div class="center"><img src="img/logos/logo.Ministerio_ISCIII.png" alt="logo Ministerio" id="ministerioLogo"></div>
+
             </div>
         </div>
         <!-- botton menu -->
@@ -551,6 +560,8 @@
                 <h1>mORCA</h1>
                 <a href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn-right loginButton" data-transition="pop">Sign in</a>
             </div>
+
+            <div class="center" id="serviceName"></div>
             <div id="serviceInterface" role="main" class="ui-content">
 
             </div>
@@ -563,6 +574,9 @@
 
             <script>
                 $(document).on("pagebeforeshow","#servicePage",function() {
+
+                    $("#serviceName").html("");
+                    $("#serviceName").append(name);
 
                     if(getCookie('username')){
                         getRoot(getCookie('username'), getCookie('token'), '', repoid);

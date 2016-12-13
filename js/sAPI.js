@@ -222,8 +222,8 @@ function generateInterface(parameters, serviceName) {
           } else {
             console.log(filesList);
             for (var y in filesList) {
+              alert(filesList[y].name);
               console.log(filesList[y]);
-              alert("adding "+filesList[y].name);
                 generatePopup +=
                     '<li><a onclick="nuevoParametro(' + x + ',\''
                     + filesList[y].id + '\',\''
@@ -350,11 +350,22 @@ function loginS3(username, password) {
 
 ////// jQuery Interface Functions /////
 
+jQuery.expr[':'].fuzzyicontains = function(a, i, m) {
+
+  console.log(a);
+
+  var title = jQuery(a).text();
+  var searchValue = m[3];
+
+  return compareFuzzy(title, searchValue);
+};
+
 function capitalise(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 $.mobile.filterable.prototype.options.filterCallback = function(text, searchValue ) {
+
   function findLongestSubstring(str1, str2){
 
     str1 = str1.replace(/\s+/g, '');
@@ -380,23 +391,32 @@ $.mobile.filterable.prototype.options.filterCallback = function(text, searchValu
   }
 
   if(searchValue.length>0) {
-    var title = $(this).find("h2").first().text().toLowerCase();
     searchValue = searchValue.toLowerCase();
+    var title = $(this).find("h2").first().text().toLowerCase();
+
+    console.log("SearchValue: "+searchValue+" this: "+title);
 
     if(title.indexOf(searchValue)>-1) {
+      console.log("Lo tiene completo");
       $(this).css("background", "");
       return false;
     } else {
       var subst = findLongestSubstring(searchValue,title);
+      console.log("Subcadena mas larga: "+subst);
       if(subst.length*100/searchValue.length>=60){
+        console.log("Pasa el 60%");
         $(this).css("background", "");
         return false;
       } else {
-        if ($(this).children().is(':contains("'+searchValue+'")')) {
+        console.log("No pasa el 60%");
+        console.log($(this).find("li"));
+        if ($(this).find("li").find("h2").is(':fuzzyicontains("'+searchValue+'")')) {
+          console.log("Algún hijo contiene");
           $(this).css("background", "#B2D5C4");
           $(this).css("background-color", "#B2D5C4");
           return false;
         } else {
+          console.log("Ningun hijo contiene");
           $(this).css("background", "");
           return true;
         }
@@ -405,7 +425,59 @@ $.mobile.filterable.prototype.options.filterCallback = function(text, searchValu
   } else {
     $(this).css("background", "");
   }
+
 };
+
+function compareFuzzy(title, searchValue){
+
+  function findLongestSubstring(str1, str2){
+
+    str1 = str1.replace(/\s+/g, '');
+    str2 = str2.replace(/\s+/g, '');
+
+    var longest = "";
+    for (var i = 0; i < str1.length; ++i) {
+      for (var j = 0; j < str2.length; ++j) {
+        if (str1[i] === str2[j]) {
+          var str = str1[i];
+          var k = 1;
+          while (i + k < str1.length && j + k < str2.length && str1[i+k] === str2[j+k]) { // same letter
+            str += str1[i+k];
+            ++k;
+          }
+
+          if (str.length > longest.length) { longest = str }
+        }
+      }
+
+    }
+    return longest;
+  }
+
+  if(searchValue.length>0) {
+    searchValue = searchValue.toLowerCase();
+    title = title.toLowerCase();
+
+    console.log("F: SearchValue: "+searchValue+" this: "+title);
+
+    if(title.indexOf(searchValue)>-1) {
+      console.log("F: Lo tiene completo");
+      return true;
+    } else {
+      var subst = findLongestSubstring(searchValue,title);
+      console.log("F: Subcadena mas larga: "+subst);
+      if(subst.length*100/searchValue.length>=60){
+        console.log("F: Pasa el 60%");
+        return true;
+      } else {
+        console.log("F: No pasa el 60%");
+        return false;
+      }
+    }
+  } else {
+    return false;
+  }
+}
 
 function changeRepository() {
 
@@ -674,15 +746,15 @@ function loadBioToolsServiceList(){
   }).then(function(data) {
     var list = '<ul data-role="listview" id="tree" data-inset="true">';
     for (var i = 0; i < data.length; i++) {
-      var object = data[i];
-      var interface = object.interface;
+      var service = data[i];
+      var interface = service.interface;
       for (var j = 0; j < interface.length; j++){
         if(interface[j].interfaceType === 'SOAP WS' &&
-            (typeof interface[j].interfaceSpecURL !== 'undefined' || endsWith(object.homepage,".wsdl"))) {
+            (typeof interface[j].interfaceSpecURL !== 'undefined' || endsWith(service.homepage,".wsdl"))) {
           list += '<li>' +
-                      '<a href="#"><img src="img/serviceicon.png" alt="'+object.name+'">'+
-                      '<h2>'+object.name+'</h2>'+
-                      '<p>'+object.description+'</p></a></li>'
+                      '<a href="#"><img src="img/serviceicon.png" alt="'+service.name+'">'+
+                      '<h2>'+service.name+'</h2>'+
+                      '<p>'+service.description+'</p></a></li>'
         }
       }
     }
@@ -696,15 +768,15 @@ function listBiocatalogue() {
   $.ajax({
     url: 'getJSON.php',
     success: function(data) {
-      var content = jQuery.parseJSON(data);
-      content = content.search.results;
+      data = jQuery.parseJSON(data);
+      data = data.search.results;
       var list = '<ul data-role="listview" id="tree" data-inset="true">';
-      for (var i = 0; i < content.length; i++) {
-        var object = content[i];
+      for (var i = 0; i < data.length; i++) {
+        var service = data[i];
         list += '<li>' +
-            '<a href="#"><img src="img/serviceicon.png" alt="'+object.name+'">'+
-            '<h2>'+object.name+'</h2>'+
-            '<p>'+object.resource+'</p></a></li>'
+            '<a href="#"><img src="img/serviceicon.png" alt="'+service.name+'">'+
+            '<h2>'+service.name+'</h2>'+
+            '<p>'+service.resource+'</p></a></li>'
           }
     }
   });
