@@ -11,6 +11,7 @@
     <script src="js/plugins/jquery.mobile.nestedlists.js"></script>
     <script src="js/plugins/jquery.validate.min.js"></script>
     <script src="js/plugins/FileSaver.min.js"></script>
+    <script type='application/javascript' src='js/plugins/fastclick.js'></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.26.min.js"></script>
     <script src="js/mAPI.js"></script>
     <script src="js/sAPI.js"></script>
@@ -31,6 +32,12 @@
 </head>
 
 <body>
+
+    <script>
+        $(function() {
+            FastClick.attach(document.body);
+        });
+    </script>
 
     <!-- General Popup login for each header page -->
     <div id="popupLogin" data-role="popup" data-theme="a" class="ui-corner-all">
