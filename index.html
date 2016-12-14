@@ -250,7 +250,6 @@
                     var user = "not logged in";
                     if (logged()) {
                         user = getCookie('username');
-                        // $("#usernamediv").html("");
                         $("#usernamediv").html("<font size=1>Logged in as: <b>" + user + "</b></font>");
 
                         if(user != 'guest') {

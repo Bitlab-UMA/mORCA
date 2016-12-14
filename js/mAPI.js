@@ -124,6 +124,8 @@ function loginWS(user, pass) {
         $("#loginpopbutton").html('Sign in');
       }
 
+      loadFileBrowser();
+
     },
 
     error: function(SOAPResponse) {

@@ -306,7 +306,6 @@ function logged() {
 
 function mainLogin(user, pass) {
     loginWS(user, pass)
-    loadFileBrowser();
 };
 
 function mainLogout() {
@@ -673,9 +672,9 @@ function loadHandler(event) {
 }
 
 function loadFileBrowser() {
-  var token = getCookie("token");
-  var user = getCookie("username");
-  getRoot(user, token, '', repoid.toString());
+    var token = getCookie("token");
+    var user = getCookie("username");
+    getRoot(user, token, '', repoid.toString());
 }
 
 function importFile(fileName, type) {
