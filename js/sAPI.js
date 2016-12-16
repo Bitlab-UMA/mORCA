@@ -317,7 +317,7 @@ function mainLogout() {
     $('.loginButton').removeAttr('onclick');
 
     // $("#usernamediv").html("");
-    $("#usernamediv").text("Bye bye!")
+    $("#usernamediv").text("Bye bye!");
 
     window.location.reload();
   }
@@ -331,7 +331,9 @@ function S3Logged() {
   }
 }
 
-function loginS3(username, password) {
+function loginS3(username, password, bucketname, region) {
+
+  console.log(username + " : " +password + " : " +bucketname+ " : "+region);
 
   var now = new Date();
   var time = now.getTime();
@@ -339,19 +341,56 @@ function loginS3(username, password) {
   now.setTime(time);
   document.cookie = 's3user=' + username + '; expires=' + now.toUTCString();
   document.cookie = 's3key=' + password + '; expires=' + now.toUTCString();
+  document.cookie = 's3bucketname='+bucketname +'; expires=' +now.toUTCString();
+  document.cookie = 's3region=' + region + '; expires =' +now.toUTCString();
 
-  $('#loginS3button').closest('.ui-btn').hide();
-  $('#importS3button').closest('.ui-btn').show();
+  listS3Bucket()
+}
 
-  window.location.reload();
+function listS3Bucket() {
+
+  AWS.config.update({
+    //accessKeyId: 'AKIAJV3P4CABYULYMOCQ',
+    //secretAccessKey: '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'
+
+    accessKeyId: getCookie("s3user"),
+    secretAccessKey: getCookie("s3key")
+
+  });
+
+
+  AWS.config.region = getCookie("s3region"); //"eu-west-1"
+  var ep = new AWS.Endpoint('s3-'+getCookie("s3region")+'.amazonaws.com');
+  var s3 = new AWS.S3({
+    endpoint: ep
+  });
+
+  var bucket = new AWS.S3({
+    params: {
+      Bucket: getCookie("s3bucketname") //"morcabucket"
+    }
+  });
+  bucket.listObjects(function(err, data) {
+    if (err) {
+      $('#status').html("");
+      $('#status').append('<p>Could not load objects from S3</p>');
+    } else {
+      $('#objects').html("");
+      $('#status').html("");
+      $('#status').append('<p>Loaded ' + data.Contents.length + ' items from S3</p>');
+      for (var i = 0; i < data.Contents.length; i++) {
+        $('#objects').append('<li><a href="#" id="' + i + '" onclick="importFile(' + "'" + data.Contents[i].Key + "'" + ');">' + data.Contents[i].Key + '</a></li>');
+        $('#objects').listview().listview('refresh');
+      }
+    }
+  });
+
 }
 
 
 ////// jQuery Interface Functions /////
 
 jQuery.expr[':'].fuzzyicontains = function(a, i, m) {
-
-  console.log(a);
 
   var title = jQuery(a).text();
   var searchValue = m[3];
@@ -396,26 +435,19 @@ $.mobile.filterable.prototype.options.filterCallback = function(text, searchValu
     console.log("SearchValue: "+searchValue+" this: "+title);
 
     if(title.indexOf(searchValue)>-1) {
-      console.log("Lo tiene completo");
       $(this).css("background", "");
       return false;
     } else {
       var subst = findLongestSubstring(searchValue,title);
-      console.log("Subcadena mas larga: "+subst);
       if(subst.length*100/searchValue.length>=60){
-        console.log("Pasa el 60%");
         $(this).css("background", "");
         return false;
       } else {
-        console.log("No pasa el 60%");
-        console.log($(this).find("li"));
         if ($(this).find("li").find("h2").is(':fuzzyicontains("'+searchValue+'")')) {
-          console.log("Algún hijo contiene");
           $(this).css("background", "#B2D5C4");
           $(this).css("background-color", "#B2D5C4");
           return false;
         } else {
-          console.log("Ningun hijo contiene");
           $(this).css("background", "");
           return true;
         }

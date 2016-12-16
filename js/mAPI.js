@@ -34,7 +34,7 @@ function file(category, creationTime, data, dataTypeId, description, f, format, 
 //SOAP Definition
 function soap() {
   $.soap({
-    url: 'http://chirimoyo.ac.uma.es/ApiWs/services/Api',
+    url: 'https://chirimoyo.ac.uma.es/ApiWs/services/Api',
     appendMethodToURL: false,
     SOAPAction: '',
 
@@ -242,7 +242,7 @@ function executeService(inputList, outputList, urlOperation, idOperation, nameFi
     type: 'POST',
     data: JSON.stringify(data),
     contentType: 'application/json',
-    url: 'http://pistacho.ac.uma.es/morcanode/execute',
+    url: 'https://pistacho.ac.uma.es/morcanode/execute',
     success: function(data) {
       $.mobile.loading('hide');
       $('#serviceRunning').append("<p>Service launched,<a rel='external' data-transition='slidedown' href='index.html#executionInfo'>check status</a><p>")
@@ -379,7 +379,7 @@ function getJobList(){
     async: false,
     data: {username : user},
     contentType: 'application/json',
-    url: 'http://pistacho.ac.uma.es/morcanode/joblist',
+    url: 'https://pistacho.ac.uma.es/morcanode/joblist',
 
     success: function(data) {
       return data;

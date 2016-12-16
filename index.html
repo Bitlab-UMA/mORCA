@@ -145,6 +145,9 @@
         <div data-role="content" id="filebrowsermain">
             <div data-role="controlgroup" data-type="horizontal" align="center" data-exclude-invisible="true">
                 <a href="#uploadFilePopup" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop" id="uploadButton">Upload File</a>
+            </div>
+
+            <div data-role="controlgroup" data-type="horizontal" align="center" data-exclude-invisible="true">
                 <a id="loginS3button" href="#loginS3" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Amazon S3</a>
                 <a id="importS3button" href="#importS3File" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">From S3</a>
             </div>
@@ -192,90 +195,80 @@
         </div>
 
         <div data-role="popup" id="loginS3" data-theme="a" class="ui-corner-all center">
-            <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-right">Close</a>
-            <h3>Sign in</h3>
-            <label for="un" class="ui-hidden-accessible">Username:</label>
-            <input type="text" name="user" id="un" value="guest" placeholder="Username" data-theme="a">
-            <label for="pw" class="ui-hidden-accessible">Password:</label>
-            <input type="password" name="pass" id="pw" value="guest" placeholder="Password" data-theme="a">
-            <button id="loginS3popupbutton" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
-            <script>
-                $("#loginS3popupbutton").click(function() {
-                    var userform = $('#loginS3').find('input[name="user"]').val() || "guest";
-                    var passform = $('#loginS3').find('input[name="pass"]').val() || "guest";
-                    loginS3(userform, passform);
-                    $("#loginS3").popup('close');
-                });
-            </script>
+            <div class="popupContent">
+                <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-right">Close</a>
+                <h3>S3 Credentials</h3>
+                <label for="un">Access Key:</label>
+                <input type="text" name="user" id="un" data-theme="a">
+                <label for="pw" >Secret Acces key:</label>
+                <input type="password" name="pass" id="pw" data-theme="a">
+                <label for="bucketname">Bucket name:</label>
+                <input type="text" name="bucketname" id="bucketname" data-theme="a">
+                <label for="region">Region:</label>
+                <input type="text" name="region" id="region" data-theme="a">
+
+                <button id="loginS3popupbutton" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Set credentials</button>
+                <script>
+                    $("#loginS3popupbutton").click(function() {
+                        var userform = $('#loginS3').find('input[name="user"]').val();
+                        var passform = $('#loginS3').find('input[name="pass"]').val();
+                        var bucketname = $('#loginS3').find('input[name="bucketname"]').val();
+                        var region = $('#loginS3').find('input[name="region"]').val();
+
+                        console.log(userform + " : " +passform + " : " +bucketname+ " : "+region)
+                        loginS3(userform, passform, bucketname, region);
+                        $("#loginS3").popup('close');
+                    });
+                </script>
+            </div>
         </div>
 
         <div data-role="popup" id="importS3File" data-theme="b" class="ui-corner-all center">
-            <div id="status"></div>
-            <ul id="objects" data-role="listview" data-inset="true" style="min-width:210px;" data-theme="b">
-                <li data-role="divider" data-theme="b">Files in the bucket:</li>
-            </ul>
-            <script type="text/javascript">
-                AWS.config.update({
-                    accessKeyId: 'AKIAIMXVBS4HNMY45OZA',
-                    secretAccessKey: '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'
-                });
-                AWS.config.region = 'eu-west-1';
-                var ep = new AWS.Endpoint('s3-eu-west-1.amazonaws.com');
-                var s3 = new AWS.S3({
-                    endpoint: ep
-                });
+            <div class="popupContent">
+                <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="arrow-l" data-iconpos="notext" class="ui-btn-right">Close</a>
+                <h3>S3 Files</h3>
+                <div id="status"></div>
+                <ul id="objects" data-role="listview" data-inset="true" style="min-width:210px;" data-theme="b">
+                    <li data-role="divider" data-theme="b">Files in the bucket:</li>
+                </ul>
+                <script type="text/javascript">
+                    listS3Bucket()
+                </script>
 
-                var bucket = new AWS.S3({
-                    params: {
-                        Bucket: 'morcabucket'
-                    }
-                });
-                bucket.listObjects(function(err, data) {
-                    if (err) {
-                        $('#status').append('<p>Could not load objects from S3</p>');
-                        $('#status').append(err.toString());
-                    } else {
-                        $('#status').append('<p>Loaded ' + data.Contents.length + ' items from S3</p>');
-                        for (var i = 0; i < data.Contents.length; i++) {
-                            $('#objects').append('<li><a href="#" id="' + i + '" onclick="importFile(' + "'" + data.Contents[i].Key + "'" + ');">' + data.Contents[i].Key + '</a></li>');
-                            $('#objects').listview().listview('refresh');
-                        }
-                    }
-                });
-            </script>
+                <script>
 
-            <script>
+                    $(document).ready(function() {
+                        var user = "not logged in";
+                        if (logged()) {
+                            user = getCookie('username');
+                            $("#usernamediv").html("<font size=1>Logged in as: <b>" + user + "</b></font>");
 
-                $(document).ready(function() {
-                    var user = "not logged in";
-                    if (logged()) {
-                        user = getCookie('username');
-                        $("#usernamediv").html("<font size=1>Logged in as: <b>" + user + "</b></font>");
+                            if(user != 'guest') {
+                                $('.loginButton').html('Logout');
+                                $('.loginButton').removeAttr('href');
+                                $('.loginButton').attr('onclick', 'mainLogout()');
+                            } else {
+                                $("#loginpopbutton").html('Sign in');
+                            }
 
-                        if(user != 'guest') {
-                            $('.loginButton').html('Logout');
-                            $('.loginButton').removeAttr('href');
-                            $('.loginButton').attr('onclick', 'mainLogout()');
-                        } else {
-                            $("#loginpopbutton").html('Sign in');
+                            loadFileBrowser();
                         }
 
-                        loadFileBrowser();
-                    }
+                        if (S3Logged()) {
+                            var S3User = getCookie('s3user');
+                            var S3Key = getCookie('s3key');
+                            var S3bucketname = getCookie('s3bucketname');
+                            var S3region = getCookie('s3region');
 
-                    if (S3Logged()) {
-                        var S3User = getCookie('s3user');
-                        var S3Key = getCookie('s3key');
+                            $('#loginS3').find('input[name="user"]').val(S3User);
+                            $('#loginS3').find('input[name="pass"]').val(S3Key);
+                            $('#loginS3').find('input[name="bucketname"]').val(S3bucketname);
+                            $('#loginS3').find('input[name="region"]').val(S3region);
+                        }
+                    });
 
-                        $('#loginS3button').closest('.ui-btn').hide();
-                        $('#importS3button').closest('.ui-btn').show();
-                    } else {
-                        $('#loginS3button').closest('.ui-btn').show();
-                        $('#importS3button').closest('.ui-btn').hide();
-                    }
-                });
-
-            </script>
+                </script>
+            </div>
         </div>
 
         <div id="fileInfoPopups"></div>
