@@ -350,16 +350,12 @@ function loginS3(username, password, bucketname, region) {
 function listS3Bucket() {
 
   AWS.config.update({
-    //accessKeyId: 'AKIAJV3P4CABYULYMOCQ',
-    //secretAccessKey: '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'
-
     accessKeyId: getCookie("s3user"),
     secretAccessKey: getCookie("s3key")
-
   });
 
 
-  AWS.config.region = getCookie("s3region"); //"eu-west-1"
+  AWS.config.region = getCookie("s3region");
   var ep = new AWS.Endpoint('s3-'+getCookie("s3region")+'.amazonaws.com');
   var s3 = new AWS.S3({
     endpoint: ep
@@ -367,7 +363,7 @@ function listS3Bucket() {
 
   var bucket = new AWS.S3({
     params: {
-      Bucket: getCookie("s3bucketname") //"morcabucket"
+      Bucket: getCookie("s3bucketname")
     }
   });
   bucket.listObjects(function(err, data) {
@@ -710,12 +706,12 @@ function loadFileBrowser() {
 }
 
 function importFile(fileName, type) {
-  AWS.config.update({ accessKeyId: 'AKIAIMXVBS4HNMY45OZA', secretAccessKey: '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' });
-  AWS.config.region = 'eu-west-1';
-  var ep = new AWS.Endpoint('s3-eu-west-1.amazonaws.com');
-  var s3 = new AWS.S3({ endpoint: ep });
 
-  s3.getObject({ Bucket: "morcabucket", Key: fileName },
+  var bucket =  getCookie("s3bucketname");
+
+  var s3 = new AWS.S3();
+
+  s3.getObject({ Bucket: bucket, Key: fileName },
     function(error, data) {
       if (error != null) {
         alert("Failed to retrieve an object: " + error);
