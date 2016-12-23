@@ -222,7 +222,6 @@ function generateInterface(parameters, serviceName) {
           } else {
             console.log(filesList);
             for (var y in filesList) {
-              alert(filesList[y].name);
               console.log(filesList[y]);
                 generatePopup +=
                     '<li><a onclick="nuevoParametro(' + x + ',\''
@@ -926,7 +925,7 @@ function deleteJobByID (id) {
       async: false,
       data: JSON.stringify(data),
       contentType: 'application/json',
-      url: 'http://pistacho.ac.uma.es/morcanode/deleteJob',
+      url: 'https://pistacho.ac.uma.es/morcanode/deleteJob',
       success: function(data) {
         var jobs = getJobList();
         generateJobMonitoringInterface(jobs);
