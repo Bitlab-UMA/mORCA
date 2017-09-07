@@ -4,51 +4,60 @@
         <h2>Service</h2>
         <p>List of available services</p>
         <ul data-child-pages="true">
-            <li>
-                <img src="img/tree_folder.png" alt="ArrayExpress">
-                    <h2>ArrayExpress</h2>
-                    <p>Functional Genomics Data from high-throughput functional genomics experiments</p>
-                <ul>
-                    <li>
-                    <a href="#" onclick="loadService('Annotare')">
-                        <img src="img/serviceicon.png" alt="Annotare">
-                        <h2>Annotare</h2>
-                        <p>Web-based submission tool for ArrayExpress</p>
+          <li>
+              <img src="img/tree_folder.png" alt="ChEMBL">
+              <h2>ChEMBL</h2>
+              <p>Database of bioactive drug-like small molecules, it contains 2-D structures, calculated properties and abstracted bioactivities</p>
+              <ul data-child-pages="true">
+                  <li>
+                      <a href="data/chembl.html">
+                        <img src="img/tree_folder.png" alt="ChEMBL"></img>
+                        <h2>ChEMBL</h2>
+                        <p>Molecules database</p>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+
+          <li>
+              <img src="img/tree_folder.png" alt="ArrayExpress">
+                  <h2>ArrayExpress</h2>
+                  <p>Functional Genomics Data from high-throughput functional genomics experiments</p>
+              <ul>
+                  <li>
+                  <a href="#" onclick="loadService('Annotare')">
+                      <img src="img/serviceicon.png" alt="Annotare">
+                      <h2>Annotare</h2>
+                      <p>Web-based submission tool for ArrayExpress</p>
+                  </a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="loadService('ArrayExpressBioconductorPackage')">
+                          <img src="img/serviceicon.png" alt="ArrayExpressBioconductorPackage">
+                          <h2>ArrayExpress Bioconductor Package</h2>
+                          <p>An R package to access ArrayExpress and build data structures</p>
                     </a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="loadService('ArrayExpressBioconductorPackage')">
-                            <img src="img/serviceicon.png" alt="ArrayExpressBioconductorPackage">
-                            <h2>ArrayExpress Bioconductor Package</h2>
-                            <p>An R package to access ArrayExpress and build data structures</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="loadService('ProgrammaticAccess')">
-                            <img src="img/serviceicon.png" alt="ProgrammaticAccess">
-                            <h2>Programatic Access</h2>
-                            <p>Query and download data using web services or JSON</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="loadService('FTPAccess')">
-                            <img src="img/serviceicon.png" alt="FTPAccess">
-                            <h2>FTP Access</h2>
-                            <p>Data can be downloaded directly from our FTP site</p>
-                        </a>
-                    </li>
+                  </li>
+                  <li>
+                    <a href="#" onclick="loadService('ProgrammaticAccess')">
+                      <img src="img/serviceicon.png" alt="ProgrammaticAccess">
+                          <h2>Programatic Access</h2>
+                          <p>Query and download data using web services or JSON</p>
+                    </a>
+                  </li>
+                  <li>
+                      <a href="#" onclick="loadService('FTPAccess')">
+                          <img src="img/serviceicon.png" alt="FTPAccess">
+                          <h2>FTP Access</h2>
+                          <p>Data can be downloaded directly from our FTP site</p>
+                      </a>
+                  </li>
                 </ul>
             </li>
 
             <li><img src="img/tree_folder.png" alt="ChEBI">
                 <h2>ChEBI</h2>
                 <p>Dictionary of molecular entities focused on 'small' chemical compounds</p>
-            </li>
-
-            <li>
-                <img src="img/tree_folder.png" alt="ChEMBL">
-                <h2>ChEMBL</h2>
-                <p>Database of bioactive drug-like small molecules, it contains 2-D structures, calculated properties and abstracted bioactivities</p>
             </li>
 
             <li>
