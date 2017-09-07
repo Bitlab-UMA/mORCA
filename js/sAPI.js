@@ -534,6 +534,12 @@ function changeRepository() {
       toolid = "urn:biocatalogue:tool:";
       repoid = "biocatalogue";
       break;
+	  
+	case 'Elixir':
+      $("#treeview").load("data/elixir.html");
+      toolid = "urn:elixir:tool:";
+      repoid = "elixir";
+      break;
 
   }
 }
