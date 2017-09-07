@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <style>
+    ul {
+      border: 1px  solid  	#5995ff;
+      padding-right: 15px;
+      padding-left: 15px;
+      border-radius: 5px;
+    }
+  </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+  <!-- <link rel="stylesheet" href="themes/prueba.min.css" />
+  <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+
+  <link rel="stylesheet" href="themes/basic.min.css" />
+  <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+  <script src="jquery.js"></script>
+  <script src="prueba.js"></script>
+  <script src="jquery.soap.js"></script>
+  <script src="jquery.mobile-1.4.5.css"></script>
+</head>
+<body>
+  <center><h1>ChEMBL</h1>
+  <p1>Max phase:</p1>
+  <select id="idMaxPhase" name="Max Phase">
+    <option selected disabled>Select max phase</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </select>
+  <label><input type="checkbox" id="idMaxPhaseCheckbox" name="Max Phase Checkbox"></label>
+  <br>
+  <p1>Molecular weight:</p1>
+  <select id="idMolecularWeightSelection" name="Molecular Weight Selection">
+    <option selected disabled>Select option</option>
+    <option value="gt">Greater than</option>
+    <option value="gte">Greater than or equal</option>
+    <option value="lte">Less than or equal</option>
+    <option value="lt">Less than</option>
+  </select>
+  <input type="text" id="idMolecularWeight" name="Molecular Weight">
+  <label><input type="checkbox" id="idMolecularWeightCheckbox" name="Molecular Weight Checkbox"></label>
+  <br>
+  <label>
+    <input type="button" id="SearchButton" name="Search" value="Search" onclick="displayConsole()" />
+  </label>
+  </center>
+  <p id="list"></p>
+  <script>
+  function displayConsole() {
+    clearBox('list')
+    urlNueva = 'https://www.ebi.ac.uk/chembl/api/data/molecule'
+    var getFlag = false
+    if (document.getElementById('idMaxPhaseCheckbox').checked) {
+      if(!getFlag)
+        urlNueva += "?"
+      urlNueva += "max_phase=" + $('#idMaxPhase').val()
+      getFlag = true
+    }
+    if (document.getElementById('idMolecularWeightCheckbox').checked) {
+      var stringToAppend
+      if (getFlag)
+        stringToAppend += "&"
+      else {
+        stringToAppend += "?"
+      }
+      stringToAppend += "molecule_properties__mw_freebase__" + $('#idMolecularWeightSelection').val() + '=' + $('#idMolecularWeight').val()
+      if($('#idMolecularWeight').val() == undefined){
+        urlNueva += stringToAppend
+        getFlag = true
+      }
+    }
+    console.log(urlNueva)
+    if (getFlag) {
+      clearBox('list')
+      var msg = $.ajax({type: "GET", url: urlNueva, async: false}).responseText;
+      if (window.DOMParser) {
+          var parser = new DOMParser();
+          var xmlDoc = parser.parseFromString(msg, "text/xml");
+        } else {
+          xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+          xmlDoc.async = false;
+          xmlDoc.loadXML(msg);
+        }
+        console.log(xmlDoc)
+        var molecules = xmlDoc.getElementsByTagName("molecules")[0]
+        var moleculeChemblId, synonyms, maxPhase, infoArray;
+        console.log(molecules)
+        var child = molecules.children;
+        console.log(child.length)
+        for(var i = 0; i < child.length; i++) {
+          moleculeChemblId = molecules.childNodes[i].childNodes[13].innerHTML;
+          try {
+            synonyms = molecules.childNodes[i].childNodes[17].childNodes[0].childNodes[0].innerHTML + ", ";
+          } catch(err) {
+            synonyms = ""
+          }
+          try {
+            synonyms += molecules.childNodes[i].childNodes[17].childNodes[1].childNodes[0].innerHTML;
+          } catch(err) {}
+          maxPhase = molecules.childNodes[i].childNodes[12].innerHTML;
+          weight = molecules.childNodes[i].childNodes[15].childNodes[7].innerHTML;
+          infoArray = [moleculeChemblId, synonyms, maxPhase, weight, infoArray];
+          document.getElementById('list').appendChild(makeUL(infoArray));
+        }
+    }
+  }
+
+  function makeUL(array) {
+      var list = document.createElement('ul');
+      for(var i = 0; i < array.length-1; i++) {
+          var item = document.createElement('li');
+          item.appendChild(document.createTextNode(array[i]));
+          list.appendChild(item);
+      }
+    return list;
+  }
+
+
+  function clearBox(elementID)
+  {
+      document.getElementById(elementID).innerHTML = "";
+  }
+  </script>
+</body>
+</html>
