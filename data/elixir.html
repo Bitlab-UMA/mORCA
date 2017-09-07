@@ -1,0 +1,142 @@
+<ul data-role="listview" id="tree" data-inset="true">
+    <li>
+        <img src="img/tree_folder.png" alt="Service">
+        <h2>Service</h2>
+        <p>List of available services</p>
+        <ul data-child-pages="true">
+            <li>
+                <img src="img/tree_folder.png" alt="ArrayExpress">
+                    <h2>ArrayExpress</h2>
+                    <p>Functional Genomics Data from high-throughput functional genomics experiments</p>
+                <ul>
+                    <li>
+                    <a href="#" onclick="loadService('Annotare')">
+                        <img src="img/serviceicon.png" alt="Annotare">
+                        <h2>Annotare</h2>
+                        <p>Web-based submission tool for ArrayExpress</p>
+                    </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="loadService('ArrayExpressBioconductorPackage')">
+                            <img src="img/serviceicon.png" alt="ArrayExpressBioconductorPackage">
+                            <h2>ArrayExpress Bioconductor Package</h2>
+                            <p>An R package to access ArrayExpress and build data structures</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="loadService('ProgrammaticAccess')">
+                            <img src="img/serviceicon.png" alt="ProgrammaticAccess">
+                            <h2>Programatic Access</h2>
+                            <p>Query and download data using web services or JSON</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="loadService('FTPAccess')">
+                            <img src="img/serviceicon.png" alt="FTPAccess">
+                            <h2>FTP Access</h2>
+                            <p>Data can be downloaded directly from our FTP site</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li><img src="img/tree_folder.png" alt="ChEBI">
+                <h2>ChEBI</h2>
+                <p>Dictionary of molecular entities focused on 'small' chemical compounds</p>
+            </li>
+
+            <li>
+                <img src="img/tree_folder.png" alt="ChEMBL">
+                <h2>ChEMBL</h2>
+                <p>Database of bioactive drug-like small molecules, it contains 2-D structures, calculated properties and abstracted bioactivities</p>
+            </li>
+
+            <li>
+              <img src="img/tree_folder.png" alt="EGA">
+                  <h2>EGA</h2>
+                  <p>Personally identifiable genetic and phenotypic data resulting from biomedical research projects</p>
+            </li>
+
+            <li>
+              <img src="img/tree_folder.png" alt="ENA">
+                  <h2>ENA</h2>
+                  <p>Nucleotide sequencing information, covering raw sequencing data, sequence assembly information and functional annotation</p>
+            </li>
+
+            <li>
+              <img src="img/tree_folder.png" alt="Ensembl">
+                  <h2>Ensembl</h2>
+                  <p>Genome browser for vertebrate genomes that supports research in comparative genomics, evolution, sequence variation and transcriptional regulation</p>
+            </li>
+
+            <li>
+              <img src="img/tree_folder.png" alt="EnsemblGenomes">
+                  <h2>Ensembl Genomes</h2>
+                  <p>Comparative analysis, data mining and visualisation for the genomes of non-vertebrate species</p>
+            </li>
+
+            <li>
+              <img src="img/tree_folder.png" alt="EuropePMC">
+                  <h2>Europe PMC</h2>
+                  <p>Europe PMC is a repository, providing access to worldwide life sciences articles, books, patents and clinical guidelines</p>
+            </li>
+
+            <li>
+              <img src="img/tree_folder.png" alt="HumanProteinAtlas">
+                  <h2>Human Protein Atlas</h2>
+                  <p>The Human Protein Atlas contains information for a large majority of all human protein-coding genes regarding the expression and localization of the corresponding proteins based on both RNA and protein data</p>
+            </li>
+
+            <li>
+              <img src="img/tree_folder.png" alt="TheIMExConsortium">
+                  <h2>The IMEx Consortium: represented by IntAct and MINT</h2>
+                  <p>IntAct provides a freely available, open source database system and analysis tools for molecular interaction data. MINT focuses on experimentally verified protein-protein interactions mined from the scientific literature by expert curators</p>
+            </li>
+
+            <li>
+              <img src="img/tree_folder.png" alt="InterPro">
+                  <h2>InterPro</h2>
+                  <p>Functional analysis of protein sequences by classifying them into families and predicting the presence of domains and important sites</p>
+                  <p><small>Note: This is an umbrella resource to which many collaborating databases contribute. In naming InterPro as a Core Data Resource, the critical role of the constituent databases is recognised</small></p>
+            </li>
+
+            <li>
+              <img src="img/tree_folder.png" alt="PDBe">
+                  <h2>PDBe</h2>
+                  <p>Biological macromolecular structures</p>
+            </li>
+
+            <li>
+              <img src="img/tree_folder.png" alt="PRIDE">
+                  <h2>PRIDE</h2>
+                  <p>Mass spectrometry-based proteomics data, including peptide and protein expression information (identifications and quantification values) and the supporting mass spectra evidence</p>
+            </li>
+
+            <li>
+              <img src="img/tree_folder.png" alt="STRING-db">
+                  <h2>STRING-db</h2>
+                  <p>Known and predicted protein-protein interactions</p>
+            </li>
+
+            <li>
+              <img src="img/tree_folder.png" alt="UniProt">
+                  <h2>UniProt</h2>
+                  <p>Comprehensive resource for protein sequence and annotation data</p>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<script>
+    $(function () {
+        /*$("ul").listview({
+            childPages: true,
+            inset: true
+        })*/
+
+        $("ul").listview({
+            childPages: true,
+            inset: true
+        })
+    });
+</script>
