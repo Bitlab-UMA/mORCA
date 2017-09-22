@@ -16,6 +16,7 @@
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.26.min.js"></script>
     <script src="js/mAPI.js"></script>
     <script src="js/sAPI.js"></script>
+    <script src="js/magallanes.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -119,21 +120,23 @@
             <div id="divSelectRepository" data-role="content" class="ui-field-contain" style="align-self: center">
                 <label for="repository">Select repository: </label>
                 <select id="selectRepository" name="repository" idname="select-choice-a" id="repository"
-                        data-native-menu="false" onchange="changeRepository();" data-mini="true">
-                    <option value="MrSymbiomath" selected="selected">Bitlab</option>
-                    <option value="INB">INB</option>
-                    <option value="Biotools" onclick='changeRepository("Biotools")'>Biotools</option>
-                    <option value="Biocatalogue" onclick='changeRepository("Biocatalogue")'>Biocatalogue</option>
+                        data-native-menu="false" data-mini="true">
+                    <option value="MrSymbiomath" selected="selected" onclick='changeRepository("MrSymbiomath");'>Bitlab</option>
+                    <option value="INB" onclick='changeRepository("INB");'>INB</option>
+                    <option value="Biotools" onclick='changeRepository("Biotools");'>Biotools</option>
+                    <option value="Biocatalogue" onclick='changeRepository("Biocatalogue");'>Biocatalogue</option>
                 </select>
             </div>
 
             <div id="magallanes">
-                <table>
+                <!-- <table>
                     <tr>
                         <td id="magallanesText">Now you can try 'Magallanes WS', the web version of our intelligent search:</td>
-                        <td> <a href="http://chirimoyo.ac.uma.es/magallanes-web/"><img src="img/logos/magallanes.png" alt="magallanes" id="magallanesLogo"> </a></td>
+                        <td> <a href="#magallanesPage"><img src="img/logos/magallanes.png" alt="magallanes" id="magallanesLogo"> </a></td>
                     </tr>
-                </table>
+                </table> -->
+                Try our web services and datatypes finder:
+                <input type="button" onclick="location.href='#magallanesPage';" value="Magallanes" />
 
             </div>
 
@@ -149,7 +152,7 @@
         <!-- BOTTON navbar -->
 
         <div data-role="footer" data-position="fixed">
-            <p class="center">&copy; UMA. Málaga - 2017. S.Diaz-del-Pino, O.Torreno, O.Trelles, J.Falgueras. Todos los derechos reservados</p>
+            <p class="center">&copy;<small> UMA. Málaga - 2017. S.Diaz-del-Pino, O.Torreno, O.Trelles, J.Falgueras. Todos los derechos reservados</small></p>
             <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
                 <ul>
                     <li><a href="#index" data-icon="home" class="ui-btn-active ui-state-persist">Home</a></li>
@@ -307,7 +310,7 @@
         </script>
 
         <div data-role="footer" data-position="fixed">
-            <p class="center">&copy; UMA. Málaga - 2017. S.Diaz-del-Pino, O.Torreno, O.Trelles, J.Falgueras. Todos los derechos reservados</p>
+            <p class="center">&copy;<small> UMA. Málaga - 2017. S.Diaz-del-Pino, O.Torreno, O.Trelles, J.Falgueras. Todos los derechos reservados</small></p>
             <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
                 <ul>
                     <li><a href="#index" data-icon="home" data-transition="none" >Home</a></li>
@@ -359,7 +362,7 @@
 
         <!-- botton menu -->
         <div data-role="footer" data-position="fixed">
-            <p class="center">&copy; UMA. Málaga - 2017. S.Diaz-del-Pino, O.Torreno, O.Trelles, J.Falgueras. Todos los derechos reservados</p>
+            <p class="center">&copy;<small> UMA. Málaga - 2017. S.Diaz-del-Pino, O.Torreno, O.Trelles, J.Falgueras. Todos los derechos reservados</small></p>
             <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
                 <ul>
                     <li><a href="#index" data-icon="home" data-transition="none">Home</a></li>
@@ -399,13 +402,137 @@
         </div>
         <!-- botton menu -->
         <div data-role="footer" data-position="fixed">
-            <p class="center">&copy; UMA. Málaga - 2017. S.Diaz-del-Pino, O.Torreno, O.Trelles, J.Falgueras. Todos los derechos reservados</p>
+            <p class="center">&copy;<small> UMA. Málaga - 2017. S.Diaz-del-Pino, O.Torreno, O.Trelles, J.Falgueras. Todos los derechos reservados</small></p>
             <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
                 <ul>
                     <li><a href="#index" data-icon="home" data-transition="none">Home</a></li>
                     <li><a href="#filebrowser" data-icon="bars" data-transition="none">File Browser</a></li>
                     <li><a href="#executionInfo" data-icon="gear" data-transition="none">Monitoring</a></li>
                     <li><a href="#about" data-icon="info" class="ui-btn-active ui-state-persist">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Magallanes page -->
+    <div data-role="page" id="magallanesPage">
+        <div data-role="header" data-position="fixed">
+            <a href="#index" data-icon="arrow-l" class="ui-link ui-btn-left ui-btn ui-icon-arrow-l ui-btn-icon-left ui-shadow ui-corner-all" data-role="button" role="button">Back</a>
+            <h1>Magallanes</h1>
+            <a href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn-right loginButton" data-transition="pop">Sign in</a>
+        </div>
+        <div id="homemain" role="main" class="ui-content">
+          <div id="searchFormDiv">
+            <div id="form-search">
+              <div id="search" class="search">
+                <center>
+              	<form id="search-form" ,="" action="https://chirimoyo.ac.uma.es/magallanes-web/index.jsp" method="post" onsubmit="return showLoading()">
+              		<div class="query">
+              			<select name="repo">
+              				<option value="-1" selected="selected">All repositories</option>
+              				<!-- <option value="0">ACGT [mango.ac.uma.es]</option> -->
+              				<option value="1">Bitlab [chirimoyo.ac.uma.es]</option>
+              				<option value="2">INB  [chirimoyo.ac.uma.es]</option>
+              				<!-- <option value="3">INB  [moby-dev.inab.org]</option>
+              				<option value="4">INB  [www.inab.org]</option>
+              				<option value="5">MOBY [moby.ucalgary.ca]</option>
+              				<option value="6">WSDL [EBI]</option>
+              				<option value="7">WSDL [WABI]</option> -->
+              			</select>
+              			<input name="query" value="" type="text" />
+                    <input value="Search" type="submit"/>
+                    <div class="options">
+                			<div id="config" class="config">
+                        <div>
+                          <div id="type" class="config">
+                            <table>
+                              <tr>
+                						<td><label>AND<input name="type" value="AND" checked="checked" type="radio" /></label></td>
+                						<td><label>OR<input name="type" value="OR" type="radio" /></label></td>
+                					  <td><label>RegEx<input name="type" value="REGEX" type="radio" /></label></td>
+                          </tr>
+                          </table>
+                          </div>
+                        </div>
+                        <div>
+                          <table>
+                            <tr>
+                              <th>
+                                <small>Resources:</small>
+                              </th>
+                              <th>
+                                <small>Options:</small>
+                              </th>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div id="resources" class="config">
+                                  <label>DataType<input name="resource" value="DataType" checked="checked" type="checkbox" /></label>
+                                  <label>ServiceType<input name="resource" value="ServiceType" checked="checked" type="checkbox" /></label>
+                                  <label>Service<input name="resource" value="Service" checked="checked" type="checkbox" /></label>
+                                  <label>Operation<input name="resource" value="Operation" checked="checked" type="checkbox" /></label>
+                                </div>
+                              </td>
+                              <td>
+                                <div id="options" class="config">
+                      						<label>Follow Links<input name="web_search" value="true" type="checkbox" /></label>
+                                  <label>Case Sensitive<input name="case_sensitive" value="true" type="checkbox" /></label>
+                      					</div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                		</div>
+              			<input name="form" value="true" type="hidden" />
+              		</div>
+              	</form>
+              </center>
+              </div>
+            </div>
+          </div>
+          <center>
+            <img src="img/logos/partners2.png" alt="partners">
+          </center>
+
+        </div>
+        <!-- botton menu -->
+        <div data-role="footer" data-position="fixed">
+            <p class="center">&copy;<small> UMA. Málaga - 2017. S.Diaz-del-Pino, O.Torreno, O.Trelles, J.Falgueras. Todos los derechos reservados</small></p>
+            <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
+                <ul>
+                    <li><a href="#index" data-icon="home" data-transition="none">Home</a></li>
+                    <li><a href="#filebrowser" data-icon="bars" data-transition="none">File Browser</a></li>
+                    <li><a href="#executionInfo" data-icon="gear" data-transition="none">Monitoring</a></li>
+                    <li><a href="#about" data-icon="info" data-transition="none">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results page -->
+    <div data-role="page" id="resultsPage">
+        <div data-role="header" data-position="fixed" data-add-back-btn="true">
+            <a href="#magallanesPage" data-icon="arrow-l" class="ui-link ui-btn-left ui-btn ui-icon-arrow-l ui-btn-icon-left ui-shadow ui-corner-all" data-role="button" role="button">Back</a>
+            <h1>Magallanes</h1>
+            <a href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn-right loginButton" data-transition="pop">Sign in</a>
+        </div>
+        <div id="homemain" role="main" class="ui-content">
+          <div id="resultsDiv">
+          </div>
+          <center>
+            <img src="img/logos/partners2.png" alt="partners">
+          </center>
+        </div>
+        <!-- botton menu -->
+        <div data-role="footer" data-position="fixed">
+            <p class="center">&copy;<small> UMA. Málaga - 2017. S.Diaz-del-Pino, O.Torreno, O.Trelles, J.Falgueras. Todos los derechos reservados</small></p>
+            <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
+                <ul>
+                    <li><a href="#index" data-icon="home" data-transition="none">Home</a></li>
+                    <li><a href="#filebrowser" data-icon="bars" data-transition="none">File Browser</a></li>
+                    <li><a href="#executionInfo" data-icon="gear" data-transition="none">Monitoring</a></li>
+                    <li><a href="#about" data-icon="info" data-transition="none">About</a></li>
                 </ul>
             </div>
         </div>
@@ -435,7 +562,7 @@
             </script>
 
             <div data-role="footer" data-position="fixed">
-                <p class="center">&copy; UMA. Málaga - 2017. S.Diaz-del-Pino, O.Torreno, O.Trelles, J.Falgueras. Todos los derechos reservados</p>
+                <p class="center">&copy;<small> UMA. Málaga - 2017. S.Diaz-del-Pino, O.Torreno, O.Trelles, J.Falgueras. Todos los derechos reservados</small></p>
                 <div data-role="navbar" class="ui-body-b tabMenu" data-iconpos="top">
                     <ul>
                         <li><a href="#index" data-icon="home" data-transition="none">Home</a></li>
@@ -593,7 +720,7 @@
             <div id="serviceRunning"></div>
 
             <div data-role="footer" data-position="fixed">
-                <p class="center">&copy; UMA. Málaga - 2017. S.Diaz-del-Pino, O.Torreno, O.Trelles, J.Falgueras. Todos los derechos reservados</p>
+                <p class="center">&copy;<small> UMA. Málaga - 2017. S.Diaz-del-Pino, O.Torreno, O.Trelles, J.Falgueras. Todos los derechos reservados</small></p>
             </div>
 
             <script>
