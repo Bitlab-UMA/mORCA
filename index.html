@@ -120,11 +120,12 @@
             <div id="divSelectRepository" data-role="content" class="ui-field-contain" style="align-self: center">
                 <label for="repository">Select repository: </label>
                 <select id="selectRepository" name="repository" idname="select-choice-a" id="repository"
-                        data-native-menu="false" data-mini="true">
-                    <option value="MrSymbiomath" selected="selected" onclick='changeRepository("MrSymbiomath");'>Bitlab</option>
-                    <option value="INB" onclick='changeRepository("INB");'>INB</option>
-                    <option value="Biotools" onclick='changeRepository("Biotools");'>Biotools</option>
-                    <option value="Biocatalogue" onclick='changeRepository("Biocatalogue");'>Biocatalogue</option>
+                        data-native-menu="false" data-mini="true" onchange="changeRepository();">
+                    <option value="MrSymbiomath" selected="selected" >Bitlab</option>
+                    <option value="INB">INB</option>
+                    <option value="Biotools">Biotools</option>
+                    <option value="Biocatalogue">Biocatalogue</option>
+                    <option value="Elixir">Elixir</option>
                 </select>
             </div>
 
